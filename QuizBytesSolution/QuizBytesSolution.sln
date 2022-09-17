@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Semester3Project", "Semester3Project\Semester3Project.csproj", "{EE313E42-140B-40DE-9AF3-9A532A419560}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelObjects", "QuizBytesLibrary\ModelObjects.csproj", "{BFEE03B5-9A7E-4220-BF27-4F9BF03B1176}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EE313E42-140B-40DE-9AF3-9A532A419560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE313E42-140B-40DE-9AF3-9A532A419560}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE313E42-140B-40DE-9AF3-9A532A419560}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE313E42-140B-40DE-9AF3-9A532A419560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFEE03B5-9A7E-4220-BF27-4F9BF03B1176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFEE03B5-9A7E-4220-BF27-4F9BF03B1176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFEE03B5-9A7E-4220-BF27-4F9BF03B1176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFEE03B5-9A7E-4220-BF27-4F9BF03B1176}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

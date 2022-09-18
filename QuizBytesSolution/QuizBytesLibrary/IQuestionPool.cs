@@ -2,6 +2,6 @@
 {
     public interface IQuestionPool
     {
-        IEnumerable<IQuestion> AllQuestions { get; set; }
+        IEnumerable<IQuestion> Questions { get; set; }
     }
 }

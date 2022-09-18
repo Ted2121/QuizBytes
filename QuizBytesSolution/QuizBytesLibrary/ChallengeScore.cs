@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace BussinesObjects
 {
-
-    public class QuestionPool : IQuestionPool
+    public class ChallengeScore
     {
-        
-        public IEnumerable<IQuestion> Questions { get; set; }
-
+        public int PointsAccumulated { get; set; }
+        public int FinishTimeInMilliseconds { get; set; }
     }
 }

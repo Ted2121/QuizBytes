@@ -8,6 +8,7 @@ namespace BussinesObjects
 {
     public class Subject
     {
+        public string Name { get; set; }
         public IEnumerable<Chapter> Chapters { get; set; }
     }
 }

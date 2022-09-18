@@ -14,34 +14,6 @@ namespace BussinesObjects
         public int TotalPoints { get; set; }
         public int PointsInWallet { get; set; }
 
-        public WebsiteUserAccount(int id, string userName, string password, int totalPoints, int pointsInWallet)
-        {
-            Id = id;
-            UserName = userName;
-            Password = password;
-            TotalPoints = totalPoints;
-            PointsInWallet = pointsInWallet;
-        }
-
-        public WebsiteUserAccount(string userName, string password, int totalPoints, int pointsInWallet)
-        {
-            UserName = userName;
-            Password = password;
-            TotalPoints = totalPoints;
-            PointsInWallet = pointsInWallet;
-        }
-
-        public WebsiteUserAccount(string userName, string password)
-        {
-            UserName = userName;
-            Password = password;
-        }
-
-        public WebsiteUserAccount(int id, string userName, string password)
-        {
-            UserName = userName;
-            Password = password;
-            Id = id;
-        }
+        
     }
 }

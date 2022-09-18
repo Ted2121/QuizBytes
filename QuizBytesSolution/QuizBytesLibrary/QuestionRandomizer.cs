@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BussinesObjects
 {
+        //TODO This needs to be moved to BusinessLogic layer and be tested
     public static class QuestionRandomizer
     {
-        
         public static IEnumerable<IQuestion> RandomizeQuestions(IEnumerable<IQuestion> questions)
         {
            

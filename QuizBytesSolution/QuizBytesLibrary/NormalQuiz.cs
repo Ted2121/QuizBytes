@@ -8,8 +8,13 @@ namespace BussinesObjects
 {
     public class NormalQuiz : IQuiz
     {
+        // fullprop was needed here as this will be a constant - we will always have 8 questions in a normal quiz
         const int maxNumberOfQuestions = 8;
-        public int MaxNumberOfQuestions { get; }
+        public int MaxNumberOfQuestions
+        {
+            get { return maxNumberOfQuestions; }
+
+        }
     }
 
         //TODO move to business logic

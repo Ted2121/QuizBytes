@@ -16,41 +16,12 @@ namespace BussinesObjects
         public string WrongAnswerOne { get; set; }
         public string WrongAnswerTwo { get; set; }
         public string WrongAnswerThree { get; set; }
+        public string Hint { get; set; }
+        public int? PointValue { get; set; }
 
-        public SingleAnswerQuestion(int id, string questionText, string correctAnswer, List<string> wrongAnswers, string wrongAnswerOne, string wrongAnswerTwo, string wrongAnswerThree)
-        {
-            Id = id;
-            QuestionText = questionText;
-            CorrectAnswer = correctAnswer;
-            WrongAnswers = wrongAnswers;
-            WrongAnswerOne = wrongAnswerOne;
-            WrongAnswerTwo = wrongAnswerTwo;
-            WrongAnswerThree = wrongAnswerThree;
-        }
+        
 
-        public SingleAnswerQuestion(string questionText, string correctAnswer, List<string> wrongAnswers, string wrongAnswerOne, string wrongAnswerTwo, string wrongAnswerThree)
-        {
-            QuestionText = questionText;
-            CorrectAnswer = correctAnswer;
-            WrongAnswers = wrongAnswers;
-            WrongAnswerOne = wrongAnswerOne;
-            WrongAnswerTwo = wrongAnswerTwo;
-            WrongAnswerThree = wrongAnswerThree;
-        }
-
-        public SingleAnswerQuestion(string questionText, string correctAnswer, List<string> wrongAnswers)
-        {
-            QuestionText = questionText;
-            CorrectAnswer = correctAnswer;
-            WrongAnswers = wrongAnswers;
-        }
-
-        public SingleAnswerQuestion(int id, string questionText, string correctAnswer, List<string> wrongAnswers)
-        {
-            Id = id;
-            QuestionText = questionText;
-            CorrectAnswer = correctAnswer;
-            WrongAnswers = wrongAnswers;
-        }
+        
+        
     }
 }

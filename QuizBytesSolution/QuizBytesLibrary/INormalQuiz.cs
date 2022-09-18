@@ -1,8 +1,8 @@
 ﻿namespace BussinesObjects
 {
-    public interface INormalQuiz : IQuiz
+    public interface IQuizLogic
     {
-        //TODO interface must be moved and adapted to business logic layer
+        //TODO logic must be moved and adapted to business logic layer
         List<IQuestion> GetRandomQuestionsFromChapter(Chapter chapter);
     }
 }

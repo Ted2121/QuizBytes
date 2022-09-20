@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BussinesObjects", "QuizBytesLibrary\BussinesObjects.csproj", "{BFEE03B5-9A7E-4220-BF27-4F9BF03B1176}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicTests", "BusinessLogicTests\BusinessLogicTests.csproj", "{6298B056-6752-4A26-9F90-FBF9A5171A14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteManager", "ByteManager\ByteManager.csproj", "{EFF67CD7-6808-4F50-8E37-3419A5FEF76D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BFEE03B5-9A7E-4220-BF27-4F9BF03B1176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFEE03B5-9A7E-4220-BF27-4F9BF03B1176}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFEE03B5-9A7E-4220-BF27-4F9BF03B1176}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFEE03B5-9A7E-4220-BF27-4F9BF03B1176}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6298B056-6752-4A26-9F90-FBF9A5171A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6298B056-6752-4A26-9F90-FBF9A5171A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6298B056-6752-4A26-9F90-FBF9A5171A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6298B056-6752-4A26-9F90-FBF9A5171A14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFF67CD7-6808-4F50-8E37-3419A5FEF76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFF67CD7-6808-4F50-8E37-3419A5FEF76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFF67CD7-6808-4F50-8E37-3419A5FEF76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFF67CD7-6808-4F50-8E37-3419A5FEF76D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

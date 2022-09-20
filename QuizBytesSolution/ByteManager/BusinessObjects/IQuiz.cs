@@ -1,4 +1,4 @@
-﻿namespace BussinesObjects
+﻿namespace ByteManager.BussinesObjects
 {
     public interface IQuiz
     {

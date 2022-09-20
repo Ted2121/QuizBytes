@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BussinesObjects
+namespace ByteManager.BussinesObjects
 {
 
     public class QuestionPool : IQuestionPool

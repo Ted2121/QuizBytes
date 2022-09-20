@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BussinesObjects
+namespace ByteManager.BussinesObjects
 {
         //TODO This needs to be moved to Webserver's Controller layer and be tested
     public static class QuestionRandomizer

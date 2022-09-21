@@ -1,3 +1,5 @@
+using ByteManager.WinFormsUI;
+
 namespace ByteManager.WindowsClientUI
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace ByteManager.WindowsClientUI
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Dashboard());
+            Application.Run(new Questions());
         }
     }
 }

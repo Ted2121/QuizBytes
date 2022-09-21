@@ -13,7 +13,7 @@ namespace ByteManager.BussinesObjects
         public string QuestionText { get; set; }
         public string CorrectAnswer { get; set; }
         // This list is used just for polymorphism purposes - let's us write methods with an IQuestion parameter
-        public List<string> WrongAnswers { get; set; }
+        public IEnumerable<string> WrongAnswers { get; set; }
         public string Hint { get; set; }
         public int? PointValue { get; set; }
 

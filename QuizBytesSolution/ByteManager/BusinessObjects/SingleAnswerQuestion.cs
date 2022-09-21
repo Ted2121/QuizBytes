@@ -12,7 +12,7 @@ namespace ByteManager.BussinesObjects
         public int? Id { get; set; }
         public string QuestionText { get; set; }
         public string CorrectAnswer { get; set; }
-        public List<string> WrongAnswers { get; set; }
+        public IEnumerable<string> WrongAnswers { get; set; }
         public string WrongAnswerOne { get; set; }
         public string WrongAnswerTwo { get; set; }
         public string WrongAnswerThree { get; set; }

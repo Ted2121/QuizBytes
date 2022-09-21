@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteManager", "ByteManager\ByteManager.csproj", "{EFF67CD7-6808-4F50-8E37-3419A5FEF76D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteManager", "ByteManager\ByteManager.csproj", "{EFF67CD7-6808-4F50-8E37-3419A5FEF76D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLibrary", "DataAccessLibrary\DataAccessLibrary.csproj", "{650DDD20-4F7C-4BEF-B962-9311537506DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EFF67CD7-6808-4F50-8E37-3419A5FEF76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFF67CD7-6808-4F50-8E37-3419A5FEF76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFF67CD7-6808-4F50-8E37-3419A5FEF76D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{650DDD20-4F7C-4BEF-B962-9311537506DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{650DDD20-4F7C-4BEF-B962-9311537506DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{650DDD20-4F7C-4BEF-B962-9311537506DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{650DDD20-4F7C-4BEF-B962-9311537506DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

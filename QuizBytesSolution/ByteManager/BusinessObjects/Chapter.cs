@@ -11,6 +11,6 @@ namespace ByteManager.BussinesObjects
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public IQuestionPool QuestionPool { get; set; }
+        public IEnumerable<IQuestion> Questions { get; set; }
     }
 }

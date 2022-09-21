@@ -1,4 +1,4 @@
-﻿namespace ByteManager.WindowsClientUI
+﻿namespace ByteManager.WinFormsUI
 {
     partial class Dashboard
     {

@@ -1,6 +1,6 @@
 using ByteManager.WinFormsUI;
 
-namespace ByteManager.WindowsClientUI
+namespace ByteManager.WinFormsUI
 {
     internal static class Program
     {

@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data Access Objects\" />
-    <Folder Include="Data Access Interfaces\" />
-    <Folder Include="Data Access Implementation\" />
+    <Folder Include="Data Access Models\" />
+    <Folder Include="DAO Interfaces\" />
+    <Folder Include="DAO Implementations\" />
   </ItemGroup>
 
 </Project>

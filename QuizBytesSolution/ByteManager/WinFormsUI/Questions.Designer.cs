@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Questions));
             this.lineSeparator = new System.Windows.Forms.Label();
             this.webusersNavigationButton = new System.Windows.Forms.Button();
@@ -49,19 +49,28 @@
             this.wrongAnswerTwoLabel = new System.Windows.Forms.Label();
             this.wrongAnswerThreeLabel = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.chapterNameCombobox = new System.Windows.Forms.ComboBox();
-            this.questionTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.questionTextTextBox = new System.Windows.Forms.TextBox();
-            this.correctAnswerTextBox = new System.Windows.Forms.TextBox();
-            this.wrongAnswerOneTextBox = new System.Windows.Forms.TextBox();
-            this.wonrgAnswerTwoTextBox = new System.Windows.Forms.TextBox();
             this.wrongAnswerThreeTextBox = new System.Windows.Forms.TextBox();
+            this.wonrgAnswerTwoTextBox = new System.Windows.Forms.TextBox();
+            this.wrongAnswerOneTextBox = new System.Windows.Forms.TextBox();
+            this.correctAnswerTextBox = new System.Windows.Forms.TextBox();
+            this.questionTextTextBox = new System.Windows.Forms.TextBox();
+            this.questionTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.chapterNameCombobox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.editButton = new System.Windows.Forms.PictureBox();
+            this.confirmButton = new System.Windows.Forms.PictureBox();
+            this.cancelButton = new System.Windows.Forms.PictureBox();
+            this.deleteButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.singleAnswerDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.editButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.confirmButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cancelButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteButton)).BeginInit();
             this.SuspendLayout();
             // 
             // lineSeparator
@@ -135,39 +144,39 @@
             // singleAnswerDataGrid
             // 
             this.singleAnswerDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.singleAnswerDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.singleAnswerDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.singleAnswerDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.singleAnswerDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.questionsIndex,
             this.chapterName,
             this.questionText});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.singleAnswerDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.singleAnswerDataGrid.DefaultCellStyle = dataGridViewCellStyle5;
             this.singleAnswerDataGrid.EnableHeadersVisualStyles = false;
             this.singleAnswerDataGrid.GridColor = System.Drawing.Color.White;
             this.singleAnswerDataGrid.Location = new System.Drawing.Point(375, 80);
             this.singleAnswerDataGrid.Name = "singleAnswerDataGrid";
             this.singleAnswerDataGrid.RowHeadersVisible = false;
             this.singleAnswerDataGrid.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.singleAnswerDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.singleAnswerDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.singleAnswerDataGrid.RowTemplate.Height = 25;
             this.singleAnswerDataGrid.Size = new System.Drawing.Size(1450, 400);
             this.singleAnswerDataGrid.TabIndex = 10;
@@ -240,7 +249,7 @@
             // wrongAnswerOneLabel
             // 
             this.wrongAnswerOneLabel.AutoSize = true;
-            this.wrongAnswerOneLabel.Location = new System.Drawing.Point(15, 170);
+            this.wrongAnswerOneLabel.Location = new System.Drawing.Point(10, 170);
             this.wrongAnswerOneLabel.Margin = new System.Windows.Forms.Padding(5);
             this.wrongAnswerOneLabel.Name = "wrongAnswerOneLabel";
             this.wrongAnswerOneLabel.Size = new System.Drawing.Size(169, 30);
@@ -250,7 +259,7 @@
             // wrongAnswerTwoLabel
             // 
             this.wrongAnswerTwoLabel.AutoSize = true;
-            this.wrongAnswerTwoLabel.Location = new System.Drawing.Point(15, 210);
+            this.wrongAnswerTwoLabel.Location = new System.Drawing.Point(10, 210);
             this.wrongAnswerTwoLabel.Margin = new System.Windows.Forms.Padding(5);
             this.wrongAnswerTwoLabel.Name = "wrongAnswerTwoLabel";
             this.wrongAnswerTwoLabel.Size = new System.Drawing.Size(173, 30);
@@ -260,7 +269,7 @@
             // wrongAnswerThreeLabel
             // 
             this.wrongAnswerThreeLabel.AutoSize = true;
-            this.wrongAnswerThreeLabel.Location = new System.Drawing.Point(15, 250);
+            this.wrongAnswerThreeLabel.Location = new System.Drawing.Point(10, 250);
             this.wrongAnswerThreeLabel.Margin = new System.Windows.Forms.Padding(5);
             this.wrongAnswerThreeLabel.Name = "wrongAnswerThreeLabel";
             this.wrongAnswerThreeLabel.Size = new System.Drawing.Size(173, 30);
@@ -299,17 +308,50 @@
             this.splitContainer1.SplitterDistance = 198;
             this.splitContainer1.TabIndex = 18;
             // 
-            // chapterNameCombobox
+            // wrongAnswerThreeTextBox
             // 
-            this.chapterNameCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.chapterNameCombobox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.chapterNameCombobox.ForeColor = System.Drawing.Color.Black;
-            this.chapterNameCombobox.FormattingEnabled = true;
-            this.chapterNameCombobox.Location = new System.Drawing.Point(12, 11);
-            this.chapterNameCombobox.MaxDropDownItems = 10;
-            this.chapterNameCombobox.Name = "chapterNameCombobox";
-            this.chapterNameCombobox.Size = new System.Drawing.Size(250, 33);
-            this.chapterNameCombobox.TabIndex = 0;
+            this.wrongAnswerThreeTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.wrongAnswerThreeTextBox.Location = new System.Drawing.Point(12, 247);
+            this.wrongAnswerThreeTextBox.Name = "wrongAnswerThreeTextBox";
+            this.wrongAnswerThreeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.wrongAnswerThreeTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.wrongAnswerThreeTextBox.TabIndex = 6;
+            // 
+            // wonrgAnswerTwoTextBox
+            // 
+            this.wonrgAnswerTwoTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.wonrgAnswerTwoTextBox.Location = new System.Drawing.Point(12, 207);
+            this.wonrgAnswerTwoTextBox.Name = "wonrgAnswerTwoTextBox";
+            this.wonrgAnswerTwoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.wonrgAnswerTwoTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.wonrgAnswerTwoTextBox.TabIndex = 5;
+            // 
+            // wrongAnswerOneTextBox
+            // 
+            this.wrongAnswerOneTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.wrongAnswerOneTextBox.Location = new System.Drawing.Point(12, 168);
+            this.wrongAnswerOneTextBox.Name = "wrongAnswerOneTextBox";
+            this.wrongAnswerOneTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.wrongAnswerOneTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.wrongAnswerOneTextBox.TabIndex = 4;
+            // 
+            // correctAnswerTextBox
+            // 
+            this.correctAnswerTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.correctAnswerTextBox.Location = new System.Drawing.Point(12, 129);
+            this.correctAnswerTextBox.Name = "correctAnswerTextBox";
+            this.correctAnswerTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.correctAnswerTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.correctAnswerTextBox.TabIndex = 3;
+            // 
+            // questionTextTextBox
+            // 
+            this.questionTextTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.questionTextTextBox.Location = new System.Drawing.Point(12, 90);
+            this.questionTextTextBox.Name = "questionTextTextBox";
+            this.questionTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.questionTextTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.questionTextTextBox.TabIndex = 2;
             // 
             // questionTypeComboBox
             // 
@@ -323,57 +365,69 @@
             this.questionTypeComboBox.Size = new System.Drawing.Size(250, 33);
             this.questionTypeComboBox.TabIndex = 1;
             // 
-            // questionTextTextBox
+            // chapterNameCombobox
             // 
-            this.questionTextTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.questionTextTextBox.Location = new System.Drawing.Point(12, 90);
-            this.questionTextTextBox.Name = "questionTextTextBox";
-            this.questionTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.questionTextTextBox.Size = new System.Drawing.Size(1000, 33);
-            this.questionTextTextBox.TabIndex = 2;
-            // 
-            // correctAnswerTextBox
-            // 
-            this.correctAnswerTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.correctAnswerTextBox.Location = new System.Drawing.Point(12, 129);
-            this.correctAnswerTextBox.Name = "correctAnswerTextBox";
-            this.correctAnswerTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.correctAnswerTextBox.Size = new System.Drawing.Size(1000, 33);
-            this.correctAnswerTextBox.TabIndex = 3;
-            // 
-            // wrongAnswerOneTextBox
-            // 
-            this.wrongAnswerOneTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.wrongAnswerOneTextBox.Location = new System.Drawing.Point(12, 168);
-            this.wrongAnswerOneTextBox.Name = "wrongAnswerOneTextBox";
-            this.wrongAnswerOneTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wrongAnswerOneTextBox.Size = new System.Drawing.Size(1000, 33);
-            this.wrongAnswerOneTextBox.TabIndex = 4;
-            // 
-            // wonrgAnswerTwoTextBox
-            // 
-            this.wonrgAnswerTwoTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.wonrgAnswerTwoTextBox.Location = new System.Drawing.Point(12, 207);
-            this.wonrgAnswerTwoTextBox.Name = "wonrgAnswerTwoTextBox";
-            this.wonrgAnswerTwoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wonrgAnswerTwoTextBox.Size = new System.Drawing.Size(1000, 33);
-            this.wonrgAnswerTwoTextBox.TabIndex = 5;
-            // 
-            // wrongAnswerThreeTextBox
-            // 
-            this.wrongAnswerThreeTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.wrongAnswerThreeTextBox.Location = new System.Drawing.Point(12, 247);
-            this.wrongAnswerThreeTextBox.Name = "wrongAnswerThreeTextBox";
-            this.wrongAnswerThreeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wrongAnswerThreeTextBox.Size = new System.Drawing.Size(1000, 33);
-            this.wrongAnswerThreeTextBox.TabIndex = 6;
+            this.chapterNameCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.chapterNameCombobox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.chapterNameCombobox.ForeColor = System.Drawing.Color.Black;
+            this.chapterNameCombobox.FormattingEnabled = true;
+            this.chapterNameCombobox.Location = new System.Drawing.Point(12, 11);
+            this.chapterNameCombobox.MaxDropDownItems = 10;
+            this.chapterNameCombobox.Name = "chapterNameCombobox";
+            this.chapterNameCombobox.Size = new System.Drawing.Size(250, 33);
+            this.chapterNameCombobox.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Controls.Add(this.editButton);
+            this.flowLayoutPanel1.Controls.Add(this.confirmButton);
+            this.flowLayoutPanel1.Controls.Add(this.cancelButton);
+            this.flowLayoutPanel1.Controls.Add(this.deleteButton);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(1737, 538);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 292);
             this.flowLayoutPanel1.TabIndex = 19;
+            // 
+            // editButton
+            // 
+            this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
+            this.editButton.Location = new System.Drawing.Point(13, 23);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(60, 60);
+            this.editButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.editButton.TabIndex = 20;
+            this.editButton.TabStop = false;
+            // 
+            // confirmButton
+            // 
+            this.confirmButton.Image = ((System.Drawing.Image)(resources.GetObject("confirmButton.Image")));
+            this.confirmButton.Location = new System.Drawing.Point(13, 89);
+            this.confirmButton.Name = "confirmButton";
+            this.confirmButton.Size = new System.Drawing.Size(60, 60);
+            this.confirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.confirmButton.TabIndex = 21;
+            this.confirmButton.TabStop = false;
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Image = ((System.Drawing.Image)(resources.GetObject("cancelButton.Image")));
+            this.cancelButton.Location = new System.Drawing.Point(13, 155);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(60, 60);
+            this.cancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.cancelButton.TabIndex = 22;
+            this.cancelButton.TabStop = false;
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
+            this.deleteButton.Location = new System.Drawing.Point(13, 221);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(60, 60);
+            this.deleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.deleteButton.TabIndex = 23;
+            this.deleteButton.TabStop = false;
             // 
             // Questions
             // 
@@ -406,6 +460,11 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.editButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.confirmButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cancelButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,5 +497,9 @@
         private TextBox questionTextTextBox;
         private ComboBox questionTypeComboBox;
         private FlowLayoutPanel flowLayoutPanel1;
+        private PictureBox editButton;
+        private PictureBox confirmButton;
+        private PictureBox cancelButton;
+        private PictureBox deleteButton;
     }
 }

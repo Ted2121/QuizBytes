@@ -37,16 +37,31 @@
             this.questionsNavigationButton = new System.Windows.Forms.Button();
             this.chaptersNavigationButton = new System.Windows.Forms.Button();
             this.dashboardNavigationButton = new System.Windows.Forms.Button();
-            this.questionTabControl = new System.Windows.Forms.TabControl();
-            this.singleAnswerTabPage = new System.Windows.Forms.TabPage();
             this.singleAnswerDataGrid = new System.Windows.Forms.DataGridView();
-            this.trueFalseTabPage = new System.Windows.Forms.TabPage();
             this.questionsIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.questionText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.questionTabControl.SuspendLayout();
-            this.singleAnswerTabPage.SuspendLayout();
+            this.chapterNameLabel = new System.Windows.Forms.Label();
+            this.questionTypeLabel = new System.Windows.Forms.Label();
+            this.questionTextLabel = new System.Windows.Forms.Label();
+            this.correctAnswerLabel = new System.Windows.Forms.Label();
+            this.wrongAnswerOneLabel = new System.Windows.Forms.Label();
+            this.wrongAnswerTwoLabel = new System.Windows.Forms.Label();
+            this.wrongAnswerThreeLabel = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.chapterNameCombobox = new System.Windows.Forms.ComboBox();
+            this.questionTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.questionTextTextBox = new System.Windows.Forms.TextBox();
+            this.correctAnswerTextBox = new System.Windows.Forms.TextBox();
+            this.wrongAnswerOneTextBox = new System.Windows.Forms.TextBox();
+            this.wonrgAnswerTwoTextBox = new System.Windows.Forms.TextBox();
+            this.wrongAnswerThreeTextBox = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.singleAnswerDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lineSeparator
@@ -54,7 +69,7 @@
             this.lineSeparator.BackColor = System.Drawing.Color.White;
             this.lineSeparator.Location = new System.Drawing.Point(315, 40);
             this.lineSeparator.Name = "lineSeparator";
-            this.lineSeparator.Size = new System.Drawing.Size(1, 980);
+            this.lineSeparator.Size = new System.Drawing.Size(1, 960);
             this.lineSeparator.TabIndex = 9;
             // 
             // webusersNavigationButton
@@ -117,35 +132,12 @@
             this.dashboardNavigationButton.Text = "Dashboard";
             this.dashboardNavigationButton.UseVisualStyleBackColor = true;
             // 
-            // questionTabControl
-            // 
-            this.questionTabControl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.questionTabControl.Controls.Add(this.singleAnswerTabPage);
-            this.questionTabControl.Controls.Add(this.trueFalseTabPage);
-            this.questionTabControl.Location = new System.Drawing.Point(400, 80);
-            this.questionTabControl.Name = "questionTabControl";
-            this.questionTabControl.SelectedIndex = 0;
-            this.questionTabControl.Size = new System.Drawing.Size(1415, 318);
-            this.questionTabControl.TabIndex = 10;
-            // 
-            // singleAnswerTabPage
-            // 
-            this.singleAnswerTabPage.Controls.Add(this.singleAnswerDataGrid);
-            this.singleAnswerTabPage.Location = new System.Drawing.Point(4, 45);
-            this.singleAnswerTabPage.Name = "singleAnswerTabPage";
-            this.singleAnswerTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.singleAnswerTabPage.Size = new System.Drawing.Size(1407, 269);
-            this.singleAnswerTabPage.TabIndex = 0;
-            this.singleAnswerTabPage.Text = "Single Answer";
-            this.singleAnswerTabPage.UseVisualStyleBackColor = true;
-            this.singleAnswerTabPage.Click += new System.EventHandler(this.tabPage1_Click);
-            // 
             // singleAnswerDataGrid
             // 
             this.singleAnswerDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -164,10 +156,9 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.singleAnswerDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.singleAnswerDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.singleAnswerDataGrid.EnableHeadersVisualStyles = false;
             this.singleAnswerDataGrid.GridColor = System.Drawing.Color.White;
-            this.singleAnswerDataGrid.Location = new System.Drawing.Point(3, 3);
+            this.singleAnswerDataGrid.Location = new System.Drawing.Point(375, 80);
             this.singleAnswerDataGrid.Name = "singleAnswerDataGrid";
             this.singleAnswerDataGrid.RowHeadersVisible = false;
             this.singleAnswerDataGrid.RowHeadersWidth = 51;
@@ -178,19 +169,8 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.singleAnswerDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.singleAnswerDataGrid.RowTemplate.Height = 25;
-            this.singleAnswerDataGrid.Size = new System.Drawing.Size(1401, 263);
-            this.singleAnswerDataGrid.TabIndex = 0;
-            this.singleAnswerDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // trueFalseTabPage
-            // 
-            this.trueFalseTabPage.Location = new System.Drawing.Point(4, 29);
-            this.trueFalseTabPage.Name = "trueFalseTabPage";
-            this.trueFalseTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.trueFalseTabPage.Size = new System.Drawing.Size(1407, 285);
-            this.trueFalseTabPage.TabIndex = 1;
-            this.trueFalseTabPage.Text = "True/False Answer";
-            this.trueFalseTabPage.UseVisualStyleBackColor = true;
+            this.singleAnswerDataGrid.Size = new System.Drawing.Size(1450, 400);
+            this.singleAnswerDataGrid.TabIndex = 10;
             // 
             // questionsIndex
             // 
@@ -210,19 +190,201 @@
             // 
             // questionText
             // 
+            this.questionText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.questionText.HeaderText = "Question Text";
-            this.questionText.MinimumWidth = 1015;
+            this.questionText.MinimumWidth = 694;
             this.questionText.Name = "questionText";
-            this.questionText.Width = 1015;
+            // 
+            // chapterNameLabel
+            // 
+            this.chapterNameLabel.AutoSize = true;
+            this.chapterNameLabel.Location = new System.Drawing.Point(10, 10);
+            this.chapterNameLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.chapterNameLabel.Name = "chapterNameLabel";
+            this.chapterNameLabel.Size = new System.Drawing.Size(152, 30);
+            this.chapterNameLabel.TabIndex = 11;
+            this.chapterNameLabel.Text = "Chapter Name";
+            this.chapterNameLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // questionTypeLabel
+            // 
+            this.questionTypeLabel.AutoSize = true;
+            this.questionTypeLabel.Location = new System.Drawing.Point(10, 50);
+            this.questionTypeLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.questionTypeLabel.Name = "questionTypeLabel";
+            this.questionTypeLabel.Size = new System.Drawing.Size(151, 30);
+            this.questionTypeLabel.TabIndex = 12;
+            this.questionTypeLabel.Text = "Question Type";
+            this.questionTypeLabel.Click += new System.EventHandler(this.questionTypeLabel_Click);
+            // 
+            // questionTextLabel
+            // 
+            this.questionTextLabel.AutoSize = true;
+            this.questionTextLabel.Location = new System.Drawing.Point(10, 90);
+            this.questionTextLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.questionTextLabel.Name = "questionTextLabel";
+            this.questionTextLabel.Size = new System.Drawing.Size(145, 30);
+            this.questionTextLabel.TabIndex = 13;
+            this.questionTextLabel.Text = "Question Text";
+            // 
+            // correctAnswerLabel
+            // 
+            this.correctAnswerLabel.AutoSize = true;
+            this.correctAnswerLabel.Location = new System.Drawing.Point(10, 130);
+            this.correctAnswerLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.correctAnswerLabel.Name = "correctAnswerLabel";
+            this.correctAnswerLabel.Size = new System.Drawing.Size(160, 30);
+            this.correctAnswerLabel.TabIndex = 14;
+            this.correctAnswerLabel.Text = "Correct Answer";
+            // 
+            // wrongAnswerOneLabel
+            // 
+            this.wrongAnswerOneLabel.AutoSize = true;
+            this.wrongAnswerOneLabel.Location = new System.Drawing.Point(15, 170);
+            this.wrongAnswerOneLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.wrongAnswerOneLabel.Name = "wrongAnswerOneLabel";
+            this.wrongAnswerOneLabel.Size = new System.Drawing.Size(169, 30);
+            this.wrongAnswerOneLabel.TabIndex = 15;
+            this.wrongAnswerOneLabel.Text = "Wrong Answer 1";
+            // 
+            // wrongAnswerTwoLabel
+            // 
+            this.wrongAnswerTwoLabel.AutoSize = true;
+            this.wrongAnswerTwoLabel.Location = new System.Drawing.Point(15, 210);
+            this.wrongAnswerTwoLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.wrongAnswerTwoLabel.Name = "wrongAnswerTwoLabel";
+            this.wrongAnswerTwoLabel.Size = new System.Drawing.Size(173, 30);
+            this.wrongAnswerTwoLabel.TabIndex = 16;
+            this.wrongAnswerTwoLabel.Text = "Wrong Answer 2";
+            // 
+            // wrongAnswerThreeLabel
+            // 
+            this.wrongAnswerThreeLabel.AutoSize = true;
+            this.wrongAnswerThreeLabel.Location = new System.Drawing.Point(15, 250);
+            this.wrongAnswerThreeLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.wrongAnswerThreeLabel.Name = "wrongAnswerThreeLabel";
+            this.wrongAnswerThreeLabel.Size = new System.Drawing.Size(173, 30);
+            this.wrongAnswerThreeLabel.TabIndex = 17;
+            this.wrongAnswerThreeLabel.Text = "Wrong Answer 3";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Location = new System.Drawing.Point(375, 538);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.wrongAnswerTwoLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.chapterNameLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.wrongAnswerThreeLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.questionTypeLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.questionTextLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.wrongAnswerOneLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.correctAnswerLabel);
+            this.splitContainer1.Panel1.Margin = new System.Windows.Forms.Padding(20);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.wrongAnswerThreeTextBox);
+            this.splitContainer1.Panel2.Controls.Add(this.wonrgAnswerTwoTextBox);
+            this.splitContainer1.Panel2.Controls.Add(this.wrongAnswerOneTextBox);
+            this.splitContainer1.Panel2.Controls.Add(this.correctAnswerTextBox);
+            this.splitContainer1.Panel2.Controls.Add(this.questionTextTextBox);
+            this.splitContainer1.Panel2.Controls.Add(this.questionTypeComboBox);
+            this.splitContainer1.Panel2.Controls.Add(this.chapterNameCombobox);
+            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
+            this.splitContainer1.Size = new System.Drawing.Size(1334, 292);
+            this.splitContainer1.SplitterDistance = 198;
+            this.splitContainer1.TabIndex = 18;
+            // 
+            // chapterNameCombobox
+            // 
+            this.chapterNameCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.chapterNameCombobox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.chapterNameCombobox.ForeColor = System.Drawing.Color.Black;
+            this.chapterNameCombobox.FormattingEnabled = true;
+            this.chapterNameCombobox.Location = new System.Drawing.Point(12, 11);
+            this.chapterNameCombobox.MaxDropDownItems = 10;
+            this.chapterNameCombobox.Name = "chapterNameCombobox";
+            this.chapterNameCombobox.Size = new System.Drawing.Size(250, 33);
+            this.chapterNameCombobox.TabIndex = 0;
+            // 
+            // questionTypeComboBox
+            // 
+            this.questionTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.questionTypeComboBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.questionTypeComboBox.ForeColor = System.Drawing.Color.Black;
+            this.questionTypeComboBox.FormattingEnabled = true;
+            this.questionTypeComboBox.Location = new System.Drawing.Point(12, 51);
+            this.questionTypeComboBox.MaxDropDownItems = 10;
+            this.questionTypeComboBox.Name = "questionTypeComboBox";
+            this.questionTypeComboBox.Size = new System.Drawing.Size(250, 33);
+            this.questionTypeComboBox.TabIndex = 1;
+            // 
+            // questionTextTextBox
+            // 
+            this.questionTextTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.questionTextTextBox.Location = new System.Drawing.Point(12, 90);
+            this.questionTextTextBox.Name = "questionTextTextBox";
+            this.questionTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.questionTextTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.questionTextTextBox.TabIndex = 2;
+            // 
+            // correctAnswerTextBox
+            // 
+            this.correctAnswerTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.correctAnswerTextBox.Location = new System.Drawing.Point(12, 129);
+            this.correctAnswerTextBox.Name = "correctAnswerTextBox";
+            this.correctAnswerTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.correctAnswerTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.correctAnswerTextBox.TabIndex = 3;
+            // 
+            // wrongAnswerOneTextBox
+            // 
+            this.wrongAnswerOneTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.wrongAnswerOneTextBox.Location = new System.Drawing.Point(12, 168);
+            this.wrongAnswerOneTextBox.Name = "wrongAnswerOneTextBox";
+            this.wrongAnswerOneTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.wrongAnswerOneTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.wrongAnswerOneTextBox.TabIndex = 4;
+            // 
+            // wonrgAnswerTwoTextBox
+            // 
+            this.wonrgAnswerTwoTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.wonrgAnswerTwoTextBox.Location = new System.Drawing.Point(12, 207);
+            this.wonrgAnswerTwoTextBox.Name = "wonrgAnswerTwoTextBox";
+            this.wonrgAnswerTwoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.wonrgAnswerTwoTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.wonrgAnswerTwoTextBox.TabIndex = 5;
+            // 
+            // wrongAnswerThreeTextBox
+            // 
+            this.wrongAnswerThreeTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.wrongAnswerThreeTextBox.Location = new System.Drawing.Point(12, 247);
+            this.wrongAnswerThreeTextBox.Name = "wrongAnswerThreeTextBox";
+            this.wrongAnswerThreeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.wrongAnswerThreeTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.wrongAnswerThreeTextBox.TabIndex = 6;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(1737, 538);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 292);
+            this.flowLayoutPanel1.TabIndex = 19;
             // 
             // Questions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.questionTabControl);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.singleAnswerDataGrid);
             this.Controls.Add(this.lineSeparator);
             this.Controls.Add(this.webusersNavigationButton);
             this.Controls.Add(this.questionsNavigationButton);
@@ -237,9 +399,13 @@
             this.Name = "Questions";
             this.Text = "ByteManager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.questionTabControl.ResumeLayout(false);
-            this.singleAnswerTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.singleAnswerDataGrid)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,12 +418,25 @@
         private Button questionsNavigationButton;
         private Button chaptersNavigationButton;
         private Button dashboardNavigationButton;
-        private TabControl questionTabControl;
-        private TabPage singleAnswerTabPage;
-        private TabPage trueFalseTabPage;
         private DataGridView singleAnswerDataGrid;
+        private Label chapterNameLabel;
+        private Label questionTypeLabel;
+        private Label questionTextLabel;
+        private Label correctAnswerLabel;
+        private Label wrongAnswerOneLabel;
+        private Label wrongAnswerTwoLabel;
         private DataGridViewTextBoxColumn questionsIndex;
         private DataGridViewTextBoxColumn chapterName;
         private DataGridViewTextBoxColumn questionText;
+        private Label wrongAnswerThreeLabel;
+        private SplitContainer splitContainer1;
+        private ComboBox chapterNameCombobox;
+        private TextBox wrongAnswerThreeTextBox;
+        private TextBox wonrgAnswerTwoTextBox;
+        private TextBox wrongAnswerOneTextBox;
+        private TextBox correctAnswerTextBox;
+        private TextBox questionTextTextBox;
+        private ComboBox questionTypeComboBox;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Data Access Models\" />
     <Folder Include="DAO Interfaces\" />
-    <Folder Include="DAO Implementations\" />
   </ItemGroup>
 
 </Project>

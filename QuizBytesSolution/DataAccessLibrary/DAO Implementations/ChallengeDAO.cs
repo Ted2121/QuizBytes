@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLibrary.Data_Access_Implementation
 {
-    internal class ChallengeDAO_Imp
+    public class ChallengeDAO
     {
     }
 }

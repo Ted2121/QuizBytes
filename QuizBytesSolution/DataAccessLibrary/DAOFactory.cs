@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLibrary
 {
-    internal class DAOFactory
+    public static class DAOFactory
     {
+
     }
 }

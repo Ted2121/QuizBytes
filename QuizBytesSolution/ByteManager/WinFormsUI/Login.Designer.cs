@@ -38,6 +38,7 @@
             this.usernamePictureBox = new System.Windows.Forms.PictureBox();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
+            this.exitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.LoginIconPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usernamePictureBox)).BeginInit();
@@ -45,6 +46,7 @@
             // 
             // LoginIconPictureBox
             // 
+            this.LoginIconPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LoginIconPictureBox.Image = global::ByteManager.Properties.Resources.Logo_Bytecoin_png___Copy;
             this.LoginIconPictureBox.Location = new System.Drawing.Point(41, 0);
             this.LoginIconPictureBox.Name = "LoginIconPictureBox";
@@ -86,13 +88,14 @@
             this.LoginButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.LoginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.LoginButton.ForeColor = System.Drawing.Color.DarkOrange;
-            this.LoginButton.Location = new System.Drawing.Point(111, 371);
+            this.LoginButton.Location = new System.Drawing.Point(13, 368);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(99, 38);
             this.LoginButton.TabIndex = 4;
             this.LoginButton.Text = "Login";
             this.LoginButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.LoginButton.UseVisualStyleBackColor = false;
+            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
             // passwordPictureBox
             // 
@@ -132,12 +135,27 @@
             this.passwordTextBox.Size = new System.Drawing.Size(243, 17);
             this.passwordTextBox.TabIndex = 8;
             // 
+            // exitButton
+            // 
+            this.exitButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.exitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.exitButton.ForeColor = System.Drawing.Color.DarkOrange;
+            this.exitButton.Location = new System.Drawing.Point(186, 368);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(99, 38);
+            this.exitButton.TabIndex = 9;
+            this.exitButton.Text = "Exit";
+            this.exitButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.exitButton.UseVisualStyleBackColor = false;
+            this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(310, 440);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.usernamePictureBox);
@@ -151,7 +169,7 @@
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
@@ -176,5 +194,6 @@
         private PictureBox usernamePictureBox;
         private TextBox usernameTextBox;
         private TextBox passwordTextBox;
+        private Button exitButton;
     }
 }

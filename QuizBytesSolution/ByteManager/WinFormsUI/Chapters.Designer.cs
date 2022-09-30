@@ -33,9 +33,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Chapters));
             this.dashboardNavigationButton = new System.Windows.Forms.Button();
             this.chaptersNavigationButton = new System.Windows.Forms.Button();
@@ -137,39 +137,39 @@
             // topicChaptersDataGrid
             // 
             this.topicChaptersDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.topicChaptersDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.topicChaptersDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.topicChaptersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.topicChaptersDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.topic,
             this.subTopic,
             this.chapterName});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.topicChaptersDataGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.topicChaptersDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.topicChaptersDataGrid.EnableHeadersVisualStyles = false;
             this.topicChaptersDataGrid.GridColor = System.Drawing.Color.White;
             this.topicChaptersDataGrid.Location = new System.Drawing.Point(375, 80);
             this.topicChaptersDataGrid.Name = "topicChaptersDataGrid";
             this.topicChaptersDataGrid.RowHeadersVisible = false;
             this.topicChaptersDataGrid.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.topicChaptersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.topicChaptersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.topicChaptersDataGrid.RowTemplate.Height = 25;
             this.topicChaptersDataGrid.Size = new System.Drawing.Size(1450, 400);
             this.topicChaptersDataGrid.TabIndex = 11;
@@ -212,6 +212,7 @@
             // 
             // editButton
             // 
+            this.editButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
             this.editButton.Location = new System.Drawing.Point(13, 23);
             this.editButton.Name = "editButton";
@@ -222,6 +223,7 @@
             // 
             // confirmButton
             // 
+            this.confirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.confirmButton.Image = ((System.Drawing.Image)(resources.GetObject("confirmButton.Image")));
             this.confirmButton.Location = new System.Drawing.Point(13, 89);
             this.confirmButton.Name = "confirmButton";
@@ -232,6 +234,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cancelButton.Image = ((System.Drawing.Image)(resources.GetObject("cancelButton.Image")));
             this.cancelButton.Location = new System.Drawing.Point(13, 155);
             this.cancelButton.Name = "cancelButton";
@@ -242,6 +245,7 @@
             // 
             // deleteButton
             // 
+            this.deleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
             this.deleteButton.Location = new System.Drawing.Point(13, 221);
             this.deleteButton.Name = "deleteButton";
@@ -267,7 +271,7 @@
             this.topicComboBox.Location = new System.Drawing.Point(680, 770);
             this.topicComboBox.MaxDropDownItems = 10;
             this.topicComboBox.Name = "topicComboBox";
-            this.topicComboBox.Size = new System.Drawing.Size(561, 40);
+            this.topicComboBox.Size = new System.Drawing.Size(561, 33);
             this.topicComboBox.TabIndex = 22;
             this.topicComboBox.SelectedIndexChanged += new System.EventHandler(this.questionTypeComboBox_SelectedIndexChanged);
             // 
@@ -280,7 +284,7 @@
             this.subTopicComboBox.Location = new System.Drawing.Point(680, 830);
             this.subTopicComboBox.MaxDropDownItems = 10;
             this.subTopicComboBox.Name = "subTopicComboBox";
-            this.subTopicComboBox.Size = new System.Drawing.Size(561, 40);
+            this.subTopicComboBox.Size = new System.Drawing.Size(561, 33);
             this.subTopicComboBox.TabIndex = 23;
             this.subTopicComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -290,7 +294,7 @@
             this.chapterNameTextBox.Location = new System.Drawing.Point(680, 710);
             this.chapterNameTextBox.Name = "chapterNameTextBox";
             this.chapterNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.chapterNameTextBox.Size = new System.Drawing.Size(561, 39);
+            this.chapterNameTextBox.Size = new System.Drawing.Size(561, 33);
             this.chapterNameTextBox.TabIndex = 24;
             this.chapterNameTextBox.TextChanged += new System.EventHandler(this.questionTextTextBox_TextChanged);
             // 
@@ -300,7 +304,7 @@
             this.chapterNameLabel.Location = new System.Drawing.Point(470, 709);
             this.chapterNameLabel.Margin = new System.Windows.Forms.Padding(5);
             this.chapterNameLabel.Name = "chapterNameLabel";
-            this.chapterNameLabel.Size = new System.Drawing.Size(201, 38);
+            this.chapterNameLabel.Size = new System.Drawing.Size(157, 30);
             this.chapterNameLabel.TabIndex = 25;
             this.chapterNameLabel.Text = "Chapter Name";
             this.chapterNameLabel.Click += new System.EventHandler(this.chapterNameLabel_Click);
@@ -311,7 +315,7 @@
             this.topicLabel.Location = new System.Drawing.Point(470, 769);
             this.topicLabel.Margin = new System.Windows.Forms.Padding(5);
             this.topicLabel.Name = "topicLabel";
-            this.topicLabel.Size = new System.Drawing.Size(83, 38);
+            this.topicLabel.Size = new System.Drawing.Size(65, 30);
             this.topicLabel.TabIndex = 26;
             this.topicLabel.Text = "Topic";
             this.topicLabel.Click += new System.EventHandler(this.label2_Click);
@@ -322,14 +326,14 @@
             this.subTopicLabel.Location = new System.Drawing.Point(470, 829);
             this.subTopicLabel.Margin = new System.Windows.Forms.Padding(5);
             this.subTopicLabel.Name = "subTopicLabel";
-            this.subTopicLabel.Size = new System.Drawing.Size(139, 38);
+            this.subTopicLabel.Size = new System.Drawing.Size(109, 30);
             this.subTopicLabel.TabIndex = 27;
             this.subTopicLabel.Text = "Sub Topic";
             this.subTopicLabel.Click += new System.EventHandler(this.label3_Click);
             // 
             // Chapters
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));

@@ -47,10 +47,10 @@
             this.subTopic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.editButton = new System.Windows.Forms.PictureBox();
-            this.confirmButton = new System.Windows.Forms.PictureBox();
-            this.cancelButton = new System.Windows.Forms.PictureBox();
-            this.deleteButton = new System.Windows.Forms.PictureBox();
+            this.chapterEditButton = new System.Windows.Forms.PictureBox();
+            this.chapterConfirmButton = new System.Windows.Forms.PictureBox();
+            this.chapterCancelButton = new System.Windows.Forms.PictureBox();
+            this.chapterDeleteButton = new System.Windows.Forms.PictureBox();
             this.horizontalLineSeparator = new System.Windows.Forms.Label();
             this.topicComboBox = new System.Windows.Forms.ComboBox();
             this.subTopicComboBox = new System.Windows.Forms.ComboBox();
@@ -60,10 +60,10 @@
             this.subTopicLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.topicChaptersDataGrid)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.editButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.confirmButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cancelButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deleteButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterEditButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterConfirmButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterCancelButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterDeleteButton)).BeginInit();
             this.SuspendLayout();
             // 
             // dashboardNavigationButton
@@ -200,59 +200,59 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.editButton);
-            this.flowLayoutPanel1.Controls.Add(this.confirmButton);
-            this.flowLayoutPanel1.Controls.Add(this.cancelButton);
-            this.flowLayoutPanel1.Controls.Add(this.deleteButton);
+            this.flowLayoutPanel1.Controls.Add(this.chapterEditButton);
+            this.flowLayoutPanel1.Controls.Add(this.chapterConfirmButton);
+            this.flowLayoutPanel1.Controls.Add(this.chapterCancelButton);
+            this.flowLayoutPanel1.Controls.Add(this.chapterDeleteButton);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(1737, 638);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 292);
             this.flowLayoutPanel1.TabIndex = 20;
             // 
-            // editButton
+            // chapterEditButton
             // 
-            this.editButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
-            this.editButton.Location = new System.Drawing.Point(13, 23);
-            this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(60, 60);
-            this.editButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.editButton.TabIndex = 20;
-            this.editButton.TabStop = false;
+            this.chapterEditButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chapterEditButton.Image = ((System.Drawing.Image)(resources.GetObject("chapterEditButton.Image")));
+            this.chapterEditButton.Location = new System.Drawing.Point(13, 23);
+            this.chapterEditButton.Name = "chapterEditButton";
+            this.chapterEditButton.Size = new System.Drawing.Size(60, 60);
+            this.chapterEditButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.chapterEditButton.TabIndex = 20;
+            this.chapterEditButton.TabStop = false;
             // 
-            // confirmButton
+            // chapterConfirmButton
             // 
-            this.confirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.confirmButton.Image = ((System.Drawing.Image)(resources.GetObject("confirmButton.Image")));
-            this.confirmButton.Location = new System.Drawing.Point(13, 89);
-            this.confirmButton.Name = "confirmButton";
-            this.confirmButton.Size = new System.Drawing.Size(60, 60);
-            this.confirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.confirmButton.TabIndex = 21;
-            this.confirmButton.TabStop = false;
+            this.chapterConfirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chapterConfirmButton.Image = ((System.Drawing.Image)(resources.GetObject("chapterConfirmButton.Image")));
+            this.chapterConfirmButton.Location = new System.Drawing.Point(13, 89);
+            this.chapterConfirmButton.Name = "chapterConfirmButton";
+            this.chapterConfirmButton.Size = new System.Drawing.Size(60, 60);
+            this.chapterConfirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.chapterConfirmButton.TabIndex = 21;
+            this.chapterConfirmButton.TabStop = false;
             // 
-            // cancelButton
+            // chapterCancelButton
             // 
-            this.cancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cancelButton.Image = ((System.Drawing.Image)(resources.GetObject("cancelButton.Image")));
-            this.cancelButton.Location = new System.Drawing.Point(13, 155);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(60, 60);
-            this.cancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.cancelButton.TabIndex = 22;
-            this.cancelButton.TabStop = false;
+            this.chapterCancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chapterCancelButton.Image = ((System.Drawing.Image)(resources.GetObject("chapterCancelButton.Image")));
+            this.chapterCancelButton.Location = new System.Drawing.Point(13, 155);
+            this.chapterCancelButton.Name = "chapterCancelButton";
+            this.chapterCancelButton.Size = new System.Drawing.Size(60, 60);
+            this.chapterCancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.chapterCancelButton.TabIndex = 22;
+            this.chapterCancelButton.TabStop = false;
             // 
-            // deleteButton
+            // chapterDeleteButton
             // 
-            this.deleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
-            this.deleteButton.Location = new System.Drawing.Point(13, 221);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(60, 60);
-            this.deleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.deleteButton.TabIndex = 23;
-            this.deleteButton.TabStop = false;
+            this.chapterDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chapterDeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("chapterDeleteButton.Image")));
+            this.chapterDeleteButton.Location = new System.Drawing.Point(13, 221);
+            this.chapterDeleteButton.Name = "chapterDeleteButton";
+            this.chapterDeleteButton.Size = new System.Drawing.Size(60, 60);
+            this.chapterDeleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.chapterDeleteButton.TabIndex = 23;
+            this.chapterDeleteButton.TabStop = false;
             // 
             // horizontalLineSeparator
             // 
@@ -337,7 +337,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.ClientSize = new System.Drawing.Size(1540, 845);
             this.Controls.Add(this.subTopicLabel);
             this.Controls.Add(this.topicLabel);
             this.Controls.Add(this.chapterNameLabel);
@@ -364,10 +364,10 @@
             this.Load += new System.EventHandler(this.Chapters_Load);
             ((System.ComponentModel.ISupportInitialize)(this.topicChaptersDataGrid)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.editButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.confirmButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cancelButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deleteButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterEditButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterConfirmButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterCancelButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterDeleteButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,10 +380,10 @@
         private DataGridViewTextBoxColumn subTopic;
         private DataGridViewTextBoxColumn chapterName;
         private FlowLayoutPanel flowLayoutPanel1;
-        private PictureBox editButton;
-        private PictureBox confirmButton;
-        private PictureBox cancelButton;
-        private PictureBox deleteButton;
+        private PictureBox chapterEditButton;
+        private PictureBox chapterConfirmButton;
+        private PictureBox chapterCancelButton;
+        private PictureBox chapterDeleteButton;
         private Label horizontalLineSeparator;
         private ComboBox topicComboBox;
         private ComboBox subTopicComboBox;

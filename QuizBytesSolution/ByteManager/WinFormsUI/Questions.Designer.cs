@@ -57,20 +57,20 @@
             this.questionTypeComboBox = new System.Windows.Forms.ComboBox();
             this.chapterNameCombobox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.editButton = new System.Windows.Forms.PictureBox();
-            this.confirmButton = new System.Windows.Forms.PictureBox();
-            this.cancelButton = new System.Windows.Forms.PictureBox();
-            this.deleteButton = new System.Windows.Forms.PictureBox();
+            this.questionEditButton = new System.Windows.Forms.PictureBox();
+            this.questionConfirmButton = new System.Windows.Forms.PictureBox();
+            this.questionCancelButton = new System.Windows.Forms.PictureBox();
+            this.questionDeleteButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.singleAnswerDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.editButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.confirmButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cancelButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deleteButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionEditButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionConfirmButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionCancelButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionDeleteButton)).BeginInit();
             this.SuspendLayout();
             // 
             // lineSeparator
@@ -379,59 +379,59 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.editButton);
-            this.flowLayoutPanel1.Controls.Add(this.confirmButton);
-            this.flowLayoutPanel1.Controls.Add(this.cancelButton);
-            this.flowLayoutPanel1.Controls.Add(this.deleteButton);
+            this.flowLayoutPanel1.Controls.Add(this.questionEditButton);
+            this.flowLayoutPanel1.Controls.Add(this.questionConfirmButton);
+            this.flowLayoutPanel1.Controls.Add(this.questionCancelButton);
+            this.flowLayoutPanel1.Controls.Add(this.questionDeleteButton);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(1737, 538);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 292);
             this.flowLayoutPanel1.TabIndex = 19;
             // 
-            // editButton
+            // questionEditButton
             // 
-            this.editButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
-            this.editButton.Location = new System.Drawing.Point(13, 23);
-            this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(60, 60);
-            this.editButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.editButton.TabIndex = 20;
-            this.editButton.TabStop = false;
+            this.questionEditButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionEditButton.Image = ((System.Drawing.Image)(resources.GetObject("questionEditButton.Image")));
+            this.questionEditButton.Location = new System.Drawing.Point(13, 23);
+            this.questionEditButton.Name = "questionEditButton";
+            this.questionEditButton.Size = new System.Drawing.Size(60, 60);
+            this.questionEditButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.questionEditButton.TabIndex = 20;
+            this.questionEditButton.TabStop = false;
             // 
-            // confirmButton
+            // questionConfirmButton
             // 
-            this.confirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.confirmButton.Image = ((System.Drawing.Image)(resources.GetObject("confirmButton.Image")));
-            this.confirmButton.Location = new System.Drawing.Point(13, 89);
-            this.confirmButton.Name = "confirmButton";
-            this.confirmButton.Size = new System.Drawing.Size(60, 60);
-            this.confirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.confirmButton.TabIndex = 21;
-            this.confirmButton.TabStop = false;
+            this.questionConfirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionConfirmButton.Image = ((System.Drawing.Image)(resources.GetObject("questionConfirmButton.Image")));
+            this.questionConfirmButton.Location = new System.Drawing.Point(13, 89);
+            this.questionConfirmButton.Name = "questionConfirmButton";
+            this.questionConfirmButton.Size = new System.Drawing.Size(60, 60);
+            this.questionConfirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.questionConfirmButton.TabIndex = 21;
+            this.questionConfirmButton.TabStop = false;
             // 
-            // cancelButton
+            // questionCancelButton
             // 
-            this.cancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cancelButton.Image = ((System.Drawing.Image)(resources.GetObject("cancelButton.Image")));
-            this.cancelButton.Location = new System.Drawing.Point(13, 155);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(60, 60);
-            this.cancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.cancelButton.TabIndex = 22;
-            this.cancelButton.TabStop = false;
+            this.questionCancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionCancelButton.Image = ((System.Drawing.Image)(resources.GetObject("questionCancelButton.Image")));
+            this.questionCancelButton.Location = new System.Drawing.Point(13, 155);
+            this.questionCancelButton.Name = "questionCancelButton";
+            this.questionCancelButton.Size = new System.Drawing.Size(60, 60);
+            this.questionCancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.questionCancelButton.TabIndex = 22;
+            this.questionCancelButton.TabStop = false;
             // 
-            // deleteButton
+            // questionDeleteButton
             // 
-            this.deleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
-            this.deleteButton.Location = new System.Drawing.Point(13, 221);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(60, 60);
-            this.deleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.deleteButton.TabIndex = 23;
-            this.deleteButton.TabStop = false;
+            this.questionDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionDeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("questionDeleteButton.Image")));
+            this.questionDeleteButton.Location = new System.Drawing.Point(13, 221);
+            this.questionDeleteButton.Name = "questionDeleteButton";
+            this.questionDeleteButton.Size = new System.Drawing.Size(60, 60);
+            this.questionDeleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.questionDeleteButton.TabIndex = 23;
+            this.questionDeleteButton.TabStop = false;
             // 
             // Questions
             // 
@@ -465,10 +465,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.editButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.confirmButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cancelButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deleteButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionEditButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionConfirmButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionCancelButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionDeleteButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -501,9 +501,9 @@
         private TextBox questionTextTextBox;
         private ComboBox questionTypeComboBox;
         private FlowLayoutPanel flowLayoutPanel1;
-        private PictureBox editButton;
-        private PictureBox confirmButton;
-        private PictureBox cancelButton;
-        private PictureBox deleteButton;
+        private PictureBox questionEditButton;
+        private PictureBox questionConfirmButton;
+        private PictureBox questionCancelButton;
+        private PictureBox questionDeleteButton;
     }
 }

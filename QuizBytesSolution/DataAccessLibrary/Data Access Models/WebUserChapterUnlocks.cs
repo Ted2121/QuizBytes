@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLibrary.Data_Access_Objects
+namespace DataAccessLibrary.Data_Access_Models
 {
-    internal class QuestionDAO
+    internal class WebuserChapterUnlocks
     {
     }
 }

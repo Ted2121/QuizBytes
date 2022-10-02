@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLibrary.Data_Access_Interfaces
 {
-    public interface IWebUserDAO
+    public interface IWebUserDataAccess
     {
     }
 }

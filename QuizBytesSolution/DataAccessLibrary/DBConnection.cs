@@ -27,7 +27,7 @@ namespace DataAccessLibrary
             return connection;
         }
 
-        static string GetConnectionStringByName(string name)
+        private static string GetConnectionStringByName(string name)
         {
             // Assume failure.
             string returnValue = null;

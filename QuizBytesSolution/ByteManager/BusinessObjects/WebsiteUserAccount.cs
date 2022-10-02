@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ByteManager.BussinesObjects
 {
-    public class WebsiteUserAccount : IWebsiteUserAccount
+    public class WebsiteUserAccount
     {
         public string UserName { get; set; }
         public string Password { get; set; }

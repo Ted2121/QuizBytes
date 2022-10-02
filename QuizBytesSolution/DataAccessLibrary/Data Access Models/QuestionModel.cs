@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLibrary.Data_Access_Objects
 {
-    internal class QuestionModel
+    public class QuestionModel
     {
     }
 }

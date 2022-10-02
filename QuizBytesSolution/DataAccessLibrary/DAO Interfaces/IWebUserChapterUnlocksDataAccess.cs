@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLibrary.Data_Access_Interfaces
+namespace DataAccessLibrary.DAO_Interfaces
 {
-    public interface IQuestionDAO
+    public interface IWebUserChapterUnlocksDataAccess
     {
-        
     }
 }

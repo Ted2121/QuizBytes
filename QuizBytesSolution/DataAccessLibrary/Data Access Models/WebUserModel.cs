@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLibrary.Data_Access_Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLibrary.Data_Access_Objects
 {
-    internal class WebUserDAO
+    public class WebUserModel
     {
+
     }
 }

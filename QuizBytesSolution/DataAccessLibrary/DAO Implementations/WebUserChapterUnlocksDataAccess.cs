@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLibrary.Data_Access_Implementation
+namespace DataAccessLibrary.DAO_Implementations
 {
-    public class WebUserDAO
+    public class WebUserChapterUnlocksDataAccess
     {
     }
 }

@@ -187,7 +187,7 @@
             this.questionsIndex.HeaderText = "No.";
             this.questionsIndex.MinimumWidth = 81;
             this.questionsIndex.Name = "questionsIndex";
-            this.questionsIndex.Width = 81;
+            this.questionsIndex.Width = 90;
             // 
             // chapterName
             // 
@@ -210,7 +210,7 @@
             this.chapterNameLabel.Location = new System.Drawing.Point(10, 10);
             this.chapterNameLabel.Margin = new System.Windows.Forms.Padding(5);
             this.chapterNameLabel.Name = "chapterNameLabel";
-            this.chapterNameLabel.Size = new System.Drawing.Size(152, 30);
+            this.chapterNameLabel.Size = new System.Drawing.Size(194, 37);
             this.chapterNameLabel.TabIndex = 11;
             this.chapterNameLabel.Text = "Chapter Name";
             this.chapterNameLabel.Click += new System.EventHandler(this.label1_Click);
@@ -221,7 +221,7 @@
             this.questionTypeLabel.Location = new System.Drawing.Point(10, 50);
             this.questionTypeLabel.Margin = new System.Windows.Forms.Padding(5);
             this.questionTypeLabel.Name = "questionTypeLabel";
-            this.questionTypeLabel.Size = new System.Drawing.Size(151, 30);
+            this.questionTypeLabel.Size = new System.Drawing.Size(193, 37);
             this.questionTypeLabel.TabIndex = 12;
             this.questionTypeLabel.Text = "Question Type";
             this.questionTypeLabel.Click += new System.EventHandler(this.questionTypeLabel_Click);
@@ -232,7 +232,7 @@
             this.questionTextLabel.Location = new System.Drawing.Point(10, 90);
             this.questionTextLabel.Margin = new System.Windows.Forms.Padding(5);
             this.questionTextLabel.Name = "questionTextLabel";
-            this.questionTextLabel.Size = new System.Drawing.Size(145, 30);
+            this.questionTextLabel.Size = new System.Drawing.Size(185, 37);
             this.questionTextLabel.TabIndex = 13;
             this.questionTextLabel.Text = "Question Text";
             // 
@@ -242,7 +242,7 @@
             this.correctAnswerLabel.Location = new System.Drawing.Point(10, 130);
             this.correctAnswerLabel.Margin = new System.Windows.Forms.Padding(5);
             this.correctAnswerLabel.Name = "correctAnswerLabel";
-            this.correctAnswerLabel.Size = new System.Drawing.Size(160, 30);
+            this.correctAnswerLabel.Size = new System.Drawing.Size(204, 37);
             this.correctAnswerLabel.TabIndex = 14;
             this.correctAnswerLabel.Text = "Correct Answer";
             // 
@@ -252,7 +252,7 @@
             this.wrongAnswerOneLabel.Location = new System.Drawing.Point(10, 170);
             this.wrongAnswerOneLabel.Margin = new System.Windows.Forms.Padding(5);
             this.wrongAnswerOneLabel.Name = "wrongAnswerOneLabel";
-            this.wrongAnswerOneLabel.Size = new System.Drawing.Size(169, 30);
+            this.wrongAnswerOneLabel.Size = new System.Drawing.Size(216, 37);
             this.wrongAnswerOneLabel.TabIndex = 15;
             this.wrongAnswerOneLabel.Text = "Wrong Answer 1";
             // 
@@ -262,7 +262,7 @@
             this.wrongAnswerTwoLabel.Location = new System.Drawing.Point(10, 210);
             this.wrongAnswerTwoLabel.Margin = new System.Windows.Forms.Padding(5);
             this.wrongAnswerTwoLabel.Name = "wrongAnswerTwoLabel";
-            this.wrongAnswerTwoLabel.Size = new System.Drawing.Size(173, 30);
+            this.wrongAnswerTwoLabel.Size = new System.Drawing.Size(220, 37);
             this.wrongAnswerTwoLabel.TabIndex = 16;
             this.wrongAnswerTwoLabel.Text = "Wrong Answer 2";
             // 
@@ -272,7 +272,7 @@
             this.wrongAnswerThreeLabel.Location = new System.Drawing.Point(10, 250);
             this.wrongAnswerThreeLabel.Margin = new System.Windows.Forms.Padding(5);
             this.wrongAnswerThreeLabel.Name = "wrongAnswerThreeLabel";
-            this.wrongAnswerThreeLabel.Size = new System.Drawing.Size(173, 30);
+            this.wrongAnswerThreeLabel.Size = new System.Drawing.Size(220, 37);
             this.wrongAnswerThreeLabel.TabIndex = 17;
             this.wrongAnswerThreeLabel.Text = "Wrong Answer 3";
             // 
@@ -314,7 +314,7 @@
             this.wrongAnswerThreeTextBox.Location = new System.Drawing.Point(12, 247);
             this.wrongAnswerThreeTextBox.Name = "wrongAnswerThreeTextBox";
             this.wrongAnswerThreeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wrongAnswerThreeTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.wrongAnswerThreeTextBox.Size = new System.Drawing.Size(1000, 39);
             this.wrongAnswerThreeTextBox.TabIndex = 6;
             // 
             // wonrgAnswerTwoTextBox
@@ -323,7 +323,7 @@
             this.wonrgAnswerTwoTextBox.Location = new System.Drawing.Point(12, 207);
             this.wonrgAnswerTwoTextBox.Name = "wonrgAnswerTwoTextBox";
             this.wonrgAnswerTwoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wonrgAnswerTwoTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.wonrgAnswerTwoTextBox.Size = new System.Drawing.Size(1000, 39);
             this.wonrgAnswerTwoTextBox.TabIndex = 5;
             // 
             // wrongAnswerOneTextBox
@@ -332,7 +332,7 @@
             this.wrongAnswerOneTextBox.Location = new System.Drawing.Point(12, 168);
             this.wrongAnswerOneTextBox.Name = "wrongAnswerOneTextBox";
             this.wrongAnswerOneTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wrongAnswerOneTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.wrongAnswerOneTextBox.Size = new System.Drawing.Size(1000, 39);
             this.wrongAnswerOneTextBox.TabIndex = 4;
             // 
             // correctAnswerTextBox
@@ -341,7 +341,7 @@
             this.correctAnswerTextBox.Location = new System.Drawing.Point(12, 129);
             this.correctAnswerTextBox.Name = "correctAnswerTextBox";
             this.correctAnswerTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.correctAnswerTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.correctAnswerTextBox.Size = new System.Drawing.Size(1000, 39);
             this.correctAnswerTextBox.TabIndex = 3;
             // 
             // questionTextTextBox
@@ -350,7 +350,7 @@
             this.questionTextTextBox.Location = new System.Drawing.Point(12, 90);
             this.questionTextTextBox.Name = "questionTextTextBox";
             this.questionTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.questionTextTextBox.Size = new System.Drawing.Size(1000, 33);
+            this.questionTextTextBox.Size = new System.Drawing.Size(1000, 39);
             this.questionTextTextBox.TabIndex = 2;
             // 
             // questionTypeComboBox
@@ -362,7 +362,7 @@
             this.questionTypeComboBox.Location = new System.Drawing.Point(12, 51);
             this.questionTypeComboBox.MaxDropDownItems = 10;
             this.questionTypeComboBox.Name = "questionTypeComboBox";
-            this.questionTypeComboBox.Size = new System.Drawing.Size(250, 33);
+            this.questionTypeComboBox.Size = new System.Drawing.Size(250, 40);
             this.questionTypeComboBox.TabIndex = 1;
             // 
             // chapterNameCombobox
@@ -374,7 +374,7 @@
             this.chapterNameCombobox.Location = new System.Drawing.Point(12, 11);
             this.chapterNameCombobox.MaxDropDownItems = 10;
             this.chapterNameCombobox.Name = "chapterNameCombobox";
-            this.chapterNameCombobox.Size = new System.Drawing.Size(250, 33);
+            this.chapterNameCombobox.Size = new System.Drawing.Size(250, 40);
             this.chapterNameCombobox.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -392,7 +392,6 @@
             // questionEditButton
             // 
             this.questionEditButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.questionEditButton.Image = ((System.Drawing.Image)(resources.GetObject("questionEditButton.Image")));
             this.questionEditButton.Location = new System.Drawing.Point(13, 23);
             this.questionEditButton.Name = "questionEditButton";
             this.questionEditButton.Size = new System.Drawing.Size(60, 60);
@@ -403,7 +402,6 @@
             // questionConfirmButton
             // 
             this.questionConfirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.questionConfirmButton.Image = ((System.Drawing.Image)(resources.GetObject("questionConfirmButton.Image")));
             this.questionConfirmButton.Location = new System.Drawing.Point(13, 89);
             this.questionConfirmButton.Name = "questionConfirmButton";
             this.questionConfirmButton.Size = new System.Drawing.Size(60, 60);
@@ -414,7 +412,6 @@
             // questionCancelButton
             // 
             this.questionCancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.questionCancelButton.Image = ((System.Drawing.Image)(resources.GetObject("questionCancelButton.Image")));
             this.questionCancelButton.Location = new System.Drawing.Point(13, 155);
             this.questionCancelButton.Name = "questionCancelButton";
             this.questionCancelButton.Size = new System.Drawing.Size(60, 60);
@@ -425,7 +422,6 @@
             // questionDeleteButton
             // 
             this.questionDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.questionDeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("questionDeleteButton.Image")));
             this.questionDeleteButton.Location = new System.Drawing.Point(13, 221);
             this.questionDeleteButton.Name = "questionDeleteButton";
             this.questionDeleteButton.Size = new System.Drawing.Size(60, 60);
@@ -435,7 +431,7 @@
             // 
             // Questions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));

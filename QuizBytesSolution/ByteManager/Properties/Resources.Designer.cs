@@ -63,6 +63,16 @@ namespace ByteManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AffirmativeButton {
+            get {
+                object obj = ResourceManager.GetObject("AffirmativeButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap login_head {
             get {
                 object obj = ResourceManager.GetObject("login head", resourceCulture);
@@ -83,9 +93,29 @@ namespace ByteManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap NegativeButton {
+            get {
+                object obj = ResourceManager.GetObject("NegativeButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap passwordIcon {
             get {
                 object obj = ResourceManager.GetObject("passwordIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TrashBinButton {
+            get {
+                object obj = ResourceManager.GetObject("TrashBinButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

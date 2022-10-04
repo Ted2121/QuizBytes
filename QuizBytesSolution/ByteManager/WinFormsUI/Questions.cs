@@ -46,5 +46,10 @@ namespace ByteManager.WinFormsUI
         {
 
         }
+
+        private void questionDeleteButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

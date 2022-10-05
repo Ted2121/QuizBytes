@@ -4,10 +4,10 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
     public interface ICourseDataAccess
     {
-        void Insert(CourseModel course);
-        CourseModel GetById(int id);
-        IEnumerable<CourseModel> GetAllCourses();
-        bool UpdateCourse(CourseModel course);
-        bool DeleteCourse(CourseModel course);
+        Task<CourseModel> InsertAsync(CourseModel course);
+        Task<CourseModel> GetByIdAsync(int id);
+        Task<IEnumerable<CourseModel>> GetAllCoursesAsync();
+        Task<bool> UpdateCourseAsync(CourseModel course);
+        Task<bool> DeleteCourseAsync(CourseModel course);
     }
 }

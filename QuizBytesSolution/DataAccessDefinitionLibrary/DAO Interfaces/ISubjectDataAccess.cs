@@ -4,11 +4,11 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
     public interface ISubjectDataAccess
     {
-        void Insert(SubjectModel subject);
-        SubjectModel GetById(int id);
-        IEnumerable<SubjectModel> GetAllSubjects();
-        IEnumerable<SubjectModel> GetAllSubjectsByCourse(CourseModel course);
-        bool UpdateSubject(SubjectModel subject);
-        bool DeleteSubject(SubjectModel subject);
+        Task<SubjectModel> InsertAsync(SubjectModel subject);
+        Task<SubjectModel> GetByIdAsync(int id);
+        Task<IEnumerable<SubjectModel>> GetAllSubjectsAsync();
+        Task<IEnumerable<SubjectModel>> GetAllSubjectsByCourseAsync(CourseModel course);
+        Task<bool> UpdateSubjectAsync(SubjectModel subject);
+        Task<bool> DeleteSubjectAsync(SubjectModel subject);
     }
 }

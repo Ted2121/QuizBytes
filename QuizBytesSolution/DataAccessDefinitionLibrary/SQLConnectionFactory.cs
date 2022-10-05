@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Data.SqlClient;
 
-namespace DataAccessLibrary
+namespace DataAccessDefinitionLibrary
 {
     public static class SQLConnectionFactory
     {

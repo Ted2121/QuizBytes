@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLibrary.DAO_Implementations
+namespace SQLAccessImplementationLibrary
 {
-    public class SubjectDataAccess
+    public class CurrentChallengeDataAccess
     {
     }
 }

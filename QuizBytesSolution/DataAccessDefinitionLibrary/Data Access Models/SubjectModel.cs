@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLibrary.Data_Access_Models
+namespace DataAccessDefinitionLibrary.DAO_models
 {
-    public class CourseModel
+    public class SubjectModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int CurrentChallengeId { get; set; }
-        public CurrentChallengeModel CurrentChallenge { get; set; }
-        public IEnumerable<SubjectModel> Subjects { get; set; }
+        public int CourseId { get; set; }
+        public CourseModel Course { get; set; }
+        public IEnumerable<ChapterModel> Chapters { get; set; }
     }
 }

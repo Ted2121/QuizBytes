@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLibrary.DAO_Implementations
+namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
-    public class CourseDataAccess
+    public interface IWebUserChapterUnlocksDataAccess
     {
     }
 }

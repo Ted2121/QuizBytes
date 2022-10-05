@@ -1,20 +1,15 @@
-﻿using DataAccessLibrary.Data_Access_Interfaces;
-using DataAccessLibrary.Data_Access_Models;
-using DataAccessLibrary.Data_Access_Objects;
-using System;
-using System.Collections.Generic;
+﻿using DataAccessDefinitionLibrary;
+using DataAccessDefinitionLibrary.DAO_Interfaces;
+using DataAccessDefinitionLibrary.DAO_models;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataAccessLibrary.Data_Access_Implementation
+namespace SQLAccessImplementationLibrary
 {
     public class ChapterDataAccess : IChapterDataAccess
     {
         public bool DeleteChapter(ChapterModel chapter)
         {
-            
+
             string commandText = "DELETE FROM Chapters WHERE ChapterId = @chapterId";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
             {
@@ -26,19 +21,19 @@ namespace DataAccessLibrary.Data_Access_Implementation
                 try
                 {
                     return command.ExecuteNonQuery() == 1;
-                    
+
                 }
                 catch (Exception ex)
                 {
                     throw new Exception($"Exception while trying to delete a row from Chapters table. The exception was: '{ex.Message}'", ex);
                 }
             }
-        
+
         }
 
         public IEnumerable<ChapterModel> GetAllChapters()
         {
-           
+
             string commandText = "SELECT * FROM Chapters";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
             {
@@ -62,15 +57,15 @@ namespace DataAccessLibrary.Data_Access_Implementation
                     throw new Exception($"Exception while trying to read all rows from the Chapters table. The exception was: '{ex.Message}'", ex);
                 }
             }
-        
+
         }
 
         //TODO
         public IEnumerable<ChapterModel> GetAllChaptersBySubject(SubjectModel subject)
         {
-         
+
             string commandText = "SELECT * FROM Account WHERE ";
-            using (SqlConnection connection = DBConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
             {
                 connection.Open();
 
@@ -78,7 +73,7 @@ namespace DataAccessLibrary.Data_Access_Implementation
 
                 try
                 {
-                    List<Account> accounts = new List<Account>();
+                    List<Acc> accounts = new List<Account>();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -92,7 +87,7 @@ namespace DataAccessLibrary.Data_Access_Implementation
                     throw new Exception($"Exception while trying to read all rows from the Account table. The exception was: '{ex.Message}'", ex);
                 }
             }
-        
+
         }
 
         public ChapterModel GetById(int id)

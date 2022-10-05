@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLibrary.Data_Access_Interfaces
+namespace DataAccessDefinitionLibrary.DAO_models
 {
-    public interface IQuestionDataAccess
+    public class QuestionModel
     {
-        
     }
 }

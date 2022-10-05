@@ -1,11 +1,6 @@
-﻿using DataAccessLibrary.Data_Access_Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataAccessDefinitionLibrary.DAO_models;
 
-namespace DataAccessLibrary.DAO_Interfaces
+namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
     public interface ICourseDataAccess
     {

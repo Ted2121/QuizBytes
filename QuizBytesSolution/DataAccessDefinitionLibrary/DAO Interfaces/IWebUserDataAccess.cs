@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLibrary.Data_Access_Implementation
+namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
-    public class QuestionDataAccess
+    public interface IWebUserDataAccess
     {
     }
 }

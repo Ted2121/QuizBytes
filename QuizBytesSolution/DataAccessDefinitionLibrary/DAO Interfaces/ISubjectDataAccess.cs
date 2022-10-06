@@ -8,7 +8,7 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<SubjectModel> GetByIdAsync(int id);
         Task<IEnumerable<SubjectModel>> GetAllSubjectsAsync();
         Task<IEnumerable<SubjectModel>> GetAllSubjectsByCourseAsync(CourseModel course);
-        Task<bool> UpdateSubjectAsync(SubjectModel subject);
-        Task<bool> DeleteSubjectAsync(SubjectModel subject);
+        Task UpdateSubjectAsync(SubjectModel subject);
+        Task DeleteSubjectAsync(SubjectModel subject);
     }
 }

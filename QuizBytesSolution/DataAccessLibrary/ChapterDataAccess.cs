@@ -42,7 +42,7 @@ namespace SQLAccessImplementationLibrary
 
                     return chapters;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw new Exception($"Exception while trying to read all rows from the Chapters table. The exception was: '{ex.Message}'", ex);
                 }
@@ -76,7 +76,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<ChapterModel> GetByIdAsync(int chapterId)
         {
             string commandText = "SELECT * FROM Chapters WHERE ChapterId = @ChapterId";
-                using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
             {
                 var parameters = new
                 {
@@ -90,14 +90,63 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public Task<ChapterModel> InsertAsync(ChapterModel chapter)
+        public async Task<ChapterModel> InsertAsync(ChapterModel chapter)
         {
-            string commandText = "INSERT INTO Chapters (ChapterId, ChapterName, FKSubjectId, ChapterDescription) VALUES (@ChapterId, @ChapterName, @FKSubjectId, @ChapterDescription);";
+            string commandText = "INSERT INTO Chapters (ChapterName, FKSubjectId, ChapterDescription) VALUES (@ChapterName, @FKSubjectId, @ChapterDescription); SELECT CAST(scope_identity() AS int)";
+            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            {
+
+                var insertParameters = new
+                {
+                    ChapterName = chapter.Name,
+                    FKSubjectId = chapter.FKSubjectId,
+                    ChapterDescription = chapter.Description
+                };
+
+
+                try
+                {
+                    await connection.ExecuteAsync(commandText, insertParameters);
+                    chapter.Id = (int)await connection.ExecuteScalarAsync(commandText);
+                    return chapter;
+                }
+                catch (Exception ex)
+                {
+
+                    throw new($"Exception while trying to insert chapter object. The exception was: '{ex.Message}'", ex);
+                }
+            }
         }
 
-        public Task<bool> UpdateChapterAsync(ChapterModel chapter)
+        public async Task UpdateChapterAsync(ChapterModel chapter)
         {
-            throw new NotImplementedException();
+            string commandText = "UPDATE Chapter " +
+                "SET ChapterName = @ChapterName, " +
+                "FKSubjectId = @FKSubjectId, " +
+                "ChapterDescription = @ChapterDescription " +
+                "WHERE ChapterId = @ChapterId";
+
+            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            {
+                var parameters = new
+                {
+                    ChapterName = chapter.Name,
+                    FKSubjectId = chapter.FKSubjectId,
+                    ChapterDescription = chapter.Description,
+                    ChapterId = chapter.Id
+                };
+
+                try
+                {
+                await connection.ExecuteAsync(commandText, parameters);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception($"Exception while trying to update chapter. The exception was: '{ex.Message}'", ex);
+                }
+            }
         }
     }
 }

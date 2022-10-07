@@ -59,7 +59,7 @@ namespace SQLAccessImplementationLibrary
                 {
                     var parameters = new
                     {
-                        SubjectId = subject.Id
+                        FKSubjectId = subject.Id
                     };
 
                     var chapters = await connection.QueryAsync<ChapterModel>(commandText, parameters);
@@ -83,9 +83,17 @@ namespace SQLAccessImplementationLibrary
                     ChapterId = chapterId
                 };
 
-                var chapter = await connection.QuerySingleOrDefaultAsync<ChapterModel>(commandText, parameters);
+                try
+                {
+                    var chapter = await connection.QuerySingleOrDefaultAsync<ChapterModel>(commandText, parameters);
 
-                return chapter;
+                    return chapter;
+                }
+                catch (Exception ex)
+                {
+
+                    throw new ($"Exception while trying to find the Chapter with the '{chapterId}'. The exception was: '{ex.Message}'", ex);
+                }
 
             }
         }
@@ -107,13 +115,13 @@ namespace SQLAccessImplementationLibrary
                 try
                 {
                     await connection.ExecuteAsync(commandText, insertParameters);
-                    chapter.Id = (int)await connection.ExecuteScalarAsync(commandText);
+                    chapter.Id = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
                     return chapter;
                 }
                 catch (Exception ex)
                 {
 
-                    throw new($"Exception while trying to insert chapter object. The exception was: '{ex.Message}'", ex);
+                    throw new($"Exception while trying to insert a Chapter object. The exception was: '{ex.Message}'", ex);
                 }
             }
         }

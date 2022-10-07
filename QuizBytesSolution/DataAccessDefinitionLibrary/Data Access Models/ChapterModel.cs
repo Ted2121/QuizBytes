@@ -11,10 +11,6 @@
         // many to many with webusers
         public IEnumerable<WebUserChapterUnlocks> WebUserChapterUnlocks { get; set; }
 
-        public ChapterModel()
-        {
-
-        }
 
         // This constructor is for insertion with identity constraint
         public ChapterModel(string name, string description, int fKSubjectId)

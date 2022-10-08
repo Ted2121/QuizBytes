@@ -33,7 +33,7 @@ namespace SQLAccessImplementationLibrary
 
         public async Task<IEnumerable<ChapterModel>> GetAllChaptersAsync()
         {
-            string commandText = " SELECT* FROM Chapters";
+            string commandText = "SELECT* FROM Chapters";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
             {
                 try

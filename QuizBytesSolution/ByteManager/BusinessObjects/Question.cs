@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace ByteManager.BusinessObjects
 {
-    internal interface IChapter
+    internal class Question
     {
-        string Name { get; set;}
-        string Description { get; set;} 
-        
     }
 }

@@ -61,7 +61,7 @@
             this.LoginText.Font = new System.Drawing.Font("Arial Black", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LoginText.Location = new System.Drawing.Point(114, 233);
             this.LoginText.Name = "LoginText";
-            this.LoginText.Size = new System.Drawing.Size(82, 32);
+            this.LoginText.Size = new System.Drawing.Size(104, 41);
             this.LoginText.TabIndex = 1;
             this.LoginText.Text = "Login";
             // 
@@ -90,7 +90,7 @@
             this.LoginButton.ForeColor = System.Drawing.Color.DarkOrange;
             this.LoginButton.Location = new System.Drawing.Point(13, 368);
             this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(99, 38);
+            this.LoginButton.Size = new System.Drawing.Size(99, 46);
             this.LoginButton.TabIndex = 4;
             this.LoginButton.Text = "Login";
             this.LoginButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -142,7 +142,7 @@
             this.exitButton.ForeColor = System.Drawing.Color.DarkOrange;
             this.exitButton.Location = new System.Drawing.Point(186, 368);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(99, 38);
+            this.exitButton.Size = new System.Drawing.Size(99, 46);
             this.exitButton.TabIndex = 9;
             this.exitButton.Text = "Exit";
             this.exitButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -151,7 +151,7 @@
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 30F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(310, 440);

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataAccessDefinitionLibrary.Data_Access_Models
 {
-    internal class AnswerModel
+    public class AnswerModel
     {
+        public int Id { get; set; }
+        public string IsCorrect { get; set; }
+        public string AnswerText { get; set; }
+        public int FKQuestionId { get; set; }
     }
 }

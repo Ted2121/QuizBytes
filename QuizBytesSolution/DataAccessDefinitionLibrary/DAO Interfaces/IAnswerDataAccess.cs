@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
-    internal interface IAnswerDataAccess
+    public interface IAnswerDataAccess
     {
     }
 }

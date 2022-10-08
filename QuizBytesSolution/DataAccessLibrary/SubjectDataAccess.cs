@@ -124,7 +124,7 @@ namespace SQLAccessImplementationLibrary
 
         public async Task UpdateSubjectAsync(SubjectModel subject)
         {
-            string commandText = "UPDATE Subject " +
+            string commandText = "UPDATE Subjects " +
                 "SET SubjectName = @SubjectName, " +
                 "FKCourseId = @FKCourseId, " +
                 "SubjectDescription = @SubjectDescription " +

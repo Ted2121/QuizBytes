@@ -6,11 +6,11 @@ namespace QuizBytesAPIServer.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class ChapterController : ControllerBase
+    public class ChaptersController : ControllerBase
     {
         public IChapterDataAccess ChapterDataAccess { get; set; }
 
-        public ChapterController(IChapterDataAccess chapterDataAccess)
+        public ChaptersController(IChapterDataAccess chapterDataAccess)
         {
             ChapterDataAccess = chapterDataAccess;
         }
@@ -45,9 +45,9 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("subject")]
-        public async Task<ActionResult<IEnumerable<Chapter>>> GetAllChaptersBySubjectAsync()
+        public async Task<ActionResult<IEnumerable<Chapter>>> GetAllChaptersBySubjectAsync(Subject subject)
         {
-            var chapters = await ChapterDataAccess.GetAllChaptersBySubjectAsync();
+            var chapters = await ChapterDataAccess.GetAllChaptersBySubjectAsync(subject);
 
             if (chapters == null)
             {

@@ -4,7 +4,7 @@
     {
         public string WebUserUsername { get; set; }
         public int ChapterId { get; set; }
-        public WebUserModel WebUser { get; set; }
-        public ChapterModel Chapter { get; set; }
+        public WebUser WebUser { get; set; }
+        public Chapter Chapter { get; set; }
     }
 }

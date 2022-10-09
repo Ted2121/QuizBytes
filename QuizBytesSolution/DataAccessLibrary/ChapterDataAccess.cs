@@ -10,7 +10,7 @@ namespace SQLAccessImplementationLibrary
     {
 
 
-        public async Task DeleteChapterAsync(ChapterModel chapter)
+        public async Task DeleteChapterAsync(Chapter chapter)
         {
             string commandText = "DELETE FROM Chapters WHERE ChapterId = @ChapterId";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
@@ -31,14 +31,14 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<IEnumerable<ChapterModel>> GetAllChaptersAsync()
+        public async Task<IEnumerable<Chapter>> GetAllChaptersAsync()
         {
             string commandText = "SELECT* FROM Chapters";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
             {
                 try
                 {
-                    var chapters = await connection.QueryAsync<ChapterModel>(commandText);
+                    var chapters = await connection.QueryAsync<Chapter>(commandText);
 
                     return chapters;
                 }
@@ -49,7 +49,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<IEnumerable<ChapterModel>> GetAllChaptersBySubjectAsync(SubjectModel subject)
+        public async Task<IEnumerable<Chapter>> GetAllChaptersBySubjectAsync(Subject subject)
         {
             string commandText = "SELECT * FROM Chapters WHERE FKSubjectId = @FKSubjectId";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
@@ -62,7 +62,7 @@ namespace SQLAccessImplementationLibrary
                         FKSubjectId = subject.Id
                     };
 
-                    var chapters = await connection.QueryAsync<ChapterModel>(commandText, parameters);
+                    var chapters = await connection.QueryAsync<Chapter>(commandText, parameters);
 
                     return chapters;
                 }
@@ -73,7 +73,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<ChapterModel> GetByIdAsync(int chapterId)
+        public async Task<Chapter> GetChapterByIdAsync(int chapterId)
         {
             string commandText = "SELECT * FROM Chapters WHERE ChapterId = @ChapterId";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
@@ -85,7 +85,7 @@ namespace SQLAccessImplementationLibrary
 
                 try
                 {
-                    var chapter = await connection.QuerySingleOrDefaultAsync<ChapterModel>(commandText, parameters);
+                    var chapter = await connection.QuerySingleOrDefaultAsync<Chapter>(commandText, parameters);
 
                     return chapter;
                 }
@@ -98,7 +98,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<ChapterModel> InsertAsync(ChapterModel chapter)
+        public async Task<Chapter> InsertChapterAsync(Chapter chapter)
         {
             string commandText = "INSERT INTO Chapters (ChapterName, FKSubjectId, ChapterDescription) VALUES (@ChapterName, @FKSubjectId, @ChapterDescription); SELECT CAST(scope_identity() AS int)";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
@@ -126,7 +126,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task UpdateChapterAsync(ChapterModel chapter)
+        public async Task UpdateChapterAsync(Chapter chapter)
         {
             string commandText = "UPDATE Chapter " +
                 "SET ChapterName = @ChapterName, " +

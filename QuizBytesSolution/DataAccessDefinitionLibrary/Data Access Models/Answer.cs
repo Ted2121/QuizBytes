@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessDefinitionLibrary.Data_Access_Models
 {
-    public class AnswerModel
+    public class Answer
     {
         public int Id { get; set; }
         public string IsCorrect { get; set; }

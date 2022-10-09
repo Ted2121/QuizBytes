@@ -4,10 +4,10 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
     public interface ICourseDataAccess
     {
-        Task<CourseModel> InsertAsync(CourseModel course);
-        Task<CourseModel> GetByIdAsync(int courseId);
-        Task<IEnumerable<CourseModel>> GetAllCoursesAsync();
-        Task UpdateCourseAsync(CourseModel course);
-        Task DeleteCourseAsync(CourseModel course);
+        Task<Course> InsertCourseAsync(Course course);
+        Task<Course> GetCourseByIdAsync(int courseId);
+        Task<IEnumerable<Course>> GetAllCoursesAsync();
+        Task UpdateCourseAsync(Course course);
+        Task DeleteCourseAsync(Course course);
     }
 }

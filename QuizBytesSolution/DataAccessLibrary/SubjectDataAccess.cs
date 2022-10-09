@@ -8,7 +8,7 @@ namespace SQLAccessImplementationLibrary
 {
     public class SubjectDataAccess : ISubjectDataAccess
     {
-        public async Task DeleteSubjectAsync(SubjectModel subject)
+        public async Task DeleteSubjectAsync(Subject subject)
         {
             string commandText = "DELETE FROM Subjects WHERE SubjectId = @SubjectId";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
@@ -29,14 +29,14 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<IEnumerable<SubjectModel>> GetAllSubjectsAsync()
+        public async Task<IEnumerable<Subject>> GetAllSubjectsAsync()
         {
             string commandText = " SELECT * FROM Subjects";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
             {
                 try
                 {
-                    var subjects = await connection.QueryAsync<SubjectModel>(commandText);
+                    var subjects = await connection.QueryAsync<Subject>(commandText);
 
                     return subjects;
                 }
@@ -47,7 +47,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<IEnumerable<SubjectModel>> GetAllSubjectsByCourseAsync(CourseModel course)
+        public async Task<IEnumerable<Subject>> GetAllSubjectsByCourseAsync(Course course)
         {
             string commandText = "SELECT * FROM Subjects WHERE FKCourseId = @FKCourseId";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
@@ -60,7 +60,7 @@ namespace SQLAccessImplementationLibrary
                         FKCourseId = course.Id
                     };
 
-                    var subjects = await connection.QueryAsync<SubjectModel>(commandText, parameters);
+                    var subjects = await connection.QueryAsync<Subject>(commandText, parameters);
 
                     return subjects;
                 }
@@ -71,7 +71,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<SubjectModel> GetByIdAsync(int subjectId)
+        public async Task<Subject> GetSubjectByIdAsync(int subjectId)
         {
             string commandText = "SELECT * FROM Subjects WHERE SubjectId = @SubjectId";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
@@ -83,7 +83,7 @@ namespace SQLAccessImplementationLibrary
 
                 try
                 {
-                    var subject = await connection.QuerySingleOrDefaultAsync<SubjectModel>(commandText, parameters);
+                    var subject = await connection.QuerySingleOrDefaultAsync<Subject>(commandText, parameters);
 
                     return subject;
                 }
@@ -96,7 +96,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<SubjectModel> InsertAsync(SubjectModel subject)
+        public async Task<Subject> InsertSubjectAsync(Subject subject)
         {
             string commandText = "INSERT INTO Subjects (SubjectName, FKCourseId, SubjectDescription) VALUES (@SubjectName, @FKCourseId, @SubjectDescription); SELECT CAST(scope_identity() AS int)";
 
@@ -122,7 +122,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task UpdateSubjectAsync(SubjectModel subject)
+        public async Task UpdateSubjectAsync(Subject subject)
         {
             string commandText = "UPDATE Subjects " +
                 "SET SubjectName = @SubjectName, " +

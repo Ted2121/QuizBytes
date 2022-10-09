@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessDefinitionLibrary.DAO_models
 {
-    public class QuestionModel
+    public class Question
     {
         public int Id { get; set; }
         public string QuestionText { get; set; }

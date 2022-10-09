@@ -14,7 +14,7 @@ namespace SQLAccessImplementationLibrary
 {
     public class CourseDataAccess : ICourseDataAccess
     {
-        public async Task DeleteCourseAsync(CourseModel course)
+        public async Task DeleteCourseAsync(Course course)
         {
             string commandText = "DELETE FROM Courses WHERE CourseId = @CourseId";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
@@ -35,14 +35,14 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<IEnumerable<CourseModel>> GetAllCoursesAsync()
+        public async Task<IEnumerable<Course>> GetAllCoursesAsync()
         {
             string commandText = " SELECT * FROM Courses";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
             {
                 try
                 {
-                    var courses = await connection.QueryAsync<CourseModel>(commandText);
+                    var courses = await connection.QueryAsync<Course>(commandText);
 
                     return courses;
                 }
@@ -53,7 +53,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<CourseModel> GetByIdAsync(int courseId)
+        public async Task<Course> GetCourseByIdAsync(int courseId)
         {
             string commandText = "SELECT * FROM Courses WHERE CourseId = @CourseId";
             using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
@@ -65,7 +65,7 @@ namespace SQLAccessImplementationLibrary
 
                 try
                 {
-                    var course = await connection.QuerySingleOrDefaultAsync<CourseModel>(commandText, parameters);
+                    var course = await connection.QuerySingleOrDefaultAsync<Course>(commandText, parameters);
 
                     return course;
                 }
@@ -78,7 +78,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<CourseModel> InsertAsync(CourseModel course)
+        public async Task<Course> InsertCourseAsync(Course course)
         {
             string commandText = "INSERT INTO Courses (CourseName, CourseDescription) VALUES (@CourseName, @CourseDescription); SELECT CAST(scope_identity() AS int)";
 
@@ -103,7 +103,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task UpdateCourseAsync(CourseModel course)
+        public async Task UpdateCourseAsync(Course course)
         {
             string commandText = "UPDATE Courses " +
                  "SET CourseName = @CourseName, " +

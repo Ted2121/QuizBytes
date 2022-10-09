@@ -1,6 +1,6 @@
 ﻿namespace DataAccessDefinitionLibrary.DAO_models
 {
-    public class CurrentChallengeModel
+    public class CurrentChallenge
     {
 
         public string WebUserUserName { get; set; }

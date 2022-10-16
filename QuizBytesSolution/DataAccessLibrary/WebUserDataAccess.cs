@@ -17,12 +17,12 @@ public class WebUserDataAccess : IWebUserDataAccess
 
     public async Task DeleteWebUserAsync(WebUser webUser)
     {
-        string commandText = "DELETE FROM WebUsers WHERE WebUserUserName = @WebUserUserName";
+        string commandText = "DELETE FROM WebUsers WHERE Username = @Username";
         using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
         {
             var parameters = new
             {
-                WebUserUserName = webUser.Username
+                Username = webUser.Username
             };
 
             try
@@ -56,7 +56,7 @@ public class WebUserDataAccess : IWebUserDataAccess
 
     public async Task<WebUser> GetWebUserByUsernameAsync(string username)
     {
-        string commandText = "SELECT * FROM WebUsers WHERE WebUserUserName = @WebUserUserName";
+        string commandText = "SELECT * FROM WebUsers WHERE Username = @Username";
         using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
         {
             var parameters = new
@@ -79,14 +79,14 @@ public class WebUserDataAccess : IWebUserDataAccess
 
     public async Task<WebUser> InsertWebUserAsync(WebUser webUser)
     {
-        string commandText = "INSERT INTO WebUsers(WebUserUserName, PasswordHash, TotalPoints, AvailablePoints, Email) VALUES (@WebUserUserName, @PasswordHash, @TotalPoints, @AvailablePoints, @Email)";
+        string commandText = "INSERT INTO WebUsers(Username, PasswordHash, TotalPoints, AvailablePoints, Email) VALUES (@Username, @PasswordHash, @TotalPoints, @AvailablePoints, @Email)";
         using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
         {
 
             var insertParameters = new
             {
-                WebUserUserName = webUser.Username,
-                WebUserPasswordHash = webUser.Password,
+                Username = webUser.Username,
+                PasswordHash = webUser.Password,
                 TotalPoints = webUser.TotalPoints,
                 AvailablePoints = webUser.AvailablePoints,
                 Email = webUser.Email
@@ -105,27 +105,23 @@ public class WebUserDataAccess : IWebUserDataAccess
         }
     }
 
-    public async Task UpdateWebUserAsync(WebUser webUser) //add parameter string username??
+    public async Task UpdateWebUserAsync(WebUser webUser)
     {
         string commandText = "UPDATE WebUser" +
-            "SET WebUserUserName = @WebUserUserName," +
-            "PasswordHash = @PasswordHash," +
+            "SET PasswordHash = @PasswordHash," +
             "TotalPoints = @TotalPoints" +
-            "AvailablePoints = @AvailavlePoints" +
+            "AvailablePoints = @AvailablePoints" +
             "Email = @Email" +
-            "WHERE WebUserUserName = @WebUserUserName"; //rename @WebUserUserName to NewWebUserUserName?
+            "WHERE Username = @Username";
         using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
         {
             var parameters = new
             {
-                WebUserUserName = webUser.Username,
-                WebUserPasswordHash = webUser.Password,
+                Username = webUser.Username,
+                PasswordHash = webUser.Password,
                 TotalPoints = webUser.TotalPoints,
                 AvailablePoints = webUser.AvailablePoints,
                 Email = webUser.Email
-                //NewWebUserUserName = username;
-                // I believe that this is an issue : We are updating the primary key which is
-                // affecting another table that is using said primary key as a foreign key, meaning that we should add WebUserID to the database
             };
 
             try

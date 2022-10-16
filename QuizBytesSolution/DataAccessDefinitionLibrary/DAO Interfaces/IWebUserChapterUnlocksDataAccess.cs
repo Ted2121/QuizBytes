@@ -8,5 +8,6 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
     public interface IWebUserChapterUnlocksDataAccess
     {
+       
     }
 }

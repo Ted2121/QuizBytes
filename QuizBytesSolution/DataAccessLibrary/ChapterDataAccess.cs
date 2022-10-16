@@ -98,6 +98,31 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
+        public async Task<Chapter> GetChapterByNameAsync(string chapterName)
+        {
+            string commandText = "SELECT * FROM Chapters WHERE ChapterName = @ChapterName";
+            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            {
+                var parameters = new
+                {
+                    ChapterName = chapterName
+                };
+
+                try
+                {
+                    var chapter = await connection.QuerySingleOrDefaultAsync<Chapter>(commandText, parameters);
+
+                    return chapter;
+                }
+                catch (Exception ex)
+                {
+
+                    throw new($"Exception while trying to find the Chapter with the '{chapterName}'. The exception was: '{ex.Message}'", ex);
+                }
+
+            }
+        }
+
         public async Task<Chapter> InsertChapterAsync(Chapter chapter)
         {
             string commandText = "INSERT INTO Chapters (ChapterName, FKSubjectId, ChapterDescription) VALUES (@ChapterName, @FKSubjectId, @ChapterDescription); SELECT CAST(scope_identity() AS int)";

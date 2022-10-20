@@ -12,5 +12,12 @@ namespace DataAccessDefinitionLibrary.DAO_models
         public string QuestionText { get; set; }
         public string Hint { get; set; }
         public int FKChapterId { get; set; }
+        
+        public Question(string questionText, string hint, int fkChapterId)
+        {
+            QuestionText = questionText;
+            Hint = hint;
+            FKChapterId = fkChapterId;
+        }
     }
 }

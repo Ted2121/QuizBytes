@@ -86,7 +86,6 @@ namespace SQLAccessImplementationLibrary
 
                 var insertParameters = new
                 {
-                    QuestionId = question.Id,
                     FKChapterId = question.FKChapterId,
                     QuestionText = question.QuestionText,
                     QuestionHint = question.Hint,
@@ -110,7 +109,6 @@ namespace SQLAccessImplementationLibrary
         public async Task UpdateQuestionAsync(Question question)
         {
             string commandText = "UPDATE Question " +
-                "SET QuestionId = @QuestionId, " +
                 "FKChapterId = @FKChapterId, " +
                 "QuestionText = @QuestionText " +
                 "QuestionHint = @QuestionHint" +
@@ -120,7 +118,6 @@ namespace SQLAccessImplementationLibrary
             {
                 var parameters = new
                 {
-                    QuestionId = question.Id,
                     FKChapterId = question.FKChapterId,
                     QuestionText = question.QuestionText,
                     QuestionHint = question.Hint,

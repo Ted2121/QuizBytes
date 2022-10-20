@@ -33,9 +33,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Chapters));
             this.dashboardNavigationButton = new System.Windows.Forms.Button();
             this.chaptersNavigationButton = new System.Windows.Forms.Button();
@@ -46,11 +46,6 @@
             this.topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subTopic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.chapterEditButton = new System.Windows.Forms.PictureBox();
-            this.chapterConfirmButton = new System.Windows.Forms.PictureBox();
-            this.chapterCancelButton = new System.Windows.Forms.PictureBox();
-            this.chapterDeleteButton = new System.Windows.Forms.PictureBox();
             this.horizontalLineSeparator = new System.Windows.Forms.Label();
             this.topicComboBox = new System.Windows.Forms.ComboBox();
             this.subTopicComboBox = new System.Windows.Forms.ComboBox();
@@ -58,12 +53,17 @@
             this.chapterNameLabel = new System.Windows.Forms.Label();
             this.topicLabel = new System.Windows.Forms.Label();
             this.subTopicLabel = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.chaptersEditButton = new System.Windows.Forms.PictureBox();
+            this.chaptersConfirmButton = new System.Windows.Forms.PictureBox();
+            this.chaptersCancelButton = new System.Windows.Forms.PictureBox();
+            this.chaptersDeleteButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.topicChaptersDataGrid)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chapterEditButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chapterConfirmButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chapterCancelButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chapterDeleteButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chaptersEditButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chaptersConfirmButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chaptersCancelButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chaptersDeleteButton)).BeginInit();
             this.SuspendLayout();
             // 
             // dashboardNavigationButton
@@ -74,7 +74,7 @@
             this.dashboardNavigationButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dashboardNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dashboardNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.dashboardNavigationButton.Location = new System.Drawing.Point(40, 80);
+            this.dashboardNavigationButton.Location = new System.Drawing.Point(40, 174);
             this.dashboardNavigationButton.Name = "dashboardNavigationButton";
             this.dashboardNavigationButton.Size = new System.Drawing.Size(235, 73);
             this.dashboardNavigationButton.TabIndex = 6;
@@ -89,7 +89,7 @@
             this.chaptersNavigationButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chaptersNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chaptersNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.chaptersNavigationButton.Location = new System.Drawing.Point(40, 159);
+            this.chaptersNavigationButton.Location = new System.Drawing.Point(40, 253);
             this.chaptersNavigationButton.Name = "chaptersNavigationButton";
             this.chaptersNavigationButton.Size = new System.Drawing.Size(235, 73);
             this.chaptersNavigationButton.TabIndex = 7;
@@ -104,7 +104,7 @@
             this.questionsNavigationButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.questionsNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.questionsNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.questionsNavigationButton.Location = new System.Drawing.Point(40, 238);
+            this.questionsNavigationButton.Location = new System.Drawing.Point(40, 332);
             this.questionsNavigationButton.Name = "questionsNavigationButton";
             this.questionsNavigationButton.Size = new System.Drawing.Size(235, 73);
             this.questionsNavigationButton.TabIndex = 8;
@@ -119,7 +119,7 @@
             this.webusersNavigationButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.webusersNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.webusersNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.webusersNavigationButton.Location = new System.Drawing.Point(40, 317);
+            this.webusersNavigationButton.Location = new System.Drawing.Point(40, 411);
             this.webusersNavigationButton.Name = "webusersNavigationButton";
             this.webusersNavigationButton.Size = new System.Drawing.Size(235, 73);
             this.webusersNavigationButton.TabIndex = 9;
@@ -137,39 +137,39 @@
             // topicChaptersDataGrid
             // 
             this.topicChaptersDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.topicChaptersDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.topicChaptersDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.topicChaptersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.topicChaptersDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.topic,
             this.subTopic,
             this.chapterName});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.topicChaptersDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.topicChaptersDataGrid.DefaultCellStyle = dataGridViewCellStyle5;
             this.topicChaptersDataGrid.EnableHeadersVisualStyles = false;
             this.topicChaptersDataGrid.GridColor = System.Drawing.Color.White;
             this.topicChaptersDataGrid.Location = new System.Drawing.Point(375, 80);
             this.topicChaptersDataGrid.Name = "topicChaptersDataGrid";
             this.topicChaptersDataGrid.RowHeadersVisible = false;
             this.topicChaptersDataGrid.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.topicChaptersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.topicChaptersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.topicChaptersDataGrid.RowTemplate.Height = 25;
             this.topicChaptersDataGrid.Size = new System.Drawing.Size(1450, 400);
             this.topicChaptersDataGrid.TabIndex = 11;
@@ -198,62 +198,6 @@
             this.chapterName.MinimumWidth = 483;
             this.chapterName.Name = "chapterName";
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.chapterEditButton);
-            this.flowLayoutPanel1.Controls.Add(this.chapterConfirmButton);
-            this.flowLayoutPanel1.Controls.Add(this.chapterCancelButton);
-            this.flowLayoutPanel1.Controls.Add(this.chapterDeleteButton);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1737, 638);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 292);
-            this.flowLayoutPanel1.TabIndex = 20;
-            // 
-            // chapterEditButton
-            // 
-            this.chapterEditButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chapterEditButton.Image = ((System.Drawing.Image)(resources.GetObject("chapterEditButton.Image")));
-            this.chapterEditButton.Location = new System.Drawing.Point(13, 23);
-            this.chapterEditButton.Name = "chapterEditButton";
-            this.chapterEditButton.Size = new System.Drawing.Size(60, 60);
-            this.chapterEditButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.chapterEditButton.TabIndex = 20;
-            this.chapterEditButton.TabStop = false;
-            // 
-            // chapterConfirmButton
-            // 
-            this.chapterConfirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chapterConfirmButton.Image = ((System.Drawing.Image)(resources.GetObject("chapterConfirmButton.Image")));
-            this.chapterConfirmButton.Location = new System.Drawing.Point(13, 89);
-            this.chapterConfirmButton.Name = "chapterConfirmButton";
-            this.chapterConfirmButton.Size = new System.Drawing.Size(60, 60);
-            this.chapterConfirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.chapterConfirmButton.TabIndex = 21;
-            this.chapterConfirmButton.TabStop = false;
-            // 
-            // chapterCancelButton
-            // 
-            this.chapterCancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chapterCancelButton.Image = ((System.Drawing.Image)(resources.GetObject("chapterCancelButton.Image")));
-            this.chapterCancelButton.Location = new System.Drawing.Point(13, 155);
-            this.chapterCancelButton.Name = "chapterCancelButton";
-            this.chapterCancelButton.Size = new System.Drawing.Size(60, 60);
-            this.chapterCancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.chapterCancelButton.TabIndex = 22;
-            this.chapterCancelButton.TabStop = false;
-            // 
-            // chapterDeleteButton
-            // 
-            this.chapterDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chapterDeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("chapterDeleteButton.Image")));
-            this.chapterDeleteButton.Location = new System.Drawing.Point(13, 221);
-            this.chapterDeleteButton.Name = "chapterDeleteButton";
-            this.chapterDeleteButton.Size = new System.Drawing.Size(60, 60);
-            this.chapterDeleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.chapterDeleteButton.TabIndex = 23;
-            this.chapterDeleteButton.TabStop = false;
-            // 
             // horizontalLineSeparator
             // 
             this.horizontalLineSeparator.BackColor = System.Drawing.Color.White;
@@ -271,7 +215,7 @@
             this.topicComboBox.Location = new System.Drawing.Point(680, 770);
             this.topicComboBox.MaxDropDownItems = 10;
             this.topicComboBox.Name = "topicComboBox";
-            this.topicComboBox.Size = new System.Drawing.Size(561, 33);
+            this.topicComboBox.Size = new System.Drawing.Size(561, 40);
             this.topicComboBox.TabIndex = 22;
             this.topicComboBox.SelectedIndexChanged += new System.EventHandler(this.questionTypeComboBox_SelectedIndexChanged);
             // 
@@ -284,7 +228,7 @@
             this.subTopicComboBox.Location = new System.Drawing.Point(680, 830);
             this.subTopicComboBox.MaxDropDownItems = 10;
             this.subTopicComboBox.Name = "subTopicComboBox";
-            this.subTopicComboBox.Size = new System.Drawing.Size(561, 33);
+            this.subTopicComboBox.Size = new System.Drawing.Size(561, 40);
             this.subTopicComboBox.TabIndex = 23;
             this.subTopicComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -294,7 +238,7 @@
             this.chapterNameTextBox.Location = new System.Drawing.Point(680, 710);
             this.chapterNameTextBox.Name = "chapterNameTextBox";
             this.chapterNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.chapterNameTextBox.Size = new System.Drawing.Size(561, 33);
+            this.chapterNameTextBox.Size = new System.Drawing.Size(561, 39);
             this.chapterNameTextBox.TabIndex = 24;
             this.chapterNameTextBox.TextChanged += new System.EventHandler(this.questionTextTextBox_TextChanged);
             // 
@@ -304,7 +248,7 @@
             this.chapterNameLabel.Location = new System.Drawing.Point(470, 709);
             this.chapterNameLabel.Margin = new System.Windows.Forms.Padding(5);
             this.chapterNameLabel.Name = "chapterNameLabel";
-            this.chapterNameLabel.Size = new System.Drawing.Size(157, 30);
+            this.chapterNameLabel.Size = new System.Drawing.Size(201, 38);
             this.chapterNameLabel.TabIndex = 25;
             this.chapterNameLabel.Text = "Chapter Name";
             this.chapterNameLabel.Click += new System.EventHandler(this.chapterNameLabel_Click);
@@ -315,7 +259,7 @@
             this.topicLabel.Location = new System.Drawing.Point(470, 769);
             this.topicLabel.Margin = new System.Windows.Forms.Padding(5);
             this.topicLabel.Name = "topicLabel";
-            this.topicLabel.Size = new System.Drawing.Size(65, 30);
+            this.topicLabel.Size = new System.Drawing.Size(83, 38);
             this.topicLabel.TabIndex = 26;
             this.topicLabel.Text = "Topic";
             this.topicLabel.Click += new System.EventHandler(this.label2_Click);
@@ -326,18 +270,75 @@
             this.subTopicLabel.Location = new System.Drawing.Point(470, 829);
             this.subTopicLabel.Margin = new System.Windows.Forms.Padding(5);
             this.subTopicLabel.Name = "subTopicLabel";
-            this.subTopicLabel.Size = new System.Drawing.Size(109, 30);
+            this.subTopicLabel.Size = new System.Drawing.Size(139, 38);
             this.subTopicLabel.TabIndex = 27;
             this.subTopicLabel.Text = "Sub Topic";
             this.subTopicLabel.Click += new System.EventHandler(this.label3_Click);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.chaptersEditButton);
+            this.flowLayoutPanel1.Controls.Add(this.chaptersConfirmButton);
+            this.flowLayoutPanel1.Controls.Add(this.chaptersCancelButton);
+            this.flowLayoutPanel1.Controls.Add(this.chaptersDeleteButton);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(1737, 596);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 11);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 303);
+            this.flowLayoutPanel1.TabIndex = 37;
+            // 
+            // chaptersEditButton
+            // 
+            this.chaptersEditButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chaptersEditButton.Image = ((System.Drawing.Image)(resources.GetObject("chaptersEditButton.Image")));
+            this.chaptersEditButton.Location = new System.Drawing.Point(13, 23);
+            this.chaptersEditButton.Name = "chaptersEditButton";
+            this.chaptersEditButton.Size = new System.Drawing.Size(59, 60);
+            this.chaptersEditButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.chaptersEditButton.TabIndex = 20;
+            this.chaptersEditButton.TabStop = false;
+            // 
+            // chaptersConfirmButton
+            // 
+            this.chaptersConfirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chaptersConfirmButton.Image = global::ByteManager.Properties.Resources.AffirmativeButton;
+            this.chaptersConfirmButton.Location = new System.Drawing.Point(13, 89);
+            this.chaptersConfirmButton.Name = "chaptersConfirmButton";
+            this.chaptersConfirmButton.Size = new System.Drawing.Size(59, 60);
+            this.chaptersConfirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.chaptersConfirmButton.TabIndex = 21;
+            this.chaptersConfirmButton.TabStop = false;
+            // 
+            // chaptersCancelButton
+            // 
+            this.chaptersCancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chaptersCancelButton.Image = global::ByteManager.Properties.Resources.NegativeButton;
+            this.chaptersCancelButton.Location = new System.Drawing.Point(13, 155);
+            this.chaptersCancelButton.Name = "chaptersCancelButton";
+            this.chaptersCancelButton.Size = new System.Drawing.Size(59, 60);
+            this.chaptersCancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.chaptersCancelButton.TabIndex = 22;
+            this.chaptersCancelButton.TabStop = false;
+            // 
+            // chaptersDeleteButton
+            // 
+            this.chaptersDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chaptersDeleteButton.Image = global::ByteManager.Properties.Resources.TrashBinButton;
+            this.chaptersDeleteButton.Location = new System.Drawing.Point(13, 221);
+            this.chaptersDeleteButton.Name = "chaptersDeleteButton";
+            this.chaptersDeleteButton.Size = new System.Drawing.Size(59, 60);
+            this.chaptersDeleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.chaptersDeleteButton.TabIndex = 23;
+            this.chaptersDeleteButton.TabStop = false;
+            // 
             // Chapters
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 30F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(1540, 845);
+            this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.subTopicLabel);
             this.Controls.Add(this.topicLabel);
             this.Controls.Add(this.chapterNameLabel);
@@ -345,7 +346,6 @@
             this.Controls.Add(this.subTopicComboBox);
             this.Controls.Add(this.topicComboBox);
             this.Controls.Add(this.horizontalLineSeparator);
-            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.topicChaptersDataGrid);
             this.Controls.Add(this.lineSeparator);
             this.Controls.Add(this.webusersNavigationButton);
@@ -364,10 +364,10 @@
             this.Load += new System.EventHandler(this.Chapters_Load);
             ((System.ComponentModel.ISupportInitialize)(this.topicChaptersDataGrid)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chapterEditButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chapterConfirmButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chapterCancelButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chapterDeleteButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chaptersEditButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chaptersConfirmButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chaptersCancelButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chaptersDeleteButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,11 +379,6 @@
         private DataGridViewTextBoxColumn topic;
         private DataGridViewTextBoxColumn subTopic;
         private DataGridViewTextBoxColumn chapterName;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private PictureBox chapterEditButton;
-        private PictureBox chapterConfirmButton;
-        private PictureBox chapterCancelButton;
-        private PictureBox chapterDeleteButton;
         private Label horizontalLineSeparator;
         private ComboBox topicComboBox;
         private ComboBox subTopicComboBox;
@@ -391,5 +386,10 @@
         private Label chapterNameLabel;
         private Label topicLabel;
         private Label subTopicLabel;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private PictureBox chaptersEditButton;
+        private PictureBox chaptersConfirmButton;
+        private PictureBox chaptersCancelButton;
+        private PictureBox chaptersDeleteButton;
     }
 }

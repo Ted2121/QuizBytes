@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Questions));
             this.lineSeparator = new System.Windows.Forms.Label();
             this.webusersNavigationButton = new System.Windows.Forms.Button();
@@ -57,20 +57,20 @@
             this.questionTypeComboBox = new System.Windows.Forms.ComboBox();
             this.chapterNameCombobox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.questionEditButton = new System.Windows.Forms.PictureBox();
-            this.questionConfirmButton = new System.Windows.Forms.PictureBox();
-            this.questionCancelButton = new System.Windows.Forms.PictureBox();
-            this.questionDeleteButton = new System.Windows.Forms.PictureBox();
+            this.questionsEditButton = new System.Windows.Forms.PictureBox();
+            this.questionsConfirmButton = new System.Windows.Forms.PictureBox();
+            this.questionsCancelButton = new System.Windows.Forms.PictureBox();
+            this.questionsDeleteButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.singleAnswerDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.questionEditButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.questionConfirmButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.questionCancelButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.questionDeleteButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionsEditButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionsConfirmButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionsCancelButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionsDeleteButton)).BeginInit();
             this.SuspendLayout();
             // 
             // lineSeparator
@@ -144,39 +144,39 @@
             // singleAnswerDataGrid
             // 
             this.singleAnswerDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.singleAnswerDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.singleAnswerDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.singleAnswerDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.singleAnswerDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.questionsIndex,
             this.chapterName,
             this.questionText});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.singleAnswerDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.singleAnswerDataGrid.DefaultCellStyle = dataGridViewCellStyle5;
             this.singleAnswerDataGrid.EnableHeadersVisualStyles = false;
             this.singleAnswerDataGrid.GridColor = System.Drawing.Color.White;
             this.singleAnswerDataGrid.Location = new System.Drawing.Point(375, 80);
             this.singleAnswerDataGrid.Name = "singleAnswerDataGrid";
             this.singleAnswerDataGrid.RowHeadersVisible = false;
             this.singleAnswerDataGrid.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.singleAnswerDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.singleAnswerDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.singleAnswerDataGrid.RowTemplate.Height = 25;
             this.singleAnswerDataGrid.Size = new System.Drawing.Size(1450, 400);
             this.singleAnswerDataGrid.TabIndex = 10;
@@ -379,55 +379,59 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.questionEditButton);
-            this.flowLayoutPanel1.Controls.Add(this.questionConfirmButton);
-            this.flowLayoutPanel1.Controls.Add(this.questionCancelButton);
-            this.flowLayoutPanel1.Controls.Add(this.questionDeleteButton);
+            this.flowLayoutPanel1.Controls.Add(this.questionsEditButton);
+            this.flowLayoutPanel1.Controls.Add(this.questionsConfirmButton);
+            this.flowLayoutPanel1.Controls.Add(this.questionsCancelButton);
+            this.flowLayoutPanel1.Controls.Add(this.questionsDeleteButton);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(1737, 538);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 292);
-            this.flowLayoutPanel1.TabIndex = 19;
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 11);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 303);
+            this.flowLayoutPanel1.TabIndex = 37;
             // 
-            // questionEditButton
+            // questionsEditButton
             // 
-            this.questionEditButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.questionEditButton.Location = new System.Drawing.Point(13, 23);
-            this.questionEditButton.Name = "questionEditButton";
-            this.questionEditButton.Size = new System.Drawing.Size(60, 60);
-            this.questionEditButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.questionEditButton.TabIndex = 20;
-            this.questionEditButton.TabStop = false;
+            this.questionsEditButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionsEditButton.Image = ((System.Drawing.Image)(resources.GetObject("questionsEditButton.Image")));
+            this.questionsEditButton.Location = new System.Drawing.Point(13, 23);
+            this.questionsEditButton.Name = "questionsEditButton";
+            this.questionsEditButton.Size = new System.Drawing.Size(59, 60);
+            this.questionsEditButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.questionsEditButton.TabIndex = 20;
+            this.questionsEditButton.TabStop = false;
             // 
-            // questionConfirmButton
+            // questionsConfirmButton
             // 
-            this.questionConfirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.questionConfirmButton.Location = new System.Drawing.Point(13, 89);
-            this.questionConfirmButton.Name = "questionConfirmButton";
-            this.questionConfirmButton.Size = new System.Drawing.Size(60, 60);
-            this.questionConfirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.questionConfirmButton.TabIndex = 21;
-            this.questionConfirmButton.TabStop = false;
+            this.questionsConfirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionsConfirmButton.Image = global::ByteManager.Properties.Resources.AffirmativeButton;
+            this.questionsConfirmButton.Location = new System.Drawing.Point(13, 89);
+            this.questionsConfirmButton.Name = "questionsConfirmButton";
+            this.questionsConfirmButton.Size = new System.Drawing.Size(59, 60);
+            this.questionsConfirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.questionsConfirmButton.TabIndex = 21;
+            this.questionsConfirmButton.TabStop = false;
             // 
-            // questionCancelButton
+            // questionsCancelButton
             // 
-            this.questionCancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.questionCancelButton.Location = new System.Drawing.Point(13, 155);
-            this.questionCancelButton.Name = "questionCancelButton";
-            this.questionCancelButton.Size = new System.Drawing.Size(60, 60);
-            this.questionCancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.questionCancelButton.TabIndex = 22;
-            this.questionCancelButton.TabStop = false;
+            this.questionsCancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionsCancelButton.Image = global::ByteManager.Properties.Resources.NegativeButton;
+            this.questionsCancelButton.Location = new System.Drawing.Point(13, 155);
+            this.questionsCancelButton.Name = "questionsCancelButton";
+            this.questionsCancelButton.Size = new System.Drawing.Size(59, 60);
+            this.questionsCancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.questionsCancelButton.TabIndex = 22;
+            this.questionsCancelButton.TabStop = false;
             // 
-            // questionDeleteButton
+            // questionsDeleteButton
             // 
-            this.questionDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.questionDeleteButton.Location = new System.Drawing.Point(13, 221);
-            this.questionDeleteButton.Name = "questionDeleteButton";
-            this.questionDeleteButton.Size = new System.Drawing.Size(60, 60);
-            this.questionDeleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.questionDeleteButton.TabIndex = 23;
-            this.questionDeleteButton.TabStop = false;
+            this.questionsDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionsDeleteButton.Image = global::ByteManager.Properties.Resources.TrashBinButton;
+            this.questionsDeleteButton.Location = new System.Drawing.Point(13, 221);
+            this.questionsDeleteButton.Name = "questionsDeleteButton";
+            this.questionsDeleteButton.Size = new System.Drawing.Size(59, 60);
+            this.questionsDeleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.questionsDeleteButton.TabIndex = 23;
+            this.questionsDeleteButton.TabStop = false;
             // 
             // Questions
             // 
@@ -461,10 +465,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.questionEditButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.questionConfirmButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.questionCancelButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.questionDeleteButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionsEditButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionsConfirmButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionsCancelButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionsDeleteButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -497,9 +501,9 @@
         private TextBox questionTextTextBox;
         private ComboBox questionTypeComboBox;
         private FlowLayoutPanel flowLayoutPanel1;
-        private PictureBox questionEditButton;
-        private PictureBox questionConfirmButton;
-        private PictureBox questionCancelButton;
-        private PictureBox questionDeleteButton;
+        private PictureBox questionsEditButton;
+        private PictureBox questionsConfirmButton;
+        private PictureBox questionsCancelButton;
+        private PictureBox questionsDeleteButton;
     }
 }

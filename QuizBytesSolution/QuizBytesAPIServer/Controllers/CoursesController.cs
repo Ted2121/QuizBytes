@@ -1,5 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizBytesAPIServer.Models;
+using Answer = QuizBytesAPIServer.Models.Answer;
+using Chapter = QuizBytesAPIServer.Models.Chapter;
+using Course = QuizBytesAPIServer.Models.Course;
+using CurrentChallenge = QuizBytesAPIServer.Models.CurrentChallenge;
+using Question = QuizBytesAPIServer.Models.Question;
+using Subject = QuizBytesAPIServer.Models.Subject;
+using WebUserChapterUnlocks = QuizBytesAPIServer.Models.WebUserChapterUnlocks;
+using WebUser = QuizBytesAPIServer.Models.WebUser;
+using DataAccessDefinitionLibrary.DAO_Interfaces;
 
 namespace QuizBytesAPIServer.Controllers
 {

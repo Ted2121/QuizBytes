@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using QuizBytesAPIServer.Models;
-using System.Security.Principal;
+using Chapter = QuizBytesAPIServer.Models.Chapter;
+using IChapterDataAccess = DataAccessDefinitionLibrary.DAO_Interfaces.IChapterDataAccess;
+using Subject = QuizBytesAPIServer.Models.Subject;
 
 namespace QuizBytesAPIServer.Controllers
 {
@@ -26,7 +27,7 @@ namespace QuizBytesAPIServer.Controllers
             await ChapterDataAccess.DeleteChapterAsync(chapter);
             // TODO figure out how to check if deletion was successfull
 
-            return Ok(); 
+            return Ok();
         }
 
 
@@ -53,7 +54,7 @@ namespace QuizBytesAPIServer.Controllers
             {
                 return NotFound();
             }
-            return Ok(chapters); 
+            return Ok(chapters);
         }
 
         [HttpGet]
@@ -65,7 +66,7 @@ namespace QuizBytesAPIServer.Controllers
             {
                 return NotFound();
             }
-            return Ok(chapter); 
+            return Ok(chapter);
         }
 
         [HttpPost]
@@ -77,8 +78,8 @@ namespace QuizBytesAPIServer.Controllers
             {
                 return NotFound();
             }
-            return Ok(chapter); 
-        } 
+            return Ok(chapter);
+        }
 
 
         [HttpPut]

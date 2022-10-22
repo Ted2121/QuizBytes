@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLibrary.Data_Access_Objects
+namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
-    internal class ChapterDAO
+    public interface ICurrentChallengeDataAccess
     {
     }
 }

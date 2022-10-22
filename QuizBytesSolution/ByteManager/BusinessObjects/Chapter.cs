@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ByteManager.BusinessObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace ByteManager.BussinesObjects
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public IEnumerable<IQuestion> Questions { get; set; }
+        public IEnumerable<Question> Questions { get; set; }
     }
 }

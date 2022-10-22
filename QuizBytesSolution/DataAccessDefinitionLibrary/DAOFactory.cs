@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLibrary.Data_Access_Implementation
+namespace DataAccessDefinitionLibrary
 {
-    internal class ChallengeDAO_Imp
+    public static class DAOFactory
     {
+
     }
 }

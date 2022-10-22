@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ByteManager.BusinessObjects
 {
-    internal class Question
+    public class Question
     {
     }
 }

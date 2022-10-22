@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data Access Models\" />
-    <Folder Include="DAO Interfaces\" />
-    <Folder Include="DAO Implementations\" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
 </Project>

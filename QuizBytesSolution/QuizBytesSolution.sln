@@ -5,15 +5,11 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteManager", "ByteManager\ByteManager.csproj", "{EFF67CD7-6808-4F50-8E37-3419A5FEF76D}"
 EndProject
-<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLAccessImplementationLibrary", "DataAccessLibrary\SQLAccessImplementationLibrary.csproj", "{650DDD20-4F7C-4BEF-B962-9311537506DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessDefinitionLibrary", "DataAccessDefinitionLibrary\DataAccessDefinitionLibrary.csproj", "{0A421075-843C-4249-806D-BE75CF4A0DDD}"
-=======
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLibrary", "DataAccessLibrary\DataAccessLibrary.csproj", "{650DDD20-4F7C-4BEF-B962-9311537506DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessDefinitionLibrary", "DataAccessDefinitionLibrary\DataAccessDefinitionLibrary.csproj", "{0A421075-843C-4249-806D-BE75CF4A0DDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizBytesAPIServer", "QuizBytesAPIServer\QuizBytesAPIServer.csproj", "{A67224DF-43A7-43B2-95AD-02950B76FDDB}"
->>>>>>> feature-REST-WebAPI
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizBytesAPIServer", "QuizBytesAPIServer\QuizBytesAPIServer.csproj", "{A67224DF-43A7-43B2-95AD-02950B76FDDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,17 +25,14 @@ Global
 		{650DDD20-4F7C-4BEF-B962-9311537506DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{650DDD20-4F7C-4BEF-B962-9311537506DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{650DDD20-4F7C-4BEF-B962-9311537506DE}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{0A421075-843C-4249-806D-BE75CF4A0DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0A421075-843C-4249-806D-BE75CF4A0DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A421075-843C-4249-806D-BE75CF4A0DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A421075-843C-4249-806D-BE75CF4A0DDD}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{A67224DF-43A7-43B2-95AD-02950B76FDDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A67224DF-43A7-43B2-95AD-02950B76FDDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A67224DF-43A7-43B2-95AD-02950B76FDDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A67224DF-43A7-43B2-95AD-02950B76FDDB}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> feature-REST-WebAPI
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

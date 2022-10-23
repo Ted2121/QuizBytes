@@ -17,5 +17,10 @@
             TotalPoints = totalPoints;
             AvailablePoints = availablePoints;
         }
+
+        public WebUser()
+        {
+
+        }
     }
 }

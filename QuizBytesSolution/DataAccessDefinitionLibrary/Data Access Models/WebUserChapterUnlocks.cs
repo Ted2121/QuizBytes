@@ -6,5 +6,10 @@
         public int ChapterId { get; set; }
         public WebUser WebUser { get; set; }
         public Chapter Chapter { get; set; }
+
+        public WebUserChapterUnlocks()
+        {
+
+        }
     }
 }

@@ -8,5 +8,10 @@
         public int CurrentChallengeId { get; set; }
         public CurrentChallenge CurrentChallenge { get; set; }
         public IEnumerable<Subject> Subjects { get; set; }
+
+        public Course()
+        {
+
+        }
     }
 }

@@ -7,5 +7,10 @@
         public int FKCourseId { get; set; }
         public int PointsAccumulated { get; set; }
         public int ElapsedSeconds { get; set; }
+
+        public CurrentChallenge()
+        {
+
+        }
     }
 }

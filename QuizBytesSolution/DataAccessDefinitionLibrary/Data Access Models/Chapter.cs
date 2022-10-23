@@ -20,6 +20,8 @@
             FKSubjectId = fKSubjectId;
         }
 
-
+        public Chapter()
+        {
+        }
     }
 }

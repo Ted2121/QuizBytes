@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Answer = QuizBytesAPIServer.DTOs.Answer;
-using Chapter = QuizBytesAPIServer.DTOs.Chapter;
-using Course = QuizBytesAPIServer.DTOs.Course;
-using CurrentChallenge = QuizBytesAPIServer.DTOs.CurrentChallenge;
-using Question = QuizBytesAPIServer.DTOs.Question;
-using Subject = QuizBytesAPIServer.DTOs.Subject;
-using WebUserChapterUnlocks = QuizBytesAPIServer.DTOs.WebUserChapterUnlocks;
-using WebUser = QuizBytesAPIServer.DTOs.WebUser;
+using Answer = QuizBytesAPIServer.DTOs.AnswerDTO;
+using Chapter = QuizBytesAPIServer.DTOs.ChapterDto;
+using CourseDto = QuizBytesAPIServer.DTOs.CourseDto;
+using CurrentChallenge = QuizBytesAPIServer.DTOs.CurrentChallengeDto;
+using Question = QuizBytesAPIServer.DTOs.QuestionDto;
+using Subject = QuizBytesAPIServer.DTOs.SubjectDto;
+using WebUserChapterUnlocks = QuizBytesAPIServer.DTOs.WebUserChapterUnlocksDto;
+using WebUser = QuizBytesAPIServer.DTOs.WebUserDto;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 
 namespace QuizBytesAPIServer.Controllers
@@ -23,7 +23,7 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteCourseAsync(Course course)
+        public async Task<ActionResult> DeleteCourseAsync(CourseDto course)
         {
             if (course == null)
             {
@@ -38,7 +38,7 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("{all}")]
-        public async Task<ActionResult<IEnumerable<Course>>> GetAllCoursesAsync()
+        public async Task<ActionResult<IEnumerable<CourseDto>>> GetAllCoursesAsync()
         {
             var courses = await CourseDataAccess.GetAllCoursesAsync();
 
@@ -51,9 +51,9 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<Course>> GetCourseByIdAsync(int courseId)
+        public async Task<ActionResult<CourseDto>> GetCourseByIdAsync(int courseId)
         {
-            Course course = await CourseDataAccess.GetCourseByIdAsync(courseId);
+            CourseDto course = await CourseDataAccess.GetCourseByIdAsync(courseId);
             if (course == null)
             {
                 return NotFound();
@@ -62,7 +62,7 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Course>> InsertCourseAsync(Course course)
+        public async Task<ActionResult<CourseDto>> InsertCourseAsync(CourseDto course)
         {
             course = await CourseDataAccess.InsertCourseAsync(course);
 
@@ -74,7 +74,7 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateCourseAsync(Course course)
+        public async Task<ActionResult> UpdateCourseAsync(CourseDto course)
         {
 
             if (course == null)

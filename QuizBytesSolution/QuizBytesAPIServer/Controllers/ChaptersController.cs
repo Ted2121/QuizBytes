@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Chapter = QuizBytesAPIServer.DTOs.Chapter;
+using ChapterDto = QuizBytesAPIServer.DTOs.ChapterDto;
 using IChapterDataAccess = DataAccessDefinitionLibrary.DAO_Interfaces.IChapterDataAccess;
-using Subject = QuizBytesAPIServer.DTOs.Subject;
+using SubjectDto = QuizBytesAPIServer.DTOs.SubjectDto;
 
 namespace QuizBytesAPIServer.Controllers
 {
@@ -17,7 +17,7 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteChapterAsync(Chapter chapter)
+        public async Task<ActionResult> DeleteChapterAsync(ChapterDto chapter)
         {
             if (chapter == null)
             {
@@ -33,7 +33,7 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("{all}")]
-        public async Task<ActionResult<IEnumerable<Chapter>>> GetAllChaptersAsync()
+        public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersAsync()
         {
             var chapters = await ChapterDataAccess.GetAllChaptersAsync();
 
@@ -46,7 +46,7 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("subject")]
-        public async Task<ActionResult<IEnumerable<Chapter>>> GetAllChaptersBySubjectAsync(Subject subject)
+        public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersBySubjectAsync(SubjectDto subject)
         {
             var chapters = await ChapterDataAccess.GetAllChaptersBySubjectAsync(subject);
 
@@ -59,9 +59,9 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<Chapter>> GetChapterByIdAsync(int chapterId)
+        public async Task<ActionResult<ChapterDto>> GetChapterByIdAsync(int chapterId)
         {
-            Chapter chapter = await ChapterDataAccess.GetChapterByIdAsync(chapterId);
+            ChapterDto chapter = await ChapterDataAccess.GetChapterByIdAsync(chapterId);
             if (chapter == null)
             {
                 return NotFound();
@@ -70,7 +70,7 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Chapter>> InsertChapterAsync(Chapter chapter)
+        public async Task<ActionResult<ChapterDto>> InsertChapterAsync(ChapterDto chapter)
         {
             chapter = await ChapterDataAccess.InsertChapterAsync(chapter);
 
@@ -83,7 +83,7 @@ namespace QuizBytesAPIServer.Controllers
 
 
         [HttpPut]
-        public async Task<ActionResult> UpdateChapterAsync(Chapter chapter)
+        public async Task<ActionResult> UpdateChapterAsync(ChapterDto chapter)
         {
 
             if (chapter == null)

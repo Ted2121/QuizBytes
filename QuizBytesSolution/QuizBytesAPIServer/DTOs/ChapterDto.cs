@@ -1,12 +1,12 @@
 ﻿namespace QuizBytesAPIServer.DTOs
 {
-    public class Chapter
+    public class ChapterDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int FKSubjectId { get; set; }
-        public Subject Subject { get; set; }
-        public IEnumerable<WebUserChapterUnlocks> WebUserChapterUnlocks { get; set; }
+        public SubjectDto Subject { get; set; }
+        public IEnumerable<WebUserChapterUnlocksDto> WebUserChapterUnlocks { get; set; }
     }
 }

@@ -19,5 +19,10 @@ namespace DataAccessDefinitionLibrary.DAO_models
             Hint = hint;
             FKChapterId = fkChapterId;
         }
+
+        public Question()
+        {
+
+        }
     }
 }

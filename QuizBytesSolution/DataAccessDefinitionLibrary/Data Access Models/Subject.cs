@@ -8,5 +8,10 @@
         public int FKCourseId { get; set; }
         public Course Course { get; set; }
         public IEnumerable<Chapter> Chapters { get; set; }
+
+        public Subject()
+        {
+
+        }
     }
 }

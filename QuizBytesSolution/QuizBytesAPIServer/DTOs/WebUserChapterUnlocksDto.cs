@@ -1,6 +1,6 @@
 ﻿namespace QuizBytesAPIServer.DTOs
 {
-    public class Question
+    public class WebUserChapterUnlocksDto
     {
     }
 }

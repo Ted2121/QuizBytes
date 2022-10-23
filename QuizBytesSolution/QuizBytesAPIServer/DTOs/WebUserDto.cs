@@ -1,6 +1,6 @@
 ﻿namespace QuizBytesAPIServer.DTOs
 {
-    public class CurrentChallenge
+    public class WebUserDto
     {
     }
 }

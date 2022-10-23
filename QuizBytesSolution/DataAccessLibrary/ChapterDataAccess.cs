@@ -15,7 +15,7 @@ namespace SQLAccessImplementationLibrary
         public async Task DeleteChapterAsync(Chapter chapter)
         {
             string commandText = "DELETE FROM Chapters WHERE ChapterId = @ChapterId";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
@@ -36,7 +36,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<IEnumerable<Chapter>> GetAllChaptersAsync()
         {
             string commandText = "SELECT* FROM Chapters";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 try
                 {
@@ -54,7 +54,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<IEnumerable<Chapter>> GetAllChaptersBySubjectAsync(Subject subject)
         {
             string commandText = "SELECT * FROM Chapters WHERE FKSubjectId = @FKSubjectId";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
 
                 try
@@ -78,7 +78,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<Chapter> GetChapterByIdAsync(int chapterId)
         {
             string commandText = "SELECT * FROM Chapters WHERE ChapterId = @ChapterId";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
@@ -103,7 +103,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<Chapter> GetChapterByNameAsync(string chapterName)
         {
             string commandText = "SELECT * FROM Chapters WHERE ChapterName = @ChapterName";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
@@ -128,7 +128,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<Chapter> InsertChapterAsync(Chapter chapter)
         {
             string commandText = "INSERT INTO Chapters (ChapterName, FKSubjectId, ChapterDescription) VALUES (@ChapterName, @FKSubjectId, @ChapterDescription); SELECT CAST(scope_identity() AS int)";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
 
                 var insertParameters = new
@@ -161,7 +161,7 @@ namespace SQLAccessImplementationLibrary
                 "ChapterDescription = @ChapterDescription " +
                 "WHERE ChapterId = @ChapterId";
 
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {

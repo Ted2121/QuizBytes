@@ -6,9 +6,11 @@ using System.Data.SqlClient;
 
 namespace SQLAccessImplementationLibrary
 {
-    public class ChapterDataAccess : IChapterDataAccess
+    public class ChapterDataAccess : BaseDataAccess, IChapterDataAccess
     {
-
+        public ChapterDataAccess(string connectionstring) : base(connectionstring)
+        {
+        }
 
         public async Task DeleteChapterAsync(Chapter chapter)
         {

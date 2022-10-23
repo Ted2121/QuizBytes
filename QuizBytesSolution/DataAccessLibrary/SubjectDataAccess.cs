@@ -6,12 +6,16 @@ using System.Data.SqlClient;
 
 namespace SQLAccessImplementationLibrary
 {
-    public class SubjectDataAccess : ISubjectDataAccess
+    public class SubjectDataAccess : BaseDataAccess, ISubjectDataAccess
     {
+        public SubjectDataAccess(string connectionstring) : base(connectionstring)
+        {
+        }
+
         public async Task DeleteSubjectAsync(Subject subject)
         {
             string commandText = "DELETE FROM Subjects WHERE SubjectId = @SubjectId";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
@@ -32,7 +36,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<IEnumerable<Subject>> GetAllSubjectsAsync()
         {
             string commandText = " SELECT * FROM Subjects";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 try
                 {
@@ -50,7 +54,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<IEnumerable<Subject>> GetAllSubjectsByCourseAsync(Course course)
         {
             string commandText = "SELECT * FROM Subjects WHERE FKCourseId = @FKCourseId";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
 
                 try
@@ -74,7 +78,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<Subject> GetSubjectByIdAsync(int subjectId)
         {
             string commandText = "SELECT * FROM Subjects WHERE SubjectId = @SubjectId";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
@@ -100,7 +104,7 @@ namespace SQLAccessImplementationLibrary
         {
             string commandText = "INSERT INTO Subjects (SubjectName, FKCourseId, SubjectDescription) VALUES (@SubjectName, @FKCourseId, @SubjectDescription); SELECT CAST(scope_identity() AS int)";
 
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var insertParameters = new
                 {
@@ -130,7 +134,7 @@ namespace SQLAccessImplementationLibrary
                 "SubjectDescription = @SubjectDescription " +
                 "WHERE SubjectId = @SubjectId";
 
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {

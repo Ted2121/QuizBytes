@@ -11,14 +11,16 @@ using System.Threading.Tasks;
 
 namespace SQLAccessImplementationLibrary
 {
-public class WebUserDataAccess : IWebUserDataAccess
-{
+public class WebUserDataAccess : BaseDataAccess, IWebUserDataAccess
+    {
+        public WebUserDataAccess(string connectionstring) : base(connectionstring)
+        {
+        }
 
-
-    public async Task DeleteWebUserAsync(WebUser webUser)
+        public async Task DeleteWebUserAsync(WebUser webUser)
     {
         string commandText = "DELETE FROM WebUsers WHERE Username = @Username";
-        using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+        using (SqlConnection connection = CreateConnection())
         {
             var parameters = new
             {
@@ -39,7 +41,7 @@ public class WebUserDataAccess : IWebUserDataAccess
     public async Task<IEnumerable<WebUser>> GetAllWebUsersAsync()
     {
         string commandText = "SELECT * FROM WebUsers";
-        using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+        using (SqlConnection connection = CreateConnection())
         {
             try
             {
@@ -57,7 +59,7 @@ public class WebUserDataAccess : IWebUserDataAccess
     public async Task<WebUser> GetWebUserByUsernameAsync(string username)
     {
         string commandText = "SELECT * FROM WebUsers WHERE Username = @Username";
-        using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+        using (SqlConnection connection = CreateConnection())
         {
             var parameters = new
             {
@@ -80,7 +82,7 @@ public class WebUserDataAccess : IWebUserDataAccess
     public async Task<WebUser> InsertWebUserAsync(WebUser webUser)
     {
         string commandText = "INSERT INTO WebUsers(Username, PasswordHash, TotalPoints, AvailablePoints, Email) VALUES (@Username, @PasswordHash, @TotalPoints, @AvailablePoints, @Email)";
-        using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+        using (SqlConnection connection = CreateConnection())
         {
 
             var insertParameters = new
@@ -113,7 +115,7 @@ public class WebUserDataAccess : IWebUserDataAccess
             "AvailablePoints = @AvailablePoints" +
             "Email = @Email" +
             "WHERE Username = @Username";
-        using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+        using (SqlConnection connection = CreateConnection())
         {
             var parameters = new
             {

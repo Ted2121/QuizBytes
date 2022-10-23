@@ -1,14 +1,13 @@
 ﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using QuizBytesAPIServer.Models;
-using Answer = QuizBytesAPIServer.Models.Answer;
-using Chapter = QuizBytesAPIServer.Models.Chapter;
-using Course = QuizBytesAPIServer.Models.Course;
-using CurrentChallenge = QuizBytesAPIServer.Models.CurrentChallenge;
-using Question = QuizBytesAPIServer.Models.Question;
-using Subject = QuizBytesAPIServer.Models.Subject;
-using WebUserChapterUnlocks = QuizBytesAPIServer.Models.WebUserChapterUnlocks;
-using WebUser = QuizBytesAPIServer.Models.WebUser;
+using Answer = QuizBytesAPIServer.DTOs.Answer;
+using Chapter = QuizBytesAPIServer.DTOs.Chapter;
+using Course = QuizBytesAPIServer.DTOs.Course;
+using CurrentChallenge = QuizBytesAPIServer.DTOs.CurrentChallenge;
+using Question = QuizBytesAPIServer.DTOs.Question;
+using Subject = QuizBytesAPIServer.DTOs.Subject;
+using WebUserChapterUnlocks = QuizBytesAPIServer.DTOs.WebUserChapterUnlocks;
+using WebUser = QuizBytesAPIServer.DTOs.WebUser;
 
 namespace QuizBytesAPIServer.Controllers
 {

@@ -12,12 +12,16 @@ using System.Xml.Linq;
 
 namespace SQLAccessImplementationLibrary
 {
-    public class CourseDataAccess : ICourseDataAccess
+    public class CourseDataAccess : BaseDataAccess, ICourseDataAccess
     {
+        public CourseDataAccess(string connectionstring) : base(connectionstring)
+        {
+        }
+
         public async Task DeleteCourseAsync(Course course)
         {
             string commandText = "DELETE FROM Courses WHERE CourseId = @CourseId";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
@@ -38,7 +42,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<IEnumerable<Course>> GetAllCoursesAsync()
         {
             string commandText = " SELECT * FROM Courses";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 try
                 {
@@ -56,7 +60,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<Course> GetCourseByIdAsync(int courseId)
         {
             string commandText = "SELECT * FROM Courses WHERE CourseId = @CourseId";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
@@ -82,7 +86,7 @@ namespace SQLAccessImplementationLibrary
         {
             string commandText = "INSERT INTO Courses (CourseName, CourseDescription) VALUES (@CourseName, @CourseDescription); SELECT CAST(scope_identity() AS int)";
 
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var insertParameters = new
                 {
@@ -110,7 +114,7 @@ namespace SQLAccessImplementationLibrary
                  "CourseDescription = @CourseDescription " +
                  "WHERE CourseId = @CourseId";
 
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {

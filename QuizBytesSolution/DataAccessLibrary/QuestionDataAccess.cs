@@ -12,12 +12,16 @@ using System.Xml.Linq;
 
 namespace SQLAccessImplementationLibrary
 {
-    public class QuestionDataAccess : IQuestionDataAccess
+    public class QuestionDataAccess : BaseDataAccess, IQuestionDataAccess
     {
+        public QuestionDataAccess(string connectionstring) : base(connectionstring)
+        {
+        }
+
         public async Task DeleteQuestionAsync(Question question)
         {
             string commandText = "DELETE FROM Questions WHERE QuestionId = @QuestionId";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
@@ -38,7 +42,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<IEnumerable<Question>> GetAllQuestionsAsync()
         {
             string commandText = "SELECT* FROM Questions";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 try
                 {
@@ -56,7 +60,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<Question> GetQuestionByIdAsync(int questionId)
         {
             string commandText = "SELECT * FROM Questions WHERE QuestionId = @QuestionId";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
@@ -81,7 +85,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<Question> InsertQuestionAsync(Question question)
         {
             string commandText = "INSERT INTO Questions (QuestionId, FKChapterId, QuestionText, QuestionHint) VALUES (@QuestionId, @FKChapterId, @QuestionText, @QuestionHint); SELECT CAST(scope_identity() AS int)";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
 
                 var insertParameters = new
@@ -114,7 +118,7 @@ namespace SQLAccessImplementationLibrary
                 "QuestionHint = @QuestionHint" +
                 "WHERE QuestionId = @QuestionId";
 
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
@@ -139,7 +143,7 @@ namespace SQLAccessImplementationLibrary
         public async Task<IEnumerable<Question>> GetQuestionByChapterAsync(int chapterId)
         {
             string commandText = "SELECT * FROM Questions WHERE FKChapterId = @FKChapterId";
-            using (SqlConnection connection = SQLConnectionFactory.GetSqlConnection())
+            using (SqlConnection connection = CreateConnection())
             {
 
                 try

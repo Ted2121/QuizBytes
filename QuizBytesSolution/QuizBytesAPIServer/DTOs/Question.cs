@@ -1,4 +1,4 @@
-﻿namespace QuizBytesAPIServer.Models
+﻿namespace QuizBytesAPIServer.DTOs
 {
     public class Question
     {

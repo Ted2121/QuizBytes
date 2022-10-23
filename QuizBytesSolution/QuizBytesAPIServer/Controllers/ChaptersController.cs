@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Chapter = QuizBytesAPIServer.Models.Chapter;
+using Chapter = QuizBytesAPIServer.DTOs.Chapter;
 using IChapterDataAccess = DataAccessDefinitionLibrary.DAO_Interfaces.IChapterDataAccess;
-using Subject = QuizBytesAPIServer.Models.Subject;
+using Subject = QuizBytesAPIServer.DTOs.Subject;
 
 namespace QuizBytesAPIServer.Controllers
 {

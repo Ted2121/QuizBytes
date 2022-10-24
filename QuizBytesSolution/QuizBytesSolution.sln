@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessDefinitionLibrary
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizBytesAPIServer", "QuizBytesAPIServer\QuizBytesAPIServer.csproj", "{A67224DF-43A7-43B2-95AD-02950B76FDDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsApiClient", "WindowsApiClient\WindowsApiClient.csproj", "{5CC92E50-9BB5-46E2-9857-10C8DE25C1DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A67224DF-43A7-43B2-95AD-02950B76FDDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A67224DF-43A7-43B2-95AD-02950B76FDDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A67224DF-43A7-43B2-95AD-02950B76FDDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CC92E50-9BB5-46E2-9857-10C8DE25C1DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CC92E50-9BB5-46E2-9857-10C8DE25C1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CC92E50-9BB5-46E2-9857-10C8DE25C1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CC92E50-9BB5-46E2-9857-10C8DE25C1DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

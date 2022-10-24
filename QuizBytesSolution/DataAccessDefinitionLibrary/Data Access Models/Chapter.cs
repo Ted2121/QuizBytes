@@ -10,7 +10,7 @@
         public Subject Subject { get; set; }
         // many to many with webusers
         public IEnumerable<WebUserChapterUnlocks> WebUserChapterUnlocks { get; set; }
-
+        public const int UnlockPrice = 50;
 
         // This constructor is for insertion with identity constraint
         public Chapter(string name, string description, int fKSubjectId)

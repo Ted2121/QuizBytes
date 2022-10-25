@@ -1,14 +1,14 @@
 ﻿namespace DataAccessDefinitionLibrary.DAO_models
 {
-    public class CurrentChallenge
+    public class UserScoreInChallenge
     {
-
-        public string WebUserUserName { get; set; }
+        
+        public int WebUserId { get; set; }
         public int FKCourseId { get; set; }
         public int PointsAccumulated { get; set; }
         public int ElapsedSeconds { get; set; }
 
-        public CurrentChallenge()
+        public UserScoreInChallenge()
         {
 
         }

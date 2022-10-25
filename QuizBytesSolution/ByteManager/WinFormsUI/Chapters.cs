@@ -61,5 +61,10 @@ namespace ByteManager.WinFormsUI
         {
 
         }
+
+        private void chaptersEditButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

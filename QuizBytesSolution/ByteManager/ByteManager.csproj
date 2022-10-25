@@ -10,6 +10,8 @@
 
   <ItemGroup>
 
+    <Folder Include="Controllers\" />
+
     <Folder Include="WinFormsUI\" />
 
   </ItemGroup>

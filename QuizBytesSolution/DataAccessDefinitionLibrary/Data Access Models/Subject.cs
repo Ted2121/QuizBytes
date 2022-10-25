@@ -1,4 +1,4 @@
-﻿namespace DataAccessDefinitionLibrary.DAO_models
+﻿namespace DataAccessDefinitionLibrary.Data_Access_Models
 {
     public class Subject
     {

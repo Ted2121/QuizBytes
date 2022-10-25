@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
-    public interface ICurrentChallengeDataAccess
+    public interface IUserScoreInChallengeDataAccess
     {
     }
 }

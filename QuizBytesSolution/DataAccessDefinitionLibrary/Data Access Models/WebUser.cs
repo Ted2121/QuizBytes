@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace DataAccessDefinitionLibrary.DAO_models
+namespace DataAccessDefinitionLibrary.Data_Access_Models
 {
     public class WebUser
     {

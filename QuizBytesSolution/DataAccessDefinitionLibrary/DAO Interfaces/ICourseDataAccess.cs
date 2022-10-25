@@ -1,4 +1,4 @@
-﻿using DataAccessDefinitionLibrary.DAO_models;
+﻿using DataAccessDefinitionLibrary.Data_Access_Models;
 
 namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {

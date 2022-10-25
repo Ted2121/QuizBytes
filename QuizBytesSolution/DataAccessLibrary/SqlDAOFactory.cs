@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccessDefinitionLibrary.Data_Access_Models;
 
 namespace SQLAccessImplementationLibrary
 {
@@ -20,7 +21,7 @@ namespace SQLAccessImplementationLibrary
                 case "ICourseDataAccess":
                     return new CourseDataAccess(connectionstring) as T;
                 case "ICurrentChallengeDataAccess":
-                    return new CurrentChallengeDataAccess(connectionstring) as T;
+                    return new IUserScoreInChallengeDataAccess(connectionstring) as T;
                 case "IQuestionDataAccess":
                     return new QuestionDataAccess(connectionstring) as T;
                 case "ISubjectDataAccess":

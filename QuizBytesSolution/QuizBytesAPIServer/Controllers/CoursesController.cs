@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Answer = QuizBytesAPIServer.DTOs.AnswerDTO;
 using Chapter = QuizBytesAPIServer.DTOs.ChapterDto;
 using CourseDto = QuizBytesAPIServer.DTOs.CourseDto;
 using CurrentChallenge = QuizBytesAPIServer.DTOs.CurrentChallengeDto;

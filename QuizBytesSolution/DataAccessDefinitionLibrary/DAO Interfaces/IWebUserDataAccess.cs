@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccessDefinitionLibrary.DAO_models;
+using DataAccessDefinitionLibrary.Data_Access_Models;
 
 namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {

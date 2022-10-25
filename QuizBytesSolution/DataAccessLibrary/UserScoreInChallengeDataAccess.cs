@@ -8,9 +8,9 @@ using DataAccessDefinitionLibrary.Data_Access_Models;
 
 namespace SQLAccessImplementationLibrary
 {
-    public class WebUserChapterUnlocksDataAccess : BaseDataAccess, IWebUserChapterUnlocksDataAccess
+    public class UserScoreInChallengeDataAccess : BaseDataAccess, IUserScoreInChallengeDataAccess
     {
-        public WebUserChapterUnlocksDataAccess(string connectionstring) : base(connectionstring)
+        public UserScoreInChallengeDataAccess(string connectionstring) : base(connectionstring)
         {
         }
     }

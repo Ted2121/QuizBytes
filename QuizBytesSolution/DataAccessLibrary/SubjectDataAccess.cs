@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using DataAccessDefinitionLibrary;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
-using DataAccessDefinitionLibrary.DAO_models;
+using DataAccessDefinitionLibrary.Data_Access_Models;
 using System.Data.SqlClient;
 
 namespace SQLAccessImplementationLibrary

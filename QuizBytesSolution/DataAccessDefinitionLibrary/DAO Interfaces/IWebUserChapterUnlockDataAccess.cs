@@ -7,7 +7,7 @@ using DataAccessDefinitionLibrary.Data_Access_Models;
 
 namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
-    public interface IWebUserChapterUnlocksDataAccess
+    public interface IWebUserChapterUnlockDataAccess
     {
        
     }

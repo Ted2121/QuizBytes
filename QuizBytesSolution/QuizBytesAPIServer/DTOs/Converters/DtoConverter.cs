@@ -240,23 +240,23 @@ namespace QuizBytesAPIServer.DTOs.Converters
 
         #endregion
 
-        #region WebUserChapterUnlocks conversion methods
+        #region WebUserChapterUnlock conversion methods
 
-        public static WebUserChapterUnlocksDto ToDto(this WebUserChapterUnlocks webUserChapterUnlocksToConvert)
+        public static WebUserChapterUnlockDto ToDto(this WebUserChapterUnlock webUserChapterUnlocksToConvert)
         {
-            var webUserChapterUnlocksDto = new WebUserChapterUnlocksDto();
+            var webUserChapterUnlocksDto = new WebUserChapterUnlockDto();
             webUserChapterUnlocksToConvert.CopyPropertiesTo(webUserChapterUnlocksDto);
             return webUserChapterUnlocksDto;
         }
 
-        public static WebUserChapterUnlocks FromDto(this WebUserChapterUnlocksDto webUserChapterUnlocksDtoToConvert)
+        public static WebUserChapterUnlock FromDto(this WebUserChapterUnlockDto webUserChapterUnlocksDtoToConvert)
         {
-            var webUserChapterUnlocks = new WebUserChapterUnlocks();
+            var webUserChapterUnlocks = new WebUserChapterUnlock();
             webUserChapterUnlocksDtoToConvert.CopyPropertiesTo(webUserChapterUnlocks);
             return webUserChapterUnlocks;
         }
 
-        public static IEnumerable<WebUserChapterUnlocksDto> ToDtos(this IEnumerable<WebUserChapterUnlocks> webUserChapterUnlocksToConvert)
+        public static IEnumerable<WebUserChapterUnlockDto> ToDtos(this IEnumerable<WebUserChapterUnlock> webUserChapterUnlocksToConvert)
         {
             foreach (var webUserChapterUnlocks in webUserChapterUnlocksToConvert)
             {
@@ -264,7 +264,7 @@ namespace QuizBytesAPIServer.DTOs.Converters
             }
         }
 
-        public static IEnumerable<WebUserChapterUnlocks> FromDtos(this IEnumerable<WebUserChapterUnlocksDto> webUserChapterUnlocksDtosToConvert)
+        public static IEnumerable<WebUserChapterUnlock> FromDtos(this IEnumerable<WebUserChapterUnlockDto> webUserChapterUnlocksDtosToConvert)
         {
             foreach (var webUserChapterUnlocksDto in webUserChapterUnlocksDtosToConvert)
             {

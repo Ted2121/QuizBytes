@@ -11,7 +11,7 @@ namespace DataAccessDefinitionLibrary.Data_Access_Models
         public int TotalPoints { get; set; }
         public int AvailablePoints { get; set; }
         public UserScoreInChallenge ScoreInCurrentChallenge { get; set; }
-        public IEnumerable<WebUserChapterUnlocks> WebUserChapterUnlocks { get; set; }
+        public IEnumerable<WebUserChapterUnlock> WebUserChapterUnlocks { get; set; }
         
         public WebUser(string username, string password, string email, int totalPoints, int availablePoints)
         {

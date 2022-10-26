@@ -4,7 +4,7 @@ using CourseDto = QuizBytesAPIServer.DTOs.CourseDto;
 using CurrentChallenge = QuizBytesAPIServer.DTOs.CurrentChallengeDto;
 using Question = QuizBytesAPIServer.DTOs.QuestionDto;
 using Subject = QuizBytesAPIServer.DTOs.SubjectDto;
-using WebUserChapterUnlocks = QuizBytesAPIServer.DTOs.WebUserChapterUnlocksDto;
+using WebUserChapterUnlocks = QuizBytesAPIServer.DTOs.WebUserChapterUnlockDto;
 using WebUser = QuizBytesAPIServer.DTOs.WebUserDto;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 

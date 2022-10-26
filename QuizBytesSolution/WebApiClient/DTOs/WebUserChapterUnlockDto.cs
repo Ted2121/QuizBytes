@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApiClient.DTOs
 {
-    internal class WebUserChapterUnlocksDto
+    internal class WebUserChapterUnlockDto
     {
     }
 }

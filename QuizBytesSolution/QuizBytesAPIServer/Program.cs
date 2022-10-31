@@ -26,6 +26,13 @@ namespace QuizBytesAPIServer
             builder.Services.AddSingleton<IWebUserDataAccess, WebUserDataAccess>();
             builder.Services.AddSingleton<IWebUserChapterUnlockDataAccess, WebUserChapterUnlockDataAccess>();
 
+            //TODO figure out how to inject into the QuestionAnswerLinkFactory
+            //var hostBuilder = Host.CreateDefaultBuilder(args);
+
+            //hostBuilder.ConfigureServices(
+            //    services =>
+            //        services.AddHostedService<BackgroundService>().AddSingleton<IAnswerDataAccess, AnswerDataAccess>());
+
             #endregion
 
             var app = builder.Build();

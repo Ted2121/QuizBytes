@@ -5,12 +5,12 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public const int UnlockPrice = 50;
         // one to many: chapter - subject
         public int FKSubjectId { get; set; }
         public Subject Subject { get; set; }
-        // many to many with webusers
+        // many to many: chapter - webusers
         public IEnumerable<WebUserChapterUnlock> WebUserChapterUnlocks { get; set; }
-        public const int UnlockPrice = 50;
 
         // This constructor is for insertion with identity constraint
         public Chapter(string name, string description, int fKSubjectId)

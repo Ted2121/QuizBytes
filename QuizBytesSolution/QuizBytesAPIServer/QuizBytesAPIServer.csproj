@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessDefinitionLibrary\DataAccessDefinitionLibrary.csproj" />
+    <ProjectReference Include="..\DataAccessLibrary\SQLAccessImplementationLibrary.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,12 +10,11 @@ namespace DataAccessDefinitionLibrary.Data_Access_Models
         public string Email { get; set; }
         public int TotalPoints { get; set; }
         public int AvailablePoints { get; set; }
-        public UserScoreInChallenge ScoreInCurrentChallenge { get; set; }
         public IEnumerable<WebUserChapterUnlock> WebUserChapterUnlocks { get; set; }
         
-        public WebUser(string username, string password, string email, int totalPoints, int availablePoints)
+        public WebUser(string username, string password, string email, int totalPoints, int availablePoints, int id)
         {
-            
+            Id = id;
             Username = username;
             Password = password;
             Email = email;

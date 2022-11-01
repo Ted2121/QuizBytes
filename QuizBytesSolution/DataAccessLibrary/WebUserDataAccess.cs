@@ -24,7 +24,7 @@ public class WebUserDataAccess : BaseDataAccess, IWebUserDataAccess
     {
         var parameters = new
         {
-            WebUserId = webUser.id
+            WebUserId = webUser.Id
         };
 
         try
@@ -142,7 +142,7 @@ public async Task UpdateWebUserAsync(WebUser webUser)
     {
         var parameters = new
         {
-            WebUserId = webUser.id,
+            WebUserId = webUser.Id,
             PasswordHash = webUser.Password,
             TotalPoints = webUser.TotalPoints,
             AvailablePoints = webUser.AvailablePoints,

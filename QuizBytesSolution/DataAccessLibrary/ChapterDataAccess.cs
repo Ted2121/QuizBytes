@@ -61,7 +61,7 @@ namespace SQLAccessImplementationLibrary
                 {
                     var parameters = new
                     {
-                        FKSubjectId = subject.Id
+                        FKSubjectId = subject.PkSubjectId
                     };
 
                     var chapters = await connection.QueryAsync<Chapter>(commandText, parameters);
@@ -70,7 +70,7 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the Chapters table with the foreign key attribute: FKSubjectId = {subject.Id}. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the Chapters table with the foreign key attribute: FKSubjectId = {subject.PkSubjectId}. The exception was: '{ex.Message}'", ex);
                 }
             }
         }

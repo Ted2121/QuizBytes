@@ -25,7 +25,7 @@ namespace SQLAccessImplementationLibrary
             {
                 var parameters = new
                 {
-                    CourseId = course.Id
+                    CourseId = course.PKCourseId
                 };
 
                 try
@@ -97,7 +97,7 @@ namespace SQLAccessImplementationLibrary
                 try
                 {
                     await connection.ExecuteAsync(commandText, insertParameters);
-                    course.Id = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
+                    course.PKCourseId = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
                     return course;
                 }
                 catch (Exception ex)
@@ -120,7 +120,7 @@ namespace SQLAccessImplementationLibrary
                 {
                     CourseName = course.Name,
                     CourseDescription = course.Description,
-                    CourseId = course.Id
+                    CourseId = course.PKCourseId
                 };
 
                 try

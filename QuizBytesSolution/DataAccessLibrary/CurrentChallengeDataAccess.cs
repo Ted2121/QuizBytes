@@ -24,8 +24,8 @@ namespace SQLAccessImplementationLibrary
             {
                 var parameters = new
                 {
-                    FKWebUserId = webuser.Id,
-                    FKCourseId = course.Id
+                    FKWebUserId = webuser.PKWebUserId,
+                    FKCourseId = course.PKCourseId
                 };
 
                 try
@@ -59,19 +59,14 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<IEnumerable<WebUser>> GetChallengeTopThreeScorersAsync()
-        {
-
-        }
-
-        public async Task RemoveWebUserFromChallengeAsync(WebUser webuser)
+        public async Task DeleteWebUserFromChallengeAsync(WebUser webuser)
         {
             string commandText = "DELETE FROM CurrentChallenge WHERE FKWebUserId = @FkWebUserId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    FKWebUserId = webuser.Id
+                    FKWebUserId = webuser.PKWebUserId
                 };
 
                 try

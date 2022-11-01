@@ -8,5 +8,6 @@
         public int FKSubjectId { get; set; }
         public SubjectDto Subject { get; set; }
         public IEnumerable<WebUserChapterUnlockDto> WebUserChapterUnlocks { get; set; }
+        public const int UnlockPrice = 50;
     }
 }

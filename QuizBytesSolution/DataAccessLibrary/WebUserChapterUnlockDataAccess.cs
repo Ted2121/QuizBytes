@@ -18,8 +18,8 @@ namespace SQLAccessImplementationLibrary
             {
                 var parameters = new
                 {
-                    FKWebUserId = webUserChapterUnlock.WebUserId,
-                    FKChapterId = webUserChapterUnlock.ChapterId
+                    FKWebUserId = webUserChapterUnlock.FKWebUserId,
+                    FKChapterId = webUserChapterUnlock.FKChapterId
 
                 };
 
@@ -86,7 +86,7 @@ namespace SQLAccessImplementationLibrary
                 {
                     var parameters = new
                     {
-                        FKWebUserId = webUser.Id
+                        FKWebUserId = webUser.PKWebUserId
                     };
 
                     var webUserChapterUnlocks = await connection.QueryAsync<WebUserChapterUnlock>(commandText, parameters);
@@ -95,7 +95,7 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlocks table with the foreign key attribute: FKChapterId = {webUser.Id}. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlocks table with the foreign key attribute: FKChapterId = {webUser.PKWebUserId}. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
@@ -108,8 +108,8 @@ namespace SQLAccessImplementationLibrary
             {
                 var insertParameters = new
                 {
-                    FKChapterId = webUserChapterUnlock.ChapterId,
-                    FKWebUserId = webUserChapterUnlock.WebUserId
+                    FKChapterId = webUserChapterUnlock.FKChapterId,
+                    FKWebUserId = webUserChapterUnlock.FKWebUserId
                 };
 
                 try

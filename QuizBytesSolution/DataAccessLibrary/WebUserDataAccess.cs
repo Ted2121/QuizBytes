@@ -24,7 +24,7 @@ public class WebUserDataAccess : BaseDataAccess, IWebUserDataAccess
     {
         var parameters = new
         {
-            WebUserId = webUser.Id
+            WebUserId = webUser.PKWebUserId
         };
 
         try
@@ -111,7 +111,7 @@ public async Task<WebUser> GetWebUserByUsernameAsync(string username)
         var insertParameters = new
         {
             Username = webUser.Username,
-            PasswordHash = webUser.Password,
+            PasswordHash = webUser.PasswordHash,
             TotalPoints = webUser.TotalPoints,
             AvailablePoints = webUser.AvailablePoints,
             Email = webUser.Email
@@ -142,8 +142,8 @@ public async Task UpdateWebUserAsync(WebUser webUser)
     {
         var parameters = new
         {
-            WebUserId = webUser.Id,
-            PasswordHash = webUser.Password,
+            WebUserId = webUser.PKWebUserId,
+            PasswordHash = webUser.PasswordHash,
             TotalPoints = webUser.TotalPoints,
             AvailablePoints = webUser.AvailablePoints,
             Email = webUser.Email

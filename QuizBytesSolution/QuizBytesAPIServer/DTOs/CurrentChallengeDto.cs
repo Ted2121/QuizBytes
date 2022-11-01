@@ -4,5 +4,6 @@
     {
         public IEnumerable<String> webuserUsername { get; set; }
         public int FKCourseId { get; set; }
+        // add time here 
     }
 }

@@ -19,7 +19,7 @@ namespace SQLAccessImplementationLibrary
             {
                 var parameters = new
                 {
-                    SubjectId = subject.Id
+                    SubjectId = subject.PkSubjectId
                 };
 
                 try
@@ -61,7 +61,7 @@ namespace SQLAccessImplementationLibrary
                 {
                     var parameters = new
                     {
-                        FKCourseId = course.Id
+                        FKCourseId = course.PKCourseId
                     };
 
                     var subjects = await connection.QueryAsync<Subject>(commandText, parameters);
@@ -70,7 +70,7 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the Subjects table with the foreign key attribute: FKCourseId = {course.Id}. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the Subjects table with the foreign key attribute: FKCourseId = {course.PKCourseId}. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
@@ -116,7 +116,7 @@ namespace SQLAccessImplementationLibrary
                 try
                 {
                     await connection.ExecuteAsync(commandText, insertParameters);
-                    subject.Id = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
+                    subject.PkSubjectId = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
                     return subject;
                 }
                 catch (Exception ex)
@@ -141,7 +141,7 @@ namespace SQLAccessImplementationLibrary
                     SubjectName = subject.Name,
                     FKCourseId = subject.FKCourseId,
                     SubjectDescription = subject.Description,
-                    SubjectId = subject.Id
+                    SubjectId = subject.PkSubjectId
                 };
 
                 try

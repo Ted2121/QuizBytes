@@ -25,7 +25,7 @@ namespace SQLAccessImplementationLibrary
             {
                 var parameters = new
                 {
-                    QuestionId = question.Id
+                    QuestionId = question.PKQuestionId
                 };
 
                 try
@@ -99,7 +99,7 @@ namespace SQLAccessImplementationLibrary
                 try
                 {
                     await connection.ExecuteAsync(commandText, insertParameters);
-                    question.Id = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
+                    question.PKQuestionId = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
                     return question;
                 }
                 catch (Exception ex)

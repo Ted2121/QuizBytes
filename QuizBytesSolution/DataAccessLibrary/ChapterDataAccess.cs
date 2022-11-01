@@ -19,7 +19,7 @@ namespace SQLAccessImplementationLibrary
             {
                 var parameters = new
                 {
-                    ChapterId = chapter.Id
+                    ChapterId = chapter.PKChapterId
                 };
 
                 try
@@ -142,7 +142,7 @@ namespace SQLAccessImplementationLibrary
                 try
                 {
                     await connection.ExecuteAsync(commandText, insertParameters);
-                    chapter.Id = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
+                    chapter.PKChapterId = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
                     return chapter;
                 }
                 catch (Exception ex)
@@ -168,7 +168,7 @@ namespace SQLAccessImplementationLibrary
                     ChapterName = chapter.Name,
                     FKSubjectId = chapter.FKSubjectId,
                     ChapterDescription = chapter.Description,
-                    ChapterId = chapter.Id
+                    ChapterId = chapter.PKChapterId
                 };
 
                 try

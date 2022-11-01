@@ -11,7 +11,7 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
     {
 
         Task<Answer> InsertAnswerAsync(Answer answer);
-        Task<Answer> UpdateAnswerAsync(Answer answer);
+        Task UpdateAnswerAsync(Answer answer);
         Task<IEnumerable<Answer>> GetAllAnswersByQuestionIdAsync(int questionId);
         Task<IEnumerable<Answer>> GetAllAnswersAsync();
         Task DeleteAnswerAsync(Answer answer);

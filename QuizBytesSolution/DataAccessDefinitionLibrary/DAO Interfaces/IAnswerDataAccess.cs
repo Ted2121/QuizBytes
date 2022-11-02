@@ -10,7 +10,7 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
     public interface IAnswerDataAccess
     {
 
-        Task<Answer> InsertAnswerAsync(Answer answer);
+        Task InsertAnswerAsync(Answer answer);
         Task UpdateAnswerAsync(Answer answer);
         Task<IEnumerable<Answer>> GetAllAnswersByQuestionIdAsync(int questionId);
         Task<IEnumerable<Answer>> GetAllAnswersAsync();

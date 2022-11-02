@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SQLAccessImplementationLibrary
 {
@@ -17,20 +18,22 @@ namespace SQLAccessImplementationLibrary
 
         }
 
-        public async Task AddWebUserToChallengeAsync(WebUser webuser, Course course)
+        public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
         {
             string commandText = "INSERT INTO CurrentChallenge (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    FKWebUserId = webuser.PKWebUserId,
+                    FKWebUserId = webUser.PKWebUserId,
                     FKCourseId = course.PKCourseId
                 };
 
                 try
                 {
                     await connection.ExecuteAsync(commandText, parameters);
+                    var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
+                    return currentChallengeRowId;
                 }
                 catch (Exception ex)
                 {
@@ -39,22 +42,22 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<IEnumerable<WebUser>> GetAllUsersInChallengeAsync()
+        public async Task<IEnumerable<CurrentChallenge>> GetAllRowsInChallengeAsync()
         {
-            string commandText = "SELECT FKWebUserId FROM CurrentChallenge";
+            string commandText = "SELECT * FROM CurrentChallenge";
             using (SqlConnection connection = CreateConnection())
             {
 
                 try
                 {
-                    var webusers = await connection.QueryAsync<WebUser>(commandText);
+                    var challengeRows = await connection.QueryAsync<CurrentChallenge>(commandText);
 
-                    return webusers;
+                    return challengeRows;
                 }
                 catch (Exception ex)
                 {
 
-                    throw new($"Exception while trying to retrieve all users from CurrentChallenge table. The exception was: '{ex.Message}'", ex);
+                    throw new($"Exception while trying to retrieve all rows from CurrentChallenge table. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
@@ -79,9 +82,11 @@ namespace SQLAccessImplementationLibrary
                 }
             }
         }
-        public async Task DeleteTempTableAfterChallengeIsDoneAsync()
+
+        // We do this reset because the CurrentChallenge table is a temporary table and only needs to hold data to populate the leaderboard at the end of the challenge
+        public async Task ClearTempTableBeforeNextChallengeAsync()
         {
-            string commandText = "DELETE Table CurrentChallenge";
+            string commandText = "DELETE FROM CurrentChallenge";
             using (SqlConnection connection = CreateConnection())
             {
                 try

@@ -20,12 +20,12 @@ namespace SQLAccessImplementationLibrary
 
         public async Task DeleteQuestionAsync(Question question)
         {
-            string commandText = "DELETE FROM Questions WHERE QuestionId = @QuestionId";
+            string commandText = "DELETE FROM Question WHERE PKQuestionId = @PKQuestionId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    QuestionId = question.PKQuestionId
+                    PKQuestionId = question.PKQuestionId
                 };
 
                 try
@@ -34,14 +34,14 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to delete a row from Quesitons table. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to delete a row from Quesiton table. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<IEnumerable<Question>> GetAllQuestionsAsync()
         {
-            string commandText = "SELECT* FROM Questions";
+            string commandText = "SELECT* FROM Question";
             using (SqlConnection connection = CreateConnection())
             {
                 try
@@ -52,19 +52,19 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the Questions table. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the Question table. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<Question> GetQuestionByIdAsync(int questionId)
         {
-            string commandText = "SELECT * FROM Questions WHERE QuestionId = @QuestionId";
+            string commandText = "SELECT * FROM Question WHERE PKQuestionId = @PKQuestionId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    QuestionId = questionId
+                    PKQuestionId = questionId
                 };
 
                 try
@@ -84,22 +84,22 @@ namespace SQLAccessImplementationLibrary
 
         public async Task<Question> InsertQuestionAsync(Question question)
         {
-            string commandText = "INSERT INTO Questions (QuestionId, FKChapterId, QuestionText, QuestionHint) VALUES (@QuestionId, @FKChapterId, @QuestionText, @QuestionHint); SELECT CAST(scope_identity() AS int)";
+            string commandText = "INSERT INTO Question (FKChapterId, QuestionText, Hint) VALUES (@FKChapterId, @QuestionText, @Hint); SELECT CAST(scope_identity() AS int)";
             using (SqlConnection connection = CreateConnection())
             {
 
-                var insertParameters = new
+                var parameters = new
                 {
                     FKChapterId = question.FKChapterId,
                     QuestionText = question.QuestionText,
-                    QuestionHint = question.Hint,
+                    Hint = question.Hint,
                 };
 
 
                 try
                 {
-                    await connection.ExecuteAsync(commandText, insertParameters);
-                    question.PKQuestionId = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
+                    await connection.ExecuteAsync(commandText, parameters);
+                    question.PKQuestionId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
                     return question;
                 }
                 catch (Exception ex)
@@ -114,9 +114,9 @@ namespace SQLAccessImplementationLibrary
         {
             string commandText = "UPDATE Question " +
                 "FKChapterId = @FKChapterId, " +
-                "QuestionText = @QuestionText " +
-                "QuestionHint = @QuestionHint" +
-                "WHERE QuestionId = @QuestionId";
+                "QuestionText = @QuestionText, " +
+                "Hint = @Hint " +
+                "WHERE PKQuestionId = @PKQuestionId";
 
             using (SqlConnection connection = CreateConnection())
             {
@@ -124,7 +124,8 @@ namespace SQLAccessImplementationLibrary
                 {
                     FKChapterId = question.FKChapterId,
                     QuestionText = question.QuestionText,
-                    QuestionHint = question.Hint,
+                    Hint = question.Hint,
+                    PKQuestionId = question.PKQuestionId
                 };
 
                 try
@@ -135,14 +136,14 @@ namespace SQLAccessImplementationLibrary
                 catch (Exception ex)
                 {
 
-                    throw new Exception($"Exception while trying to update question. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to update a Question. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
-        public async Task<IEnumerable<Question>> GetQuestionByChapterAsync(int chapterId)
+        public async Task<IEnumerable<Question>> GetQuestionsByChapterAsync(int chapterId)
         {
-            string commandText = "SELECT * FROM Questions WHERE FKChapterId = @FKChapterId";
+            string commandText = "SELECT * FROM Question WHERE FKChapterId = @FKChapterId";
             using (SqlConnection connection = CreateConnection())
             {
 
@@ -159,7 +160,7 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the Questions table with the foreign key attribute: FKChapterId = {chapterId}. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the Question table with the foreign key attribute: FKChapterId = {chapterId}. The exception was: '{ex.Message}'", ex);
                 }
             }
         }

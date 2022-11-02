@@ -2,6 +2,7 @@
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
 using System.Data.SqlClient;
+using System.Reflection.Metadata;
 
 namespace SQLAccessImplementationLibrary
 {
@@ -13,7 +14,7 @@ namespace SQLAccessImplementationLibrary
 
         public async Task DeleteWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock)
         {
-            string commandText = "DELETE FROM WebUserChapterUnlocks WHERE FKWebUserId = @FKWebUserId AND FKChapterId = @FKChapterId";
+            string commandText = "DELETE FROM WebUserChapterUnlock WHERE FKWebUserId = @FKWebUserId AND FKChapterId = @FKChapterId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
@@ -29,14 +30,14 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to delete a row from WebUserChapterUnlocks table. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to delete a row from WebUserChapterUnlock table. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<IEnumerable<WebUserChapterUnlock>> GetAllWebUserChapterUnlocksAsync()
         {
-            string commandText = " SELECT * FROM WebUserChapterUnlocks";
+            string commandText = " SELECT * FROM WebUserChapterUnlock";
             using (SqlConnection connection = CreateConnection())
             {
                 try
@@ -47,14 +48,14 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlocks table. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<IEnumerable<WebUserChapterUnlock>> GetAllWebUserChapterUnlocksByChapterAsync(Chapter chapter)
         {
-            string commandText = "SELECT * FROM WebUserChapterUnlocks WHERE FKChapterId = @FKChapterId";
+            string commandText = "SELECT * FROM WebUserChapterUnlock WHERE FKChapterId = @FKChapterId";
             using (SqlConnection connection = CreateConnection())
             {
 
@@ -62,7 +63,7 @@ namespace SQLAccessImplementationLibrary
                 {
                     var parameters = new
                     {
-                        FKChapterId = chapter.Id
+                        FKChapterId = chapter.PKChapterId
                     };
 
                     var webUserChapterUnlocks = await connection.QueryAsync<WebUserChapterUnlock>(commandText, parameters);
@@ -71,14 +72,14 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlocks table with the foreign key attribute: FKChapterId = {chapter.Id}. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table with the foreign key attribute: FKChapterId = {chapter.PKChapterId}. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<IEnumerable<WebUserChapterUnlock>> GetAllWebUserChapterUnlocksByWebUserAsync(WebUser webUser)
         {
-            string commandText = "SELECT * FROM WebUserChapterUnlocks WHERE FKWebUserId = @FKChapterId";
+            string commandText = "SELECT * FROM WebUserChapterUnlock WHERE FKWebUserId = @FKChapterId";
             using (SqlConnection connection = CreateConnection())
             {
 
@@ -95,26 +96,27 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlocks table with the foreign key attribute: FKChapterId = {webUser.PKWebUserId}. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table with the foreign key attribute: FKChapterId = {webUser.PKWebUserId}. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
-        public async Task InsertWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock)
+        // TODO consider a transaction to check if the user has enough points to buy the chapter
+        public async Task InsertWebUserChapterUnlockAsync(WebUser webUser, Chapter chapter)
         {
-            string commandText = "INSERT INTO WebUserChapterUnlockId (FKChapterId, FKWebUserId) VALUES (@FKChapterId, @FKWebUserId))";
+            string commandText = "INSERT INTO WebUserChapterUnlock (FKChapterId, FKWebUserId) VALUES (@FKChapterId, @FKWebUserId))";
 
             using (SqlConnection connection = CreateConnection())
             {
-                var insertParameters = new
+                var parameters = new
                 {
-                    FKChapterId = webUserChapterUnlock.FKChapterId,
-                    FKWebUserId = webUserChapterUnlock.FKWebUserId
+                    FKChapterId = webUser.PKWebUserId,
+                    FKWebUserId = chapter.PKChapterId
                 };
 
                 try
                 {
-                    await connection.ExecuteAsync(commandText, insertParameters);
+                    await connection.ExecuteAsync(commandText, parameters);
                 }
                 catch (Exception ex)
                 {

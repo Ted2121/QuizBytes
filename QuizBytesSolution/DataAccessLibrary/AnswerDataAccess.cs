@@ -18,7 +18,7 @@ namespace SQLAccessImplementationLibrary
 
         public async Task DeleteAnswerAsync(Answer answer)
         {
-            string commandText = "DELETE FROM QuestionAnswer WHERE AnswerText = @AnswerText";
+            string commandText = "DELETE FROM Answer WHERE AnswerText = @AnswerText";
             using(SqlConnection connection = CreateConnection())
             {
                 var parameters = new
@@ -32,14 +32,14 @@ namespace SQLAccessImplementationLibrary
 
                 catch(Exception ex)
                 {
-                    throw new Exception($"Exception while trying to delete a row from QuestionAnswer table. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to delete a row from Answer table. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<IEnumerable<Answer>> GetAllAnswersAsync()
         {
-            string commandText = "SELECT * FROM QuestionAnswer";
+            string commandText = "SELECT * FROM Answer";
             using (SqlConnection connection = CreateConnection())
             {
                 try
@@ -50,7 +50,7 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch(Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the QuestionAnswers table. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the Answer table. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
@@ -72,12 +72,12 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch(Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all Answers related to QuestionID: {questionId}. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all Answers related to QuestionId: {questionId}. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
-        public async Task<Answer> InsertAnswerAsync(Answer answer)
+        public async Task InsertAnswerAsync(Answer answer)
         {
             string commandText = "INSERT INTO QuestionAnswer(FKQuestionId, AnswerText, IsCorrect) VALUES (@FKQuestionId, @AnswerText, @IsCorrect)";
             using (SqlConnection connection = CreateConnection())
@@ -99,9 +99,10 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
+        // TODO this is a problem. We need to add a PK to be able to update 1 row
         public async Task UpdateAnswerAsync(Answer answer)
         {
-            string commandText = "UPDATE QuestionAnswer " +
+            string commandText = "UPDATE Answer " +
                 "AnswerText = @AnswerText " +
                 "IsCorrect = @IsCorrect" +
                 "WHERE FKQuestionId = @FKQuestionId";
@@ -120,7 +121,7 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch(Exception ex)
                 {
-                    throw new Exception($"Exception while trying to update answer. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to update Answer. The exception was: '{ex.Message}'", ex);
                 }
             }
         }

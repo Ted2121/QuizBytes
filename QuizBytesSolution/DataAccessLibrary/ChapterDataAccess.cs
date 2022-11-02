@@ -14,12 +14,12 @@ namespace SQLAccessImplementationLibrary
 
         public async Task DeleteChapterAsync(Chapter chapter)
         {
-            string commandText = "DELETE FROM Chapters WHERE ChapterId = @ChapterId";
+            string commandText = "DELETE FROM Chapter WHERE PKChapterId = @PKChapterId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    ChapterId = chapter.PKChapterId
+                    PKChapterId = chapter.PKChapterId
                 };
 
                 try
@@ -28,14 +28,14 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to delete a row from Chapters table. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to delete a row from Chapter table. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<IEnumerable<Chapter>> GetAllChaptersAsync()
         {
-            string commandText = "SELECT* FROM Chapters";
+            string commandText = "SELECT* FROM Chapter";
             using (SqlConnection connection = CreateConnection())
             {
                 try
@@ -46,14 +46,14 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the Chapters table. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the Chapter table. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<IEnumerable<Chapter>> GetAllChaptersBySubjectAsync(Subject subject)
         {
-            string commandText = "SELECT * FROM Chapters WHERE FKSubjectId = @FKSubjectId";
+            string commandText = "SELECT * FROM Chapter WHERE FKSubjectId = @FKSubjectId";
             using (SqlConnection connection = CreateConnection())
             {
 
@@ -70,19 +70,19 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the Chapters table with the foreign key attribute: FKSubjectId = {subject.PkSubjectId}. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the Chapter table with the foreign key attribute: FKSubjectId = {subject.PkSubjectId}. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<Chapter> GetChapterByIdAsync(int chapterId)
         {
-            string commandText = "SELECT * FROM Chapters WHERE ChapterId = @ChapterId";
+            string commandText = "SELECT * FROM Chapter WHERE PKChapterId = @PKChapterId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    ChapterId = chapterId
+                    PKChapterId = chapterId
                 };
 
                 try
@@ -102,12 +102,12 @@ namespace SQLAccessImplementationLibrary
 
         public async Task<Chapter> GetChapterByNameAsync(string chapterName)
         {
-            string commandText = "SELECT * FROM Chapters WHERE ChapterName = @ChapterName";
+            string commandText = "SELECT * FROM Chapters WHERE Name = @Name";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    ChapterName = chapterName
+                    Name = chapterName
                 };
 
                 try
@@ -127,22 +127,22 @@ namespace SQLAccessImplementationLibrary
 
         public async Task<Chapter> InsertChapterAsync(Chapter chapter)
         {
-            string commandText = "INSERT INTO Chapters (ChapterName, FKSubjectId, ChapterDescription) VALUES (@ChapterName, @FKSubjectId, @ChapterDescription); SELECT CAST(scope_identity() AS int)";
+            string commandText = "INSERT INTO Chapters (Name, FKSubjectId, Description) VALUES (@Name, @FKSubjectId, @Description); SELECT CAST(scope_identity() AS int)";
             using (SqlConnection connection = CreateConnection())
             {
 
-                var insertParameters = new
+                var parameters = new
                 {
-                    ChapterName = chapter.Name,
+                    Name = chapter.Name,
                     FKSubjectId = chapter.FKSubjectId,
-                    ChapterDescription = chapter.Description
+                    Description = chapter.Description
                 };
 
 
                 try
                 {
-                    await connection.ExecuteAsync(commandText, insertParameters);
-                    chapter.PKChapterId = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
+                    await connection.ExecuteAsync(commandText, parameters);
+                    chapter.PKChapterId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
                     return chapter;
                 }
                 catch (Exception ex)
@@ -156,19 +156,19 @@ namespace SQLAccessImplementationLibrary
         public async Task UpdateChapterAsync(Chapter chapter)
         {
             string commandText = "UPDATE Chapter " +
-                "SET ChapterName = @ChapterName, " +
+                "SET Name = @Name, " +
                 "FKSubjectId = @FKSubjectId, " +
-                "ChapterDescription = @ChapterDescription " +
-                "WHERE ChapterId = @ChapterId";
+                "Description = @Description " +
+                "WHERE PKChapterId = @PKChapterId";
 
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    ChapterName = chapter.Name,
+                    Name = chapter.Name,
                     FKSubjectId = chapter.FKSubjectId,
-                    ChapterDescription = chapter.Description,
-                    ChapterId = chapter.PKChapterId
+                    Description = chapter.Description,
+                    PKChapterId = chapter.PKChapterId
                 };
 
                 try

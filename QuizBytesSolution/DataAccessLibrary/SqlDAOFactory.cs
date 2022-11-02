@@ -20,8 +20,8 @@ namespace SQLAccessImplementationLibrary
                     return new ChapterDataAccess(connectionstring) as T;
                 case "ICourseDataAccess":
                     return new CourseDataAccess(connectionstring) as T;
-                case "ICurrentChallengeDataAccess":
-                    return new UserScoreInChallengeDataAccess(connectionstring) as T;
+                case "ICurrentChallenge":
+                    return new CurrentChallenge(connectionstring) as T;
                 case "IQuestionDataAccess":
                     return new QuestionDataAccess(connectionstring) as T;
                 case "ISubjectDataAccess":

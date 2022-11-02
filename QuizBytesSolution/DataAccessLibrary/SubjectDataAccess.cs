@@ -14,12 +14,12 @@ namespace SQLAccessImplementationLibrary
 
         public async Task DeleteSubjectAsync(Subject subject)
         {
-            string commandText = "DELETE FROM Subjects WHERE SubjectId = @SubjectId";
+            string commandText = "DELETE FROM Subject WHERE PKSubjectId = @PKSubjectId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    SubjectId = subject.PkSubjectId
+                    PKSubjectId = subject.PkSubjectId
                 };
 
                 try
@@ -28,14 +28,14 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to delete a row from Subjects table. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to delete a row from Subject table. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<IEnumerable<Subject>> GetAllSubjectsAsync()
         {
-            string commandText = " SELECT * FROM Subjects";
+            string commandText = " SELECT * FROM Subject";
             using (SqlConnection connection = CreateConnection())
             {
                 try
@@ -46,14 +46,14 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the Subjects table. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the Subject table. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<IEnumerable<Subject>> GetAllSubjectsByCourseAsync(Course course)
         {
-            string commandText = "SELECT * FROM Subjects WHERE FKCourseId = @FKCourseId";
+            string commandText = "SELECT * FROM Subject WHERE FKCourseId = @FKCourseId";
             using (SqlConnection connection = CreateConnection())
             {
 
@@ -70,19 +70,19 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the Subjects table with the foreign key attribute: FKCourseId = {course.PKCourseId}. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the Subject table with the foreign key attribute: FKCourseId = {course.PKCourseId}. The exception was: '{ex.Message}'", ex);
                 }
             }
         }
 
         public async Task<Subject> GetSubjectByIdAsync(int subjectId)
         {
-            string commandText = "SELECT * FROM Subjects WHERE SubjectId = @SubjectId";
+            string commandText = "SELECT * FROM Subject WHERE PKSubjectId = @PKSubjectId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    SubjectId = subjectId
+                    PKSubjectId = subjectId
                 };
 
                 try
@@ -102,21 +102,21 @@ namespace SQLAccessImplementationLibrary
 
         public async Task<Subject> InsertSubjectAsync(Subject subject)
         {
-            string commandText = "INSERT INTO Subjects (SubjectName, FKCourseId, SubjectDescription) VALUES (@SubjectName, @FKCourseId, @SubjectDescription); SELECT CAST(scope_identity() AS int)";
+            string commandText = "INSERT INTO Subject (Name, FKCourseId, Description) VALUES (@Name, @FKCourseId, @Description); SELECT CAST(scope_identity() AS int)";
 
             using (SqlConnection connection = CreateConnection())
             {
-                var insertParameters = new
+                var parameters = new
                 {
-                    SubjectName = subject.Name,
+                    Name = subject.Name,
                     FKCourseId = subject.FKCourseId,
-                    SubjectDescription = subject.Description
+                    Description = subject.Description
                 };
 
                 try
                 {
-                    await connection.ExecuteAsync(commandText, insertParameters);
-                    subject.PkSubjectId = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
+                    await connection.ExecuteAsync(commandText, parameters);
+                    subject.PkSubjectId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
                     return subject;
                 }
                 catch (Exception ex)
@@ -128,20 +128,20 @@ namespace SQLAccessImplementationLibrary
 
         public async Task UpdateSubjectAsync(Subject subject)
         {
-            string commandText = "UPDATE Subjects " +
-                "SET SubjectName = @SubjectName, " +
+            string commandText = "UPDATE Subject " +
+                "SET Name = @Name, " +
                 "FKCourseId = @FKCourseId, " +
-                "SubjectDescription = @SubjectDescription " +
-                "WHERE SubjectId = @SubjectId";
+                "Description = @Description " +
+                "WHERE PKSubjectId = @PKSubjectId";
 
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    SubjectName = subject.Name,
+                    Name = subject.Name,
                     FKCourseId = subject.FKCourseId,
-                    SubjectDescription = subject.Description,
-                    SubjectId = subject.PkSubjectId
+                    Description = subject.Description,
+                    PKSubjectId = subject.PkSubjectId
                 };
 
                 try

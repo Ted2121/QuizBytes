@@ -9,9 +9,9 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
     public interface ICurrentChallengeDataAccess
     {
-        Task AddWebUserToChallengeAsync(WebUser webuser, Course course);
+        Task<int> AddWebUserToChallengeAsync(WebUser webuser, Course course);
         Task DeleteWebUserFromChallengeAsync(WebUser webuser);
-        Task<IEnumerable<WebUser>> GetAllUsersInChallengeAsync();
-        Task ResetTempTableBeforeNextChallengeAsync();
+        Task<IEnumerable<CurrentChallenge>> GetAllRowsInChallengeAsync();
+        Task ClearTempTableBeforeNextChallengeAsync();
     }
 }

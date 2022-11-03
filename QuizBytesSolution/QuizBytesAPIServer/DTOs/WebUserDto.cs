@@ -10,7 +10,6 @@ namespace QuizBytesAPIServer.DTOs
         public string Email { get; set; }
         public int TotalPoints { get; set; }
         public int AvailablePoints { get; set; }
-        public UserScoreInChallenge ScoreInCurrentChallenge { get; set; }
         public IEnumerable<WebUserChapterUnlock> WebUserChapterUnlocks { get; set; }
     }
 }

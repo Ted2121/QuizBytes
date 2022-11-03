@@ -102,7 +102,7 @@ namespace SQLAccessImplementationLibrary
         }
 
         // TODO consider a transaction to check if the user has enough points to buy the chapter
-        public async Task InsertWebUserChapterUnlockAsync(WebUser webUser, Chapter chapter)
+        public async Task InsertWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock)
         {
             string commandText = "INSERT INTO WebUserChapterUnlock (FKChapterId, FKWebUserId) VALUES (@FKChapterId, @FKWebUserId))";
 
@@ -110,8 +110,8 @@ namespace SQLAccessImplementationLibrary
             {
                 var parameters = new
                 {
-                    FKChapterId = webUser.PKWebUserId,
-                    FKWebUserId = chapter.PKChapterId
+                    FKChapterId = webUserChapterUnlock.FKChapterId,
+                    FKWebUserId = webUserChapterUnlock.FKWebUserId
                 };
 
                 try

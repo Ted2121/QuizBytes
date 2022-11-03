@@ -7,6 +7,7 @@
         public int FKSubjectId { get; set; }
         public string Description { get; set; }
         
+
         // one to many: chapter - subject
         // public Subject Subject { get; set; }
         // many to many: chapter - webusers

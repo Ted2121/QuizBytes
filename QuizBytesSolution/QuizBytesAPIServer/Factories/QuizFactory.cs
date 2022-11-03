@@ -1,4 +1,6 @@
-﻿using QuizBytesAPIServer.DTOs;
+﻿using DataAccessDefinitionLibrary.Data_Access_Models;
+using QuizBytesAPIServer.DTOs;
+using QuizBytesAPIServer.Extension_Methods;
 
 namespace QuizBytesAPIServer.Factories
 {
@@ -9,38 +11,35 @@ namespace QuizBytesAPIServer.Factories
         {
             QuestionAnswerLinkFactory = questionAnswerLinkFactory;
         }
-        public static QuizDto GetQuizDto(string quizType, CourseDto course)
+        public async Task<QuizDto> GetQuizDto<T>(string quizType, T source)
         {
             int numberOfQuestions;
-            
-            
+            // Classic quizzes are from Chapters while Challenge quizzes are from whole Courses
             switch (quizType.ToLower())
             {
                 case "classic":
-                
                     numberOfQuestions = 8;
-                    List<QuestionAnswerLinkDto> questionsInQuiz = new List<QuestionAnswerLinkDto>();
-                    
-                    return new QuizDto();
+
+                    var questionsFromChapterInQuiz = ShuffleAndTakeQuestions(await QuestionAnswerLinkFactory
+                       .GetAllQuestionsWithAnswersByChapter(chapter), numberOfQuestions);
+                    return new QuizDto(questionsFromChapterInQuiz);
+
                 case "challenge":
-                    break;
-                    default: throw new ArgumentException();
+                    numberOfQuestions = 16;
+
+                    var questionsFromCourseInQuiz = ShuffleAndTakeQuestions(await QuestionAnswerLinkFactory
+                       .GetAllQuestionsWithAnswersByCourse(course), numberOfQuestions);
+                    return new QuizDto(questionsFromCourseInQuiz);
+
+                default: throw new ArgumentException($"Type of quiz: {quizType} is invalid");
 
             }
         }
 
-        private static IEnumerable<QuestionAnswerLinkDto> GetQuestions(int numberOfQuestions)
+        private IEnumerable<QuestionAnswerLinkDto> ShuffleAndTakeQuestions(IEnumerable<QuestionAnswerLinkDto> questionAnswerLinkDtos, int numberOfQuestionsToTake)
         {
-            IEnumerable<QuestionAnswerLinkDto> questions = new List<QuestionAnswerLinkDto>();
-            for (int i = 0; i < numberOfQuestions; i++)
-            {
-                questions.Add()
-            }
-
-        }
-
-        private static IEnumerable<QuestionAnswerLinkDto> GetAllQuestionsFromCourse(CourseDto course)
-        {
+            
+            return questionAnswerLinkDtos.Shuffle(numberOfQuestionsToTake);
 
         }
     }

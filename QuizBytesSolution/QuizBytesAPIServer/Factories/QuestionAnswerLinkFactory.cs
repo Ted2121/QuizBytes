@@ -1,8 +1,6 @@
 ﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
-using DataAccessDefinitionLibrary.Data_Access_Models;
 using QuizBytesAPIServer.DTOs;
 using QuizBytesAPIServer.DTOs.Converters;
-using SQLAccessImplementationLibrary;
 
 namespace QuizBytesAPIServer.Factories
 {
@@ -13,7 +11,7 @@ namespace QuizBytesAPIServer.Factories
         public ISubjectDataAccess SubjectDataAccess { get; set; }
         public IChapterDataAccess ChapterDataAccess { get; set; }
         public QuestionAnswerLinkFactory(
-        IAnswerDataAccess answerDataAccess, 
+        IAnswerDataAccess answerDataAccess,
         IQuestionDataAccess questionDataAccess,
         ISubjectDataAccess subjectDataAccess,
         IChapterDataAccess chapterDataAccess)
@@ -24,28 +22,43 @@ namespace QuizBytesAPIServer.Factories
             ChapterDataAccess = chapterDataAccess;
         }
 
-        
+        public async Task<IEnumerable<QuestionAnswerLinkDto>> GetAllQuestionsWithAnswersByChapter(ChapterDto chapterDto)
+        {
+            IEnumerable<QuestionDto> questionDtos = new List<QuestionDto>();
+            // using an ICollection here to be able to add to the list
+            ICollection<QuestionAnswerLinkDto> questionsToReturn = new List<QuestionAnswerLinkDto>();
+
+            questionDtos = await GetAllQuestionsFromChapter(chapterDto);
+
+            foreach (var questionDto in questionDtos)
+            {
+                questionsToReturn.Add(await LinkAnswersToQuestion(questionDto));
+            }
+
+            return questionsToReturn;
+        }
+
         public async Task<IEnumerable<QuestionAnswerLinkDto>> GetAllQuestionsWithAnswersByCourse(CourseDto course)
         {
             IEnumerable<SubjectDto> subjectDtos = new List<SubjectDto>();
             IEnumerable<ChapterDto> chapterDtos = new List<ChapterDto>();
             IEnumerable<QuestionDto> questionDtos = new List<QuestionDto>();
-
-            IEnumerable<QuestionAnswerLinkDto> questionsToReturn = new List<QuestionAnswerLinkDto>();
+            // using an ICollection here to be able to add to the list
+            ICollection<QuestionAnswerLinkDto> questionsToReturn = new List<QuestionAnswerLinkDto>();
 
             subjectDtos = await GetAllSubjectsFromCourse(course);
 
-            foreach(var subjectDto in subjectDtos)
+            foreach (var subjectDto in subjectDtos)
             {
                 chapterDtos = await GetAllChaptersFromSubject(subjectDto);
 
-                foreach(var chapterDto in chapterDtos)
+                foreach (var chapterDto in chapterDtos)
                 {
                     questionDtos = await GetAllQuestionsFromChapter(chapterDto);
 
-                    foreach(var questionDto in questionDtos)
+                    foreach (var questionDto in questionDtos)
                     {
-                        questionsToReturn.ToList().Add(await LinkAnswersToQuestion(questionDto));
+                        questionsToReturn.Add(await LinkAnswersToQuestion(questionDto));
                     }
                 }
             }
@@ -57,14 +70,17 @@ namespace QuizBytesAPIServer.Factories
         {
             try
             {
-            QuestionAnswerLinkDto questionAnswerLinkDto = new QuestionAnswerLinkDto();
-            questionAnswerLinkDto.Question = question;
-            var answerModels = await AnswerDataAccess.GetAllAnswersByQuestionIdAsync(question.FromDto().PKQuestionId);
-            foreach(var answerModel in answerModels)
-            {
-                questionAnswerLinkDto.Answers.ToList().Add(answerModel.ToDto());
-            }
-            return questionAnswerLinkDto;
+                QuestionAnswerLinkDto questionAnswerLinkDto = new QuestionAnswerLinkDto();
+                questionAnswerLinkDto.Question = question;
+                var answerModels = await AnswerDataAccess.GetAllAnswersByQuestionIdAsync(question.FromDto().PKQuestionId);
+
+                ICollection<AnswerDto> answerDtos = new List<AnswerDto>();
+                foreach (var answerModel in answerModels)
+                {
+                    answerDtos.Add(answerModel.ToDto());
+                    questionAnswerLinkDto.Answers = answerDtos;
+                }
+                return questionAnswerLinkDto;
 
             }
             catch (Exception ex)
@@ -75,39 +91,40 @@ namespace QuizBytesAPIServer.Factories
 
         private async Task<IEnumerable<SubjectDto>> GetAllSubjectsFromCourse(CourseDto course)
         {
-            IEnumerable<SubjectDto> subjectDTOs = new List<SubjectDto>();
+            
+                ICollection<SubjectDto> subjectDTOs = new List<SubjectDto>();
 
             try
             {
-            var subjectModels = await SubjectDataAccess.GetAllSubjectsByCourseAsync(course.FromDto());
-            foreach(var subjectModel in subjectModels)
-            {
-                subjectDTOs.ToList().Add(subjectModel.ToDto());
-            }
+                var subjectModels = await SubjectDataAccess.GetAllSubjectsByCourseAsync(course.FromDto());
+                foreach (var subjectModel in subjectModels)
+                {
+                    subjectDTOs.Add(subjectModel.ToDto());
+                }
 
-            return subjectDTOs;
+                return subjectDTOs;
 
             }
             catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to get all subjects from the course: {course.Name}. The exception was: '{ex.Message}'", ex);
             }
-            
+
         }
 
         private async Task<IEnumerable<ChapterDto>> GetAllChaptersFromSubject(SubjectDto subject)
         {
-            IEnumerable<ChapterDto> chapterDtos = new List<ChapterDto>();
+            ICollection<ChapterDto> chapterDtos = new List<ChapterDto>();
 
             try
             {
-            var chapterModels = await ChapterDataAccess.GetAllChaptersBySubjectAsync(subject.FromDto());
-            foreach (var chapterModel in chapterModels)
-            {
-                chapterDtos.ToList().Add(chapterModel.ToDto());
-            }
+                var chapterModels = await ChapterDataAccess.GetAllChaptersBySubjectAsync(subject.FromDto());
+                foreach (var chapterModel in chapterModels)
+                {
+                    chapterDtos.Add(chapterModel.ToDto());
+                }
 
-            return chapterDtos;
+                return chapterDtos;
             }
             catch (Exception ex)
             {
@@ -117,17 +134,17 @@ namespace QuizBytesAPIServer.Factories
 
         private async Task<IEnumerable<QuestionDto>> GetAllQuestionsFromChapter(ChapterDto chapter)
         {
-            IEnumerable<QuestionDto> questionDtos = new List<QuestionDto>();
+            ICollection<QuestionDto> questionDtos = new List<QuestionDto>();
 
             try
             {
                 var questionModels = await QuestionDataAccess.GetQuestionsByChapterAsync(chapter.FromDto());
-            foreach (var questionModel in questionModels)
-            {
-                questionDtos.ToList().Add(questionModel.ToDto());
-            }
+                foreach (var questionModel in questionModels)
+                {
+                    questionDtos.Add(questionModel.ToDto());
+                }
 
-            return questionDtos;
+                return questionDtos;
 
             }
             catch (Exception ex)

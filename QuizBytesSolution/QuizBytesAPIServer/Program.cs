@@ -26,9 +26,9 @@ namespace QuizBytesAPIServer
             builder.Services.AddSingleton<IWebUserDataAccess, WebUserDataAccess>();
             builder.Services.AddSingleton<IWebUserChapterUnlockDataAccess, WebUserChapterUnlockDataAccess>();
 
-           
-
             #endregion
+
+            //TODO add DI for QuestionAnswerLinkFactory and QuizFactory
 
             var app = builder.Build();
 

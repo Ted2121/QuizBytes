@@ -19,7 +19,7 @@ namespace SQLAccessImplementationLibrary
             {
                 var parameters = new
                 {
-                    PKSubjectId = subject.PkSubjectId
+                    PKSubjectId = subject.PKSubjectId
                 };
 
                 try
@@ -116,7 +116,7 @@ namespace SQLAccessImplementationLibrary
                 try
                 {
                     await connection.ExecuteAsync(commandText, parameters);
-                    subject.PkSubjectId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
+                    subject.PKSubjectId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
                     return subject;
                 }
                 catch (Exception ex)
@@ -141,7 +141,7 @@ namespace SQLAccessImplementationLibrary
                     Name = subject.Name,
                     FKCourseId = subject.FKCourseId,
                     Description = subject.Description,
-                    PKSubjectId = subject.PkSubjectId
+                    PKSubjectId = subject.PKSubjectId
                 };
 
                 try

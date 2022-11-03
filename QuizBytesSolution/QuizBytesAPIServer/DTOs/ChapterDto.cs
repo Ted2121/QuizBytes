@@ -7,8 +7,8 @@
         public string Description { get; set; }
         public int FKSubjectId { get; set; }
         public int UnlockPrice { get; private set; }
-        public SubjectDto Subject { get; set; }
-        public IEnumerable<WebUserChapterUnlockDto> WebUserChapterUnlocks { get; set; }
+        // public SubjectDto Subject { get; set; }
+        // public IEnumerable<WebUserChapterUnlockDto> WebUserChapterUnlocks { get; set; }
         
     }
 }

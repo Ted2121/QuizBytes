@@ -141,7 +141,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<IEnumerable<Question>> GetQuestionsByChapterAsync(int chapterId)
+        public async Task<IEnumerable<Question>> GetQuestionsByChapterAsync(Chapter chapter)
         {
             string commandText = "SELECT * FROM Question WHERE FKChapterId = @FKChapterId";
             using (SqlConnection connection = CreateConnection())
@@ -151,7 +151,7 @@ namespace SQLAccessImplementationLibrary
                 {
                     var parameters = new
                     {
-                        FKChapterId = chapterId
+                        FKChapterId = chapter.PKChapterId
                     };
 
                     var questions = await connection.QueryAsync<Question>(commandText, parameters);
@@ -160,7 +160,7 @@ namespace SQLAccessImplementationLibrary
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Exception while trying to read all rows from the Question table with the foreign key attribute: FKChapterId = {chapterId}. The exception was: '{ex.Message}'", ex);
+                    throw new Exception($"Exception while trying to read all rows from the Question table with the foreign key attribute: FKChapterId = {chapter.PKChapterId}. The exception was: '{ex.Message}'", ex);
                 }
             }
         }

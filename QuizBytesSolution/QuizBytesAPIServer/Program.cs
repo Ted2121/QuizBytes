@@ -1,4 +1,5 @@
 using DataAccessDefinitionLibrary.DAO_Interfaces;
+using QuizBytesAPIServer.Factories;
 using SQLAccessImplementationLibrary;
 
 namespace QuizBytesAPIServer
@@ -28,7 +29,12 @@ namespace QuizBytesAPIServer
 
             #endregion
 
-            //TODO add DI for QuestionAnswerLinkFactory and QuizFactory
+            #region Factory DI
+
+            builder.Services.AddSingleton<QuestionAnswerLinkFactory>();
+            builder.Services.AddSingleton<QuizFactory>();
+
+            #endregion
 
             var app = builder.Build();
 

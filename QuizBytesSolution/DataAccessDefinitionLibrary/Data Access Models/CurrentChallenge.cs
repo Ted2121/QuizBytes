@@ -17,5 +17,8 @@ namespace DataAccessDefinitionLibrary.Data_Access_Models
         {
         }
 
+        public CurrentChallenge()
+        {
+        }
     }
 }

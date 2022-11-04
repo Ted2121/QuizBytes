@@ -16,18 +16,6 @@ namespace QuizBytesAPIServer.Controllers
             SubjectDataAccess = subjectDataAccess;
         }
 
-        [HttpDelete]
-        public async Task<ActionResult> DeleteSubjectAsync([FromBody] SubjectDto subject)
-        {
-            if (subject == null)
-            {
-                return NotFound();
-            }
-
-            await SubjectDataAccess.DeleteSubjectAsync(subject.FromDto());
-
-            return Ok();
-        }
 
         [HttpGet]
         [Route("{all}")]
@@ -65,6 +53,19 @@ namespace QuizBytesAPIServer.Controllers
                 return NotFound();
             }
             return Ok(subject.ToDto());
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteSubjectAsync([FromBody] SubjectDto subject)
+        {
+            if (subject == null)
+            {
+                return NotFound();
+            }
+
+            await SubjectDataAccess.DeleteSubjectAsync(subject.FromDto());
+
+            return Ok();
         }
 
         [HttpPost]

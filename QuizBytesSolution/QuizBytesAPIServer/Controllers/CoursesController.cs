@@ -17,21 +17,8 @@ namespace QuizBytesAPIServer.Controllers
             CourseDataAccess = courseDataAccess;
         }
 
-        [HttpDelete]
-        public async Task<ActionResult> DeleteCourseAsync([FromBody] CourseDto course)
-        {
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            await CourseDataAccess.DeleteCourseAsync(course.FromDto());
-
-            return Ok();
-        }
 
         [HttpGet]
-        [Route("{all}")]
         public async Task<ActionResult<IEnumerable<CourseDto>>> GetAllCoursesAsync()
         {
             var courses = await CourseDataAccess.GetAllCoursesAsync();
@@ -53,6 +40,19 @@ namespace QuizBytesAPIServer.Controllers
                 return NotFound();
             }
             return Ok(course.ToDto());
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteCourseAsync([FromBody] CourseDto course)
+        {
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            await CourseDataAccess.DeleteCourseAsync(course.FromDto());
+
+            return Ok();
         }
 
         [HttpPost]

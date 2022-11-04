@@ -17,22 +17,9 @@ namespace QuizBytesAPIServer.Controllers
             ChapterDataAccess = chapterDataAccess;
         }
 
-        [HttpDelete]
-        public async Task<ActionResult> DeleteChapterAsync([FromBody] ChapterDto chapter)
-        {
-            if (chapter == null)
-            {
-                return NotFound();
-            }
-
-            await ChapterDataAccess.DeleteChapterAsync(chapter.FromDto());
-
-            return Ok();
-        }
 
 
         [HttpGet]
-        [Route("{all}")]
         public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersAsync()
         {
             var chapters = await ChapterDataAccess.GetAllChaptersAsync();
@@ -67,6 +54,19 @@ namespace QuizBytesAPIServer.Controllers
                 return NotFound();
             }
             return Ok(chapter.ToDto());
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteChapterAsync([FromBody] ChapterDto chapter)
+        {
+            if (chapter == null)
+            {
+                return NotFound();
+            }
+
+            await ChapterDataAccess.DeleteChapterAsync(chapter.FromDto());
+
+            return Ok();
         }
 
         [HttpPost]

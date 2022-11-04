@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Chapter = QuizBytesAPIServer.DTOs.ChapterDto;
-using CourseDto = QuizBytesAPIServer.DTOs.CourseDto;
-using CurrentChallenge = QuizBytesAPIServer.DTOs.CurrentChallengeDto;
-using Question = QuizBytesAPIServer.DTOs.QuestionDto;
-using Subject = QuizBytesAPIServer.DTOs.SubjectDto;
-using WebUserChapterUnlocks = QuizBytesAPIServer.DTOs.WebUserChapterUnlockDto;
-using WebUser = QuizBytesAPIServer.DTOs.WebUserDto;
+
 using DataAccessDefinitionLibrary.DAO_Interfaces;
+using QuizBytesAPIServer.DTOs;
+using QuizBytesAPIServer.DTOs.Converters;
 
 namespace QuizBytesAPIServer.Controllers
 {
@@ -22,15 +18,14 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteCourseAsync(CourseDto course)
+        public async Task<ActionResult> DeleteCourseAsync([FromBody] CourseDto course)
         {
             if (course == null)
             {
                 return NotFound();
             }
 
-            await CourseDataAccess.DeleteCourseAsync(course);
-            // TODO figure out how to check if deletion was successfull
+            await CourseDataAccess.DeleteCourseAsync(course.FromDto());
 
             return Ok();
         }
@@ -45,35 +40,34 @@ namespace QuizBytesAPIServer.Controllers
             {
                 return NotFound();
             }
-            return Ok(courses);
+            return Ok(courses.ToDtos());
         }
 
         [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult<CourseDto>> GetCourseByIdAsync(int courseId)
         {
-            CourseDto course = await CourseDataAccess.GetCourseByIdAsync(courseId);
+            var course = await CourseDataAccess.GetCourseByIdAsync(courseId);
             if (course == null)
             {
                 return NotFound();
             }
-            return Ok(course);
+            return Ok(course.ToDto());
         }
 
         [HttpPost]
-        public async Task<ActionResult<CourseDto>> InsertCourseAsync(CourseDto course)
+        public async Task<ActionResult<CourseDto>> InsertCourseAsync([FromBody] CourseDto course)
         {
-            course = await CourseDataAccess.InsertCourseAsync(course);
-
             if (course == null)
             {
                 return NotFound();
             }
+            var courseModel = await CourseDataAccess.InsertCourseAsync(course.FromDto());
             return Ok(course);
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateCourseAsync(CourseDto course)
+        public async Task<ActionResult> UpdateCourseAsync([FromBody] CourseDto course)
         {
 
             if (course == null)
@@ -81,7 +75,7 @@ namespace QuizBytesAPIServer.Controllers
                 return NotFound();
             }
 
-            await CourseDataAccess.UpdateCourseAsync(course);
+            await CourseDataAccess.UpdateCourseAsync(course.FromDto());
 
             return Ok();
 

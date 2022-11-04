@@ -1,13 +1,7 @@
 ﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Answer = QuizBytesAPIServer.DTOs.AnswerDTO;
-using Chapter = QuizBytesAPIServer.DTOs.ChapterDto;
-using CourseDto = QuizBytesAPIServer.DTOs.CourseDto;
-using CurrentChallenge = QuizBytesAPIServer.DTOs.CurrentChallengeDto;
-using Question = QuizBytesAPIServer.DTOs.QuestionDto;
-using SubjectDto = QuizBytesAPIServer.DTOs.SubjectDto;
-using WebUserChapterUnlocks = QuizBytesAPIServer.DTOs.WebUserChapterUnlockDto;
-using WebUser = QuizBytesAPIServer.DTOs.WebUserDto;
+using QuizBytesAPIServer.DTOs;
+using QuizBytesAPIServer.DTOs.Converters;
 
 namespace QuizBytesAPIServer.Controllers
 {
@@ -23,15 +17,14 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteSubjectAsync(SubjectDto subject)
+        public async Task<ActionResult> DeleteSubjectAsync([FromBody] SubjectDto subject)
         {
             if (subject == null)
             {
                 return NotFound();
             }
 
-            await SubjectDataAccess.DeleteSubjectAsync(subject);
-            // TODO figure out how to check if deletion was successfull
+            await SubjectDataAccess.DeleteSubjectAsync(subject.FromDto());
 
             return Ok();
         }
@@ -46,48 +39,48 @@ namespace QuizBytesAPIServer.Controllers
             {
                 return NotFound();
             }
-            return Ok(subjects);
+            return Ok(subjects.ToDtos());
         }
 
         [HttpGet]
         [Route("course")]
         public async Task<ActionResult<IEnumerable<SubjectDto>>> GetAllSubjectsByCourseAsync(CourseDto course)
         {
-            var subjects = await SubjectDataAccess.GetAllSubjectsByCourseAsync();
+            var subjects = await SubjectDataAccess.GetAllSubjectsByCourseAsync(course.FromDto());
 
             if (subjects == null)
             {
                 return NotFound();
             }
-            return Ok(subjects);
+            return Ok(subjects.ToDtos());
         }
 
         [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult<SubjectDto>> GetSubjectByIdAsync(int subjectId)
         {
-            SubjectDto subject = await SubjectDataAccess.GetSubjectByIdAsync(subjectId);
+            var subject = await SubjectDataAccess.GetSubjectByIdAsync(subjectId);
             if (subject == null)
             {
                 return NotFound();
             }
-            return Ok(subject);
+            return Ok(subject.ToDto());
         }
 
         [HttpPost]
-        public async Task<ActionResult<SubjectDto>> InsertSubjectAsync(SubjectDto subject)
+        public async Task<ActionResult<SubjectDto>> InsertSubjectAsync([FromBody] SubjectDto subject)
         {
-            subject = await SubjectDataAccess.InsertSubjectAsync(subject);
-
             if (subject == null)
             {
                 return NotFound();
             }
+            var subjectModel = await SubjectDataAccess.InsertSubjectAsync(subject.FromDto());
+
             return Ok(subject);
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateSubjectAsync(SubjectDto subject)
+        public async Task<ActionResult> UpdateSubjectAsync([FromBody] SubjectDto subject)
         {
 
             if (subject == null)
@@ -95,7 +88,7 @@ namespace QuizBytesAPIServer.Controllers
                 return NotFound();
             }
 
-            await SubjectDataAccess.UpdateSubjectAsync(subject);
+            await SubjectDataAccess.UpdateSubjectAsync(subject.FromDto());
 
             return Ok();
 

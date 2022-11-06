@@ -21,6 +21,7 @@ namespace QuizBytesAPIServer.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CurrentChallengeDto>>> GetAllAsync()
         {
+            // TODO add ordering by points and handing out rewards
             var currentChallengeEntries = await CurrentChallengeDataAccess.GetAllRowsInChallengeAsync();
 
             if (currentChallengeEntries == null)

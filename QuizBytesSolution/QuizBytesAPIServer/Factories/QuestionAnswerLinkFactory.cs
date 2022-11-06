@@ -10,6 +10,7 @@ namespace QuizBytesAPIServer.Factories
         public IQuestionDataAccess QuestionDataAccess { get; set; }
         public ISubjectDataAccess SubjectDataAccess { get; set; }
         public IChapterDataAccess ChapterDataAccess { get; set; }
+
         public QuestionAnswerLinkFactory(
         IAnswerDataAccess answerDataAccess,
         IQuestionDataAccess questionDataAccess,

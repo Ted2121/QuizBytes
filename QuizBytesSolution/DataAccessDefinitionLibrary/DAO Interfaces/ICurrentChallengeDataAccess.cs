@@ -13,5 +13,6 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<bool> DeleteWebUserFromChallengeAsync(int webUserId);
         Task<IEnumerable<CurrentChallenge>> GetAllRowsInChallengeAsync();
         Task ClearTempTableBeforeNextChallengeAsync();
+        Task<int> GetRowAmountFromDatabaseAsync();
     }
 }

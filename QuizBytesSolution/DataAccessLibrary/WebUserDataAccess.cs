@@ -13,155 +13,161 @@ namespace SQLAccessImplementationLibrary
 
         public async Task DeleteWebUserAsync(int webUserId)
         {
-            string commandText = "DELETE FROM WebUser WHERE PKWebUserId = @PKWebUserId";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
+                string commandText = "DELETE FROM WebUser WHERE PKWebUserId = @PKWebUserId";
+                using (SqlConnection connection = CreateConnection())
                 {
-                    PKWebUserId = webUserId
-                };
+                    var parameters = new
+                    {
+                        PKWebUserId = webUserId
+                    };
 
-                try
-                {
                     await connection.ExecuteAsync(commandText, parameters);
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Exception while trying to delete a row from WebUser table. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to delete a row from WebUser table. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task<IEnumerable<WebUser>> GetAllWebUsersAsync()
         {
-            string commandText = "SELECT * FROM WebUser";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                try
+                string commandText = "SELECT * FROM WebUser";
+                using (SqlConnection connection = CreateConnection())
                 {
                     var webUsers = await connection.QueryAsync<WebUser>(commandText);
 
                     return webUsers;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Exception while trying to read all rows from the WebUser table. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to read all rows from the WebUser table. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task<WebUser> GetWebUserByUsernameAsync(string username)
         {
-            string commandText = "SELECT * FROM WebUser WHERE Username = @Username";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
+                string commandText = "SELECT * FROM WebUser WHERE Username = @Username";
+                using (SqlConnection connection = CreateConnection())
                 {
-                    Username = username
-                };
+                    var parameters = new
+                    {
+                        Username = username
+                    };
 
-                try
-                {
                     var webUser = await connection.QuerySingleOrDefaultAsync<WebUser>(commandText, parameters);
 
                     return webUser;
                 }
-                catch (Exception ex)
-                {
-                    throw new($"Exception while trying to find the WebUser with the '{username}'. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new($"Exception while trying to find the WebUser with the '{username}'. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task<WebUser> GetWebUserByIdAsync(int webUserId)
         {
-            string commandText = "SELECT * FROM WebUser WHERE PKWebUserId = @PKWebUserId";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
+                string commandText = "SELECT * FROM WebUser WHERE PKWebUserId = @PKWebUserId";
+                using (SqlConnection connection = CreateConnection())
                 {
-                    PKWebUserId = webUserId
-                };
+                    var parameters = new
+                    {
+                        PKWebUserId = webUserId
+                    };
 
-                try
-                {
                     var webUser = await connection.QuerySingleOrDefaultAsync<WebUser>(commandText, parameters);
 
                     return webUser;
                 }
-                catch (Exception ex)
-                {
-                    throw new($"Exception while trying to find the WebUser with the '{webUserId}'. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new($"Exception while trying to find the WebUser with the '{webUserId}'. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task<WebUser> InsertWebUserAsync(WebUser webUser)
         {
-            string commandText = "INSERT INTO WebUsers(Username, PasswordHash, TotalPoints, AvailablePoints, Email, PointsAccumulatedInChallenge, ElapsedSecondsInChallenge) VALUES (@Username, @PasswordHash, @TotalPoints, @AvailablePoints, @Email, @PointsAccumulatedInChallenge, @ElapsedSecondsInChallenge); SELECT CAST(scope_identity() AS int)";
-
-            using (SqlConnection connection = CreateConnection())
+            try
             {
+                string commandText = "INSERT INTO WebUsers(Username, PasswordHash, TotalPoints, AvailablePoints, Email, PointsAccumulatedInChallenge, ElapsedSecondsInChallenge) VALUES (@Username, @PasswordHash, @TotalPoints, @AvailablePoints, @Email, @PointsAccumulatedInChallenge, @ElapsedSecondsInChallenge); SELECT CAST(scope_identity() AS int)";
 
-                var parameters = new
+                using (SqlConnection connection = CreateConnection())
                 {
-                    Username = webUser.Username,
-                    PasswordHash = webUser.PasswordHash,
-                    TotalPoints = webUser.TotalPoints,
-                    AvailablePoints = webUser.AvailablePoints,
-                    Email = webUser.Email,
-                    PointsAccumulatedInChallenge = webUser.PointsAccumulatedInChallenge,
-                    ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge
-                };
 
-                try
-                {
+                    var parameters = new
+                    {
+                        Username = webUser.Username,
+                        PasswordHash = webUser.PasswordHash,
+                        TotalPoints = webUser.TotalPoints,
+                        AvailablePoints = webUser.AvailablePoints,
+                        Email = webUser.Email,
+                        PointsAccumulatedInChallenge = webUser.PointsAccumulatedInChallenge,
+                        ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge
+                    };
+
                     await connection.ExecuteAsync(commandText, parameters);
                     webUser.PKWebUserId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
                     return webUser;
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (SqlException ex)
+            {
 
-                    throw new($"Exception while trying to insert a WebUser object. The exception was: '{ex.Message}'", ex);
-                }
+                throw new($"Exception while trying to insert a WebUser object. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task UpdateWebUserAsync(WebUser webUser)
         {
-            string commandText = "UPDATE WebUser " +
-                "SET PasswordHash = @PasswordHash, " +
-                "TotalPoints = @TotalPoints, " +
-                "AvailablePoints = @AvailablePoints, " +
-                "Email = @Email, " +
-                "PointsAccumulatedInChallenge = @PointsAccumulatedInChallenge, " +
-                "ElapsedSecondsInChallenge = @ElapsedSecondsInChallenge " +
-                "WHERE PKWebUserId = @PKWebUserId";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
+                string commandText = "UPDATE WebUser " +
+                    "SET PasswordHash = @PasswordHash, " +
+                    "TotalPoints = @TotalPoints, " +
+                    "AvailablePoints = @AvailablePoints, " +
+                    "Email = @Email, " +
+                    "PointsAccumulatedInChallenge = @PointsAccumulatedInChallenge, " +
+                    "ElapsedSecondsInChallenge = @ElapsedSecondsInChallenge " +
+                    "WHERE PKWebUserId = @PKWebUserId";
+                using (SqlConnection connection = CreateConnection())
                 {
-                    WebUserId = webUser.PKWebUserId,
-                    PasswordHash = webUser.PasswordHash,
-                    TotalPoints = webUser.TotalPoints,
-                    AvailablePoints = webUser.AvailablePoints,
-                    Email = webUser.Email,
-                    PointsAccumulatedInChallenge = webUser.PointsAccumulatedInChallenge,
-                    ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge,
-                    PKWebUserId = webUser.PKWebUserId
-                };
+                    var parameters = new
+                    {
+                        WebUserId = webUser.PKWebUserId,
+                        PasswordHash = webUser.PasswordHash,
+                        TotalPoints = webUser.TotalPoints,
+                        AvailablePoints = webUser.AvailablePoints,
+                        Email = webUser.Email,
+                        PointsAccumulatedInChallenge = webUser.PointsAccumulatedInChallenge,
+                        ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge,
+                        PKWebUserId = webUser.PKWebUserId
+                    };
 
-                try
-                {
                     await connection.ExecuteAsync(commandText, parameters);
 
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (SqlException ex)
+            {
 
-                    throw new Exception($"Exception while trying to update WebUser. The exception was: '{ex.Message}'", ex);
-                }
+                throw new Exception($"Exception while trying to update WebUser. The exception was: '{ex.Message}'", ex);
+
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using DataAccessDefinitionLibrary;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
 using System.Data.SqlClient;
@@ -12,53 +11,55 @@ namespace SQLAccessImplementationLibrary
         {
         }
 
-        public async Task DeleteSubjectAsync(int subjectId)
+        public async Task<bool> DeleteSubjectAsync(int subjectId)
         {
-            string commandText = "DELETE FROM Subject WHERE PKSubjectId = @PKSubjectId";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
+                string commandText = "DELETE FROM Subject WHERE PKSubjectId = @PKSubjectId";
+                using (SqlConnection connection = CreateConnection())
                 {
-                    PKSubjectId = subjectId
-                };
+                    var parameters = new
+                    {
+                        PKSubjectId = subjectId
+                    };
 
-                try
-                {
-                    await connection.ExecuteAsync(commandText, parameters);
+                    return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Exception while trying to delete a row from Subject table. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to delete a row from Subject table. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task<IEnumerable<Subject>> GetAllSubjectsAsync()
         {
-            string commandText = " SELECT * FROM Subject";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                try
+                string commandText = " SELECT * FROM Subject";
+                using (SqlConnection connection = CreateConnection())
                 {
                     var subjects = await connection.QueryAsync<Subject>(commandText);
 
                     return subjects;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Exception while trying to read all rows from the Subject table. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to read all rows from the Subject table. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task<IEnumerable<Subject>> GetAllSubjectsByCourseAsync(Course course)
         {
-            string commandText = "SELECT * FROM Subject WHERE FKCourseId = @FKCourseId";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-
-                try
+                string commandText = "SELECT * FROM Subject WHERE FKCourseId = @FKCourseId";
+                using (SqlConnection connection = CreateConnection())
                 {
+
                     var parameters = new
                     {
                         FKCourseId = course.PKCourseId
@@ -68,92 +69,96 @@ namespace SQLAccessImplementationLibrary
 
                     return subjects;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Exception while trying to read all rows from the Subject table with the foreign key attribute: FKCourseId = {course.PKCourseId}. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to read all rows from the Subject table with the foreign key attribute: FKCourseId = {course.PKCourseId}. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task<Subject> GetSubjectByIdAsync(int subjectId)
         {
-            string commandText = "SELECT * FROM Subject WHERE PKSubjectId = @PKSubjectId";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
+                string commandText = "SELECT * FROM Subject WHERE PKSubjectId = @PKSubjectId";
+                using (SqlConnection connection = CreateConnection())
                 {
-                    PKSubjectId = subjectId
-                };
+                    var parameters = new
+                    {
+                        PKSubjectId = subjectId
+                    };
 
-                try
-                {
                     var subject = await connection.QuerySingleOrDefaultAsync<Subject>(commandText, parameters);
 
                     return subject;
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (SqlException ex)
+            {
 
-                    throw new($"Exception while trying to find the Subject with the '{subjectId}'. The exception was: '{ex.Message}'", ex);
-                }
+                throw new($"Exception while trying to find the Subject with the '{subjectId}'. The exception was: '{ex.Message}'", ex);
+
 
             }
         }
 
         public async Task<Subject> InsertSubjectAsync(Subject subject)
         {
-            string commandText = "INSERT INTO Subject (Name, FKCourseId, Description) VALUES (@Name, @FKCourseId, @Description); SELECT CAST(scope_identity() AS int)";
-
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
-                {
-                    Name = subject.Name,
-                    FKCourseId = subject.FKCourseId,
-                    Description = subject.Description
-                };
+                string commandText = "INSERT INTO Subject (Name, FKCourseId, Description) VALUES (@Name, @FKCourseId, @Description); SELECT CAST(scope_identity() AS int)";
 
-                try
+                using (SqlConnection connection = CreateConnection())
                 {
+                    var parameters = new
+                    {
+                        Name = subject.Name,
+                        FKCourseId = subject.FKCourseId,
+                        Description = subject.Description
+                    };
+
                     await connection.ExecuteAsync(commandText, parameters);
                     subject.PKSubjectId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
                     return subject;
                 }
-                catch (Exception ex)
-                {
-                    throw new($"Exception while trying to insert a Subject object. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new($"Exception while trying to insert a Subject object. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
-        public async Task UpdateSubjectAsync(Subject subject)
+        public async Task<bool> UpdateSubjectAsync(Subject subject)
         {
-            string commandText = "UPDATE Subject " +
-                "SET Name = @Name, " +
-                "FKCourseId = @FKCourseId, " +
-                "Description = @Description " +
-                "WHERE PKSubjectId = @PKSubjectId";
-
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
-                {
-                    Name = subject.Name,
-                    FKCourseId = subject.FKCourseId,
-                    Description = subject.Description,
-                    PKSubjectId = subject.PKSubjectId
-                };
+                string commandText = "UPDATE Subject " +
+                    "SET Name = @Name, " +
+                    "FKCourseId = @FKCourseId, " +
+                    "Description = @Description " +
+                    "WHERE PKSubjectId = @PKSubjectId";
 
-                try
+                using (SqlConnection connection = CreateConnection())
                 {
-                    await connection.ExecuteAsync(commandText, parameters);
+                    var parameters = new
+                    {
+                        Name = subject.Name,
+                        FKCourseId = subject.FKCourseId,
+                        Description = subject.Description,
+                        PKSubjectId = subject.PKSubjectId
+                    };
+
+                    return await connection.ExecuteAsync(commandText, parameters) > 0;
 
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (SqlException ex)
+            {
 
-                    throw new Exception($"Exception while trying to update Subject. The exception was: '{ex.Message}'", ex);
-                }
+                throw new Exception($"Exception while trying to update Subject. The exception was: '{ex.Message}'", ex);
+
             }
         }
     }

@@ -56,14 +56,14 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteChapterAsync([FromBody] ChapterDto chapter)
+        public async Task<ActionResult> DeleteChapterAsync(int id)
         {
-            if (chapter == null)
-            {
-                return NotFound();
-            }
+            if (!await ChapterDataAccess.DeleteChapterAsync(id))
+            { return NotFound(); }
+            else
+            { return Ok(); }
 
-            await ChapterDataAccess.DeleteChapterAsync(chapter.FromDto());
+            
 
             return Ok();
         }

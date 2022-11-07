@@ -7,7 +7,7 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<Course> InsertCourseAsync(Course course);
         Task<Course> GetCourseByIdAsync(int courseId);
         Task<IEnumerable<Course>> GetAllCoursesAsync();
-        Task UpdateCourseAsync(Course course);
-        Task DeleteCourseAsync(int courseId);
+        Task<bool> UpdateCourseAsync(Course course);
+        Task<bool> DeleteCourseAsync(int courseId);
     }
 }

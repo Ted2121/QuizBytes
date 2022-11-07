@@ -13,6 +13,6 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<IEnumerable<WebUserChapterUnlock>> GetAllWebUserChapterUnlocksAsync();
         Task<IEnumerable<WebUserChapterUnlock>> GetAllWebUserChapterUnlocksByWebUserAsync(WebUser webUser);
         Task<IEnumerable<WebUserChapterUnlock>> GetAllWebUserChapterUnlocksByChapterAsync(Chapter chapter);
-        Task DeleteWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock);
+        Task<bool> DeleteWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock);
     }
 }

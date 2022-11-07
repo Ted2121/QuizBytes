@@ -14,7 +14,7 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
 
         Task<IEnumerable<Question>> GetQuestionsByChapterAsync(Chapter chapter);
         Task<IEnumerable<Question>> GetAllQuestionsAsync();
-        Task UpdateQuestionAsync(int questionId);
-        Task DeleteQuestionAsync(Question question);
+        Task<bool> UpdateQuestionAsync(int questionId);
+        Task<bool> DeleteQuestionAsync(Question question);
     }
 }

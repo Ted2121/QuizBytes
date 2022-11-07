@@ -38,7 +38,7 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteAsync()
+        public async Task<ActionResult> DeleteAsync(int id)
         {
 
         }

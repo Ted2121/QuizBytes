@@ -12,14 +12,14 @@ namespace SQLAccessImplementationLibrary
         {
         }
 
-        public async Task DeleteChapterAsync(Chapter chapter)
+        public async Task DeleteChapterAsync(int chapterId)
         {
             string commandText = "DELETE FROM Chapter WHERE PKChapterId = @PKChapterId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    PKChapterId = chapter.PKChapterId
+                    PKChapterId = chapterId
                 };
 
                 try

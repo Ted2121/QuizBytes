@@ -11,6 +11,6 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<IEnumerable<Chapter>> GetAllChaptersAsync();
         Task<IEnumerable<Chapter>> GetAllChaptersBySubjectAsync(Subject subject);
         Task UpdateChapterAsync(Chapter chapter);
-        Task DeleteChapterAsync(Chapter chapter);
+        Task DeleteChapterAsync(int chapterId);
     }
 }

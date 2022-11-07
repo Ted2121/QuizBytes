@@ -18,7 +18,6 @@ namespace QuizBytesAPIServer.Controllers
 
 
         [HttpGet]
-        [Route("{all}")]
         public async Task<ActionResult<IEnumerable<SubjectDto>>> GetAllSubjectsAsync()
         {
             var subjects = await SubjectDataAccess.GetAllSubjectsAsync();
@@ -32,7 +31,7 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("course")]
-        public async Task<ActionResult<IEnumerable<SubjectDto>>> GetAllSubjectsByCourseAsync(CourseDto course)
+        public async Task<ActionResult<IEnumerable<SubjectDto>>> GetAllSubjectsByCourseAsync([FromQuery] CourseDto course)
         {
             var subjects = await SubjectDataAccess.GetAllSubjectsByCourseAsync(course.FromDto());
 
@@ -45,7 +44,7 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<SubjectDto>> GetSubjectByIdAsync(int subjectId)
+        public async Task<ActionResult<SubjectDto>> GetSubjectByIdAsync([FromQuery] int subjectId)
         {
             var subject = await SubjectDataAccess.GetSubjectByIdAsync(subjectId);
             if (subject == null)

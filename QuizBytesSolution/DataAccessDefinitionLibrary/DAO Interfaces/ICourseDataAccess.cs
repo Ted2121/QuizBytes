@@ -8,6 +8,6 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<Course> GetCourseByIdAsync(int courseId);
         Task<IEnumerable<Course>> GetAllCoursesAsync();
         Task UpdateCourseAsync(Course course);
-        Task DeleteCourseAsync(Course course);
+        Task DeleteCourseAsync(int courseId);
     }
 }

@@ -12,17 +12,22 @@ namespace QuizBytesAPIServer.Controllers
     public class ChallengeController : ControllerBase
     {
         public ICurrentChallengeDataAccess CurrentChallengeDataAccess { get; set; }
+        public IWebUserDataAccess WebUserDataAccess { get; set; }
 
-        public ChallengeController(ICurrentChallengeDataAccess currentChallengeDataAccess)
+        public ChallengeController(
+            ICurrentChallengeDataAccess currentChallengeDataAccess,
+            IWebUserDataAccess webUserDataAccess)
         {
             CurrentChallengeDataAccess = currentChallengeDataAccess;
+            WebUserDataAccess = webUserDataAccess;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CurrentChallengeDto>>> GetAllAsync()
         {
-            // TODO add ordering by points and handing out rewards
             var currentChallengeEntries = await CurrentChallengeDataAccess.GetAllRowsInChallengeAsync();
+
+            currentChallengeEntries.OrderByDescending(challenge => WebUserDataAccess.GetWebUserByIdAsync(challenge.FKWebUserId).Result.AvailablePoints);
 
             if (currentChallengeEntries == null)
             {
@@ -34,6 +39,9 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpDelete]
         public async Task<ActionResult> DeleteAsync()
+        {
+
+        }
 
     }
 }

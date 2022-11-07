@@ -18,7 +18,6 @@ namespace QuizBytesAPIServer.Controllers
         }
 
 
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersAsync()
         {
@@ -33,7 +32,7 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("subject")]
-        public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersBySubjectAsync(SubjectDto subject)
+        public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersBySubjectAsync([FromQuery] SubjectDto subject)
         {
             var chapters = await ChapterDataAccess.GetAllChaptersBySubjectAsync(subject.FromDto());
 
@@ -46,7 +45,7 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<ChapterDto>> GetChapterByIdAsync(int chapterId)
+        public async Task<ActionResult<ChapterDto>> GetChapterByIdAsync([FromQuery] int chapterId)
         {
             var chapter = await ChapterDataAccess.GetChapterByIdAsync(chapterId);
             if (chapter == null)

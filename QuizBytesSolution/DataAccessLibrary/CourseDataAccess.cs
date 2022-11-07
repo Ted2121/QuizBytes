@@ -18,14 +18,14 @@ namespace SQLAccessImplementationLibrary
         {
         }
 
-        public async Task DeleteCourseAsync(Course course)
+        public async Task DeleteCourseAsync(int courseId)
         {
             string commandText = "DELETE FROM Course WHERE PKCourseId = @PKCourseId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    PKCourseId = course.PKCourseId
+                    PKCourseId = courseId
                 };
 
                 try

@@ -101,7 +101,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        // TODO consider a transaction to check if the user has enough points to buy the chapter
+        
         public async Task InsertWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock)
         {
             string commandText = "INSERT INTO WebUserChapterUnlock (FKChapterId, FKWebUserId) VALUES (@FKChapterId, @FKWebUserId))";

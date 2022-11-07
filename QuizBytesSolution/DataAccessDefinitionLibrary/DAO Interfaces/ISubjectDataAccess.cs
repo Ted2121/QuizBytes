@@ -9,6 +9,6 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<IEnumerable<Subject>> GetAllSubjectsAsync();
         Task<IEnumerable<Subject>> GetAllSubjectsByCourseAsync(Course course);
         Task UpdateSubjectAsync(Subject subject);
-        Task DeleteSubjectAsync(Subject subject);
+        Task DeleteSubjectAsync(int subjectId);
     }
 }

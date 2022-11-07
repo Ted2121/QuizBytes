@@ -11,14 +11,14 @@ namespace SQLAccessImplementationLibrary
         {
         }
 
-        public async Task DeleteWebUserAsync(WebUser webUser)
+        public async Task DeleteWebUserAsync(int webUserId)
         {
             string commandText = "DELETE FROM WebUser WHERE PKWebUserId = @PKWebUserId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    PKWebUserId = webUser.PKWebUserId
+                    PKWebUserId = webUserId
                 };
 
                 try

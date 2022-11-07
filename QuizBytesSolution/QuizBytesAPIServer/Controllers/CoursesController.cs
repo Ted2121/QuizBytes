@@ -32,7 +32,7 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<CourseDto>> GetCourseByIdAsync(int courseId)
+        public async Task<ActionResult<CourseDto>> GetCourseByIdAsync([FromQuery] int courseId)
         {
             var course = await CourseDataAccess.GetCourseByIdAsync(courseId);
             if (course == null)

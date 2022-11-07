@@ -62,14 +62,14 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task DeleteWebUserFromChallengeAsync(WebUser webuser)
+        public async Task DeleteWebUserFromChallengeAsync(int webUserId)
         {
-            string commandText = "DELETE FROM CurrentChallenge WHERE FKWebUserId = @FkWebUserId";
+            string commandText = "DELETE FROM CurrentChallenge WHERE FKWebUserId = @FKWebUserId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    FKWebUserId = webuser.PKWebUserId
+                    FKWebUserId = webUserId
                 };
 
                 try

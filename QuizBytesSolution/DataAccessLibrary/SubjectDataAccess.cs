@@ -12,14 +12,14 @@ namespace SQLAccessImplementationLibrary
         {
         }
 
-        public async Task DeleteSubjectAsync(Subject subject)
+        public async Task DeleteSubjectAsync(int subjectId)
         {
             string commandText = "DELETE FROM Subject WHERE PKSubjectId = @PKSubjectId";
             using (SqlConnection connection = CreateConnection())
             {
                 var parameters = new
                 {
-                    PKSubjectId = subject.PKSubjectId
+                    PKSubjectId = subjectId
                 };
 
                 try

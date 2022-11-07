@@ -1,4 +1,5 @@
 using DataAccessDefinitionLibrary.DAO_Interfaces;
+using DataAccessDefinitionLibrary.Data_Access_Models;
 using Microsoft.AspNetCore.Mvc;
 using QuizBytesAPIServer.DTOs;
 using QuizBytesAPIServer.DTOs.Converters;
@@ -32,7 +33,7 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("subject")]
-        public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersBySubjectAsync([FromQuery] SubjectDto subject)
+        public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersBySubjectAsync([FromBody] SubjectDto subject)
         {
             var chapters = await ChapterDataAccess.GetAllChaptersBySubjectAsync(subject.FromDto());
 
@@ -62,10 +63,6 @@ namespace QuizBytesAPIServer.Controllers
             { return NotFound(); }
             else
             { return Ok(); }
-
-            
-
-            return Ok();
         }
 
         [HttpPost]
@@ -84,14 +81,13 @@ namespace QuizBytesAPIServer.Controllers
         public async Task<ActionResult> UpdateChapterAsync([FromBody] ChapterDto chapter)
         {
 
-            if (chapter == null)
+            if (chapter == null || !await ChapterDataAccess.UpdateChapterAsync(chapter.FromDto()))
             {
                 return NotFound();
             }
 
-            await ChapterDataAccess.UpdateChapterAsync(chapter.FromDto());
-
             return Ok();
+
 
         }
     }

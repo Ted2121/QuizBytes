@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using QuizBytesAPIServer.DTOs;
 using QuizBytesAPIServer.DTOs.Converters;
+using SQLAccessImplementationLibrary;
 
 namespace QuizBytesAPIServer.Controllers
 {
@@ -44,7 +45,7 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<SubjectDto>> GetSubjectByIdAsync([FromQuery] int subjectId)
+        public async Task<ActionResult<SubjectDto>> GetSubjectByIdAsync(int subjectId)
         {
             var subject = await SubjectDataAccess.GetSubjectByIdAsync(subjectId);
             if (subject == null)
@@ -55,16 +56,12 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteSubjectAsync([FromBody] SubjectDto subject)
+        public async Task<ActionResult> DeleteSubjectAsync(int id)
         {
-            if (subject == null)
-            {
-                return NotFound();
-            }
-
-            await SubjectDataAccess.DeleteSubjectAsync(subject.FromDto());
-
-            return Ok();
+            if (!await SubjectDataAccess.DeleteSubjectAsync(id))
+            { return NotFound(); }
+            else
+            { return Ok(); }
         }
 
         [HttpPost]
@@ -74,7 +71,7 @@ namespace QuizBytesAPIServer.Controllers
             {
                 return NotFound();
             }
-            var subjectModel = await SubjectDataAccess.InsertSubjectAsync(subject.FromDto());
+            await SubjectDataAccess.InsertSubjectAsync(subject.FromDto());
 
             return Ok(subject);
         }
@@ -83,12 +80,10 @@ namespace QuizBytesAPIServer.Controllers
         public async Task<ActionResult> UpdateSubjectAsync([FromBody] SubjectDto subject)
         {
 
-            if (subject == null)
+            if (subject == null || !await SubjectDataAccess.UpdateSubjectAsync(subject.FromDto()))
             {
                 return NotFound();
             }
-
-            await SubjectDataAccess.UpdateSubjectAsync(subject.FromDto());
 
             return Ok();
 

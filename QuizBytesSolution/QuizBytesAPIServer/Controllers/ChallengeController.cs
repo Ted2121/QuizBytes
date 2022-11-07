@@ -40,6 +40,27 @@ namespace QuizBytesAPIServer.Controllers
         [HttpDelete]
         public async Task<ActionResult> DeleteAsync(int id)
         {
+            if (!await CurrentChallengeDataAccess.DeleteWebUserFromChallengeAsync(id))
+            { return NotFound(); }
+            else
+            { return Ok(); }
+        }
+
+        [HttpPut]
+        [Route("rewards")]
+        public async Task<ActionResult> DistributeRewardsAsync()
+        {
+            var leaderboardResult = await GetAllAsync();
+            var leaderboard = leaderboardResult.Value?.ToList();
+            
+            if(leaderboard == null)
+            {
+                return NotFound();
+            }
+
+            RewardsFactory.DistributeChallengeRewards(leaderboard);
+
+            return Ok();
 
         }
 

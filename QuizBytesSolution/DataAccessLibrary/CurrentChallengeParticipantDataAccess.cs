@@ -6,10 +6,10 @@ using System.Data.SqlClient;
 
 namespace SQLAccessImplementationLibrary
 {
-    public class CurrentChallengeDataAccess : BaseDataAccess, ICurrentChallengeDataAccess
+    public class CurrentChallengeParticipantDataAccess : BaseDataAccess, ICurrentChallengeParticipantDataAccess
     {
         
-        public CurrentChallengeDataAccess(string connectionstring) : base(connectionstring)
+        public CurrentChallengeParticipantDataAccess(string connectionstring) : base(connectionstring)
         {
 
         }
@@ -26,7 +26,7 @@ namespace SQLAccessImplementationLibrary
                     connection.Open();
                     IsolationLevel isolationLevel = IsolationLevel.RepeatableRead;
                     SqlTransaction transaction = connection.BeginTransaction(isolationLevel);
-                    string commandText = "INSERT INTO CurrentChallenge (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
+                    string commandText = "INSERT INTO CurrentChallengeParticipant (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
                     var parameters = new
                     {
                         FKWebUserId = webUser.PKWebUserId,
@@ -45,7 +45,7 @@ namespace SQLAccessImplementationLibrary
                         try
                         {
                             transaction.Rollback();
-                            throw new Exception($"Exception while trying to insert into CurrentChallenge table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
+                            throw new Exception($"Exception while trying to insert into CurrentChallengeParticipant table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
                         }
                         catch
                         {
@@ -60,15 +60,15 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<IEnumerable<CurrentChallenge>> GetAllRowsInChallengeAsync()
+        public async Task<IEnumerable<CurrentChallengeParticipant>> GetAllRowsInChallengeAsync()
         {
             try
             {
-                string commandText = "SELECT * FROM CurrentChallenge";
+                string commandText = "SELECT * FROM CurrentChallengeParticipant";
                 using (SqlConnection connection = CreateConnection())
                 {
 
-                    var challengeRows = await connection.QueryAsync<CurrentChallenge>(commandText);
+                    var challengeRows = await connection.QueryAsync<CurrentChallengeParticipant>(commandText);
 
                     return challengeRows;
                 }
@@ -76,7 +76,7 @@ namespace SQLAccessImplementationLibrary
             catch (SqlException ex)
             {
 
-                throw new($"Exception while trying to retrieve all rows from CurrentChallenge table. The exception was: '{ex.Message}'", ex);
+                throw new($"Exception while trying to retrieve all rows from CurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
 
             }
         }
@@ -85,7 +85,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM CurrentChallenge WHERE FKWebUserId = @FKWebUserId";
+                string commandText = "DELETE FROM CurrentChallengeParticipant WHERE FKWebUserId = @FKWebUserId";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
@@ -98,7 +98,7 @@ namespace SQLAccessImplementationLibrary
             }
             catch (SqlException ex)
             {
-                throw new Exception($"Exception while trying to delete a row from CurrentChallenge table. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to delete a row from CurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
 
             }
         }
@@ -108,7 +108,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM CurrentChallenge";
+                string commandText = "DELETE FROM CurrentChallengeParticipant";
                 using (SqlConnection connection = CreateConnection())
                 {
                     await connection.ExecuteAsync(commandText);
@@ -116,14 +116,14 @@ namespace SQLAccessImplementationLibrary
             }
             catch (SqlException ex)
             {
-                throw new Exception($"Exception while trying to delete contents of CurrentChallenge table. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to delete contents of CurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
 
             }
         }
 
         public async Task<int> GetRowAmountFromDatabaseAsync()
         {
-            string commandText = "SELECT COUNT CurrentChallengeId FROM CurrentChallenge";
+            string commandText = "SELECT COUNT PKCurrentChallengeParticipantId FROM CurrentChallengeParticipant";
             try
             {
                 using (SqlConnection connection = CreateConnection())
@@ -135,7 +135,7 @@ namespace SQLAccessImplementationLibrary
             catch (SqlException ex)
             {
 
-                throw new Exception($"Exception while trying to count the rows in the CurrentChallenge table. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to count the rows in the CurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
             }
         }
     }

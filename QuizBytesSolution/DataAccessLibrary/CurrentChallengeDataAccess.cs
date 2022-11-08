@@ -6,24 +6,26 @@ using System.Data.SqlClient;
 
 namespace SQLAccessImplementationLibrary
 {
-public class CurrentChallengeDataAccess : BaseDataAccess, ICurrentChallengeDataAccess
-{
-public const int userLimitForChallenges = 100;
-public CurrentChallengeDataAccess(string connectionstring) : base(connectionstring)
-{
+    public class CurrentChallengeDataAccess : BaseDataAccess, ICurrentChallengeDataAccess
+    {
+        
+        public CurrentChallengeDataAccess(string connectionstring) : base(connectionstring)
+        {
 
-}
+        }
 
-public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
-{
-var rowAmount = await GetRowAmountFromDatabaseAsync();
+        public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
+        {
 
+            int userLimitForChallenges = 100;
+            var rowAmount = await GetRowAmountFromDatabaseAsync();
             if (rowAmount < userLimitForChallenges)
             {
-                using (SqlConnection connection = CreateConnection()) {
+                using (SqlConnection connection = CreateConnection())
+                {
                     connection.Open();
-                    IsolationLevel level = IsolationLevel.RepeatableRead;
-                    SqlTransaction transaction = connection.BeginTransaction(level);
+                    IsolationLevel isolationLevel = IsolationLevel.RepeatableRead;
+                    SqlTransaction transaction = connection.BeginTransaction(isolationLevel);
                     string commandText = "INSERT INTO CurrentChallenge (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
                     var parameters = new
                     {
@@ -43,7 +45,7 @@ var rowAmount = await GetRowAmountFromDatabaseAsync();
                         try
                         {
                             transaction.Rollback();
-                            throw new Exception($"Exception while trying to insert into CurrentChallenge table. The exception was: '{ex.Message}'", ex);
+                            throw new Exception($"Exception while trying to insert into CurrentChallenge table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
                         }
                         catch
                         {
@@ -56,76 +58,85 @@ var rowAmount = await GetRowAmountFromDatabaseAsync();
             {
                 return 0;
             }
-}
+        }
 
-public async Task<IEnumerable<CurrentChallenge>> GetAllRowsInChallengeAsync()
-{
-try
-{
-string commandText = "SELECT * FROM CurrentChallenge";
-using (SqlConnection connection = CreateConnection())
-{
+        public async Task<IEnumerable<CurrentChallenge>> GetAllRowsInChallengeAsync()
+        {
+            try
+            {
+                string commandText = "SELECT * FROM CurrentChallenge";
+                using (SqlConnection connection = CreateConnection())
+                {
 
-    var challengeRows = await connection.QueryAsync<CurrentChallenge>(commandText);
+                    var challengeRows = await connection.QueryAsync<CurrentChallenge>(commandText);
 
-    return challengeRows;
-}
-}
-catch (SqlException ex)
-{
+                    return challengeRows;
+                }
+            }
+            catch (SqlException ex)
+            {
 
-throw new($"Exception while trying to retrieve all rows from CurrentChallenge table. The exception was: '{ex.Message}'", ex);
+                throw new($"Exception while trying to retrieve all rows from CurrentChallenge table. The exception was: '{ex.Message}'", ex);
 
-}
-}
+            }
+        }
 
-public async Task<bool> DeleteWebUserFromChallengeAsync(int webUserId)
-{
-try
-{
-string commandText = "DELETE FROM CurrentChallenge WHERE FKWebUserId = @FKWebUserId";
-using (SqlConnection connection = CreateConnection())
-{
-    var parameters = new
-    {
-        FKWebUserId = webUserId
-    };
+        public async Task<bool> DeleteWebUserFromChallengeAsync(int webUserId)
+        {
+            try
+            {
+                string commandText = "DELETE FROM CurrentChallenge WHERE FKWebUserId = @FKWebUserId";
+                using (SqlConnection connection = CreateConnection())
+                {
+                    var parameters = new
+                    {
+                        FKWebUserId = webUserId
+                    };
 
-    return await connection.ExecuteAsync(commandText, parameters) > 0;
-}
-}
-catch (SqlException ex)
-{
-throw new Exception($"Exception while trying to delete a row from CurrentChallenge table. The exception was: '{ex.Message}'", ex);
+                    return await connection.ExecuteAsync(commandText, parameters) > 0;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to delete a row from CurrentChallenge table. The exception was: '{ex.Message}'", ex);
 
-}
-}
+            }
+        }
 
-// We do this reset because the CurrentChallenge table is a temporary table and only needs to hold data to populate the leaderboard at the end of the challenge
-public async Task ClearTempTableBeforeNextChallengeAsync()
-{
-try
-{
-string commandText = "DELETE FROM CurrentChallenge";
-using (SqlConnection connection = CreateConnection())
-{
-    await connection.ExecuteAsync(commandText);
-}
-}
-catch (SqlException ex)
-{
-throw new Exception($"Exception while trying to delete contents of CurrentChallenge table. The exception was: '{ex.Message}'", ex);
+        // We do this reset because the CurrentChallenge table is a temporary table and only needs to hold data to populate the leaderboard at the end of the challenge
+        public async Task ClearTempTableBeforeNextChallengeAsync()
+        {
+            try
+            {
+                string commandText = "DELETE FROM CurrentChallenge";
+                using (SqlConnection connection = CreateConnection())
+                {
+                    await connection.ExecuteAsync(commandText);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to delete contents of CurrentChallenge table. The exception was: '{ex.Message}'", ex);
 
-}
-}
-public async Task<int> GetRowAmountFromDatabaseAsync()
-{
-string commandText = "SELECT COUNT CurrentChallengeId FROM  CurrentChallenge";
-using (SqlConnection connection = CreateConnection())
-{
-int rowAmount = await connection.ExecuteAsync(commandText);
-return rowAmount;
-}
-}
-}
+            }
+        }
+
+        public async Task<int> GetRowAmountFromDatabaseAsync()
+        {
+            string commandText = "SELECT COUNT CurrentChallengeId FROM CurrentChallenge";
+            try
+            {
+                using (SqlConnection connection = CreateConnection())
+                {
+                    var rowAmount = await connection.ExecuteAsync(commandText);
+                    return rowAmount;
+                }
+            }
+            catch (SqlException ex)
+            {
+
+                throw new Exception($"Exception while trying to count the rows in the CurrentChallenge table. The exception was: '{ex.Message}'", ex);
+            }
+        }
+    }
 }

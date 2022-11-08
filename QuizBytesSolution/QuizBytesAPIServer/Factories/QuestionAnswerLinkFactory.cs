@@ -4,7 +4,7 @@ using QuizBytesAPIServer.DTOs.Converters;
 
 namespace QuizBytesAPIServer.Factories
 {
-    public class QuestionAnswerLinkFactory
+    public class QuestionAnswerLinkFactory : IQuestionAnswerLinkFactory
     {
         public IAnswerDataAccess AnswerDataAccess { get; set; }
         public IQuestionDataAccess QuestionDataAccess { get; set; }
@@ -92,8 +92,8 @@ namespace QuizBytesAPIServer.Factories
 
         private async Task<IEnumerable<SubjectDto>> GetAllSubjectsFromCourse(CourseDto course)
         {
-            
-                ICollection<SubjectDto> subjectDTOs = new List<SubjectDto>();
+
+            ICollection<SubjectDto> subjectDTOs = new List<SubjectDto>();
 
             try
             {

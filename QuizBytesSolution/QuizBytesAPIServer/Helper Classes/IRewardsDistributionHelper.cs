@@ -4,7 +4,7 @@ namespace QuizBytesAPIServer.Helper_Classes
 {
     public interface IRewardsDistributionHelper
     {
-        Task DistributeChallengeRewards(List<CurrentChallengeParticipantDto> leaderboard);
-        Task DistributeQuizRewards(WebUserDto webUser);
+        Task DistributeChallengeRewardsAsync(List<CurrentChallengeParticipantDto> leaderboard);
+        Task DistributeQuizRewardsAsync(WebUserDto webUser);
     }
 }

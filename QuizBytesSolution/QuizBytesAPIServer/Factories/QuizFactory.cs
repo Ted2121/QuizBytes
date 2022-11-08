@@ -4,15 +4,15 @@ using QuizBytesAPIServer.Extension_Methods;
 
 namespace QuizBytesAPIServer.Factories
 {
-    public class QuizFactory
+    public class QuizFactory : IQuizFactory
     {
-        public QuestionAnswerLinkFactory QuestionAnswerLinkFactory { get; set; }
-        public QuizFactory(QuestionAnswerLinkFactory questionAnswerLinkFactory)
+        public IQuestionAnswerLinkFactory QuestionAnswerLinkFactory { get; set; }
+        public QuizFactory(IQuestionAnswerLinkFactory questionAnswerLinkFactory)
         {
             QuestionAnswerLinkFactory = questionAnswerLinkFactory;
         }
 
-        public async Task<QuizDto> GetQuizDto<T>(T source) where T : class
+        public async Task<QuizDto> CreateQuizDto<T>(T source) where T : class
         {
             int numberOfQuestions;
 
@@ -38,7 +38,7 @@ namespace QuizBytesAPIServer.Factories
 
         private IEnumerable<QuestionAnswerLinkDto> ShuffleAndTakeQuestions(IEnumerable<QuestionAnswerLinkDto> questionAnswerLinkDtos, int numberOfQuestionsToTake)
         {
-        
+
             return questionAnswerLinkDtos.Shuffle(numberOfQuestionsToTake);
 
         }

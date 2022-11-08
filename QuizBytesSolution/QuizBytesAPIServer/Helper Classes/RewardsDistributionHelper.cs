@@ -9,12 +9,12 @@ namespace QuizBytesAPIServer.Helper_Classes
 
         }
 
-        public async Task DistributeChallengeRewards(List<CurrentChallengeParticipantDto> leaderboard)
+        public async Task DistributeChallengeRewardsAsync(List<CurrentChallengeParticipantDto> leaderboard)
         {
 
         }
 
-        public async Task DistributeQuizRewards(WebUserDto webUser)
+        public async Task DistributeQuizRewardsAsync(WebUserDto webUser)
         {
 
         }

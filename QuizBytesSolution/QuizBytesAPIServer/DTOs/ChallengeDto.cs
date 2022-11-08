@@ -1,6 +1,6 @@
 ﻿namespace QuizBytesAPIServer.DTOs
 {
-    public class CurrentChallengeDto
+    public class ChallengeDto
     {
         public int Id { get; set; }
         public CourseDto Course { get; set; }

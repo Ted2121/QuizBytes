@@ -23,7 +23,7 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CurrentChallengeDto>>> GetAllAsync()
+        public async Task<ActionResult<IEnumerable<ChallengeDto>>> GetAllAsync()
         {
             var currentChallengeEntries = await CurrentChallengeDataAccess.GetAllRowsInChallengeAsync();
 

@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
-    public interface ICurrentChallengeDataAccess
+    public interface ICurrentChallengeParticipantDataAccess
     {
         Task<int> AddWebUserToChallengeAsync(WebUser webuser, Course course);
         Task<bool> DeleteWebUserFromChallengeAsync(int webUserId);
-        Task<IEnumerable<CurrentChallenge>> GetAllRowsInChallengeAsync();
+        Task<IEnumerable<CurrentChallengeParticipant>> GetAllRowsInChallengeAsync();
         Task ClearTempTableBeforeNextChallengeAsync();
+        Task<int> GetRowAmountFromDatabaseAsync();
     }
 }

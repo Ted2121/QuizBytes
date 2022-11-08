@@ -11,11 +11,11 @@ namespace QuizBytesAPIServer.Controllers
     [Route("api/v1/[controller]")]
     public class ChallengeController : ControllerBase
     {
-        public ICurrentChallengeDataAccess CurrentChallengeDataAccess { get; set; }
+        public ICurrentChallengeParticipantDataAccess CurrentChallengeDataAccess { get; set; }
         public IWebUserDataAccess WebUserDataAccess { get; set; }
 
         public ChallengeController(
-            ICurrentChallengeDataAccess currentChallengeDataAccess,
+            ICurrentChallengeParticipantDataAccess currentChallengeDataAccess,
             IWebUserDataAccess webUserDataAccess)
         {
             CurrentChallengeDataAccess = currentChallengeDataAccess;

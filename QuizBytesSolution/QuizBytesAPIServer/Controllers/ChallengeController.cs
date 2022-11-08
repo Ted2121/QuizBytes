@@ -3,6 +3,7 @@ using DataAccessDefinitionLibrary.Data_Access_Models;
 using Microsoft.AspNetCore.Mvc;
 using QuizBytesAPIServer.DTOs;
 using QuizBytesAPIServer.DTOs.Converters;
+using QuizBytesAPIServer.Helper_Classes;
 using SQLAccessImplementationLibrary;
 
 namespace QuizBytesAPIServer.Controllers
@@ -11,23 +12,27 @@ namespace QuizBytesAPIServer.Controllers
     [Route("api/v1/[controller]")]
     public class ChallengeController : ControllerBase
     {
-        public ICurrentChallengeParticipantDataAccess CurrentChallengeDataAccess { get; set; }
+        public ICurrentChallengeParticipantDataAccess CurrentChallengeParticipantDataAccess { get; set; }
         public IWebUserDataAccess WebUserDataAccess { get; set; }
+        public IRewardsDistributionHelper RewardsDistributionHelper { get; set; }
 
         public ChallengeController(
-            ICurrentChallengeParticipantDataAccess currentChallengeDataAccess,
-            IWebUserDataAccess webUserDataAccess)
+            ICurrentChallengeParticipantDataAccess currentChallengeParticipantDataAccess,
+            IWebUserDataAccess webUserDataAccess,
+            IRewardsDistributionHelper rewardsDistributionHelper)
         {
-            CurrentChallengeDataAccess = currentChallengeDataAccess;
+            CurrentChallengeParticipantDataAccess = currentChallengeParticipantDataAccess;
             WebUserDataAccess = webUserDataAccess;
+            RewardsDistributionHelper = rewardsDistributionHelper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ChallengeDto>>> GetAllAsync()
+        [Route("participants")]
+        public async Task<ActionResult<IEnumerable<CurrentChallengeParticipantDto>>> GetAllParticipantsAsync()
         {
-            var currentChallengeEntries = await CurrentChallengeDataAccess.GetAllRowsInChallengeAsync();
+            var currentChallengeEntries = await CurrentChallengeParticipantDataAccess.GetAllRowsInChallengeAsync();
 
-            currentChallengeEntries.OrderByDescending(challenge => WebUserDataAccess.GetWebUserByIdAsync(challenge.FKWebUserId).Result.AvailablePoints);
+            currentChallengeEntries.OrderByDescending(challengeRow => WebUserDataAccess.GetWebUserByIdAsync(challengeRow.FKWebUserId).Result.AvailablePoints);
 
             if (currentChallengeEntries == null)
             {
@@ -38,9 +43,10 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteAsync(int id)
+        [Route("delete/{id}")]
+        public async Task<ActionResult> DeleteParticipantAsync(int id)
         {
-            if (!await CurrentChallengeDataAccess.DeleteWebUserFromChallengeAsync(id))
+            if (!await CurrentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(id))
             { return NotFound(); }
             else
             { return Ok(); }
@@ -50,7 +56,7 @@ namespace QuizBytesAPIServer.Controllers
         [Route("rewards")]
         public async Task<ActionResult> DistributeRewardsAsync()
         {
-            var leaderboardResult = await GetAllAsync();
+            var leaderboardResult = await GetAllParticipantsAsync();
             var leaderboard = leaderboardResult.Value?.ToList();
             
             if(leaderboard == null)
@@ -58,11 +64,21 @@ namespace QuizBytesAPIServer.Controllers
                 return NotFound();
             }
 
-            RewardsFactory.DistributeChallengeRewards(leaderboard);
+            await RewardsDistributionHelper.DistributeChallengeRewards(leaderboard);
 
             return Ok();
 
         }
+
+
+        public async Task<ActionResult> ClearTempTableBeforeNextChallengeAsync()
+        {
+            // TODO add a check in DAL for the count of rows to make sure this is empty after the method is called
+            await CurrentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            return Ok();
+        }
+
+
 
     }
 }

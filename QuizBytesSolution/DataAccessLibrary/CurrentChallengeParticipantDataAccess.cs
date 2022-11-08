@@ -104,14 +104,14 @@ namespace SQLAccessImplementationLibrary
         }
 
         // We do this reset because the CurrentChallenge table is a temporary table and only needs to hold data to populate the leaderboard at the end of the challenge
-        public async Task ClearTempTableBeforeNextChallengeAsync()
+        public async Task<bool> ClearTempTableBeforeNextChallengeAsync()
         {
             try
             {
                 string commandText = "DELETE FROM CurrentChallengeParticipant";
                 using (SqlConnection connection = CreateConnection())
                 {
-                    await connection.ExecuteAsync(commandText);
+                    return await connection.ExecuteAsync(commandText) > 0;
                 }
             }
             catch (SqlException ex)

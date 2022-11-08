@@ -106,18 +106,13 @@ namespace QuizBytesAPIServer.DTOs.Converters
 
         #region CurrentChallengeParticipant conversion methods
 
-<<<<<<< HEAD
         public static CurrentChallengeParticipantDto ToDto(this CurrentChallengeParticipant currentChallengeParticipantToConvert)
-=======
-        public static CurrentChallengeDto ToDto(this CurrentChallengeParticipant currentChallengeToConvert)
->>>>>>> main
         {
             var currentChallengeParticipantDto = new CurrentChallengeParticipantDto();
             currentChallengeParticipantToConvert.CopyPropertiesTo(currentChallengeParticipantDto);
             return currentChallengeParticipantDto;
         }
 
-<<<<<<< HEAD
         public static CurrentChallengeParticipant FromDto(this CurrentChallengeParticipantDto currentChallengeParticipantDtoToConvert)
         {
             var currentChallengeParticipant = new CurrentChallengeParticipant();
@@ -126,16 +121,6 @@ namespace QuizBytesAPIServer.DTOs.Converters
         }
 
         public static IEnumerable<CurrentChallengeParticipantDto> ToDtos(this IEnumerable<CurrentChallengeParticipant> currentChallengeParticipantsToConvert)
-=======
-        public static CurrentChallengeParticipant FromDto(this CurrentChallengeDto currentChallengeDtoToConvert)
-        {
-            var currentChallenge = new CurrentChallengeParticipant();
-            currentChallengeDtoToConvert.CopyPropertiesTo(currentChallenge);
-            return currentChallenge;
-        }
-
-        public static IEnumerable<CurrentChallengeDto> ToDtos(this IEnumerable<CurrentChallengeParticipant> currentChallengesToConvert)
->>>>>>> main
         {
             foreach (var currentChallengeParticipant in currentChallengeParticipantsToConvert)
             {
@@ -143,11 +128,7 @@ namespace QuizBytesAPIServer.DTOs.Converters
             }
         }
 
-<<<<<<< HEAD
         public static IEnumerable<CurrentChallengeParticipant> FromDtos(this IEnumerable<CurrentChallengeParticipantDto> currentChallengeParticipantDtosToConvert)
-=======
-        public static IEnumerable<CurrentChallengeParticipant> FromDtos(this IEnumerable<CurrentChallengeDto> currentChallengeDtosToConvert)
->>>>>>> main
         {
             foreach (var currentChallengeParticipantDto in currentChallengeParticipantDtosToConvert)
             {

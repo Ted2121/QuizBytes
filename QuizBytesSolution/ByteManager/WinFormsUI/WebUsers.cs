@@ -31,5 +31,26 @@ namespace ByteManager.WinFormsUI
         {
 
         }
+
+        private void chaptersNavigationButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Chapters chapters = new Chapters();
+            chapters.Show();
+        }
+
+        private void questionsNavigationButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Questions questions = new Questions();
+            questions.Show();
+        }
+
+        private void dashboardNavigationButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Dashboard dashboard = new Dashboard();
+            dashboard.Show();
+        }
     }
 }

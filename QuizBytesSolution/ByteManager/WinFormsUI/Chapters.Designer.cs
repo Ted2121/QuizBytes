@@ -80,6 +80,7 @@
             this.dashboardNavigationButton.TabIndex = 6;
             this.dashboardNavigationButton.Text = "Dashboard";
             this.dashboardNavigationButton.UseVisualStyleBackColor = true;
+            this.dashboardNavigationButton.Click += new System.EventHandler(this.dashboardNavigationButton_Click);
             // 
             // chaptersNavigationButton
             // 
@@ -110,6 +111,7 @@
             this.questionsNavigationButton.TabIndex = 8;
             this.questionsNavigationButton.Text = "Questions";
             this.questionsNavigationButton.UseVisualStyleBackColor = true;
+            this.questionsNavigationButton.Click += new System.EventHandler(this.questionsNavigationButton_Click);
             // 
             // webusersNavigationButton
             // 
@@ -125,6 +127,7 @@
             this.webusersNavigationButton.TabIndex = 9;
             this.webusersNavigationButton.Text = "Web Users";
             this.webusersNavigationButton.UseVisualStyleBackColor = true;
+            this.webusersNavigationButton.Click += new System.EventHandler(this.webusersNavigationButton_Click);
             // 
             // lineSeparator
             // 

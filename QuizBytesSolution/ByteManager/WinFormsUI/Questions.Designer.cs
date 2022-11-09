@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Questions));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dashboardNavigationButton = new System.Windows.Forms.Button();
@@ -191,6 +191,7 @@
             this.dashboardNavigationButton.TabIndex = 6;
             this.dashboardNavigationButton.Text = "Dashboard";
             this.dashboardNavigationButton.UseVisualStyleBackColor = true;
+            this.dashboardNavigationButton.Click += new System.EventHandler(this.dashboardNavigationButton_Click);
             // 
             // chaptersNavigationButton
             // 
@@ -209,6 +210,7 @@
             this.chaptersNavigationButton.TabIndex = 7;
             this.chaptersNavigationButton.Text = "Chapters";
             this.chaptersNavigationButton.UseVisualStyleBackColor = true;
+            this.chaptersNavigationButton.Click += new System.EventHandler(this.chaptersNavigationButton_Click);
             // 
             // questionsNavigationButton
             // 
@@ -245,6 +247,7 @@
             this.webusersNavigationButton.TabIndex = 9;
             this.webusersNavigationButton.Text = "Web Users";
             this.webusersNavigationButton.UseVisualStyleBackColor = true;
+            this.webusersNavigationButton.Click += new System.EventHandler(this.webusersNavigationButton_Click);
             // 
             // lineSeparator
             // 
@@ -258,28 +261,28 @@
             // singleAnswerDataGrid
             // 
             this.singleAnswerDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.singleAnswerDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.singleAnswerDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.singleAnswerDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.singleAnswerDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.questionsIndex,
             this.chapterName,
             this.questionText});
             this.tableLayoutPanel1.SetColumnSpan(this.singleAnswerDataGrid, 33);
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.singleAnswerDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.singleAnswerDataGrid.DefaultCellStyle = dataGridViewCellStyle8;
             this.singleAnswerDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.singleAnswerDataGrid.EnableHeadersVisualStyles = false;
             this.singleAnswerDataGrid.GridColor = System.Drawing.Color.White;
@@ -287,12 +290,12 @@
             this.singleAnswerDataGrid.Name = "singleAnswerDataGrid";
             this.singleAnswerDataGrid.RowHeadersVisible = false;
             this.singleAnswerDataGrid.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.singleAnswerDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            this.singleAnswerDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.tableLayoutPanel1.SetRowSpan(this.singleAnswerDataGrid, 11);
             this.singleAnswerDataGrid.RowTemplate.Height = 25;
             this.singleAnswerDataGrid.Size = new System.Drawing.Size(1281, 390);
@@ -304,7 +307,7 @@
             this.questionsIndex.HeaderText = "No.";
             this.questionsIndex.MinimumWidth = 81;
             this.questionsIndex.Name = "questionsIndex";
-            this.questionsIndex.Width = 81;
+            this.questionsIndex.Width = 90;
             // 
             // chapterName
             // 
@@ -482,7 +485,7 @@
             this.wrongAnswerThreeTextBox.Location = new System.Drawing.Point(3, 231);
             this.wrongAnswerThreeTextBox.Name = "wrongAnswerThreeTextBox";
             this.wrongAnswerThreeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wrongAnswerThreeTextBox.Size = new System.Drawing.Size(952, 33);
+            this.wrongAnswerThreeTextBox.Size = new System.Drawing.Size(952, 39);
             this.wrongAnswerThreeTextBox.TabIndex = 7;
             // 
             // chapterNameCombobox
@@ -495,7 +498,7 @@
             this.chapterNameCombobox.Location = new System.Drawing.Point(3, 3);
             this.chapterNameCombobox.MaxDropDownItems = 10;
             this.chapterNameCombobox.Name = "chapterNameCombobox";
-            this.chapterNameCombobox.Size = new System.Drawing.Size(473, 33);
+            this.chapterNameCombobox.Size = new System.Drawing.Size(473, 40);
             this.chapterNameCombobox.TabIndex = 1;
             // 
             // questionTypeComboBox
@@ -508,7 +511,7 @@
             this.questionTypeComboBox.Location = new System.Drawing.Point(3, 41);
             this.questionTypeComboBox.MaxDropDownItems = 10;
             this.questionTypeComboBox.Name = "questionTypeComboBox";
-            this.questionTypeComboBox.Size = new System.Drawing.Size(473, 33);
+            this.questionTypeComboBox.Size = new System.Drawing.Size(473, 40);
             this.questionTypeComboBox.TabIndex = 2;
             // 
             // questionTextTextBox
@@ -519,7 +522,7 @@
             this.questionTextTextBox.Location = new System.Drawing.Point(3, 79);
             this.questionTextTextBox.Name = "questionTextTextBox";
             this.questionTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.questionTextTextBox.Size = new System.Drawing.Size(952, 33);
+            this.questionTextTextBox.Size = new System.Drawing.Size(952, 39);
             this.questionTextTextBox.TabIndex = 3;
             // 
             // correctAnswerTextBox
@@ -530,7 +533,7 @@
             this.correctAnswerTextBox.Location = new System.Drawing.Point(3, 117);
             this.correctAnswerTextBox.Name = "correctAnswerTextBox";
             this.correctAnswerTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.correctAnswerTextBox.Size = new System.Drawing.Size(952, 33);
+            this.correctAnswerTextBox.Size = new System.Drawing.Size(952, 39);
             this.correctAnswerTextBox.TabIndex = 4;
             // 
             // wrongAnswerOneTextBox
@@ -541,7 +544,7 @@
             this.wrongAnswerOneTextBox.Location = new System.Drawing.Point(3, 155);
             this.wrongAnswerOneTextBox.Name = "wrongAnswerOneTextBox";
             this.wrongAnswerOneTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wrongAnswerOneTextBox.Size = new System.Drawing.Size(952, 33);
+            this.wrongAnswerOneTextBox.Size = new System.Drawing.Size(952, 39);
             this.wrongAnswerOneTextBox.TabIndex = 5;
             // 
             // wonrgAnswerTwoTextBox
@@ -552,7 +555,7 @@
             this.wonrgAnswerTwoTextBox.Location = new System.Drawing.Point(3, 193);
             this.wonrgAnswerTwoTextBox.Name = "wonrgAnswerTwoTextBox";
             this.wonrgAnswerTwoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wonrgAnswerTwoTextBox.Size = new System.Drawing.Size(952, 33);
+            this.wonrgAnswerTwoTextBox.Size = new System.Drawing.Size(952, 39);
             this.wonrgAnswerTwoTextBox.TabIndex = 6;
             // 
             // tableLayoutPanel4
@@ -630,7 +633,7 @@
             // 
             // Questions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));

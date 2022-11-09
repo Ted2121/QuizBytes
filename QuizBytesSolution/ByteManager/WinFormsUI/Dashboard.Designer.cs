@@ -66,6 +66,7 @@
             this.chaptersNavigationButton.TabIndex = 1;
             this.chaptersNavigationButton.Text = "Chapters";
             this.chaptersNavigationButton.UseVisualStyleBackColor = true;
+            this.chaptersNavigationButton.Click += new System.EventHandler(this.chaptersNavigationButton_Click);
             // 
             // questionsNavigationButton
             // 
@@ -97,6 +98,7 @@
             this.webusersNavigationButton.TabIndex = 3;
             this.webusersNavigationButton.Text = "Web Users";
             this.webusersNavigationButton.UseVisualStyleBackColor = true;
+            this.webusersNavigationButton.Click += new System.EventHandler(this.webusersNavigationButton_Click);
             // 
             // lineSeparator
             // 

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessDefinitionLibrary.DAO_Interfaces
+namespace WindowsApiClient.DTOs
 {
-    public interface IWebUserChapterUnlocksDataAccess
+    internal class ChapterDto
     {
-       
     }
 }

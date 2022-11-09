@@ -1,4 +1,4 @@
-﻿using DataAccessDefinitionLibrary.DAO_models;
+﻿using DataAccessDefinitionLibrary.Data_Access_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +12,9 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<Question> InsertQuestionAsync(Question question);
         Task<Question> GetQuestionByIdAsync(int questionId);
 
-        Task<IEnumerable<Question>> GetQuestionByChapterAsync(int chapterId);
+        Task<IEnumerable<Question>> GetQuestionsByChapterAsync(Chapter chapter);
         Task<IEnumerable<Question>> GetAllQuestionsAsync();
-        Task UpdateQuestionAsync(Question question);
-        Task DeleteQuestionAsync(Question question);
+        Task<bool> UpdateQuestionAsync(Question question);
+        Task<bool> DeleteQuestionAsync(int questionId);
     }
 }

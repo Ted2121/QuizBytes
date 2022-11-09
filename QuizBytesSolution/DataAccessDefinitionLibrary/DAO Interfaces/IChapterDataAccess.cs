@@ -1,4 +1,5 @@
-﻿using DataAccessDefinitionLibrary.DAO_models;
+﻿using DataAccessDefinitionLibrary.Data_Access_Models;
+
 
 namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
@@ -9,7 +10,7 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<Chapter> GetChapterByNameAsync(string chapterName);
         Task<IEnumerable<Chapter>> GetAllChaptersAsync();
         Task<IEnumerable<Chapter>> GetAllChaptersBySubjectAsync(Subject subject);
-        Task UpdateChapterAsync(Chapter chapter);
-        Task DeleteChapterAsync(Chapter chapter);
+        Task<bool> UpdateChapterAsync(Chapter chapter);
+        Task<bool> DeleteChapterAsync(int chapterId);
     }
 }

@@ -1,14 +1,7 @@
 ﻿using Dapper;
-using DataAccessDefinitionLibrary;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
-using DataAccessDefinitionLibrary.DAO_models;
-using System;
-using System.Collections.Generic;
+using DataAccessDefinitionLibrary.Data_Access_Models;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace SQLAccessImplementationLibrary
 {
@@ -18,121 +11,126 @@ namespace SQLAccessImplementationLibrary
         {
         }
 
-        public async Task DeleteCourseAsync(Course course)
+        public async Task<bool> DeleteCourseAsync(int courseId)
         {
-            string commandText = "DELETE FROM Courses WHERE CourseId = @CourseId";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
+                string commandText = "DELETE FROM Course WHERE PKCourseId = @PKCourseId";
+                using (SqlConnection connection = CreateConnection())
                 {
-                    CourseId = course.Id
-                };
+                    var parameters = new
+                    {
+                        PKCourseId = courseId
+                    };
 
-                try
-                {
-                    await connection.ExecuteAsync(commandText, parameters);
+                    return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Exception while trying to delete a row from Courses table. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to delete a row from Course table. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task<IEnumerable<Course>> GetAllCoursesAsync()
         {
-            string commandText = " SELECT * FROM Courses";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                try
+                string commandText = " SELECT * FROM Course";
+                using (SqlConnection connection = CreateConnection())
                 {
                     var courses = await connection.QueryAsync<Course>(commandText);
 
                     return courses;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Exception while trying to read all rows from the Courses table. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to read all rows from the Course table. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task<Course> GetCourseByIdAsync(int courseId)
         {
-            string commandText = "SELECT * FROM Courses WHERE CourseId = @CourseId";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
+                string commandText = "SELECT * FROM Course WHERE PKCourseId = @PKCourseId";
+                using (SqlConnection connection = CreateConnection())
                 {
-                    CourseId = courseId
-                };
+                    var parameters = new
+                    {
+                        PKCourseId = courseId
+                    };
 
-                try
-                {
                     var course = await connection.QuerySingleOrDefaultAsync<Course>(commandText, parameters);
 
                     return course;
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (SqlException ex)
+            {
 
-                    throw new($"Exception while trying to find the Course with the '{courseId}'. The exception was: '{ex.Message}'", ex);
-                }
+                throw new($"Exception while trying to find the Course with the '{courseId}'. The exception was: '{ex.Message}'", ex);
+
 
             }
         }
 
         public async Task<Course> InsertCourseAsync(Course course)
         {
-            string commandText = "INSERT INTO Courses (CourseName, CourseDescription) VALUES (@CourseName, @CourseDescription); SELECT CAST(scope_identity() AS int)";
-
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var insertParameters = new
-                {
-                    CourseName = course.Name,
-                    CourseDescription = course.Description
-                };
+                string commandText = "INSERT INTO Course (Name, Description) VALUES (@Name, @Description); SELECT CAST(scope_identity() AS int)";
 
-                try
+                using (SqlConnection connection = CreateConnection())
                 {
-                    await connection.ExecuteAsync(commandText, insertParameters);
-                    course.Id = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
+                    var parameters = new
+                    {
+                        Name = course.Name,
+                        Description = course.Description
+                    };
+
+                    await connection.ExecuteAsync(commandText, parameters);
+                    course.PKCourseId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
                     return course;
                 }
-                catch (Exception ex)
-                {
-                    throw new($"Exception while trying to insert a Course object. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new($"Exception while trying to insert a Course object. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
-        public async Task UpdateCourseAsync(Course course)
+        public async Task<bool> UpdateCourseAsync(Course course)
         {
-            string commandText = "UPDATE Courses " +
-                 "SET CourseName = @CourseName, " +
-                 "CourseDescription = @CourseDescription " +
-                 "WHERE CourseId = @CourseId";
-
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
-                {
-                    CourseName = course.Name,
-                    CourseDescription = course.Description,
-                    CourseId = course.Id
-                };
+                string commandText = "UPDATE Course " +
+                     "SET Name = @Name, " +
+                     "Description = @Description " +
+                     "WHERE PKCourseId = @PKCourseId";
 
-                try
+                using (SqlConnection connection = CreateConnection())
                 {
-                    await connection.ExecuteAsync(commandText, parameters);
+                    var parameters = new
+                    {
+                        Name = course.Name,
+                        Description = course.Description,
+                        PKCourseId = course.PKCourseId
+                    };
+
+                    return await connection.ExecuteAsync(commandText, parameters) > 0;
 
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (SqlException ex)
+            {
 
-                    throw new Exception($"Exception while trying to update Course. The exception was: '{ex.Message}'", ex);
-                }
+                throw new Exception($"Exception while trying to update Course. The exception was: '{ex.Message}'", ex);
+
             }
         }
     }

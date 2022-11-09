@@ -1,7 +1,8 @@
+using DataAccessDefinitionLibrary.DAO_Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using ChapterDto = QuizBytesAPIServer.DTOs.ChapterDto;
-using IChapterDataAccess = DataAccessDefinitionLibrary.DAO_Interfaces.IChapterDataAccess;
-using SubjectDto = QuizBytesAPIServer.DTOs.SubjectDto;
+using QuizBytesAPIServer.DTOs;
+using QuizBytesAPIServer.DTOs.Converters;
+
 
 namespace QuizBytesAPIServer.Controllers
 {
@@ -16,23 +17,8 @@ namespace QuizBytesAPIServer.Controllers
             ChapterDataAccess = chapterDataAccess;
         }
 
-        [HttpDelete]
-        public async Task<ActionResult> DeleteChapterAsync(ChapterDto chapter)
-        {
-            if (chapter == null)
-            {
-                return NotFound();
-            }
-
-            await ChapterDataAccess.DeleteChapterAsync(chapter);
-            // TODO figure out how to check if deletion was successfull
-
-            return Ok();
-        }
-
 
         [HttpGet]
-        [Route("{all}")]
         public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersAsync()
         {
             var chapters = await ChapterDataAccess.GetAllChaptersAsync();
@@ -41,49 +27,61 @@ namespace QuizBytesAPIServer.Controllers
             {
                 return NotFound();
             }
-            return Ok(chapters);
+            return Ok(chapters.ToDtos());
         }
 
         [HttpGet]
         [Route("subject")]
-        public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersBySubjectAsync(SubjectDto subject)
+        public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersBySubjectAsync([FromQuery] SubjectDto subject)
         {
-            var chapters = await ChapterDataAccess.GetAllChaptersBySubjectAsync(subject);
+            var chapters = await ChapterDataAccess.GetAllChaptersBySubjectAsync(subject.FromDto());
 
             if (chapters == null)
             {
                 return NotFound();
             }
-            return Ok(chapters);
+            return Ok(chapters.ToDtos());
         }
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<ChapterDto>> GetChapterByIdAsync(int chapterId)
+        public async Task<ActionResult<ChapterDto>> GetChapterByIdAsync([FromQuery] int chapterId)
         {
-            ChapterDto chapter = await ChapterDataAccess.GetChapterByIdAsync(chapterId);
+            var chapter = await ChapterDataAccess.GetChapterByIdAsync(chapterId);
             if (chapter == null)
             {
                 return NotFound();
             }
-            return Ok(chapter);
+            return Ok(chapter.ToDto());
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteChapterAsync(int id)
+        {
+            if (!await ChapterDataAccess.DeleteChapterAsync(id))
+            { return NotFound(); }
+            else
+            { return Ok(); }
+
+            
+
+            return Ok();
         }
 
         [HttpPost]
-        public async Task<ActionResult<ChapterDto>> InsertChapterAsync(ChapterDto chapter)
+        public async Task<ActionResult<ChapterDto>> InsertChapterAsync([FromBody] ChapterDto chapter)
         {
-            chapter = await ChapterDataAccess.InsertChapterAsync(chapter);
-
             if (chapter == null)
             {
                 return NotFound();
             }
+            await ChapterDataAccess.InsertChapterAsync(chapter.FromDto());
             return Ok(chapter);
         }
 
 
         [HttpPut]
-        public async Task<ActionResult> UpdateChapterAsync(ChapterDto chapter)
+        public async Task<ActionResult> UpdateChapterAsync([FromBody] ChapterDto chapter)
         {
 
             if (chapter == null)
@@ -91,7 +89,7 @@ namespace QuizBytesAPIServer.Controllers
                 return NotFound();
             }
 
-            await ChapterDataAccess.UpdateChapterAsync(chapter);
+            await ChapterDataAccess.UpdateChapterAsync(chapter.FromDto());
 
             return Ok();
 

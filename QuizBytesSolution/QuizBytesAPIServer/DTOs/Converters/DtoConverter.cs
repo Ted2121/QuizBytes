@@ -1,4 +1,4 @@
-﻿using DataAccessDefinitionLibrary.DAO_models;
+﻿using DataAccessDefinitionLibrary.Data_Access_Models;
 
 namespace QuizBytesAPIServer.DTOs.Converters
 {
@@ -106,21 +106,21 @@ namespace QuizBytesAPIServer.DTOs.Converters
 
         #region CurrentChallenge conversion methods
 
-        public static CurrentChallengeDto ToDto(this CurrentChallenge currentChallengeToConvert)
+        public static CurrentChallengeDto ToDto(this CurrentChallengeParticipant currentChallengeToConvert)
         {
             var currentChallengeDto = new CurrentChallengeDto();
             currentChallengeToConvert.CopyPropertiesTo(currentChallengeDto);
             return currentChallengeDto;
         }
 
-        public static CurrentChallenge FromDto(this CurrentChallengeDto currentChallengeDtoToConvert)
+        public static CurrentChallengeParticipant FromDto(this CurrentChallengeDto currentChallengeDtoToConvert)
         {
-            var currentChallenge = new CurrentChallenge();
+            var currentChallenge = new CurrentChallengeParticipant();
             currentChallengeDtoToConvert.CopyPropertiesTo(currentChallenge);
             return currentChallenge;
         }
 
-        public static IEnumerable<CurrentChallengeDto> ToDtos(this IEnumerable<CurrentChallenge> currentChallengesToConvert)
+        public static IEnumerable<CurrentChallengeDto> ToDtos(this IEnumerable<CurrentChallengeParticipant> currentChallengesToConvert)
         {
             foreach (var currentChallenge in currentChallengesToConvert)
             {
@@ -128,7 +128,7 @@ namespace QuizBytesAPIServer.DTOs.Converters
             }
         }
 
-        public static IEnumerable<CurrentChallenge> FromDtos(this IEnumerable<CurrentChallengeDto> currentChallengeDtosToConvert)
+        public static IEnumerable<CurrentChallengeParticipant> FromDtos(this IEnumerable<CurrentChallengeDto> currentChallengeDtosToConvert)
         {
             foreach (var currentChallengeDto in currentChallengeDtosToConvert)
             {
@@ -240,23 +240,23 @@ namespace QuizBytesAPIServer.DTOs.Converters
 
         #endregion
 
-        #region WebUserChapterUnlocks conversion methods
+        #region WebUserChapterUnlock conversion methods
 
-        public static WebUserChapterUnlocksDto ToDto(this WebUserChapterUnlocks webUserChapterUnlocksToConvert)
+        public static WebUserChapterUnlockDto ToDto(this WebUserChapterUnlock webUserChapterUnlocksToConvert)
         {
-            var webUserChapterUnlocksDto = new WebUserChapterUnlocksDto();
+            var webUserChapterUnlocksDto = new WebUserChapterUnlockDto();
             webUserChapterUnlocksToConvert.CopyPropertiesTo(webUserChapterUnlocksDto);
             return webUserChapterUnlocksDto;
         }
 
-        public static WebUserChapterUnlocks FromDto(this WebUserChapterUnlocksDto webUserChapterUnlocksDtoToConvert)
+        public static WebUserChapterUnlock FromDto(this WebUserChapterUnlockDto webUserChapterUnlocksDtoToConvert)
         {
-            var webUserChapterUnlocks = new WebUserChapterUnlocks();
+            var webUserChapterUnlocks = new WebUserChapterUnlock();
             webUserChapterUnlocksDtoToConvert.CopyPropertiesTo(webUserChapterUnlocks);
             return webUserChapterUnlocks;
         }
 
-        public static IEnumerable<WebUserChapterUnlocksDto> ToDtos(this IEnumerable<WebUserChapterUnlocks> webUserChapterUnlocksToConvert)
+        public static IEnumerable<WebUserChapterUnlockDto> ToDtos(this IEnumerable<WebUserChapterUnlock> webUserChapterUnlocksToConvert)
         {
             foreach (var webUserChapterUnlocks in webUserChapterUnlocksToConvert)
             {
@@ -264,7 +264,7 @@ namespace QuizBytesAPIServer.DTOs.Converters
             }
         }
 
-        public static IEnumerable<WebUserChapterUnlocks> FromDtos(this IEnumerable<WebUserChapterUnlocksDto> webUserChapterUnlocksDtosToConvert)
+        public static IEnumerable<WebUserChapterUnlock> FromDtos(this IEnumerable<WebUserChapterUnlockDto> webUserChapterUnlocksDtosToConvert)
         {
             foreach (var webUserChapterUnlocksDto in webUserChapterUnlocksDtosToConvert)
             {

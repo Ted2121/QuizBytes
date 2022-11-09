@@ -1,4 +1,4 @@
-﻿using DataAccessDefinitionLibrary.DAO_models;
+﻿using DataAccessDefinitionLibrary.Data_Access_Models;
 
 namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
@@ -7,7 +7,7 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<Course> InsertCourseAsync(Course course);
         Task<Course> GetCourseByIdAsync(int courseId);
         Task<IEnumerable<Course>> GetAllCoursesAsync();
-        Task UpdateCourseAsync(Course course);
-        Task DeleteCourseAsync(Course course);
+        Task<bool> UpdateCourseAsync(Course course);
+        Task<bool> DeleteCourseAsync(int courseId);
     }
 }

@@ -1,14 +1,7 @@
 ﻿using Dapper;
-using DataAccessDefinitionLibrary;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
-using DataAccessDefinitionLibrary.DAO_models;
-using System;
-using System.Collections.Generic;
+using DataAccessDefinitionLibrary.Data_Access_Models;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace SQLAccessImplementationLibrary
 {
@@ -18,149 +11,156 @@ namespace SQLAccessImplementationLibrary
         {
         }
 
-        public async Task DeleteQuestionAsync(Question question)
+        public async Task<bool> DeleteQuestionAsync(int questionId)
         {
-            string commandText = "DELETE FROM Questions WHERE QuestionId = @QuestionId";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
+                string commandText = "DELETE FROM Question WHERE PKQuestionId = @PKQuestionId";
+                using (SqlConnection connection = CreateConnection())
                 {
-                    QuestionId = question.Id
-                };
+                    var parameters = new
+                    {
+                        PKQuestionId = questionId
+                    };
 
-                try
-                {
-                    await connection.ExecuteAsync(commandText, parameters);
+                    return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Exception while trying to delete a row from Quesitons table. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to delete a row from Quesiton table. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task<IEnumerable<Question>> GetAllQuestionsAsync()
         {
-            string commandText = "SELECT* FROM Questions";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                try
+                string commandText = "SELECT* FROM Question";
+                using (SqlConnection connection = CreateConnection())
                 {
                     var questions = await connection.QueryAsync<Question>(commandText);
 
                     return questions;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Exception while trying to read all rows from the Questions table. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to read all rows from the Question table. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
         public async Task<Question> GetQuestionByIdAsync(int questionId)
         {
-            string commandText = "SELECT * FROM Questions WHERE QuestionId = @QuestionId";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
+                string commandText = "SELECT * FROM Question WHERE PKQuestionId = @PKQuestionId";
+                using (SqlConnection connection = CreateConnection())
                 {
-                    QuestionId = questionId
-                };
+                    var parameters = new
+                    {
+                        PKQuestionId = questionId
+                    };
 
-                try
-                {
                     var question = await connection.QuerySingleOrDefaultAsync<Question>(commandText, parameters);
 
                     return question;
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (SqlException ex)
+            {
 
-                    throw new($"Exception while trying to find the Question with the '{questionId}'. The exception was: '{ex.Message}'", ex);
-                }
+                throw new($"Exception while trying to find the Question with the '{questionId}'. The exception was: '{ex.Message}'", ex);
+
 
             }
         }
 
         public async Task<Question> InsertQuestionAsync(Question question)
         {
-            string commandText = "INSERT INTO Questions (QuestionId, FKChapterId, QuestionText, QuestionHint) VALUES (@QuestionId, @FKChapterId, @QuestionText, @QuestionHint); SELECT CAST(scope_identity() AS int)";
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-
-                var insertParameters = new
+                string commandText = "INSERT INTO Question (FKChapterId, QuestionText, Hint) VALUES (@FKChapterId, @QuestionText, @Hint); SELECT CAST(scope_identity() AS int)";
+                using (SqlConnection connection = CreateConnection())
                 {
-                    FKChapterId = question.FKChapterId,
-                    QuestionText = question.QuestionText,
-                    QuestionHint = question.Hint,
-                };
+
+                    var parameters = new
+                    {
+                        FKChapterId = question.FKChapterId,
+                        QuestionText = question.QuestionText,
+                        Hint = question.Hint,
+                    };
 
 
-                try
-                {
-                    await connection.ExecuteAsync(commandText, insertParameters);
-                    question.Id = (int)await connection.ExecuteScalarAsync(commandText, insertParameters);
+                    await connection.ExecuteAsync(commandText, parameters);
+                    question.PKQuestionId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
                     return question;
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (SqlException ex)
+            {
 
-                    throw new($"Exception while trying to insert a Question object. The exception was: '{ex.Message}'", ex);
-                }
+                throw new($"Exception while trying to insert a Question object. The exception was: '{ex.Message}'", ex);
+
             }
         }
 
-        public async Task UpdateQuestionAsync(Question question)
+        public async Task<bool> UpdateQuestionAsync(Question question)
         {
-            string commandText = "UPDATE Question " +
-                "FKChapterId = @FKChapterId, " +
-                "QuestionText = @QuestionText " +
-                "QuestionHint = @QuestionHint" +
-                "WHERE QuestionId = @QuestionId";
-
-            using (SqlConnection connection = CreateConnection())
+            try
             {
-                var parameters = new
-                {
-                    FKChapterId = question.FKChapterId,
-                    QuestionText = question.QuestionText,
-                    QuestionHint = question.Hint,
-                };
+                string commandText = "UPDATE Question " +
+                    "FKChapterId = @FKChapterId, " +
+                    "QuestionText = @QuestionText, " +
+                    "Hint = @Hint " +
+                    "WHERE PKQuestionId = @PKQuestionId";
 
-                try
-                {
-                    await connection.ExecuteAsync(commandText, parameters);
-
-                }
-                catch (Exception ex)
-                {
-
-                    throw new Exception($"Exception while trying to update question. The exception was: '{ex.Message}'", ex);
-                }
-            }
-        }
-
-        public async Task<IEnumerable<Question>> GetQuestionByChapterAsync(int chapterId)
-        {
-            string commandText = "SELECT * FROM Questions WHERE FKChapterId = @FKChapterId";
-            using (SqlConnection connection = CreateConnection())
-            {
-
-                try
+                using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        FKChapterId = chapterId
+                        FKChapterId = question.FKChapterId,
+                        QuestionText = question.QuestionText,
+                        Hint = question.Hint,
+                        PKQuestionId = question.PKQuestionId
+                    };
+
+                    return await connection.ExecuteAsync(commandText, parameters) > 0;
+
+                }
+            }
+            catch (SqlException ex)
+            {
+
+                throw new Exception($"Exception while trying to update a Question. The exception was: '{ex.Message}'", ex);
+
+            }
+        }
+
+        public async Task<IEnumerable<Question>> GetQuestionsByChapterAsync(Chapter chapter)
+        {
+            try
+            {
+                string commandText = "SELECT * FROM Question WHERE FKChapterId = @FKChapterId";
+                using (SqlConnection connection = CreateConnection())
+                {
+
+                    var parameters = new
+                    {
+                        FKChapterId = chapter.PKChapterId
                     };
 
                     var questions = await connection.QueryAsync<Question>(commandText, parameters);
 
                     return questions;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Exception while trying to read all rows from the Questions table with the foreign key attribute: FKChapterId = {chapterId}. The exception was: '{ex.Message}'", ex);
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Exception while trying to read all rows from the Question table with the foreign key attribute: FKChapterId = {chapter.PKChapterId}. The exception was: '{ex.Message}'", ex);
+
             }
         }
 

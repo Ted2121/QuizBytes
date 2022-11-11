@@ -39,5 +39,10 @@ namespace DataAccessDefinitionLibrary.Data_Access_Models
         {
                 
         }
+
+        public WebUser(int id)
+        {
+            PKWebUserId = id;
+        }
     }
 }

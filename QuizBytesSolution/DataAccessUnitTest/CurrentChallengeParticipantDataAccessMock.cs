@@ -8,11 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using Dapper;
+using SQLAccessImplementationLibrary;
 
 namespace SQLAccessImplementationLibraryUnitTest
 {
-    public class CurrentChallengeParticipantDataAccessMock : ICurrentChallengeParticipantDataAccess
+    public class CurrentChallengeParticipantDataAccessMock : BaseDataAccess, ICurrentChallengeParticipantDataAccess
     {
+
+        public CurrentChallengeParticipantDataAccessMock(string connectionstring) : base(connectionstring)
+        {
+
+        }
+
         public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
         {
             int userLimitForChallenges = 100;

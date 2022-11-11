@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using SQLAccessImplementationLibraryUnitTest;
+using Assert = NUnit.Framework.Assert;
 
 namespace DataAccessUnitTest
 {
@@ -14,8 +15,7 @@ namespace DataAccessUnitTest
         Course? _course;
         Random _random;
 
-        IWebUserDataAccess _webUserDataAccess;
-        ICourseDataAccess _courseDataAccess;
+        ICurrentChallengeParticipantDataAccess _currentChallengeParticipantDataAccess;
 
         [SetUp]
         public void SetUp()
@@ -24,26 +24,37 @@ namespace DataAccessUnitTest
             int randomTotalPoints = _random.Next(1, 500);
             int randomAvailablePoints = _random.Next(1, 500);
 
-            _user = new WebUser(randomId, "testusername", "testpassword", "testemail", randomTotalPoints, randomAvailablePoints);
+            _user = new WebUser("testusername", "testpassword", "testemail", randomTotalPoints, randomAvailablePoints);
             _course = new Course("testname", "testdescription");
             _random = new Random();
 
-            _webUserDataAccess = new WebUserDataAccess(Configuration.CONNECTION_STRING);
-
+            _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock(Configuration.CONNECTION_STRING);
         }
 
         [Test]
-        public async Task TestUserLimitBlockOnInsertAttempt()
+        public async Task TestUserLimitBlockOnInsertAttemptWithRandomUserIds()
         {
 
-            int expected = 0;
-           
-            
-            //fml this won't work, im tired so i'll work on it more tomorrow...
-            //won't work even without parameters
-            var actual = await CurrentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(user,course);
+            // Arrange
+            int randomId = _random.Next(1, 500);
 
-            Assert.AreEqual(expected, actual);
+            // sadly logic cannot be avoided in this test as we need to create 100 users to reach the challenge limit
+            WebUser[] webUsers = new WebUser[100];
+            for (int i = 0; i < webUsers.Length; i++)
+            {
+                // we only care about it for the challenge test
+                webUsers[i] = new WebUser(randomId);
+                await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(webUsers[i], _course);
+            }
+
+            // Act
+            
+            var insertion = () =>  _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+
+            // Assert
+
+            Assert.That(insertion, Throws.Exception);
+
         }
     }
 }

@@ -1,31 +1,30 @@
-﻿using Dapper;
-using DataAccessDefinitionLibrary.DAO_Interfaces;
+﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
-using System.Data;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data;
+using Dapper;
 
-namespace SQLAccessImplementationLibrary
+namespace SQLAccessImplementationLibraryUnitTest
 {
-    public class CurrentChallengeParticipantDataAccess : BaseDataAccess, ICurrentChallengeParticipantDataAccess
+    public class CurrentChallengeParticipantDataAccessMock : ICurrentChallengeParticipantDataAccess
     {
-        
-        public CurrentChallengeParticipantDataAccess(string connectionstring) : base(connectionstring)
-        {
-
-        }
-
-        public async Task<int> AddWebUserToChallengeAsync(WebUser webUser,Course course)
+        public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
         {
             int userLimitForChallenges = 100;
             var rowAmount = await GetRowAmountFromDatabaseAsync();
             if (rowAmount < userLimitForChallenges)
             {
-                using (SqlConnection connection = CreateConnection())
+                using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
                 {
                     connection.Open();
                     IsolationLevel isolationLevel = IsolationLevel.RepeatableRead;
                     SqlTransaction transaction = connection.BeginTransaction(isolationLevel);
-                    string commandText = "INSERT INTO CurrentChallengeParticipant (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
+                    string commandText = "INSERT INTO TestCurrentChallengeParticipant (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
                     var parameters = new
                     {
                         FKWebUserId = webUser.PKWebUserId,
@@ -38,13 +37,12 @@ namespace SQLAccessImplementationLibrary
                         var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
                         return currentChallengeRowId;
                     }
-                    // TODO add catching Exception as well
                     catch (SqlException ex)
                     {
                         try
                         {
                             transaction.Rollback();
-                            throw new Exception($"Exception while trying to insert into CurrentChallengeParticipant table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
+                            throw new Exception($"Exception while trying to insert into TestCurrentChallengeParticipant table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
                         }
                         catch
                         {
@@ -63,8 +61,8 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM CurrentChallengeParticipant";
-                using (SqlConnection connection = CreateConnection())
+                string commandText = "SELECT * FROM TestCurrentChallengeParticipant";
+                using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
                 {
 
                     var challengeRows = await connection.QueryAsync<CurrentChallengeParticipant>(commandText);
@@ -75,7 +73,7 @@ namespace SQLAccessImplementationLibrary
             catch (SqlException ex)
             {
 
-                throw new($"Exception while trying to retrieve all rows from CurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
+                throw new($"Exception while trying to retrieve all rows from TestCurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
 
             }
         }
@@ -84,8 +82,8 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM CurrentChallengeParticipant WHERE FKWebUserId = @FKWebUserId";
-                using (SqlConnection connection = CreateConnection())
+                string commandText = "DELETE FROM TestCurrentChallengeParticipant WHERE FKWebUserId = @FKWebUserId";
+                using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
                 {
                     var parameters = new
                     {
@@ -97,7 +95,7 @@ namespace SQLAccessImplementationLibrary
             }
             catch (SqlException ex)
             {
-                throw new Exception($"Exception while trying to delete a row from CurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to delete a row from TestCurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
 
             }
         }
@@ -107,25 +105,25 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM CurrentChallengeParticipant";
-                using (SqlConnection connection = CreateConnection())
+                string commandText = "DELETE FROM TestCurrentChallengeParticipant";
+                using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
                 {
                     return await connection.ExecuteAsync(commandText) > 0;
                 }
             }
             catch (SqlException ex)
             {
-                throw new Exception($"Exception while trying to delete contents of CurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to delete contents of TestCurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
 
             }
         }
 
         public async Task<int> GetRowAmountFromDatabaseAsync()
         {
-            string commandText = "SELECT COUNT PKCurrentChallengeParticipantId FROM CurrentChallengeParticipant";
+            string commandText = "SELECT COUNT PKCurrentChallengeParticipantId FROM TestCurrentChallengeParticipant";
             try
             {
-                using (SqlConnection connection = CreateConnection())
+                using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
                 {
                     var rowAmount = await connection.ExecuteAsync(commandText);
                     return rowAmount;
@@ -134,7 +132,7 @@ namespace SQLAccessImplementationLibrary
             catch (SqlException ex)
             {
 
-                throw new Exception($"Exception while trying to count the rows in the CurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to count the rows in the TestCurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
             }
         }
     }

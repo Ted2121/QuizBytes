@@ -13,5 +13,15 @@
             Name = name;
             Description = description;
         }
+
+        public Course(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
+
+        public Course()
+        {
+        }
     }
 }

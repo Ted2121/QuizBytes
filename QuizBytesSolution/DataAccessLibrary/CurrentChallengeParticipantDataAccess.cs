@@ -14,14 +14,16 @@ namespace SQLAccessImplementationLibrary
 
         }
 
-        public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
+        public async Task<int> AddWebUserToChallengeAsync(WebUser webUser,Course course, int rowAmount)
         {
+            //shouldn't this just take in two ints instead of whole objects? 
 
             int userLimitForChallenges = 100;
-            var rowAmount = await GetRowAmountFromDatabaseAsync();
+            //var rowAmount = await GetRowAmountFromDatabaseAsync();
             if (rowAmount < userLimitForChallenges)
             {
                 using (SqlConnection connection = CreateConnection())
+                    //why not just do using SqlConnection connection = CreateConnection(); ?
                 {
                     connection.Open();
                     IsolationLevel isolationLevel = IsolationLevel.RepeatableRead;

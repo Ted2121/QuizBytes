@@ -7,9 +7,11 @@
         public string Description { get; set; }
         // public IEnumerable<Subject> Subjects { get; set; }
 
-        public Course()
+        public Course(int id, string name, string description)
         {
-
+            PKCourseId = id;
+            Name = name;
+            Description = description;
         }
     }
 }

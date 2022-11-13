@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\loginstylesheet.css" />
+    <None Include="wwwroot\css\LoginViewStyleSheet.css" />
     <None Include="wwwroot\resources\Logo Bytecoin.png - Copy.png" />
   </ItemGroup>
 

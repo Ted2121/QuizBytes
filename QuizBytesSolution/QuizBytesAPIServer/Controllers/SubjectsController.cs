@@ -62,7 +62,7 @@ namespace QuizBytesAPIServer.Controllers
                 return NotFound();
             }
 
-            await SubjectDataAccess.DeleteSubjectAsync(subject.FromDto());
+           // await SubjectDataAccess.DeleteSubjectAsync(subject.FromDto());
 
             return Ok();
         }

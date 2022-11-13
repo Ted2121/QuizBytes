@@ -35,14 +35,14 @@ namespace QuizBytesAPIServer.Controllers
             }
             return Ok(currentChallengeEntries.ToDtos());
 
-        }
-
-        [HttpDelete]
-        public async Task<ActionResult> DeleteAsync(int id)
-        {
-
-        }
-
+        
     }
-}
+      /*  [HttpDelete]
+        public async Task<ActionResult> DeleteAsync(int id)
+          {
+
+          }*/
+
+      }
+    } 
 

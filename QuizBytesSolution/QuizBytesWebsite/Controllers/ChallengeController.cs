@@ -4,12 +4,12 @@ namespace QuizBytesWebsite.Controllers
 {
     public class ChallengeController : Controller
     {
-        public IQuizBytesApiClient _client { get; set; }
+      //  public IQuizBytesApiClient _client { get; set; }
 
-        public ChallengeController(IQuizBytesApiClient client)
+      /*  public ChallengeController(IQuizBytesApiClient client)
         {
             _client = client;
-        }
+        }*/
 
         public ActionResult Register()
         {

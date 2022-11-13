@@ -11,7 +11,7 @@ namespace SQLAccessImplementationLibrary
         {
         }
 
-        public async Task DeleteWebUserAsync(int webUserId)
+        public async Task<bool> DeleteWebUserAsync(int webUserId)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace SQLAccessImplementationLibrary
                         PKWebUserId = webUserId
                     };
 
-                    await connection.ExecuteAsync(commandText, parameters);
+                    return await connection.ExecuteAsync(commandText, parameters)>0;
                 }
             }
             catch (SqlException ex)
@@ -133,7 +133,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task UpdateWebUserAsync(WebUser webUser)
+        public async Task<bool> UpdateWebUserAsync(WebUser webUser)
         {
             try
             {
@@ -159,7 +159,7 @@ namespace SQLAccessImplementationLibrary
                         PKWebUserId = webUser.PKWebUserId
                     };
 
-                    await connection.ExecuteAsync(commandText, parameters);
+                    return await connection.ExecuteAsync(commandText, parameters)>0;
 
                 }
             }

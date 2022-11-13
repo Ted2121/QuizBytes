@@ -50,7 +50,7 @@ namespace QuizBytesAPIServer.Controllers
                 return NotFound();
             }
 
-            await CourseDataAccess.DeleteCourseAsync(course.FromDto());
+            //await CourseDataAccess.DeleteCourseAsync(course.FromDto());
 
             return Ok();
         }

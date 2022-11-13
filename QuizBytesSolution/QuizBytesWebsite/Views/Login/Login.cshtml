@@ -6,24 +6,30 @@
 }
 <html>
     <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="~/QuizBytesWebsite/Views/Login/StyleSheet.css" />
     <meta charset="UTF-8" />
     <title> Login Page </title>
+    <link rel="stylesheet" href="~/css/LoginViewStyleSheet.css" />
 </head>
 
-    <body>
-    <form>
-        <div class="container">
-            <label>Username : </label>
-            <input type="text" placeholder="Enter Username" name="username" required>
-            <label>Password : </label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-            <button type="submit">Login</button>
-            <input type="checkbox" checked="checked"> Remember me
-            <button type="button" class="cancelbtn"> Cancel</button>
-            <p>Forgot <a href="#"> password? </a></p>
-        </div>
-    </form>
+<body>
+    <h2>Login Page</h2>
+    <br>
+    <div class="login">
+        <form id="login" method="get" action="login.php">
+            <label>
+                <b>Username </b>
+            </label>
+            <input type="text" name="Username" id="Username" placeholder="Username">
+            <br><br>
+            <label>
+                <b> Password </b>
+            </label>
+            <input type="Password" name="Pass" id="Pass" placeholder="Password">
+            <br><br>
+            <Button class="button" asp-controller="Home" asp-action="Index"><span>Login</span></Button>
+            <br><br>
+          <a href="#">  Forgot Password?</a>
+        </form>
+    </div>
 </body>
 </html>

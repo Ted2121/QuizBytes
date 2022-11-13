@@ -1,0 +1,79 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background-color: #0f0e0d;
+    font-family: 'Arial';
+}
+
+.login {
+    width: 382px;
+    overflow: hidden;
+    margin: auto;
+    padding: 80px;
+    background: orange;
+    border-radius: 15px;
+    border-color:white;
+    border:solid;
+}
+
+h2 {
+    text-align: center;
+    color: ghostwhite;
+    padding: 20px;
+}
+
+label {
+    color: ghostwhite;
+    font-size: 17px;
+}
+
+#Username {
+    width: 390px;
+    height: 30px;
+    border-radius: 3px;
+    padding-left: 8px;
+}
+
+#Pass {
+    width: 390px;
+    height: 30px;
+    border-radius: 3px;
+    padding-left: 8px;
+}
+
+button {
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    margin: 0px 40px;
+    transition: all 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button:hover span {
+    padding-right: 25px;
+}
+ .button:hover span:after {
+opacity: 1;
+right: 0;
+}
+ .button:hover{
+     background-color:dimgrey;
+ }
+a{
+    margin:0px 120px;
+}

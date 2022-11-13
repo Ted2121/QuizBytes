@@ -33,9 +33,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Chapters));
             this.dashboardNavigationButton = new System.Windows.Forms.Button();
             this.chaptersNavigationButton = new System.Windows.Forms.Button();
@@ -43,6 +43,9 @@
             this.webusersNavigationButton = new System.Windows.Forms.Button();
             this.lineSeparator = new System.Windows.Forms.Label();
             this.topicChaptersDataGrid = new System.Windows.Forms.DataGridView();
+            this.course = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horizontalLineSeparator = new System.Windows.Forms.Label();
             this.courseComboBox = new System.Windows.Forms.ComboBox();
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
@@ -55,9 +58,6 @@
             this.chaptersConfirmButton = new System.Windows.Forms.PictureBox();
             this.chaptersCancelButton = new System.Windows.Forms.PictureBox();
             this.chaptersDeleteButton = new System.Windows.Forms.PictureBox();
-            this.course = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chapterDescription = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.topicChaptersDataGrid)).BeginInit();
@@ -142,43 +142,66 @@
             // topicChaptersDataGrid
             // 
             this.topicChaptersDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.topicChaptersDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.topicChaptersDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.topicChaptersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.topicChaptersDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.course,
             this.subject,
             this.chapterName});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.topicChaptersDataGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.topicChaptersDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.topicChaptersDataGrid.EnableHeadersVisualStyles = false;
             this.topicChaptersDataGrid.GridColor = System.Drawing.Color.White;
             this.topicChaptersDataGrid.Location = new System.Drawing.Point(375, 80);
             this.topicChaptersDataGrid.Name = "topicChaptersDataGrid";
             this.topicChaptersDataGrid.RowHeadersVisible = false;
             this.topicChaptersDataGrid.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.topicChaptersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.topicChaptersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.topicChaptersDataGrid.RowTemplate.Height = 25;
             this.topicChaptersDataGrid.Size = new System.Drawing.Size(1450, 400);
             this.topicChaptersDataGrid.TabIndex = 11;
             this.topicChaptersDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.singleAnswerDataGrid_CellContentClick);
+            // 
+            // course
+            // 
+            this.course.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.course.HeaderText = "Course";
+            this.course.MinimumWidth = 483;
+            this.course.Name = "course";
+            this.course.Width = 483;
+            // 
+            // subject
+            // 
+            this.subject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.subject.HeaderText = "Subject";
+            this.subject.MinimumWidth = 483;
+            this.subject.Name = "subject";
+            this.subject.Width = 483;
+            // 
+            // chapterName
+            // 
+            this.chapterName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.chapterName.HeaderText = "Chapter Name";
+            this.chapterName.MinimumWidth = 483;
+            this.chapterName.Name = "chapterName";
             // 
             // horizontalLineSeparator
             // 
@@ -313,29 +336,6 @@
             this.chaptersDeleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.chaptersDeleteButton.TabIndex = 23;
             this.chaptersDeleteButton.TabStop = false;
-            // 
-            // course
-            // 
-            this.course.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.course.HeaderText = "Course";
-            this.course.MinimumWidth = 483;
-            this.course.Name = "course";
-            this.course.Width = 483;
-            // 
-            // subject
-            // 
-            this.subject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.subject.HeaderText = "Subject";
-            this.subject.MinimumWidth = 483;
-            this.subject.Name = "subject";
-            this.subject.Width = 483;
-            // 
-            // chapterName
-            // 
-            this.chapterName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.chapterName.HeaderText = "Chapter Name";
-            this.chapterName.MinimumWidth = 483;
-            this.chapterName.Name = "chapterName";
             // 
             // chapterDescription
             // 

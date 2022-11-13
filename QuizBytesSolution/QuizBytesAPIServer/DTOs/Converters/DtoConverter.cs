@@ -106,21 +106,21 @@ namespace QuizBytesAPIServer.DTOs.Converters
 
         #region CurrentChallenge conversion methods
 
-        public static CurrentChallengeDto ToDto(this UserScoreInChallenge currentChallengeToConvert)
+        public static CurrentChallengeDto ToDto(this CurrentChallengeParticipant currentChallengeToConvert)
         {
             var currentChallengeDto = new CurrentChallengeDto();
             currentChallengeToConvert.CopyPropertiesTo(currentChallengeDto);
             return currentChallengeDto;
         }
 
-        public static UserScoreInChallenge FromDto(this CurrentChallengeDto currentChallengeDtoToConvert)
+        public static CurrentChallengeParticipant FromDto(this CurrentChallengeDto currentChallengeDtoToConvert)
         {
-            var currentChallenge = new UserScoreInChallenge();
+            var currentChallenge = new CurrentChallengeParticipant();
             currentChallengeDtoToConvert.CopyPropertiesTo(currentChallenge);
             return currentChallenge;
         }
 
-        public static IEnumerable<CurrentChallengeDto> ToDtos(this IEnumerable<UserScoreInChallenge> currentChallengesToConvert)
+        public static IEnumerable<CurrentChallengeDto> ToDtos(this IEnumerable<CurrentChallengeParticipant> currentChallengesToConvert)
         {
             foreach (var currentChallenge in currentChallengesToConvert)
             {
@@ -128,7 +128,7 @@ namespace QuizBytesAPIServer.DTOs.Converters
             }
         }
 
-        public static IEnumerable<UserScoreInChallenge> FromDtos(this IEnumerable<CurrentChallengeDto> currentChallengeDtosToConvert)
+        public static IEnumerable<CurrentChallengeParticipant> FromDtos(this IEnumerable<CurrentChallengeDto> currentChallengeDtosToConvert)
         {
             foreach (var currentChallengeDto in currentChallengeDtosToConvert)
             {

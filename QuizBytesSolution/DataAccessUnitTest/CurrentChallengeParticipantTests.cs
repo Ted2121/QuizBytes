@@ -24,13 +24,13 @@ namespace DataAccessUnitTest
             int randomTotalPoints = _random.Next(1, 500);
             int randomAvailablePoints = _random.Next(1, 500);
 
-            _user = new WebUser("testusername", "testpassword", "testemail", randomTotalPoints, randomAvailablePoints);
+            _user = new WebUser(randomId, "testusername", "testpassword", "testemail", randomTotalPoints, randomAvailablePoints);
             _course = new Course("testname", "testdescription");
             _random = new Random();
 
             _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock(Configuration.CONNECTION_STRING);
 
-            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+           
         }
 
         [TearDown]
@@ -82,9 +82,9 @@ namespace DataAccessUnitTest
         public async Task TestDeleteWithExistingUser() // not sure if we want to test for non existing users or not, that's why I added the "WithExisting" part
         {
             //Arrange is done in SetUp
-
+            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
             //act
-            bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user);
+            bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.PKWebUserId);
 
             //Assert
             Assert.That(deleted, Is.True);

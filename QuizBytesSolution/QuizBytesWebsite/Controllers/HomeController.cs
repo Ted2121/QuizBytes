@@ -23,6 +23,25 @@ namespace QuizBytesWebsite.Controllers
             return View();
         }
 
+        public IActionResult Quiz()
+        {
+            return View();
+        }
+
+        public IActionResult Leaderboard()
+        {
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+        /*public IActionResult Challenge()
+        {
+            return View();
+        }*/
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

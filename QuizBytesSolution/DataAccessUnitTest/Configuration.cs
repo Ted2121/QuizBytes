@@ -8,6 +8,6 @@ namespace SQLAccessImplementationLibraryUnitTest
 {
     public static class Configuration
     {
-        public const string CONNECTION_STRING = " \\SQLExpress;Database=CSC-CSD-S212_10407567;Trusted_Connection=True;\"";
+        public const string CONNECTION_STRING = " Server=.hildur.ucn.dk;Database=CSC-CSD-S212_10407567;Trusted_Connection=True;";
     }
 }

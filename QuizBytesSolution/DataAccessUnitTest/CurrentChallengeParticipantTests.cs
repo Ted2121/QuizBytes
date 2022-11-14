@@ -13,31 +13,31 @@ namespace DataAccessUnitTest
     {
         WebUser? _user;
         Course? _course;
-        Random _random;
+        Random? _random;
 
-        ICurrentChallengeParticipantDataAccess _currentChallengeParticipantDataAccess;
+        ICurrentChallengeParticipantDataAccess ?_currentChallengeParticipantDataAccess;
 
         [SetUp]
-        public async void SetUp()
+        public async Task SetUp()
         {
+            _random = new Random();
             int randomId = _random.Next(1, 500);
             int randomTotalPoints = _random.Next(1, 500);
             int randomAvailablePoints = _random.Next(1, 500);
 
             _user = new WebUser(randomId, "testusername", "testpassword", "testemail", randomTotalPoints, randomAvailablePoints);
             _course = new Course("testname", "testdescription");
-            _random = new Random();
 
             _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock(Configuration.CONNECTION_STRING);
 
            
         }
 
-        [TearDown]
-        public async void TearDown()
+      /*  [TearDown]
+        public async Task TearDown()
         {
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
-        }
+        }*/
 
         [Test]
         public async Task TestUserLimitBlockOnInsertAttemptWithRandomUserIds()
@@ -58,6 +58,7 @@ namespace DataAccessUnitTest
             // Act
             
             var insertion = () =>  _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
             // Assert
 

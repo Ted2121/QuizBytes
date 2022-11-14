@@ -39,9 +39,11 @@ namespace SQLAccessImplementationLibraryUnitTest
                     };
                     try
                     {
-                        await connection.ExecuteAsync(commandText, parameters, transaction: transaction);
-                        var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters, transaction : transaction);
+                       // await connection.ExecuteAsync(commandText, parameters, transaction: transaction); -- works just fine without this line, any particular reason on why we have it?
+                       var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters, transaction : transaction);
                         transaction.Commit();
+                      //  var currentChallengeRowId = 1; --added just to check if it works fine without the above line(checked the db and both awaits are
+                      // inserting data to the db which is not good for obvious reasons. Now it also works fine(inserts just once) but the test still doesnt work.
                         return currentChallengeRowId;
                     }
                     catch (SqlException ex)

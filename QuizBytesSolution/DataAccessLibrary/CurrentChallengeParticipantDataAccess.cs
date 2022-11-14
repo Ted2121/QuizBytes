@@ -85,13 +85,14 @@ namespace SQLAccessImplementationLibrary
             try
             {
                 string commandText = "DELETE FROM CurrentChallengeParticipant WHERE FKWebUserId = @FKWebUserId";
+                string commandToReseedIdentity = "DBCC CHECKIDENT ('[TestCurrentChallengeParticipant]', RESEED, 0)";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
                         FKWebUserId = webUserId,
                     };
-
+                    await connection.ExecuteAsync(commandToReseedIdentity);
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
             }

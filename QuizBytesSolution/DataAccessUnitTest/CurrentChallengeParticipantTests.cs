@@ -45,25 +45,24 @@ public class CurrentChallengeParticipantTests
 
         // Arrange
         await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
-        int randomId = _random.Next(1, 500);
+            //int randomId = _random.Next(1, 500); -- commented out because it is unused.
+            //has to be empty and if this is the first test to run we cannot ensure that without adding this line
 
-        // sadly logic cannot be avoided in this test as we need to create 100 users to reach the challenge limit
-        WebUser[] webUsers = new WebUser[100];
+            // sadly logic cannot be avoided in this test as we need to create 100 users to reach the challenge limit
+            WebUser[] webUsers = new WebUser[100];
         for (int i = 0; i < webUsers.Length; i++)
         {
             // we only care about it for the challenge test
-            webUsers[i] = new WebUser(randomId); //can't we just put i here so the I would just be a counter
+            webUsers[i] = new WebUser(i); //replaced the randomId with i, ensures no duplicates.
             await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(webUsers[i], _course);
         }
 
         // Act
             
         var insertion = () =>  _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
-        await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            // Assert
 
-        // Assert
-
-        Assert.That(insertion(), Throws.Exception);
+            Assert.ThrowsAsync<Exception>(async () => await insertion()) ;
 
     }
     [Test]

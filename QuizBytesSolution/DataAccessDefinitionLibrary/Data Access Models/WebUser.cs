@@ -14,8 +14,10 @@ namespace DataAccessDefinitionLibrary.Data_Access_Models
         public int ElapsedSecondsInChallenge { get; set; }
         // public IEnumerable<WebUserChapterUnlock> WebUserChapterUnlocks { get; set; }
         
-        public WebUser(string username, string password, string email, int totalPoints, int availablePoints, int id)
+        public WebUser(int id, string username, string password, string email, int totalPoints, int availablePoints)
         {
+            //constuctor for receiving and build an object -- why not just remove ID here since I don't think we'll need it?
+            //don't wanna mess with code too much so I'll leave it like this for now.
             PKWebUserId = id;
             Username = username;
             PasswordHash = password;
@@ -24,9 +26,23 @@ namespace DataAccessDefinitionLibrary.Data_Access_Models
             AvailablePoints = availablePoints;
         }
 
+        public WebUser(string username, string password, string email, int totalPoints, int availablePoints)
+        {
+            //constructor for inserting a WebUser object + testing
+            Username = username;
+            PasswordHash = password;
+            Email = email;
+            TotalPoints = totalPoints;
+            AvailablePoints = availablePoints;
+        }
         public WebUser()
         {
+                
+        }
 
+        public WebUser(int id)
+        {
+            PKWebUserId = id;
         }
     }
 }

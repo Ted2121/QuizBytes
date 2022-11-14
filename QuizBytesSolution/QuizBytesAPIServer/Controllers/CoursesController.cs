@@ -3,6 +3,8 @@
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using QuizBytesAPIServer.DTOs;
 using QuizBytesAPIServer.DTOs.Converters;
+using SQLAccessImplementationLibrary;
+using DataAccessDefinitionLibrary.Data_Access_Models;
 
 namespace QuizBytesAPIServer.Controllers
 {
@@ -32,7 +34,7 @@ namespace QuizBytesAPIServer.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<CourseDto>> GetCourseByIdAsync([FromQuery] int courseId)
+        public async Task<ActionResult<CourseDto>> GetCourseByIdAsync(int courseId)
         {
             var course = await CourseDataAccess.GetCourseByIdAsync(courseId);
             if (course == null)
@@ -43,16 +45,12 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteCourseAsync([FromBody] CourseDto course)
+        public async Task<ActionResult> DeleteCourseAsync(int id)
         {
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            await CourseDataAccess.DeleteCourseAsync(course.FromDto());
-
-            return Ok();
+            if (!await CourseDataAccess.DeleteCourseAsync(id))
+            { return NotFound(); }
+            else
+            { return Ok(); }
         }
 
         [HttpPost]
@@ -62,7 +60,7 @@ namespace QuizBytesAPIServer.Controllers
             {
                 return NotFound();
             }
-            var courseModel = await CourseDataAccess.InsertCourseAsync(course.FromDto());
+            await CourseDataAccess.InsertCourseAsync(course.FromDto());
             return Ok(course);
         }
 
@@ -70,12 +68,10 @@ namespace QuizBytesAPIServer.Controllers
         public async Task<ActionResult> UpdateCourseAsync([FromBody] CourseDto course)
         {
 
-            if (course == null)
+            if (course == null || !await CourseDataAccess.UpdateCourseAsync(course.FromDto()))
             {
                 return NotFound();
             }
-
-            await CourseDataAccess.UpdateCourseAsync(course.FromDto());
 
             return Ok();
 

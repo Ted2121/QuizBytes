@@ -127,7 +127,7 @@ namespace SQLAccessImplementationLibraryUnitTest
 
         public async Task<int> GetRowAmountFromDatabaseAsync()
         {
-            string commandText = "SELECT COUNT PKCurrentChallengeParticipantId FROM TestCurrentChallengeParticipant";
+            string commandText = "SELECT COUNT(PKCurrentChallengeParticipantId) FROM TestCurrentChallengeParticipant";
             try
             {
                 using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))

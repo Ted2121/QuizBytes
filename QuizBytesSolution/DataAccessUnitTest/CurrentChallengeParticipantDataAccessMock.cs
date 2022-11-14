@@ -39,8 +39,8 @@ namespace SQLAccessImplementationLibraryUnitTest
                     };
                     try
                     {
-                        await connection.ExecuteAsync(commandText, parameters);
-                        var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
+                        await connection.ExecuteAsync(commandText, parameters, transaction: transaction);
+                        var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters, transaction : transaction);
                         transaction.Commit();
                         return currentChallengeRowId;
                     }

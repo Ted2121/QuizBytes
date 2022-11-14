@@ -33,9 +33,9 @@ namespace SQLAccessImplementationLibrary
                     };
                     try
                     {
-                        await connection.ExecuteAsync(commandText, parameters);
+                        await connection.ExecuteAsync(commandText, parameters, transaction: transaction);
                         transaction.Commit();
-                        var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
+                        var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters, transaction: transaction);
                         return currentChallengeRowId;
                     }
                     // TODO add catching Exception as well

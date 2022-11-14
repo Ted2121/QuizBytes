@@ -3,7 +3,7 @@
 //2. Button must either register or spit out an error based on result
 //3. button must change text
 var registered = false; // this will be replaced by another variable to handle retrieving data from db(indirectly)
-var availableSpaces;
+var availableSpaces=0;
 $("#register-button-logic").ready(
 function changeButtonLogicToHandleRegisterAndDeregister() {
     if (registered==false && availableSpaces>0) {

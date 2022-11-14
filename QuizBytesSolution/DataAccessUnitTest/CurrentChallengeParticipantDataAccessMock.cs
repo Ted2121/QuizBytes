@@ -40,8 +40,8 @@ namespace SQLAccessImplementationLibraryUnitTest
                     try
                     {
                         await connection.ExecuteAsync(commandText, parameters);
-                        transaction.Commit();
                         var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
+                        transaction.Commit();
                         return currentChallengeRowId;
                     }
                     catch (SqlException ex)
@@ -113,8 +113,10 @@ namespace SQLAccessImplementationLibraryUnitTest
             try
             {
                 string commandText = "DELETE FROM TestCurrentChallengeParticipant";
+                string commandToReseedIdentity = "DBCC CHECKIDENT ('[TestCurrentChallengeParticipant]', RESEED, 0)";
                 using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
                 {
+                    await connection.ExecuteAsync(commandToReseedIdentity);
                     return await connection.ExecuteAsync(commandText) > 0;
                 }
             }

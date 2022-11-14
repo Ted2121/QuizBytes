@@ -64,7 +64,7 @@ namespace DataAccessUnitTest
             Assert.That(insertion, Throws.Exception);
 
         }
-
+        [Test]
         public async Task TestInsertMethodPositiveExpectation()
         {
             //Arrange
@@ -79,6 +79,7 @@ namespace DataAccessUnitTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+        [Test]
         public async Task TestDeleteWithExistingUser() // not sure if we want to test for non existing users or not, that's why I added the "WithExisting" part
         {
             //Arrange is done in SetUp

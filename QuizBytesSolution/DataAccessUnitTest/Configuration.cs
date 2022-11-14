@@ -8,6 +8,6 @@ namespace SQLAccessImplementationLibraryUnitTest
 {
     public static class Configuration
     {
-        public const string CONNECTION_STRING = "Data Source=.;Integrated Security=True;initial catalog=BlogSharp";
+        public const string CONNECTION_STRING = " \\SQLExpress;Database=CSC-CSD-S212_10407567;Trusted_Connection=True;\"";
     }
 }

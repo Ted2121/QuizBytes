@@ -85,7 +85,7 @@ namespace SQLAccessImplementationLibraryUnitTest
             }
         }
 
-        public async Task<bool> DeleteWebUserFromChallengeAsync(WebUser webuser)
+        public async Task<bool> DeleteWebUserFromChallengeAsync(int id)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace SQLAccessImplementationLibraryUnitTest
                 {
                     var parameters = new
                     {
-                        FKWebUserId = webuser.PKWebUserId
+                        FKWebUserId = id
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters) > 0;

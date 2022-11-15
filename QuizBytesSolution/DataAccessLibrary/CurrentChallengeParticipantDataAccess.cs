@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -14,49 +15,72 @@ namespace SQLAccessImplementationLibrary
 
         }
 
-        public async Task<int> AddWebUserToChallengeAsync(WebUser webUser,Course course)
+        public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
         {
+            var currentChallengeRowId = 0;
             int userLimitForChallenges = 100;
-            var rowAmount = await GetRowAmountFromDatabaseAsync();
-            if (rowAmount < userLimitForChallenges)
+
+            using (SqlConnection connection = CreateConnection())
             {
-                using (SqlConnection connection = CreateConnection())
+                connection.Open();
+                IsolationLevel isolationLevel = IsolationLevel.RepeatableRead;
+                SqlTransaction transaction = connection.BeginTransaction(isolationLevel);
+                string commandText = "INSERT INTO CurrentChallengeParticipant (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
+                var parameters = new
                 {
-                    connection.Open();
-                    IsolationLevel isolationLevel = IsolationLevel.RepeatableRead;
-                    SqlTransaction transaction = connection.BeginTransaction(isolationLevel);
-                    string commandText = "INSERT INTO CurrentChallengeParticipant (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
-                    var parameters = new
-                    {
-                        FKWebUserId = webUser.PKWebUserId,
-                        FKCourseId = course.PKCourseId
-                    };
-                    try
+                    FKWebUserId = webUser.PKWebUserId,
+                    FKCourseId = course.PKCourseId
+                };
+                try
+                {
+                    var rowAmount = await GetRowAmountFromDatabaseAsync();
+                    if (rowAmount < userLimitForChallenges)
                     {
                         await connection.ExecuteAsync(commandText, parameters, transaction: transaction);
+
                         transaction.Commit();
-                        var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters, transaction: transaction);
-                        return currentChallengeRowId;
                     }
-                    // TODO add catching Exception as well
-                    catch (SqlException ex)
+                    else
                     {
                         try
                         {
                             transaction.Rollback();
-                            throw new Exception($"Exception while trying to insert into CurrentChallengeParticipant table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
+                            throw new Exception($"SqlException while trying to insert into CurrentChallengeParticipant table. Transaction successfully rolled back");
                         }
                         catch
                         {
-                            throw new Exception($"Exception while trying to rollback transaction. The exception was: '{ex.Message}'", ex);
+                            throw new Exception($"Exception while trying to rollback transaction.");
                         }
                     }
+
+                    string readCommand = "Select * FROM CurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
+                    var param = new
+                    {
+                        FKWebUSerId = webUser.PKWebUserId
+                    };
+                    currentChallengeRowId = (int)await connection.ExecuteScalarAsync(readCommand, param);
+
+                    return currentChallengeRowId;
                 }
+                catch (SqlException ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"SqlException while trying to insert into CurrentChallengeParticipant table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
+                    }
+                    catch
+                    {
+                        throw new Exception($"Exception while trying to rollback transaction. The exception was: '{ex.Message}'", ex);
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Exception while trying to insert into CurrentChallengeParticipant table.The exception was: '{e.Message}'", e);
+                }
+
             }
-            else
-            {
-                return 0;
-            }
+
         }
 
         public async Task<IEnumerable<CurrentChallengeParticipant>> GetAllRowsInChallengeAsync()

@@ -8,6 +8,6 @@ namespace SQLAccessImplementationLibraryUnitTest
 {
     public static class Configuration
     {
-        public const string CONNECTION_STRING = " Server=hildur.ucn.dk;uid=CSC-CSD-S212_10407567;password=Password1!;Database=CSC-CSD-S212_10407567;";
+        public const string CONNECTION_STRING = "Server=hildur.ucn.dk;uid=CSC-CSD-S212_10407567;password=Password1!;Database=CSC-CSD-S212_10407567;";
     }
 }

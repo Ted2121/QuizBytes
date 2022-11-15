@@ -1,14 +1,9 @@
-﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
+﻿using Dapper;
+using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using Dapper;
 using SQLAccessImplementationLibrary;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace SQLAccessImplementationLibraryUnitTest
 {
@@ -22,48 +17,70 @@ namespace SQLAccessImplementationLibraryUnitTest
 
         public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
         {
+            var currentChallengeRowId = 0;
             int userLimitForChallenges = 100;
-            var rowAmount = await GetRowAmountFromDatabaseAsync();
-            if (rowAmount < userLimitForChallenges)
+
+            using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
             {
-                using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
+                connection.Open();
+                IsolationLevel isolationLevel = IsolationLevel.RepeatableRead;
+                SqlTransaction transaction = connection.BeginTransaction(isolationLevel);
+                string commandText = "INSERT INTO TestCurrentChallengeParticipant (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
+                var parameters = new
                 {
-                    connection.Open();
-                    IsolationLevel isolationLevel = IsolationLevel.RepeatableRead;
-                    SqlTransaction transaction = connection.BeginTransaction(isolationLevel);
-                    string commandText = "INSERT INTO TestCurrentChallengeParticipant (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
-                    var parameters = new
+                    FKWebUserId = webUser.PKWebUserId,
+                    FKCourseId = course.PKCourseId
+                };
+                try
+                {
+                    var rowAmount = await GetRowAmountFromDatabaseAsync();
+                    if (rowAmount < userLimitForChallenges)
                     {
-                        FKWebUserId = webUser.PKWebUserId,
-                        FKCourseId = course.PKCourseId
-                    };
-                    try
-                    {
-                       // await connection.ExecuteAsync(commandText, parameters, transaction: transaction); -- works just fine without this line, any particular reason on why we have it?
-                       var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters, transaction : transaction);
-                        transaction.Commit();
-                      //  var currentChallengeRowId = 1; --added just to check if it works fine without the above line(checked the db and both awaits are
-                      // inserting data to the db which is not good for obvious reasons. Now it also works fine(inserts just once) but the test still doesnt work.
-                        return currentChallengeRowId;
+                    await connection.ExecuteAsync(commandText, parameters, transaction: transaction);
+
+                    transaction.Commit();
                     }
-                    catch (SqlException ex)
+                    else
                     {
                         try
                         {
-                            transaction.Rollback();
-                            throw new Exception($"Exception while trying to insert into TestCurrentChallengeParticipant table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
+                        transaction.Rollback();
+                            throw new Exception($"SqlException while trying to insert into TestCurrentChallengeParticipant table. Transaction successfully rolled back");
                         }
                         catch
                         {
-                            throw new Exception($"Exception while trying to rollback transaction. The exception was: '{ex.Message}'", ex);
+                            throw new Exception($"Exception while trying to rollback transaction.");
                         }
                     }
+
+                    string readCommand = "Select * FROM TestCurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
+                    var param = new
+                    {
+                        FKWebUSerId = webUser.PKWebUserId
+                    };
+                    currentChallengeRowId = (int)await connection.ExecuteScalarAsync(readCommand, param);
+
+                    return currentChallengeRowId;
                 }
+                catch (SqlException ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"SqlException while trying to insert into TestCurrentChallengeParticipant table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
+                    }
+                    catch
+                    {
+                        throw new Exception($"Exception while trying to rollback transaction. The exception was: '{ex.Message}'", ex);
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Exception while trying to insert into TestCurrentChallengeParticipant table.The exception was: '{e.Message}'", e);
+                }
+
             }
-            else
-            {
-                return 0;
-            }
+
         }
 
         public async Task<IEnumerable<CurrentChallengeParticipant>> GetAllRowsInChallengeAsync()
@@ -136,8 +153,8 @@ namespace SQLAccessImplementationLibraryUnitTest
             {
                 using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
                 {
-                    var rowAmount = await connection.ExecuteAsync(commandText);
-                    return rowAmount;
+                    var rowAmount = await connection.ExecuteScalarAsync(commandText);
+                    return (int)rowAmount;
                 }
             }
             catch (SqlException ex)

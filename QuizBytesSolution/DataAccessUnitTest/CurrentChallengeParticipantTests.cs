@@ -18,7 +18,7 @@ namespace DataAccessUnitTest
         public void SetUp()
         {
             _random = new Random();
-            int randomId = _random.Next(1, 500);
+            int randomId = _random.Next(101, 500);
             int randomTotalPoints = _random.Next(1, 500);
             int randomAvailablePoints = _random.Next(1, 500);
 

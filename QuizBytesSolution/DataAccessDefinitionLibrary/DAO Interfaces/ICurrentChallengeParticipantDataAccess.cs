@@ -14,6 +14,6 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<IEnumerable<CurrentChallengeParticipant>> GetAllRowsInChallengeAsync();
         Task<bool> ClearTempTableBeforeNextChallengeAsync();
         Task<int> GetRowAmountFromDatabaseAsync();
-        Task<bool> CheckIfWebUserIsInChallenge(int webUserId);
+        Task<bool> CheckIfWebUserIsInChallengeAsync(int webUserId);
     }
 }

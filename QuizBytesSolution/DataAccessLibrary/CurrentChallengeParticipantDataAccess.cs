@@ -166,7 +166,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<bool> CheckIfWebUserIsInChallenge(int webUserId)
+        public async Task<bool> CheckIfWebUserIsInChallengeAsync(int webUserId)
         {
             using (SqlConnection connection = CreateConnection())
             {

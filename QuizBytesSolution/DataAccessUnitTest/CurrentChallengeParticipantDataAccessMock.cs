@@ -36,7 +36,7 @@ namespace SQLAccessImplementationLibraryUnitTest
                     var rowAmount = await GetRowAmountFromDatabaseAsync();
                     if (rowAmount < userLimitForChallenges)
                     {
-                    await connection.ExecuteAsync(commandText, parameters, transaction: transaction);
+                        currentChallengeRowId = await connection.QuerySingleAsync<int>(commandText, parameters, transaction: transaction);
 
                     transaction.Commit();
                     }
@@ -53,12 +53,12 @@ namespace SQLAccessImplementationLibraryUnitTest
                         }
                     }
 
-                    string readCommand = "Select * FROM TestCurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
-                    var param = new
-                    {
-                        FKWebUSerId = webUser.PKWebUserId
-                    };
-                    currentChallengeRowId = (int)await connection.ExecuteScalarAsync(readCommand, param);
+                    //string readCommand = "Select * FROM TestCurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
+                    //var param = new
+                    //{
+                    //    FKWebUSerId = webUser.PKWebUserId
+                    //};
+                    //currentChallengeRowId = await connection.QuerySingleAsync<int>(commandText, parameters);
 
                     return currentChallengeRowId;
                 }

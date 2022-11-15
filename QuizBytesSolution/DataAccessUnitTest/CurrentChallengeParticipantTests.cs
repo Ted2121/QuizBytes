@@ -99,7 +99,7 @@ namespace DataAccessUnitTest
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
             //Act
-            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallenge(_user.PKWebUserId);
+            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.PKWebUserId);
 
             // Assert
             Assert.That(actual, Is.False);
@@ -114,11 +114,40 @@ namespace DataAccessUnitTest
             await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
             //Act
-            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallenge(_user.PKWebUserId);
+            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.PKWebUserId);
 
             // Assert
             Assert.That(actual, Is.False);
 
+        }
+
+        [Test]
+        public async Task TestingIfCorrectRowAmountIsReturned()
+        {
+            // Arrange
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+
+            // Act
+            var actual = await _currentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
+
+            // Assert
+            Assert.That(actual, Is.EqualTo(1));
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+        }
+
+        [Test]
+        public async Task TestingIfClearingTheTableWorks()
+        {
+            // Arrange
+            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+
+
+            // Act
+            var actual = await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
+            // Assert
+            Assert.That(actual, Is.EqualTo(true));
         }
     }
 }

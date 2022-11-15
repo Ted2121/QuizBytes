@@ -9,7 +9,7 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
     public interface IQuestionDataAccess
     {
-        Task<Question> InsertQuestionAsync(Question question);
+        Task<int> InsertQuestionAsync(Question question);
         Task<Question> GetQuestionByIdAsync(int questionId);
 
         Task<IEnumerable<Question>> GetQuestionsByChapterAsync(Chapter chapter);

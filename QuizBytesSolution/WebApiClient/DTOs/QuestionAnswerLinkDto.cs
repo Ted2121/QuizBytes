@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebApiClient.DTOs
 {
-    internal class QuestionAnswerLinkDto
+    public class QuestionAnswerLinkDto
     {
+        public QuestionDto Question { get; set; }
+        public IEnumerable<AnswerDto> Answers { get; set; }
     }
 }

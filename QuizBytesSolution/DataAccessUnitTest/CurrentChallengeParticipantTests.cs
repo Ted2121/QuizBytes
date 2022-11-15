@@ -54,12 +54,15 @@ namespace DataAccessUnitTest
 
             Assert.That(async () => await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course), Throws.Exception);
 
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
         }
 
         [Test]
         public async Task TestInsertMethodPositiveExpectation()
         {
             //Arrange
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
             int randomTestId = 1;
             _user.PKWebUserId = randomTestId;
             _course.PKCourseId = randomTestId;
@@ -69,20 +72,25 @@ namespace DataAccessUnitTest
             var actual = await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.That(actual, Is.EqualTo(expected));
+
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
         }
 
         [Test]
         public async Task TestDeleteWithExistingUser() // not sure if we want to test for non existing users or not, that's why I added the "WithExisting" part
         {
+            //Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
-            //Arrange is done in SetUp
             await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+
             //act
             bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.PKWebUserId);
 
             //Assert
             Assert.That(deleted, Is.True);
+
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
         }
     }
 }

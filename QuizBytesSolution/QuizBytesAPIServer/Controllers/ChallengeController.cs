@@ -114,6 +114,18 @@ namespace QuizBytesAPIServer.Controllers
 
             return Ok(quiz);
         }
+
+        [HttpGet]
+        [Route("query-participation")]
+        public async Task<ActionResult<bool>> CheckIfUserIsInChallengeAsync(int webUserId)
+        {
+            var result = await CurrentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(webUserId);
+            if (!result)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
     }
 }
 

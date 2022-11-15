@@ -103,7 +103,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<Subject> InsertSubjectAsync(Subject subject)
+        public async Task<int> InsertSubjectAsync(Subject subject)
         {
             try
             {
@@ -118,9 +118,7 @@ namespace SQLAccessImplementationLibrary
                         Description = subject.Description
                     };
 
-                    await connection.ExecuteAsync(commandText, parameters);
-                    subject.PKSubjectId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
-                    return subject;
+                    return subject.PKSubjectId = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
             catch (SqlException ex)

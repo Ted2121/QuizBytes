@@ -130,7 +130,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<Chapter> InsertChapterAsync(Chapter chapter)
+        public async Task<int> InsertChapterAsync(Chapter chapter)
         {
             try
             {
@@ -146,9 +146,7 @@ namespace SQLAccessImplementationLibrary
                     };
 
 
-                    await connection.ExecuteAsync(commandText, parameters);
-                    chapter.PKChapterId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
-                    return chapter;
+                    return chapter.PKChapterId = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
             catch (SqlException ex)

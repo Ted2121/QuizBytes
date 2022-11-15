@@ -9,7 +9,7 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
     public interface IWebUserChapterUnlockDataAccess
     {
-        Task<int> InsertWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock);
+        Task<WebUserChapterUnlock> InsertWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock);
         Task<IEnumerable<WebUserChapterUnlock>> GetAllWebUserChapterUnlocksAsync();
         Task<IEnumerable<WebUserChapterUnlock>> GetAllWebUserChapterUnlocksByWebUserAsync(WebUser webUser);
         Task<IEnumerable<WebUserChapterUnlock>> GetAllWebUserChapterUnlocksByChapterAsync(Chapter chapter);

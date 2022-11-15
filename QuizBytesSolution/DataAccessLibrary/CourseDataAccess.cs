@@ -92,11 +92,8 @@ namespace SQLAccessImplementationLibrary
                         Description = course.Description
                     };
 
-                    await connection.ExecuteAsync(commandText, parameters);
+                    return course.PKCourseId = await connection.QuerySingleAsync<int>(commandText, parameters);
 
-                    string readCommand = "SELECT * WHERE Name = @Name AND Description = @Description";
-                    course.PKCourseId = (int)await connection.Query(readCommand, parameters);
-                    return course.PKCourseId;
                 }
             }
             catch (SqlException ex)

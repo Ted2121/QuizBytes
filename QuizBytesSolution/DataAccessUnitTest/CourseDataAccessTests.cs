@@ -32,7 +32,7 @@ namespace SQLAccessImplementationLibraryUnitTest
 
 
             // Act
-            var 
+             
 
             // Assert
         }

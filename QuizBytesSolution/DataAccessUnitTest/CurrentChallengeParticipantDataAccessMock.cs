@@ -53,12 +53,6 @@ namespace SQLAccessImplementationLibraryUnitTest
                         }
                     }
 
-                    //string readCommand = "Select * FROM TestCurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
-                    //var param = new
-                    //{
-                    //    FKWebUSerId = webUser.PKWebUserId
-                    //};
-                    //currentChallengeRowId = await connection.QuerySingleAsync<int>(commandText, parameters);
 
                     return currentChallengeRowId;
                 }

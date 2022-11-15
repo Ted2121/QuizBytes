@@ -1,4 +1,5 @@
 using DataAccessDefinitionLibrary.DAO_Interfaces;
+using QuizBytesAPIServer.DTOs;
 using QuizBytesAPIServer.Factories;
 using QuizBytesAPIServer.Helper_Classes;
 using SQLAccessImplementationLibrary;

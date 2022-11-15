@@ -58,21 +58,11 @@ namespace QuizBytesAPIServer.Controllers
         [HttpDelete]
         public async Task<ActionResult> DeleteSubjectAsync(int id)
         {
-<<<<<<< HEAD
-            if (subject == null)
-            {
-                return NotFound();
-            }
 
-           // await SubjectDataAccess.DeleteSubjectAsync(subject.FromDto());
-
-            return Ok();
-=======
             if (!await SubjectDataAccess.DeleteSubjectAsync(id))
             { return NotFound(); }
             else
             { return Ok(); }
->>>>>>> main
         }
 
         [HttpPost]

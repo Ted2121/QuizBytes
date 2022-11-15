@@ -44,6 +44,7 @@ namespace QuizBytesAPIServer.Controllers
             }
             return Ok(currentChallengeEntries.ToDtos());
 
+
         }
 
         [HttpDelete]

@@ -23,7 +23,11 @@ namespace SQLAccessImplementationLibrary
                         PKWebUserId = webUserId
                     };
 
+<<<<<<< HEAD
                     return await connection.ExecuteAsync(commandText, parameters)>0;
+=======
+                   return await connection.ExecuteAsync(commandText, parameters)>0;
+>>>>>>> main
                 }
             }
             catch (SqlException ex)

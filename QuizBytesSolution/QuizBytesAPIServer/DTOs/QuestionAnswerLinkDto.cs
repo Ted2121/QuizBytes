@@ -7,6 +7,6 @@
         //public int QuestionAnswerLinkId { get; set; }
         public QuestionDto Question { get; set; }
         public IEnumerable<AnswerDto> Answers { get; set; }
-        public int PointReward { get; private set; } = 8;
+        
     }
 }

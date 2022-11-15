@@ -1,5 +1,7 @@
 using DataAccessDefinitionLibrary.DAO_Interfaces;
+using QuizBytesAPIServer.DTOs;
 using QuizBytesAPIServer.Factories;
+using QuizBytesAPIServer.Helper_Classes;
 using SQLAccessImplementationLibrary;
 
 namespace QuizBytesAPIServer
@@ -26,14 +28,18 @@ namespace QuizBytesAPIServer
             builder.Services.AddSingleton<ISubjectDataAccess, SubjectDataAccess>();
             builder.Services.AddSingleton<IWebUserDataAccess, WebUserDataAccess>();
             builder.Services.AddSingleton<IWebUserChapterUnlockDataAccess, WebUserChapterUnlockDataAccess>();
-
+            builder.Services.AddSingleton<ICurrentChallengeParticipantDataAccess, CurrentChallengeParticipantDataAccess>();
             #endregion
 
             #region Factory DI
 
-            builder.Services.AddSingleton<QuestionAnswerLinkFactory>();
-            builder.Services.AddSingleton<QuizFactory>();
+            builder.Services.AddSingleton<IQuestionAnswerLinkFactory, QuestionAnswerLinkFactory>();
+            builder.Services.AddSingleton<IQuizFactory, QuizFactory>();
 
+            #endregion
+
+            #region Helper DI
+            builder.Services.AddSingleton<IRewardsDistributionHelper, RewardsDistributionHelper>();
             #endregion
 
             var app = builder.Build();

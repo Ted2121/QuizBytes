@@ -48,7 +48,7 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("participants/{id}")]
         public async Task<ActionResult> DeregisterParticipantAsync(int id)
         {
             if (!await CurrentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(id))
@@ -88,14 +88,14 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> RegisterParticipantAsync(WebUserDto webUser, CourseDto course)
+        public async Task<ActionResult<int>> RegisterParticipantAsync(WebUserDto webUser, CourseDto course)
         {
             if(webUser == null || course == null)
             {
                 return NotFound();
             }
-            await CurrentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(webUser.FromDto(), course.FromDto());
-            return Ok();
+            
+            return Ok(await CurrentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(webUser.FromDto(), course.FromDto()));
         }
 
         [HttpGet]

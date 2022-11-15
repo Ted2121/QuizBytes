@@ -15,7 +15,7 @@ namespace DataAccessUnitTest
         private ICurrentChallengeParticipantDataAccess? _currentChallengeParticipantDataAccess;
 
         [SetUp]
-        public void SetUp()
+        public async Task SetUpAsync()
         {
             _random = new Random();
             int randomId = _random.Next(101, 500);
@@ -30,13 +30,13 @@ namespace DataAccessUnitTest
         }
 
         [TearDown]
-        public async Task TearDown()
+        public async Task TearDownAsync()
         {
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
         }
 
         [Test]
-        public async Task TestUserLimitBlockOnInsertAttemptWithRandomUserIds()
+        public async Task TestUserLimitBlockOnInsertAsync()
         {
 
             // Arrange
@@ -65,7 +65,7 @@ namespace DataAccessUnitTest
         }
 
         [Test]
-        public async Task TestInsertMethodPositiveExpectation()
+        public async Task TestInsertMethodPositiveExpectationAsync()
         {
             //Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
@@ -114,7 +114,7 @@ namespace DataAccessUnitTest
         }
 
         [Test]
-        public async Task CheckingIfWebUserIsInChallengeExpectingFalse()
+        public async Task CheckingIfWebUserIsInChallengeExpectingFalseAsync()
         {
             //Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
@@ -130,7 +130,7 @@ namespace DataAccessUnitTest
         }
 
         [Test]
-        public async Task CheckingIfWebUserIsInChallengeExpectingTrue()
+        public async Task CheckingIfWebUserIsInChallengeExpectingTrueAsync()
         {
             //Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
@@ -153,7 +153,7 @@ namespace DataAccessUnitTest
         }
 
         [Test]
-        public async Task TestingIfCorrectRowAmountIsReturned()
+        public async Task TestingIfCorrectRowAmountIsReturnedAsync()
         {
             // Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
@@ -175,7 +175,7 @@ namespace DataAccessUnitTest
         }
 
         [Test]
-        public async Task TestingIfClearingTheTableWorks()
+        public async Task TestingIfClearingTheTableWorksAsync()
         {
             // Arrange
             await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);

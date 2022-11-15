@@ -165,14 +165,14 @@ namespace SQLAccessImplementationLibrary
         {
             using (SqlConnection connection = CreateConnection())
             {
-                string readCommand = "SELECT * FROM CurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
-            var param = new
-            {
-                FKWebUSerId = webUserId
-            };
-            var numberOfRowsAffected = await connection.ExecuteAsync(readCommand, param);
+                string readCommand = "SELECT COUNT(FKWebUserId) FROM CurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
+                var param = new
+                {
+                    FKWebUSerId = webUserId
+                };
+                var result = await connection.QuerySingleAsync<int>(readCommand, param);
 
-                return numberOfRowsAffected > 0;
+                return result > 0;
             }
 
         }

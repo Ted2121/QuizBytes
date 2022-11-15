@@ -51,9 +51,16 @@ namespace DataAccessUnitTest
 
             // Act & Assert
 
-            Assert.That(async () => await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course), Throws.Exception);
-
+            try
+            {
+                Assert.That(async () => await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course), Throws.Exception);
+            }
+            finally
+            {
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
+            }
+
 
         }
 
@@ -71,9 +78,16 @@ namespace DataAccessUnitTest
             var actual = await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
             //Assert
-            Assert.That(actual, Is.EqualTo(expected));
-
+            try
+            {
+                Assert.That(actual, Is.EqualTo(expected));
+            }
+            finally
+            {
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
+            }
+
         }
 
         [Test]
@@ -87,9 +101,16 @@ namespace DataAccessUnitTest
             bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.PKWebUserId);
 
             //Assert
-            Assert.That(deleted, Is.True);
+            try
+            {
+                Assert.That(deleted, Is.True);
+            }
+            finally
+            {
 
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            }
+
         }
 
         [Test]
@@ -102,7 +123,9 @@ namespace DataAccessUnitTest
             var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.PKWebUserId);
 
             // Assert
-            Assert.That(actual, Is.False);
+            
+                Assert.That(actual, Is.False);
+         
 
         }
 
@@ -117,7 +140,15 @@ namespace DataAccessUnitTest
             var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.PKWebUserId);
 
             // Assert
-            Assert.That(actual, Is.False);
+            try
+            {
+                Assert.That(actual, Is.True);
+            }
+            finally
+            {
+                await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
+            }
 
         }
 
@@ -132,8 +163,15 @@ namespace DataAccessUnitTest
             var actual = await _currentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
 
             // Assert
-            Assert.That(actual, Is.EqualTo(1));
+            try
+            {
+                Assert.That(actual, Is.EqualTo(1));
+            }
+            finally
+            {
+
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            }
         }
 
         [Test]

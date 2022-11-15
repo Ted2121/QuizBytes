@@ -53,7 +53,7 @@ namespace SQLAccessImplementationLibrary
                         }
                     }
 
-                    string readCommand = "Select * FROM CurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
+                    string readCommand = "SELECT * FROM CurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
                     var param = new
                     {
                         FKWebUSerId = webUser.PKWebUserId
@@ -109,14 +109,13 @@ namespace SQLAccessImplementationLibrary
             try
             {
                 string commandText = "DELETE FROM CurrentChallengeParticipant WHERE FKWebUserId = @FKWebUserId";
-                string commandToReseedIdentity = "DBCC CHECKIDENT ('[TestCurrentChallengeParticipant]', RESEED, 0)";
+                
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
                         FKWebUserId = webUserId,
                     };
-                    await connection.ExecuteAsync(commandToReseedIdentity);
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
             }
@@ -133,8 +132,12 @@ namespace SQLAccessImplementationLibrary
             try
             {
                 string commandText = "DELETE FROM CurrentChallengeParticipant";
+                string commandToReseedIdentity = "DBCC CHECKIDENT ('[CurrentChallengeParticipant]', RESEED, 0)";
+
                 using (SqlConnection connection = CreateConnection())
                 {
+                    await connection.ExecuteAsync(commandToReseedIdentity);
+
                     return await connection.ExecuteAsync(commandText) > 0;
                 }
             }
@@ -161,6 +164,22 @@ namespace SQLAccessImplementationLibrary
 
                 throw new Exception($"Exception while trying to count the rows in the CurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
             }
+        }
+
+        public async Task<bool> CheckIfWebUserIsInChallenge(int webUserId)
+        {
+            using (SqlConnection connection = CreateConnection())
+            {
+                string readCommand = "SELECT * FROM CurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
+            var param = new
+            {
+                FKWebUSerId = webUserId
+            };
+            var numberOfRowsAffected = await connection.ExecuteAsync(readCommand, param);
+
+                return numberOfRowsAffected > 0;
+            }
+
         }
     }
 }

@@ -27,7 +27,6 @@ namespace DataAccessUnitTest
 
             _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock(Configuration.CONNECTION_STRING);
 
-
         }
 
         [TearDown]
@@ -43,7 +42,7 @@ namespace DataAccessUnitTest
             // Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
-            WebUser[] webUsers = new WebUser[100];
+            WebUser[] webUsers = new WebUser[10];
             for (int i = 0; i < webUsers.Length; i++)
             {
                 webUsers[i] = new WebUser(i + 1);
@@ -84,13 +83,42 @@ namespace DataAccessUnitTest
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
             await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
-            //act
+            //Act
             bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.PKWebUserId);
 
             //Assert
             Assert.That(deleted, Is.True);
 
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+        }
+
+        [Test]
+        public async Task CheckingIfWebUserIsInChallengeExpectingFalse()
+        {
+            //Arrange
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
+            //Act
+            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallenge(_user.PKWebUserId);
+
+            // Assert
+            Assert.That(actual, Is.False);
+
+        }
+
+        [Test]
+        public async Task CheckingIfWebUserIsInChallengeExpectingTrue()
+        {
+            //Arrange
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+
+            //Act
+            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallenge(_user.PKWebUserId);
+
+            // Assert
+            Assert.That(actual, Is.False);
+
         }
     }
 }

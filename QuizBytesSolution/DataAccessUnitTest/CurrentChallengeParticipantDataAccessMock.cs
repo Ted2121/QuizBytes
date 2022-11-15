@@ -18,7 +18,7 @@ namespace SQLAccessImplementationLibraryUnitTest
         public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
         {
             var currentChallengeRowId = 0;
-            int userLimitForChallenges = 100;
+            int userLimitForChallenges = 10;
 
             using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
             {
@@ -162,6 +162,22 @@ namespace SQLAccessImplementationLibraryUnitTest
 
                 throw new Exception($"Exception while trying to count the rows in the TestCurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
             }
+        }
+
+        public async Task<bool> CheckIfWebUserIsInChallenge(int webUserId)
+        {
+            using (SqlConnection connection = CreateConnection())
+            {
+                string readCommand = "SELECT * FROM TestCurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
+                var param = new
+                {
+                    FKWebUSerId = webUserId
+                };
+                var numberOfRowsAffected = await connection.ExecuteAsync(readCommand, param);
+
+                return numberOfRowsAffected > 0;
+            }
+
         }
     }
 }

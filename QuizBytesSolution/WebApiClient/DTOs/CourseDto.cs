@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebApiClient.DTOs
 {
-    internal class CourseDto
+    public class CourseDto
     {
+        public bool IsInChallenge { get; set; }
     }
 }

@@ -1,3 +1,6 @@
+using QuizBytesWebsite.Helpers;
+using QuizBytesWebsite.Hubs;
+
 namespace QuizBytesWebsite
 {
     public class Program
@@ -8,6 +11,10 @@ namespace QuizBytesWebsite
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddTransient<ITimerLogicHelper, TimerLogicHelper>();
+
+            builder.Services.AddSignalR();
+
 
             var app = builder.Build();
 
@@ -29,6 +36,8 @@ namespace QuizBytesWebsite
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapHub<TimerHub>("/timerHub");
 
             app.Run();
         }

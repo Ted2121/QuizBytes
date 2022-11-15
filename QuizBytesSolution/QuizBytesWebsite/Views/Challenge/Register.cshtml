@@ -1,23 +1,23 @@
 ﻿@{
-ViewData["Title"] = "Current Challenges";
+ViewData["Title"] = "Challenge";
 }
 @*
 For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-<html>
-<head>
-    <meta charset ="utf-8" />
-    <title>Challenge Page</title>
-<link rel="stylesheet" href="~/css/ChallengeViewStyleSheet.css" />
-</head>
 
-<body>
 <p id="timer"></p>
 <button id="register-button-logic"></button>
 <p id="error-message"></p>
+<br />
+    <div class="row">
+        <div class="col-12">
+            <ul id="serverDate">
+            </ul>
+        </div>
+    </div>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/Timer.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/ChallengeViewLogic.js"></script>
-</body>
-</html>

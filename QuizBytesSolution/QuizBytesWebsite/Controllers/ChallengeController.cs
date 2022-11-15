@@ -11,7 +11,7 @@ namespace QuizBytesWebsite.Controllers
             _client = client;
         }*/
 
-        public ActionResult RegisterForChallengePage()
+        public ActionResult Register()
         {
             return View();
         }

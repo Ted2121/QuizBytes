@@ -2,16 +2,26 @@
 {
     public class Course
     {
-        public int Id { get; set; }
+        public int PKCourseId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int CurrentChallengeId { get; set; }
-        public UserScoreInChallenge CurrentChallenge { get; set; }
-        public IEnumerable<Subject> Subjects { get; set; }
+        // public IEnumerable<Subject> Subjects { get; set; }
+
+        public Course(int id, string name, string description)
+        {
+            PKCourseId = id;
+            Name = name;
+            Description = description;
+        }
+
+        public Course(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
 
         public Course()
         {
-
         }
     }
 }

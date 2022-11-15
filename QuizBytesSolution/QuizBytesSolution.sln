@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsApiClient", "Windows
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizBytesWebsite", "QuizBytesWebsite\QuizBytesWebsite.csproj", "{1C34A2EA-EDD6-41E8-9E36-F961CBBF63D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiClient", "WebApiClient\WebApiClient.csproj", "{4248E655-C1AB-4CE5-8082-770F53632CA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiClient", "WebApiClient\WebApiClient.csproj", "{4248E655-C1AB-4CE5-8082-770F53632CA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLAccessImplementationLibraryUnitTest", "DataAccessUnitTest\SQLAccessImplementationLibraryUnitTest.csproj", "{6990E3B1-170C-4511-970C-DD7A2F53E99B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{4248E655-C1AB-4CE5-8082-770F53632CA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4248E655-C1AB-4CE5-8082-770F53632CA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4248E655-C1AB-4CE5-8082-770F53632CA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6990E3B1-170C-4511-970C-DD7A2F53E99B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6990E3B1-170C-4511-970C-DD7A2F53E99B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6990E3B1-170C-4511-970C-DD7A2F53E99B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6990E3B1-170C-4511-970C-DD7A2F53E99B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

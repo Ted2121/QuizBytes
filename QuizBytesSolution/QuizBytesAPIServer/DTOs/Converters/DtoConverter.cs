@@ -104,35 +104,35 @@ namespace QuizBytesAPIServer.DTOs.Converters
 
         #endregion
 
-        #region CurrentChallenge conversion methods
+        #region CurrentChallengeParticipant conversion methods
 
-        public static CurrentChallengeDto ToDto(this UserScoreInChallenge currentChallengeToConvert)
+        public static CurrentChallengeParticipantDto ToDto(this CurrentChallengeParticipant currentChallengeParticipantToConvert)
         {
-            var currentChallengeDto = new CurrentChallengeDto();
-            currentChallengeToConvert.CopyPropertiesTo(currentChallengeDto);
-            return currentChallengeDto;
+            var currentChallengeParticipantDto = new CurrentChallengeParticipantDto();
+            currentChallengeParticipantToConvert.CopyPropertiesTo(currentChallengeParticipantDto);
+            return currentChallengeParticipantDto;
         }
 
-        public static UserScoreInChallenge FromDto(this CurrentChallengeDto currentChallengeDtoToConvert)
+        public static CurrentChallengeParticipant FromDto(this CurrentChallengeParticipantDto currentChallengeParticipantDtoToConvert)
         {
-            var currentChallenge = new UserScoreInChallenge();
-            currentChallengeDtoToConvert.CopyPropertiesTo(currentChallenge);
-            return currentChallenge;
+            var currentChallengeParticipant = new CurrentChallengeParticipant();
+            currentChallengeParticipantDtoToConvert.CopyPropertiesTo(currentChallengeParticipant);
+            return currentChallengeParticipant;
         }
 
-        public static IEnumerable<CurrentChallengeDto> ToDtos(this IEnumerable<UserScoreInChallenge> currentChallengesToConvert)
+        public static IEnumerable<CurrentChallengeParticipantDto> ToDtos(this IEnumerable<CurrentChallengeParticipant> currentChallengeParticipantsToConvert)
         {
-            foreach (var currentChallenge in currentChallengesToConvert)
+            foreach (var currentChallengeParticipant in currentChallengeParticipantsToConvert)
             {
-                yield return currentChallenge.ToDto();
+                yield return currentChallengeParticipant.ToDto();
             }
         }
 
-        public static IEnumerable<UserScoreInChallenge> FromDtos(this IEnumerable<CurrentChallengeDto> currentChallengeDtosToConvert)
+        public static IEnumerable<CurrentChallengeParticipant> FromDtos(this IEnumerable<CurrentChallengeParticipantDto> currentChallengeParticipantDtosToConvert)
         {
-            foreach (var currentChallengeDto in currentChallengeDtosToConvert)
+            foreach (var currentChallengeParticipantDto in currentChallengeParticipantDtosToConvert)
             {
-                yield return currentChallengeDto.FromDto();
+                yield return currentChallengeParticipantDto.FromDto();
             }
         }
 

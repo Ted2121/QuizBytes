@@ -105,7 +105,7 @@ namespace SQLAccessImplementationLibrary
         }
 
 
-        public async Task InsertWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock)
+        public async Task<WebUserChapterUnlock> InsertWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock)
         {
             try
             {
@@ -120,6 +120,8 @@ namespace SQLAccessImplementationLibrary
                     };
 
                     await connection.ExecuteAsync(commandText, parameters);
+
+                    return webUserChapterUnlock;
                 }
             }
             catch (SqlException ex)

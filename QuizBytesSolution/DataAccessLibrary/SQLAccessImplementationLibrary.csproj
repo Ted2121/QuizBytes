@@ -17,8 +17,4 @@
     <ProjectReference Include="..\DataAccessDefinitionLibrary\DataAccessDefinitionLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SQL_scripts\" />
-  </ItemGroup>
-
 </Project>

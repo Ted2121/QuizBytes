@@ -78,7 +78,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<Question> InsertQuestionAsync(Question question)
+        public async Task<int> InsertQuestionAsync(Question question)
         {
             try
             {
@@ -94,9 +94,7 @@ namespace SQLAccessImplementationLibrary
                     };
 
 
-                    await connection.ExecuteAsync(commandText, parameters);
-                    question.PKQuestionId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
-                    return question;
+                    return question.PKQuestionId = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
             catch (SqlException ex)

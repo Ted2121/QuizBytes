@@ -78,7 +78,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<Course> InsertCourseAsync(Course course)
+        public async Task<int> InsertCourseAsync(Course course)
         {
             try
             {
@@ -92,9 +92,8 @@ namespace SQLAccessImplementationLibrary
                         Description = course.Description
                     };
 
-                    await connection.ExecuteAsync(commandText, parameters);
-                    course.PKCourseId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
-                    return course;
+                    return course.PKCourseId = await connection.QuerySingleAsync<int>(commandText, parameters);
+
                 }
             }
             catch (SqlException ex)

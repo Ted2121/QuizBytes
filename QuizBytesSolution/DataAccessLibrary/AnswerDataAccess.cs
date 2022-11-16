@@ -76,7 +76,7 @@ namespace SQLAccessImplementationLibrary
         }
 
 
-        public async Task<Answer> InsertAnswerAsync(Answer answer)
+        public async Task<int> InsertAnswerAsync(Answer answer)
         {
             try
             {
@@ -90,9 +90,8 @@ namespace SQLAccessImplementationLibrary
                         IsCorrect = answer.IsCorrect
                     };
 
-                    await connection.ExecuteAsync(commandText, parameters);
-                    answer.PKAnswerId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
-                    return answer;
+                    return answer.PKAnswerId = await connection.QuerySingleAsync<int>(commandText, parameters);
+                    
                 }
             }
             catch (SqlException ex)

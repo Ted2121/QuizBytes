@@ -4,7 +4,7 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
 {
     public interface ISubjectDataAccess
     {
-        Task<Subject> InsertSubjectAsync(Subject subject);
+        Task<int> InsertSubjectAsync(Subject subject);
         Task<Subject> GetSubjectByIdAsync(int subjectId);
         Task<IEnumerable<Subject>> GetAllSubjectsAsync();
         Task<IEnumerable<Subject>> GetAllSubjectsByCourseAsync(Course course);

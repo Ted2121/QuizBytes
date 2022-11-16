@@ -104,7 +104,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<WebUser> InsertWebUserAsync(WebUser webUser)
+        public async Task<int> InsertWebUserAsync(WebUser webUser)
         {
             try
             {
@@ -124,9 +124,7 @@ namespace SQLAccessImplementationLibrary
                         ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge
                     };
 
-                    await connection.ExecuteAsync(commandText, parameters);
-                    webUser.PKWebUserId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
-                    return webUser;
+                    return webUser.PKWebUserId = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
             catch (SqlException ex)

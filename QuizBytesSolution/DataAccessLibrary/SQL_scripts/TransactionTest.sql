@@ -1,0 +1,3 @@
+﻿Select * FROM TestCurrentChallengeParticipant
+
+SELECT COUNT(PKCurrentChallengeParticipantId) FROM TestCurrentChallengeParticipant

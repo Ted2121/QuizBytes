@@ -56,18 +56,18 @@ public class WebUserController : ControllerBase
         }
     }
 
-    [HttpPut]
-    public async Task<ActionResult> UpdateWebUserAsync(WebUserDto webUser)
-    {
+    //[HttpPut]
+    //public async Task<ActionResult> UpdateWebUserAsync(WebUserDto webUser)
+    //{
 
-    }
+    //}
 
-    [HttpPut]
-    [Route("password")]
-    public async Task<ActionResult> UpdatePasswordAsync(WebUserDto webUser)
-    {
+    //[HttpPut]
+    //[Route("password")]
+    //public async Task<ActionResult> UpdatePasswordAsync(WebUserDto webUser)
+    //{
 
-    }
+    //}
 }
 
 

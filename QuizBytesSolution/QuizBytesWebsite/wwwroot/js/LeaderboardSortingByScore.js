@@ -9,3 +9,6 @@
     //might not be optimal to do it like this and instead do it before populating but I feel like this is easier for us and it makes sense that 
     //this would be handled client side
 })
+
+
+//it's ok to do it client side for the global leaderboard but please remember we are doing it server side for the challenge and I already wrote it in the API

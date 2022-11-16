@@ -2,11 +2,11 @@
 
 namespace QuizBytesWebsite.Controllers
 {
-    public class Leaderboard : Controller
+    public class LeaderboardController : Controller
     {
         public IActionResult Display()
         {
-            return View("Leaderboard");
+            return View();
         }
     }
 }

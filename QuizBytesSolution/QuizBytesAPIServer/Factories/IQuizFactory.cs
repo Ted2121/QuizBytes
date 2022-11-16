@@ -1,11 +1,10 @@
 ﻿using QuizBytesAPIServer.DTOs;
 
-namespace QuizBytesAPIServer.Factories
-{
-    public interface IQuizFactory
-    {
-        IQuestionAnswerLinkFactory QuestionAnswerLinkFactory { get; set; }
+namespace QuizBytesAPIServer.Factories;
 
-        Task<QuizDto> CreateQuizDto<T>(T source) where T : class;
-    }
+public interface IQuizFactory
+{
+    IQuestionAnswerLinkFactory QuestionAnswerLinkFactory { get; set; }
+
+    Task<QuizDto> CreateQuizDto<T>(T source) where T : class;
 }

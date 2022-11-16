@@ -5,15 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessDefinitionLibrary.DAO_Interfaces
+namespace DataAccessDefinitionLibrary.DAO_Interfaces;
+
+public interface ICurrentChallengeParticipantDataAccess
 {
-    public interface ICurrentChallengeParticipantDataAccess
-    {
-        Task<int> AddWebUserToChallengeAsync(WebUser webuser, Course course);
-        Task<bool> DeleteWebUserFromChallengeAsync(int webUserId);
-        Task<IEnumerable<CurrentChallengeParticipant>> GetAllRowsInChallengeAsync();
-        Task<bool> ClearTempTableBeforeNextChallengeAsync();
-        Task<int> GetRowAmountFromDatabaseAsync();
-        Task<bool> CheckIfWebUserIsInChallengeAsync(int webUserId);
-    }
+    Task<int> AddWebUserToChallengeAsync(WebUser webuser, Course course);
+    Task<bool> DeleteWebUserFromChallengeAsync(int webUserId);
+    Task<IEnumerable<CurrentChallengeParticipant>> GetAllRowsInChallengeAsync();
+    Task<bool> ClearTempTableBeforeNextChallengeAsync();
+    Task<int> GetRowAmountFromDatabaseAsync();
+    Task<bool> CheckIfWebUserIsInChallengeAsync(int webUserId);
 }

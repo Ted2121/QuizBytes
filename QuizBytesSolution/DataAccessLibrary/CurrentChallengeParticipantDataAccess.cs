@@ -150,8 +150,8 @@ namespace SQLAccessImplementationLibrary
             {
                 using (SqlConnection connection = CreateConnection())
                 {
-                    var rowAmount = await connection.ExecuteAsync(commandText);
-                    return rowAmount;
+                    var rowAmount = await connection.ExecuteScalarAsync(commandText);
+                    return (int)rowAmount;
                 }
             }
             catch (SqlException ex)

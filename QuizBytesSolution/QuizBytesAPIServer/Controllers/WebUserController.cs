@@ -1,5 +1,8 @@
 ﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using QuizBytesAPIServer.DTOs;
+using QuizBytesAPIServer.DTOs.Converters;
+using SQLAccessImplementationLibrary;
 
 namespace QuizBytesAPIServer.Controllers;
 
@@ -14,7 +17,23 @@ public class WebUserController : ControllerBase
         WebUserDataAccess = webUserDataAccess;
     }
 
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<WebUserDto>>> GetAllWebUsersAsync()
+    {
+        var webUsers = await WebUserDataAccess.GetAllWebUsersAsync();
 
+        if(webUsers == null)
+        {
+            return NotFound();
+        }
+        else
+        {
+            return Ok(webUsers.ToDtos());
+        }
+        
+    }
+
+    [HttpPost]
 
 }
 

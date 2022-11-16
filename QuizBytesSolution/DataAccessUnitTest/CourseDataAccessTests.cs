@@ -15,12 +15,14 @@ namespace SQLAccessImplementationLibraryUnitTest
     public class CourseDataAccessTests
     {
         Course _course;
+        Course _courseWithoutName;
         ICourseDataAccess _courseDataAccess;
 
         [SetUp]
         public void SetUp()
         {
             _course = new Course("Testy", "TestDescription");
+            _courseWithoutName = new Course(null, "TestDescription");
 
             _courseDataAccess = new CourseDataAccess(Configuration.CONNECTION_STRING);
         }
@@ -47,10 +49,50 @@ namespace SQLAccessImplementationLibraryUnitTest
         }
 
         [Test]
-        public async Task TestingInsertionThrowsExceptionAsync()
+        public async Task TestingInsertionThrowsExceptionOnNullNameAsync()
         {
+            // Arrange is done in Set up
+
+            // Act & Assert
+            try
+            {
+                Assert.That(async () => await _courseDataAccess.InsertCourseAsync(_courseWithoutName), Throws.Exception);
+            }
+            finally
+            {
+                await _courseDataAccess.DeleteCourseAsync(_course.PKCourseId);
+            }
 
         }
-       
+
+        [Test]
+        public async Task TestingGetCourseByIdReturnsTheCorrectCourse()
+        {
+            // Arrange
+            _course.PKCourseId = await _courseDataAccess.InsertCourseAsync(_course);
+
+            // Act
+            var actual = await _courseDataAccess.GetCourseByIdAsync(_course.PKCourseId);
+
+            // Assert
+            try
+            {
+                Assert.That(actual, Is.Not.Null);
+            }
+            finally
+            {
+                await _courseDataAccess.DeleteCourseAsync(_course.PKCourseId);
+            }
+        }
+
+        [Test]
+        public async Task TestingGetCourseByIdThrowsExceptionIfThereIsNoUserWithId()
+        {
+            // Arrange
+            _course.PKCourseId = await _courseDataAccess.InsertCourseAsync(_course);
+
+            // Act & Assert
+            Assert.That(async () => await _courseDataAccess.GetCourseByIdAsync(_course.PKCourseId + 100), Throws.Exception);
+        }
     }
 }

@@ -28,10 +28,10 @@ namespace QuizBytesWebsite.Controllers
         //    return View();
         //}
 
-        //public IActionResult Leaderboard()
-        //{
-        //    return View();
-        //}
+        /*public IActionResult Leaderboard()
+        {
+           return View();
+        }*/
 
         //public IActionResult Login()
         //{

@@ -3,6 +3,8 @@ using QuizBytesAPIServer.DTOs;
 using QuizBytesAPIServer.Factories;
 using QuizBytesAPIServer.Helper_Classes;
 using SQLAccessImplementationLibrary;
+using System.Configuration;
+using ConfigurationManager = Microsoft.Extensions.Configuration.ConfigurationManager;
 
 namespace QuizBytesAPIServer
 {
@@ -19,17 +21,9 @@ namespace QuizBytesAPIServer
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            #region Data Access DI
 
-            builder.Services.AddSingleton<IAnswerDataAccess, AnswerDataAccess>();
-            builder.Services.AddSingleton<IChapterDataAccess, ChapterDataAccess>();
-            builder.Services.AddSingleton<ICourseDataAccess, CourseDataAccess>();
-            builder.Services.AddSingleton<IQuestionDataAccess, QuestionDataAccess>();
-            builder.Services.AddSingleton<ISubjectDataAccess, SubjectDataAccess>();
-            builder.Services.AddSingleton<IWebUserDataAccess, WebUserDataAccess>();
-            builder.Services.AddSingleton<IWebUserChapterUnlockDataAccess, WebUserChapterUnlockDataAccess>();
-            builder.Services.AddSingleton<ICurrentChallengeParticipantDataAccess, CurrentChallengeParticipantDataAccess>();
-            #endregion
+
+
 
             #region Factory DI
 
@@ -41,9 +35,28 @@ namespace QuizBytesAPIServer
             #region Helper DI
             builder.Services.AddSingleton<IRewardsDistributionHelper, RewardsDistributionHelper>();
             #endregion
+            // allows us to obtain the connection string from appsettings.json
+
+            ConfigurationManager configuration = builder.Configuration;
+
+
+            #region Data Access DI
+
+            builder.Services.AddTransient((sc) => SqlDAOFactory.CreateDAO<IAnswerDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddTransient((sc) => SqlDAOFactory.CreateDAO<IChapterDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddTransient((sc) => SqlDAOFactory.CreateDAO<ICourseDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddTransient((sc) => SqlDAOFactory.CreateDAO<IQuestionDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddTransient((sc) => SqlDAOFactory.CreateDAO<ISubjectDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddTransient((sc) => SqlDAOFactory.CreateDAO<IWebUserDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddTransient((sc) => SqlDAOFactory.CreateDAO<IWebUserChapterUnlockDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddTransient((sc) => SqlDAOFactory.CreateDAO<ICurrentChallengeParticipantDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+
+            #endregion
 
             var app = builder.Build();
 
+
+            
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

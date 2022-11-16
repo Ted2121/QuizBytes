@@ -34,7 +34,40 @@ public class WebUserController : ControllerBase
     }
 
     [HttpPost]
+    public async Task<ActionResult<int>> CreateWebUserAsync(WebUserDto webUser)
+    {
+        return Ok(await WebUserDataAccess.InsertWebUserAsync(webUser.FromDto()));
+    }
 
+    [HttpGet]
+    [Route("Username")]
+    public async Task<ActionResult<WebUserDto>> GetWebUserByUsernameAsync(string username)
+    {
+        var webUser = await WebUserDataAccess.GetWebUserByUsernameAsync(username);
+
+        if(webUser == null)
+        {
+            return NotFound();
+
+        }
+        else
+        {
+            return Ok(webUser.ToDto());
+        }
+    }
+
+    [HttpPut]
+    public async Task<ActionResult> UpdateWebUserAsync(WebUserDto webUser)
+    {
+
+    }
+
+    [HttpPut]
+    [Route("password")]
+    public async Task<ActionResult> UpdatePasswordAsync(WebUserDto webUser)
+    {
+
+    }
 }
 
 

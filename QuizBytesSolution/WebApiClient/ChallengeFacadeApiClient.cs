@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Microsoft.JSInterop;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -121,6 +122,7 @@ namespace WebApiClient
             }
         }
 
+        [JSInvokable]
         public async Task<bool> CheckIfUserIsInChallengeAsync(int webUserId)
         {
             var response = await _restClient.RequestAsync<bool>(Method.GET, $"query-participation");

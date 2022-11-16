@@ -16,5 +16,9 @@ namespace QuizBytesWebsite.Controllers
         {
             return View();
         }
+        public ActionResult Start()
+        {
+            return View();
+        }
     }
 }

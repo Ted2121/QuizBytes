@@ -16,5 +16,6 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<bool> UpdateWebUserAsync(WebUser webUser);
         Task<bool> DeleteWebUserAsync(int webUserId);
         Task<int> LoginAsync(string username, string password);
+        Task<bool> UpdatePasswordAsync(string username, string oldPassword, string newPassword);
     }
 }

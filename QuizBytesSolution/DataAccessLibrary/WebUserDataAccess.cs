@@ -139,8 +139,7 @@ namespace SQLAccessImplementationLibrary
             try
             {
                 string commandText = "UPDATE WebUser " +
-                    "SET PasswordHash = @PasswordHash, " +
-                    "TotalPoints = @TotalPoints, " +
+                    "SET TotalPoints = @TotalPoints, " +
                     "AvailablePoints = @AvailablePoints, " +
                     "Email = @Email, " +
                     "PointsAccumulatedInChallenge = @PointsAccumulatedInChallenge, " +
@@ -151,7 +150,6 @@ namespace SQLAccessImplementationLibrary
                     var parameters = new
                     {
                         WebUserId = webUser.PKWebUserId,
-                        PasswordHash = webUser.PasswordHash,
                         TotalPoints = webUser.TotalPoints,
                         AvailablePoints = webUser.AvailablePoints,
                         Email = webUser.Email,
@@ -192,6 +190,27 @@ namespace SQLAccessImplementationLibrary
             {
 
                 throw new Exception($"Error logging in for WebUser with username: {username}: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<bool> UpdatePasswordAsync(string username, string oldPassword, string newPassword)
+        {
+            try
+            {
+                string commandText = "UPDATE WebUser SET PasswordHash = @PasswordHash WHERE PKWebUserId = @PKWebUserId;";
+                var id = await LoginAsync(username, oldPassword);
+                if(id > 0)
+                {
+                    var newPasswordHash = BCryptTool.HashPassword(newPassword);
+                    using var connection = CreateConnection();
+                    return await connection.ExecuteAsync(commandText, new { PKWebUserId = id, NewPasswordHash = newPasswordHash }) > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception($"Error updating password: '{ex.Message}'.", ex);
             }
         }
 

@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApiClient;
 
 namespace QuizBytesWebsite.Controllers
 {
     public class ChallengeController : Controller
     {
-      //  public IQuizBytesApiClient _client { get; set; }
+        public IChallengeFacadeApiClient Client { get; set; }
 
-      /*  public ChallengeController(IQuizBytesApiClient client)
+        public ChallengeController(IChallengeFacadeApiClient client)
         {
-            _client = client;
-        }*/
+            Client = client;
+        }
 
         public ActionResult Register()
         {

@@ -1,6 +1,7 @@
 ﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using SQLAccessImplementationLibrary;
 using System;
 using System.Collections.Generic;
@@ -86,13 +87,24 @@ namespace SQLAccessImplementationLibraryUnitTest
         }
 
         [Test]
-        public async Task TestingGetCourseByIdThrowsExceptionIfThereIsNoUserWithId()
+        public async Task TestingGetCourseByIdReturnsNullIfThereIsNoUserWithId()
         {
             // Arrange
             _course.PKCourseId = await _courseDataAccess.InsertCourseAsync(_course);
 
-            // Act & Assert
-            Assert.That(async () => await _courseDataAccess.GetCourseByIdAsync(_course.PKCourseId + 100), Throws.Exception);
+            // Act
+            var actual = await _courseDataAccess.GetCourseByIdAsync(_course.PKCourseId + 100);
+
+            try
+            {
+            // Assert
+            Assert.That(actual, Is.Null);
+
+            }
+            finally
+            {
+                await _courseDataAccess.DeleteCourseAsync(_course.PKCourseId);
+            }
         }
     }
 }

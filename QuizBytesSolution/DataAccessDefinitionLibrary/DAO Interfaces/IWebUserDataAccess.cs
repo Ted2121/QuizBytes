@@ -15,5 +15,6 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces
         Task<IEnumerable<WebUser>> GetAllWebUsersAsync();
         Task<bool> UpdateWebUserAsync(WebUser webUser);
         Task<bool> DeleteWebUserAsync(int webUserId);
+        Task<int> LoginAsync(string username, string password);
     }
 }

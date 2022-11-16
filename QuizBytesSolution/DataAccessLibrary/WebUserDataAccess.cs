@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using DataAccessDefinitionLibrary.Authentication;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
 using System.Data.SqlClient;
@@ -114,7 +115,7 @@ namespace SQLAccessImplementationLibrary
                     var parameters = new
                     {
                         Username = webUser.Username,
-                        PasswordHash = webUser.PasswordHash,
+                        PasswordHash = BCryptTool.HashPassword(webUser.PasswordHash),
                         TotalPoints = webUser.TotalPoints,
                         AvailablePoints = webUser.AvailablePoints,
                         Email = webUser.Email,
@@ -169,6 +170,35 @@ namespace SQLAccessImplementationLibrary
                 throw new Exception($"Exception while trying to update WebUser. The exception was: '{ex.Message}'", ex);
 
             }
+        }
+
+        public async Task<int> LoginAsync(string username, string password)
+        {
+            try
+            {
+                string commandText = "SELECT PKWebUserId, PasswordHash FROM WebUser WHERE Username = @Username";
+
+                using var connection = CreateConnection();
+
+                var webUserTuple = await connection.QueryFirstOrDefaultAsync<WebUserTuple>(commandText, new {UserName = username});
+
+                if(webUserTuple != null && BCryptTool.ValidatePassword(password, webUserTuple.PasswordHash))
+                {
+                    return webUserTuple.PKWebUserId;
+                }
+                return -1;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception($"Error logging in for WebUser with username: {username}: '{ex.Message}'.", ex);
+            }
+        }
+
+        internal class WebUserTuple
+        {
+            public int PKWebUserId;
+            public string PasswordHash;
         }
     }
 }

@@ -88,7 +88,7 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> RegisterParticipantAsync(WebUserDto webUser, CourseDto course)
+        public async Task<ActionResult<int>> RegisterParticipantAsync([FromBody]WebUserDto webUser, [FromQuery] CourseDto course)
         {
             if(webUser == null || course == null)
             {

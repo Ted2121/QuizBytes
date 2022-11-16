@@ -5,12 +5,12 @@ namespace QuizBytesWebsite.Controllers
 {
     public class ChallengeController : Controller
     {
-        public IChallengeFacadeApiClient Client { get; set; }
+        //public IChallengeFacadeApiClient Client { get; set; }
 
-        public ChallengeController(IChallengeFacadeApiClient client)
-        {
-            Client = client;
-        }
+        //public ChallengeController(IChallengeFacadeApiClient client)
+        //{
+        //    Client = client;
+        //}
 
         public ActionResult Register()
         {

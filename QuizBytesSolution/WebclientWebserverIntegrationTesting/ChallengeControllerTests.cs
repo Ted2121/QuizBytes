@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,13 @@ namespace WebclientWebserverIntegrationTesting
     {
         IChallengeFacadeApiClient _challangeFacadeApiClient = new ChallengeFacadeApiClient(Configuration.WEB_API_URI);
         IWebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
+        IWebUserDataAccess _webUserDataAccess;
+        ICourseDataAccess _courseDataAccess;
         WebUserDto _userDto;
         CourseDto _courseDto;
+        CurrentChallengeParticipantDto _currentChallengeParticipantDto;
+
+        public WebUserDto WebUserDto { get; set; }
 
         private async Task<WebUserDto> CreateNewWebUserAsync()
         {
@@ -27,21 +33,34 @@ namespace WebclientWebserverIntegrationTesting
                 AvailablePoints = 200,
                 NumberOfCorrectAnswers = 4,
             };
-            _userDto.Id = await _webUserFacadeApiClient.CreateWebUserAsync(_userDto);
+            _userDto.Id = await _webUserDataAccess.InsertWebUserAsync(_userDto.FromDto());
 
             return _userDto;
         }
 
-        //private async Task<CourseDto> CreateNewCourseAsync()
-        //{
-        //    _courseDto = new CourseDto()
-        //    {
-        //        Name = "sys dev",
-        //        Description = "this is a description",
+        private async Task<CourseDto> CreateNewCourseAsync()
+        {
+            _courseDto = new CourseDto()
+            {
+                Name = "sys dev",
+                Description = "this is a description",
 
-        //    };
-        //    _courseDto = await _
-        //}
+            };
+            _courseDto.Id = await _courseDataAccess.InsertCourseAsync(_courseDto.FromDto());
+
+            return _courseDto;
+        }
+
+        private async Task<CurrentChallengeParticipantDto> CreateNewCurrentChallengeParticipantDtoAsync()
+        {
+            _currentChallengeParticipantDto = new CurrentChallengeParticipantDto()
+            {
+                WebUser = await CreateNewWebUserAsync(),
+                Course = await CreateNewCourseAsync()
+            };
+
+            return _currentChallengeParticipantDto;
+        }
 
         [SetUp]
         public async Task SetUpAsync()

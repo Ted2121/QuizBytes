@@ -15,11 +15,11 @@ namespace WebApiClient
     {
         private RestClient _restClient;
 
-        public ChallengeFacadeApiClient(string uri) => _restClient = new RestClient(new Uri(uri));
+        public ChallengeFacadeApiClient(string uri) => _restClient = new RestClient(uri);
 
         public async Task<IEnumerable<CurrentChallengeParticipantDto>> GetAllParticipantsAsync()
         {
-            var response = await _restClient.RequestAsync<IEnumerable<CurrentChallengeParticipantDto>>(Method.GET, $"participants");
+            var response = await _restClient.RequestAsync<IEnumerable<CurrentChallengeParticipantDto>>(Method.GET, $"Challenge/participants");
 
             if (!response.IsSuccessful)
             {
@@ -31,7 +31,7 @@ namespace WebApiClient
 
         public async Task<bool> DeregisterParticipantAsync(int id)
         {
-            var response = await _restClient.RequestAsync(Method.DELETE, $"participants/{id}");
+            var response = await _restClient.RequestAsync(Method.DELETE, $"Challenge/participants/{id}");
 
             if (response.IsSuccessful)
             {
@@ -45,7 +45,7 @@ namespace WebApiClient
 
         public async Task<bool> DistributeRewardsAsync()
         {
-            var response = await _restClient.RequestAsync(Method.PUT, $"rewards");
+            var response = await _restClient.RequestAsync(Method.PUT, $"Challenge/rewards");
 
             if (response.IsSuccessful)
             {
@@ -59,7 +59,7 @@ namespace WebApiClient
 
         public async Task<bool> ClearTempTableBeforeNextChallengeAsync()
         {
-            var response = await _restClient.RequestAsync(Method.DELETE, $"cleartable");
+            var response = await _restClient.RequestAsync(Method.DELETE, $"Challenge/cleartable");
 
             if (response.IsSuccessful)
             {
@@ -75,13 +75,8 @@ namespace WebApiClient
 
         public async Task<int> RegisterParticipantAsync(WebUserDto webUser, CourseDto course)
         {
-            string resource = null;
-            var request = new RestRequest(resource, Method.POST, DataFormat.Json);
-
-            request.AddJsonBody(JsonSerializer.Serialize(webUser));
-            //request.AddJsonBody(JsonSerializer.Serialize(course));
-
-            IRestResponse<int> response = await _restClient.ExecuteAsync<int>(request, Method.POST);
+            var resource = new ChallengeParticipantInfoDto() { WebUser = webUser, Course = course };
+            var response = await _restClient.RequestAsync<int>(Method.POST, $"Challenge", resource);
 
             if (!response.IsSuccessful)
             {
@@ -96,7 +91,7 @@ namespace WebApiClient
 
         public async Task<int> GetNumberOfParticipantsAsync()
         {
-            var response = await _restClient.RequestAsync<int>(Method.GET, $"count");
+            var response = await _restClient.RequestAsync<int>(Method.GET, $"Challenge/count");
 
             if (!response.IsSuccessful)
             {
@@ -110,7 +105,7 @@ namespace WebApiClient
 
         public async Task<QuizDto> GetChallengeQuizAsync(CourseDto course)
         {
-            var response = await _restClient.RequestAsync<QuizDto>(Method.GET, $"quiz", course);
+            var response = await _restClient.RequestAsync<QuizDto>(Method.GET, $"Challenge/quiz", course);
 
             if (!response.IsSuccessful)
             {
@@ -122,10 +117,9 @@ namespace WebApiClient
             }
         }
 
-        [JSInvokable]
-        public async Task<bool> CheckIfUserIsInChallengeAsync(int webUserId)
+        public async Task<bool> CheckIfUserIsInChallengeAsync(int id)
         {
-            var response = await _restClient.RequestAsync<bool>(Method.GET, $"query-participation");
+            var response = await _restClient.RequestAsync<bool>(Method.GET, $"Challenge/query-participation/{id}");
 
             if (!response.IsSuccessful)
             {

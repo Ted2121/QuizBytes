@@ -1,10 +1,9 @@
 ﻿using QuizBytesAPIServer.DTOs;
 
-namespace QuizBytesAPIServer.Helper_Classes
+namespace QuizBytesAPIServer.Helper_Classes;
+
+public interface IRewardsDistributionHelper
 {
-    public interface IRewardsDistributionHelper
-    {
-        Task DistributeChallengeRewardsAsync(List<CurrentChallengeParticipantDto> leaderboard);
-        Task DistributeQuizRewardsAsync(WebUserDto webUserDto);
-    }
+    Task DistributeChallengeRewardsAsync(List<CurrentChallengeParticipantDto> leaderboard);
+    Task DistributeQuizRewardsAsync(WebUserDto webUserDto);
 }

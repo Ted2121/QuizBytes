@@ -4,22 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApiClient;
+using WebApiClient.DTOs;
 
 namespace WebclientWebserverIntegrationTesting
 {
     [TestFixture]
     public class ChallengeControllerTests
     {
-        IChallengeFacadeApiClient _challangeFacadeApiClient;
+        IChallengeFacadeApiClient _challangeFacadeApiClient = new ChallengeFacadeApiClient(Configuration.WEB_API_URI);
+        WebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
+        WebUserDto _userDto;
+        CourseDto _courseDto;
+
+        private async Task<WebUserDto> CreateNewWebUserAsync()
+        {
+            _userDto = new WebUserDto()
+            {
+                Username = "Bob",
+                Password = "BobProtecc",
+                Email = "bob@Bob.com",
+                TotalPoints = 453,
+                AvailablePoints = 200,
+                NumberOfCorrectAnswers = 4,
+            };
+            _userDto.Id = await _challangeFacadeApiClient.RegisterParticipantAsync
+        }
 
         [SetUp]
-        public void SetUp()
+        public async Task SetUpAsync()
         {
-            _challangeFacadeApiClient = new ChallengeFacadeApiClient(Configuration.WEB_API_URI);
+            
         }
 
         [TearDown]
-        public void CleanUp()
+        public async Task CleanUpAsync()
         {
 
         }

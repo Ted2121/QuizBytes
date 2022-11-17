@@ -10,13 +10,13 @@ using WebApiClient.Extensions;
 
 namespace WebApiClient;
 
-public class WebUserFacadeApiClient
+public class WebUserFacadeApiClient : IWebUserFacadeApiClient
 {
     private RestClient _restClient;
 
     public WebUserFacadeApiClient(string uri) => _restClient = new RestClient(uri);
 
-    public async Task<IEnumerable<WebUserDto>> GetWebUsersAsync()
+    public async Task<IEnumerable<WebUserDto>> GetAllWebUsersAsync()
     {
         var response = await _restClient.RequestAsync<IEnumerable<WebUserDto>>(Method.GET, $"WebUser");
 
@@ -41,7 +41,7 @@ public class WebUserFacadeApiClient
 
     }
 
-    public async Task<WebUserDto> GetWebUserFromUsernameAsync(string username)
+    public async Task<WebUserDto> GetWebUserByUsernameAsync(string username)
     {
         var response = await _restClient.RequestAsync<WebUserDto>(Method.GET, $"WebUser/{username}");
 
@@ -60,7 +60,7 @@ public class WebUserFacadeApiClient
 
         if (!response.IsSuccessful)
         {
-            throw new Exception($"Error creating the web user. Message was {response.Content}");
+            throw new Exception($"Error updating the web user. Message was {response.Content}");
         }
 
         return true;
@@ -72,7 +72,7 @@ public class WebUserFacadeApiClient
 
         if (!response.IsSuccessful)
         {
-            throw new Exception($"Error creating the web user. Message was {response.Content}");
+            throw new Exception($"Error updating password. Message was {response.Content}");
         }
 
         return true;
@@ -85,7 +85,7 @@ public class WebUserFacadeApiClient
 
         if (!response.IsSuccessful)
         {
-            throw new Exception($"Error creating the web user. Message was {response.Content}");
+            throw new Exception($"Error getting the web user by id. Message was {response.Content}");
         }
 
         return response.Data;
@@ -97,7 +97,31 @@ public class WebUserFacadeApiClient
 
         if (!response.IsSuccessful)
         {
-            throw new Exception($"Error creating the web user. Message was {response.Content}");
+            throw new Exception($"Error deleting the web user. Message was {response.Content}");
+        }
+
+        return true;
+    }
+
+    public async Task<IEnumerable<ChapterDto>> GetUnlockedChaptersOfWebUserAsync(WebUserDto webUser)
+    {
+        var response = await _restClient.RequestAsync<IEnumerable<ChapterDto>>(Method.GET, $"WebUser/unlocks", webUser);
+
+        if (!response.IsSuccessful)
+        {
+            throw new Exception($"Error getting web user's unlocked chapters. Message was {response.Content}");
+        }
+
+        return response.Data;
+    }
+
+    public async Task<bool> UnlockChapterAsync(WebUserChapterUnlockDto webUserChapterUnlock)
+    {
+        var response = await _restClient.RequestAsync(Method.POST, $"WebUser/unlock-chapter", webUserChapterUnlock);
+
+        if (!response.IsSuccessful)
+        {
+            throw new Exception($"Error unlocking chapter. Message was {response.Content}");
         }
 
         return true;

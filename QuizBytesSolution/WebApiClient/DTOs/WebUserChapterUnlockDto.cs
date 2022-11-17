@@ -1,5 +1,4 @@
-﻿using DataAccessDefinitionLibrary.Data_Access_Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +8,7 @@ namespace WebApiClient.DTOs
 {
     public class WebUserChapterUnlockDto
     {
-        public int WebUserId { get; set; }
-        public int ChapterId { get; set; }
-        public WebUser WebUserDto { get; set; }
-        public Chapter ChapterDto { get; set; }
+        public WebUserDto WebUser { get; set; }
+        public ChapterDto ChapterDto { get; set; }
     }
 }

@@ -12,6 +12,6 @@ public class WebUserDto
     public int TotalPoints { get; set; }
     public int AvailablePoints { get; set; }
     public int NumberOfCorrectAnswers { get; set; }
-    public IEnumerable<WebUserChapterUnlock> WebUserChapterUnlocks { get; set; }
+    public IEnumerable<ChapterDto> WebUserChapterUnlocks { get; set; }
     public bool IsInChallenge { get; set; }
 }

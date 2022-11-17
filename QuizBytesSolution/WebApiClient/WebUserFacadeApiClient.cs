@@ -54,4 +54,53 @@ public class WebUserFacadeApiClient
 
     }
 
+    public async Task<bool> UpdateWebUserAsync(WebUserDto webUser)
+    {
+        var response = await _restClient.RequestAsync(Method.PUT, $"WebUser", webUser);
+
+        if (!response.IsSuccessful)
+        {
+            throw new Exception($"Error creating the web user. Message was {response.Content}");
+        }
+
+        return true;
+    }
+
+    public async Task<bool> UpdatePasswordAsync(WebUserDto webUser)
+    {
+        var response = await _restClient.RequestAsync(Method.PUT, $"WebUser/password", webUser);
+
+        if (!response.IsSuccessful)
+        {
+            throw new Exception($"Error creating the web user. Message was {response.Content}");
+        }
+
+        return true;
+
+    }
+
+    public async Task<WebUserDto> GetWebUserByIdAsync(int id)
+    {
+        var response = await _restClient.RequestAsync<WebUserDto>(Method.GET, $"WebUser/{id}");
+
+        if (!response.IsSuccessful)
+        {
+            throw new Exception($"Error creating the web user. Message was {response.Content}");
+        }
+
+        return response.Data;
+    }
+
+    public async Task<bool> DeleteWebUserAsync(int id)
+    {
+        var response = await _restClient.RequestAsync(Method.DELETE, $"WebUser/{id}");
+
+        if (!response.IsSuccessful)
+        {
+            throw new Exception($"Error creating the web user. Message was {response.Content}");
+        }
+
+        return true;
+    }
+
 }

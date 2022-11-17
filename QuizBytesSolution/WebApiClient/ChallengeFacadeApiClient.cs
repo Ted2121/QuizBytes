@@ -117,10 +117,9 @@ namespace WebApiClient
             }
         }
 
-        [JSInvokable]
-        public async Task<bool> CheckIfUserIsInChallengeAsync(int webUserId)
+        public async Task<bool> CheckIfUserIsInChallengeAsync(int id)
         {
-            var response = await _restClient.RequestAsync<bool>(Method.GET, $"Challenge/query-participation");
+            var response = await _restClient.RequestAsync<bool>(Method.GET, $"Challenge/query-participation/{id}");
 
             if (!response.IsSuccessful)
             {

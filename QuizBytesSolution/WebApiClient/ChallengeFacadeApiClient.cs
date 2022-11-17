@@ -14,7 +14,7 @@ namespace WebApiClient
     {
         private RestClient _restClient;
 
-        public ChallengeFacadeApiClient(string uri) => _restClient = new RestClient(new Uri(uri));
+        public ChallengeFacadeApiClient(string uri) => _restClient = new RestClient(uri);
 
         public async Task<IEnumerable<CurrentChallengeParticipantDto>> GetAllParticipantsAsync()
         {

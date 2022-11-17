@@ -8,5 +8,5 @@ namespace WebclientWebserverIntegrationTesting;
 
 public static class Configuration
 {
-    private const string WEB_API_URI = "https://localhost:7215/api/v1/";
+    public const string WEB_API_URI = "https://localhost:7215/api/v1/";
 }

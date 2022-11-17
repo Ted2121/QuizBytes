@@ -12,7 +12,7 @@ namespace QuizBytesAPIServer.Controllers;
     [Route("api/v1/[controller]")]
 public class CoursesController : ControllerBase
 {
-    public ICourseDataAccess CourseDataAccess { get; set; }
+    private ICourseDataAccess CourseDataAccess { get; set; }
 
     public CoursesController(ICourseDataAccess courseDataAccess)
     {
@@ -34,9 +34,9 @@ public class CoursesController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<ActionResult<CourseDto>> GetCourseByIdAsync(int courseId)
+    public async Task<ActionResult<CourseDto>> GetCourseByIdAsync([FromQuery] int id)
     {
-        var course = await CourseDataAccess.GetCourseByIdAsync(courseId);
+        var course = await CourseDataAccess.GetCourseByIdAsync(id);
         if (course == null)
         {
             return NotFound();
@@ -45,7 +45,8 @@ public class CoursesController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<ActionResult> DeleteCourseAsync(int id)
+    [Route("{id}")]
+    public async Task<ActionResult> DeleteCourseAsync([FromQuery] int id)
     {
 
         if (!await CourseDataAccess.DeleteCourseAsync(id))

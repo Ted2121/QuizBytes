@@ -13,10 +13,10 @@ namespace QuizBytesAPIServer.Controllers;
 [Route("api/v1/[controller]")]
 public class ChallengeController : ControllerBase
 {
-    public ICurrentChallengeParticipantDataAccess CurrentChallengeParticipantDataAccess { get; set; }
-    public IWebUserDataAccess WebUserDataAccess { get; set; }
-    public IRewardsDistributionHelper RewardsDistributionHelper { get; set; }
-    public IQuizFactory QuizFactory { get; set; }
+    private ICurrentChallengeParticipantDataAccess CurrentChallengeParticipantDataAccess { get; set; }
+    private IWebUserDataAccess WebUserDataAccess { get; set; }
+    private IRewardsDistributionHelper RewardsDistributionHelper { get; set; }
+    private IQuizFactory QuizFactory { get; set; }
 
     public ChallengeController(
         ICurrentChallengeParticipantDataAccess currentChallengeParticipantDataAccess,
@@ -49,7 +49,7 @@ public class ChallengeController : ControllerBase
 
     [HttpDelete]
     [Route("participants/{id}")]
-    public async Task<ActionResult> DeregisterParticipantAsync(int id)
+    public async Task<ActionResult> DeregisterParticipantAsync([FromQuery]int id)
     {
         if (!await CurrentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(id))
         { return NotFound(); }
@@ -116,10 +116,10 @@ public class ChallengeController : ControllerBase
     }
 
     [HttpGet]
-    [Route("query-participation")]
-    public async Task<ActionResult<bool>> CheckIfUserIsInChallengeAsync(int webUserId)
+    [Route("query-participation/{id}")]
+    public async Task<ActionResult<bool>> CheckIfUserIsInChallengeAsync([FromQuery]int id)
     {
-        var result = await CurrentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(webUserId);
+        var result = await CurrentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(id);
         if (!result)
         {
             return NotFound();

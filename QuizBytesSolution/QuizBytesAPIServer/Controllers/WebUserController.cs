@@ -10,7 +10,7 @@ namespace QuizBytesAPIServer.Controllers;
 [Route("api/v1/[controller]")]
 public class WebUserController : ControllerBase
 {
-    public IWebUserDataAccess WebUserDataAccess { get; set; }
+    private IWebUserDataAccess WebUserDataAccess { get; set; }
 
     public WebUserController(IWebUserDataAccess webUserDataAccess)
     {
@@ -56,18 +56,55 @@ public class WebUserController : ControllerBase
         }
     }
 
-    //[HttpPut]
-    //public async Task<ActionResult> UpdateWebUserAsync(WebUserDto webUser)
-    //{
+    [HttpPut]
+    public async Task<ActionResult> UpdateWebUserAsync(WebUserDto webUser)
+    {
+        if(!await WebUserDataAccess.UpdateWebUserAsync(webUser.FromDto()))
+        {
+            return NotFound();
+        }
+        return Ok();
+    }
 
-    //}
+    [HttpPut]
+    [Route("password")]
+    public async Task<ActionResult> UpdatePasswordAsync(WebUserDto webUser)
+    {
+        if (!await WebUserDataAccess.UpdatePasswordAsync(webUser.Username, webUser.Password, webUser.NewPassword))
+        {
+            return BadRequest();
+        }
+        return Ok();
+    }
 
-    //[HttpPut]
-    //[Route("password")]
-    //public async Task<ActionResult> UpdatePasswordAsync(WebUserDto webUser)
-    //{
+    [HttpGet]
+    [Route("{id}")]
+    public async Task<ActionResult<WebUserDto>> GetWebUserByIdAsync([FromQuery] int id)
+    {
+        var user = await WebUserDataAccess.GetWebUserByIdAsync(id);
 
-    //}
+        if (user == null)
+        {
+            return NotFound();
+        }
+        return Ok();
+
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    public async Task<ActionResult> DeleteWebUserAsync([FromQuery] int id)
+    {
+        if(!await WebUserDataAccess.DeleteWebUserAsync(id))
+        {
+            return BadRequest();
+
+        }
+
+        return Ok();
+    }
+
+
 }
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebclientWebserverIntegrationTesting
 {
-    internal class ChallengeControllerTests
+    public class ChallengeControllerTests
     {
     }
 }

@@ -27,7 +27,9 @@ namespace WebclientWebserverIntegrationTesting
                 AvailablePoints = 200,
                 NumberOfCorrectAnswers = 4,
             };
-            _userDto.Id = await _challangeFacadeApiClient.RegisterParticipantAsync
+            _userDto.Id = await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+
+            return _userDto;
         }
 
         [SetUp]

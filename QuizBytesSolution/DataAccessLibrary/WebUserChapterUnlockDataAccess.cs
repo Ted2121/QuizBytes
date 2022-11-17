@@ -105,7 +105,7 @@ namespace SQLAccessImplementationLibrary
         }
 
 
-        public async Task<WebUserChapterUnlock> InsertWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock)
+        public async Task<(int, int)> InsertWebUserChapterUnlockAsync(int webUserId, int chapterId)
         {
             try
             {
@@ -115,13 +115,13 @@ namespace SQLAccessImplementationLibrary
                 {
                     var parameters = new
                     {
-                        FKChapterId = webUserChapterUnlock.FKChapterId,
-                        FKWebUserId = webUserChapterUnlock.FKWebUserId
+                        FKChapterId = chapterId,
+                        FKWebUserId = webUserId
                     };
 
                     await connection.ExecuteAsync(commandText, parameters);
 
-                    return webUserChapterUnlock;
+                    return (webUserId, chapterId);
                 }
             }
             catch (SqlException ex)

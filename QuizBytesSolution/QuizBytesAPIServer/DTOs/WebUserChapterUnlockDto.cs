@@ -9,5 +9,5 @@ namespace QuizBytesAPIServer.DTOs;
 public class WebUserChapterUnlockDto
 {
     public WebUserDto WebUser { get; set; }
-    public ChapterDto ChapterDto { get; set; }
+    public ChapterDto Chapter { get; set; }
 }

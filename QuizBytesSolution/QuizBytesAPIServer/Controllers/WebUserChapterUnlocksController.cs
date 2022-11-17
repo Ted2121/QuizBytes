@@ -76,7 +76,7 @@ public class WebUserChapterUnlocksController : ControllerBase
     public async Task<ActionResult<WebUserChapterUnlockDto>> UnlockChapterAsync(WebUserChapterUnlockDto webUserChapterUnlock)
     {
         
-        if(await WebUserChapterUnlockDataAccess.InsertWebUserChapterUnlockAsync(webUserChapterUnlock.WebUser.Id, webUserChapterUnlock.Chapter.Id) == (null, null))
+        if(await WebUserChapterUnlockDataAccess.InsertWebUserChapterUnlockAsync(webUserChapterUnlock.WebUser.Id, webUserChapterUnlock.Chapter.Id) == (0, 0))
         {
             return BadRequest();
         }

@@ -12,7 +12,7 @@ namespace WebclientWebserverIntegrationTesting
     public class ChallengeControllerTests
     {
         IChallengeFacadeApiClient _challangeFacadeApiClient = new ChallengeFacadeApiClient(Configuration.WEB_API_URI);
-        WebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
+        IWebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
         WebUserDto _userDto;
         CourseDto _courseDto;
 
@@ -27,10 +27,21 @@ namespace WebclientWebserverIntegrationTesting
                 AvailablePoints = 200,
                 NumberOfCorrectAnswers = 4,
             };
-            _userDto.Id = await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+            _userDto.Id = await _webUserFacadeApiClient.CreateWebUserAsync(_userDto);
 
             return _userDto;
         }
+
+        //private async Task<CourseDto> CreateNewCourseAsync()
+        //{
+        //    _courseDto = new CourseDto()
+        //    {
+        //        Name = "sys dev",
+        //        Description = "this is a description",
+
+        //    };
+        //    _courseDto = await _
+        //}
 
         [SetUp]
         public async Task SetUpAsync()

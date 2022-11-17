@@ -79,11 +79,7 @@ namespace WebApiClient
             var request = new RestRequest(resource, Method.POST, DataFormat.Json);
 
             request.AddJsonBody(JsonSerializer.Serialize(webUser));
-<<<<<<< HEAD
-            //request.AddJsonBody(JsonSerializer.Serialize(course));
-=======
-            // request.AddJsonBody(JsonSerializer.Serialize(course));
->>>>>>> feature-web-apiclient
+
 
             IRestResponse<int> response = await _restClient.ExecuteAsync<int>(request, Method.POST);
 

@@ -88,14 +88,14 @@ public class ChallengeController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> RegisterParticipantAsync([FromBody]WebUserDto webUser, [FromQuery] CourseDto course)
+    public async Task<ActionResult<int>> RegisterParticipantAsync(ChallengeParticipantInfoDto challengeParticipantInfo)
     {
-        if(webUser == null || course == null)
+        if(challengeParticipantInfo == null)
         {
             return NotFound();
         }
         
-        return Ok(await CurrentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(webUser.FromDto(), course.FromDto()));
+        return Ok(await CurrentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(challengeParticipantInfo.WebUser.FromDto(), challengeParticipantInfo.Course.FromDto()));
     }
 
     [HttpGet]

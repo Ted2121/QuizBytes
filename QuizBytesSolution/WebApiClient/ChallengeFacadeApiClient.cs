@@ -75,13 +75,8 @@ namespace WebApiClient
 
         public async Task<int> RegisterParticipantAsync(WebUserDto webUser, CourseDto course)
         {
-            string resource = $"Challenge";
-            var request = new RestRequest(resource, Method.POST, DataFormat.Json);
-
-            request.AddJsonBody(JsonSerializer.Serialize(webUser));
-
-
-            IRestResponse<int> response = await _restClient.ExecuteAsync<int>(request, Method.POST);
+            var resource = new ChallengeParticipantInfoDto() { WebUser = webUser, Course = course };
+            var response = await _restClient.RequestAsync<int>(Method.POST, $"Challenge", resource);
 
             if (!response.IsSuccessful)
             {

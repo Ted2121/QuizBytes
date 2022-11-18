@@ -102,7 +102,7 @@ namespace WebclientWebserverIntegrationTesting
             }
             finally
             {
-                //await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+                await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
             }
 
         }
@@ -113,7 +113,7 @@ namespace WebclientWebserverIntegrationTesting
             try
             {
             // Arrange
-            //_challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+            await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
 
             // Assert
             var numberOfParticipantsAfterRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
@@ -124,7 +124,7 @@ namespace WebclientWebserverIntegrationTesting
             }
             finally
             {
-                //await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+                await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
             }
         }
         

@@ -91,11 +91,11 @@ namespace WebApiClient
 
         public async Task<int> GetNumberOfParticipantsAsync()
         {
-            var response = await _restClient.RequestAsync<int>(Method.GET, $"Challenge/count");
+            var response = await _restClient.RequestAsync<int>(Method.GET, $"/Challenge/count");
 
             if (!response.IsSuccessful)
             {
-                throw new Exception($"Error getting the number of participants in the challenge. Message was: {response.Data}");
+                throw new Exception($"Error getting the number of participants in the challenge. Message was: {response.Content}");
             }
             
                 return response.Data;

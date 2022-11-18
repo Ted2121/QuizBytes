@@ -16,5 +16,5 @@ public class LoginController : ControllerBase
 
     [HttpPost]
     public async Task<ActionResult<int>> Post([FromBody] WebUserDto webUser) =>
-            await WebUserDataAccess.LoginAsync(webUser.Username, webUser.Password);
+            await WebUserDataAccess.LoginAsync(webUser.Username, webUser.PasswordHash);
 }

@@ -10,7 +10,7 @@ namespace QuizBytesAPIServer.Controllers;
 [Route("api/v1/[controller]")]
 public class SubjectsController : ControllerBase
 {
-    public ISubjectDataAccess SubjectDataAccess { get; set; }
+    private ISubjectDataAccess SubjectDataAccess { get; set; }
 
     public SubjectsController(ISubjectDataAccess subjectDataAccess)
     {
@@ -45,9 +45,9 @@ public class SubjectsController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<ActionResult<SubjectDto>> GetSubjectByIdAsync(int subjectId)
+    public async Task<ActionResult<SubjectDto>> GetSubjectByIdAsync([FromQuery] int id)
     {
-        var subject = await SubjectDataAccess.GetSubjectByIdAsync(subjectId);
+        var subject = await SubjectDataAccess.GetSubjectByIdAsync(id);
         if (subject == null)
         {
             return NotFound();
@@ -56,7 +56,8 @@ public class SubjectsController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<ActionResult> DeleteSubjectAsync(int id)
+    [Route("{id}")]
+    public async Task<ActionResult> DeleteSubjectAsync([FromQuery]int id)
     {
 
         if (!await SubjectDataAccess.DeleteSubjectAsync(id))

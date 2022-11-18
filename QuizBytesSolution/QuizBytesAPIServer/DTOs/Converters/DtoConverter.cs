@@ -240,36 +240,37 @@ public static class DtoConverter
     #endregion
 
     #region WebUserChapterUnlock conversion methods
+    // currently unusable
 
-    public static WebUserChapterUnlockDto ToDto(this WebUserChapterUnlock webUserChapterUnlocksToConvert)
-    {
-        var webUserChapterUnlocksDto = new WebUserChapterUnlockDto();
-        webUserChapterUnlocksToConvert.CopyPropertiesTo(webUserChapterUnlocksDto);
-        return webUserChapterUnlocksDto;
-    }
+    //public static WebUserChapterUnlockDto ToDto(this WebUserChapterUnlock webUserChapterUnlocksToConvert)
+    //{
+    //    var webUserChapterUnlocksDto = new WebUserChapterUnlockDto();
+    //    webUserChapterUnlocksToConvert.CopyPropertiesTo(webUserChapterUnlocksDto);
+    //    return webUserChapterUnlocksDto;
+    //}
 
-    public static WebUserChapterUnlock FromDto(this WebUserChapterUnlockDto webUserChapterUnlocksDtoToConvert)
-    {
-        var webUserChapterUnlocks = new WebUserChapterUnlock();
-        webUserChapterUnlocksDtoToConvert.CopyPropertiesTo(webUserChapterUnlocks);
-        return webUserChapterUnlocks;
-    }
+    //public static WebUserChapterUnlock FromDto(this WebUserChapterUnlockDto webUserChapterUnlocksDtoToConvert)
+    //{
+    //    var webUserChapterUnlocks = new WebUserChapterUnlock();
+    //    webUserChapterUnlocksDtoToConvert.CopyPropertiesTo(webUserChapterUnlocks);
+    //    return webUserChapterUnlocks;
+    //}
 
-    public static IEnumerable<WebUserChapterUnlockDto> ToDtos(this IEnumerable<WebUserChapterUnlock> webUserChapterUnlocksToConvert)
-    {
-        foreach (var webUserChapterUnlocks in webUserChapterUnlocksToConvert)
-        {
-            yield return webUserChapterUnlocks.ToDto();
-        }
-    }
+    //public static IEnumerable<WebUserChapterUnlockDto> ToDtos(this IEnumerable<WebUserChapterUnlock> webUserChapterUnlocksToConvert)
+    //{
+    //    foreach (var webUserChapterUnlocks in webUserChapterUnlocksToConvert)
+    //    {
+    //        yield return webUserChapterUnlocks.ToDto();
+    //    }
+    //}
 
-    public static IEnumerable<WebUserChapterUnlock> FromDtos(this IEnumerable<WebUserChapterUnlockDto> webUserChapterUnlocksDtosToConvert)
-    {
-        foreach (var webUserChapterUnlocksDto in webUserChapterUnlocksDtosToConvert)
-        {
-            yield return webUserChapterUnlocksDto.FromDto();
-        }
-    }
+    //public static IEnumerable<WebUserChapterUnlock> FromDtos(this IEnumerable<WebUserChapterUnlockDto> webUserChapterUnlocksDtosToConvert)
+    //{
+    //    foreach (var webUserChapterUnlocksDto in webUserChapterUnlocksDtosToConvert)
+    //    {
+    //        yield return webUserChapterUnlocksDto.FromDto();
+    //    }
+    //}
 
     #endregion
 }

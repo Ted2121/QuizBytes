@@ -3,6 +3,7 @@ using QuizBytesAPIServer.DTOs;
 using QuizBytesAPIServer.Factories;
 using QuizBytesAPIServer.Helper_Classes;
 using SQLAccessImplementationLibrary;
+using SQLAccessImplementationLibraryUnitTest;
 using System.Configuration;
 using ConfigurationManager = Microsoft.Extensions.Configuration.ConfigurationManager;
 
@@ -50,7 +51,13 @@ public class Program
         builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<ISubjectDataAccess>(configuration.GetConnectionString("DefaultConnection")));
         builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<IWebUserDataAccess>(configuration.GetConnectionString("DefaultConnection")));
         builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<IWebUserChapterUnlockDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+
+#if DEBUG
+        builder.Services.AddScoped<ICurrentChallengeParticipantDataAccess, CurrentChallengeParticipantDataAccessMock>();
+#else
         builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<ICurrentChallengeParticipantDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+#endif
+
 
         #endregion
 

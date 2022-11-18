@@ -11,7 +11,7 @@ namespace QuizBytesAPIServer.Controllers;
 [Route("api/v1/[controller]")]
 public class ChaptersController : ControllerBase
 {
-    public IChapterDataAccess ChapterDataAccess { get; set; }
+    private IChapterDataAccess ChapterDataAccess { get; set; }
 
     public ChaptersController(IChapterDataAccess chapterDataAccess)
     {
@@ -46,9 +46,9 @@ public class ChaptersController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<ActionResult<ChapterDto>> GetChapterByIdAsync([FromQuery] int chapterId)
+    public async Task<ActionResult<ChapterDto>> GetChapterByIdAsync([FromQuery] int id)
     {
-        var chapter = await ChapterDataAccess.GetChapterByIdAsync(chapterId);
+        var chapter = await ChapterDataAccess.GetChapterByIdAsync(id);
         if (chapter == null)
         {
             return NotFound();
@@ -57,7 +57,8 @@ public class ChaptersController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<ActionResult> DeleteChapterAsync(int id)
+    [Route("{id}")]
+    public async Task<ActionResult> DeleteChapterAsync([FromQuery] int id)
     {
         if (!await ChapterDataAccess.DeleteChapterAsync(id))
         { return NotFound(); }

@@ -8,7 +8,7 @@ namespace QuizBytesAPIServer.Controllers;
 [Route("api/v1/[controller]")]
 public class LoginController : ControllerBase
 {
-    IWebUserDataAccess WebUserDataAccess { get; set; }
+    private IWebUserDataAccess WebUserDataAccess { get; set; }
     public LoginController(IWebUserDataAccess webUserDataAccess)
     {
         WebUserDataAccess = webUserDataAccess;
@@ -16,5 +16,5 @@ public class LoginController : ControllerBase
 
     [HttpPost]
     public async Task<ActionResult<int>> Post([FromBody] WebUserDto webUser) =>
-            await WebUserDataAccess.LoginAsync(webUser.Username, webUser.Password);
+            await WebUserDataAccess.LoginAsync(webUser.Username, webUser.PasswordHash);
 }

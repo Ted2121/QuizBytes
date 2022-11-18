@@ -122,7 +122,7 @@ namespace WebApiClient
 
             if (!response.IsSuccessful)
             {
-                throw new Exception($"Error checking if the user is in challenge. Message was: {response.Content}");
+                return false;
             }
             else
             {

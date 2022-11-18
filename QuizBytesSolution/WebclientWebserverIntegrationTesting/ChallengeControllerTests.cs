@@ -1,10 +1,6 @@
 ﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
 using SQLAccessImplementationLibrary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SQLAccessImplementationLibraryUnitTest;
 using WebApiClient;
 using WebApiClient.DTOs;
 
@@ -13,13 +9,14 @@ namespace WebclientWebserverIntegrationTesting
     [TestFixture]
     public class ChallengeControllerTests
     {
-        IChallengeFacadeApiClient _challangeFacadeApiClient = new ChallengeFacadeApiClient(Configuration.WEB_API_URI);
-        IWebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
-        IWebUserDataAccess _webUserDataAccess = new WebUserDataAccess(Configuration.CONNECTION_STRING);
-        ICourseDataAccess _courseDataAccess = new CourseDataAccess(Configuration.CONNECTION_STRING);
-        WebUserDto _userDto;
-        CourseDto _courseDto;
-        CurrentChallengeParticipantDto _currentChallengeParticipantDto;
+        private IChallengeFacadeApiClient _challangeFacadeApiClient = new ChallengeFacadeApiClient(Configuration.WEB_API_URI);
+        private IWebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
+        private IWebUserDataAccess _webUserDataAccess = new WebUserDataAccess(Configuration.CONNECTION_STRING);
+        private ICourseDataAccess _courseDataAccess = new CourseDataAccess(Configuration.CONNECTION_STRING);
+        private WebUserDto _userDto;
+        private CourseDto _courseDto;
+        private CurrentChallengeParticipantDto _currentChallengeParticipantDto;
+        private ICurrentChallengeParticipantDataAccess _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock();
 
         public WebUserDto WebUserDto { get; set; }
 
@@ -71,11 +68,11 @@ namespace WebclientWebserverIntegrationTesting
         //    await _challangeFacadeApiClient.Reg
         //}
 
-   
+
 
         [SetUp]
         public async Task SetUpAsync() => await CreateNewCurrentChallengeParticipantDtoAsync();
-       
+
 
         [TearDown]
         public async Task CleanUpAsync()
@@ -108,18 +105,19 @@ namespace WebclientWebserverIntegrationTesting
         }
 
         [Test]
-        public async Task CheckingNumberOfParticipants()
+        public async Task CheckingNumberOfParticipantsExpectingOneMoreAfterInsertion()
         {
             try
             {
-            // Arrange
-            await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+                // Arrange
+                var numberOfParticipantsBeforeRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
+                await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
 
-            // Assert
-            var numberOfParticipantsAfterRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
+                // Act
+                var numberOfParticipantsAfterRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
 
-            // Act
-            Assert.That(numberOfParticipantsAfterRegistration, Is.EqualTo(1));
+                // Assert
+                Assert.That(numberOfParticipantsAfterRegistration, Is.EqualTo(numberOfParticipantsBeforeRegistration + 1));
 
             }
             finally
@@ -127,6 +125,92 @@ namespace WebclientWebserverIntegrationTesting
                 await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
             }
         }
-        
+
+        [Test]
+        public async Task TestingDeregisteringParticipantReturnsTrue()
+        {
+
+            // Arrange
+            await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+
+
+            // Act
+            var result = await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+
+            // Assert
+            Assert.That(result, Is.True);
+
+        }
+
+        [Test]
+        public async Task CheckingIfUserIsInChallengeReturnsTrue()
+        {
+            try
+            {
+                // Arrange
+                await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+
+
+                // Act
+                var result = await _challangeFacadeApiClient.CheckIfUserIsInChallengeAsync(_userDto.Id);
+
+                // Assert
+                Assert.That(result, Is.True);
+
+            }
+            finally
+            {
+                await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+            }
+
+        }
+
+
+        [Test]
+        public async Task CheckingIfUserIsInChallengeWithoutInsertionReturnsFalse()
+        {
+
+            // Arrange in SetUp
+
+            // Act
+            var result = await _challangeFacadeApiClient.CheckIfUserIsInChallengeAsync(_userDto.Id);
+
+            // Assert
+            Assert.That(result, Is.False);
+
+        }
+
+        [Test]
+        public async Task TestingIfGettingAllParticipantsHasAnyParticipantExpectingTrue()
+        {
+            try
+            {
+                // Arrange
+                await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+
+                // Act
+                var participants = await _challangeFacadeApiClient.GetAllParticipantsAsync();
+
+                // Assert
+                Assert.That(participants.Any(), Is.True);
+
+            }
+            finally
+            {
+                await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+            }
+        }
+
+        [Test]
+        public async Task TestingIfGettingAllParticipantsHasAnyParticipantExpectingFalse()
+        {
+            // Arrange
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            // Act
+            var participants = await _challangeFacadeApiClient.GetAllParticipantsAsync();
+
+            // Assert
+            Assert.That(participants.Any(), Is.False);
+        }
     }
 }

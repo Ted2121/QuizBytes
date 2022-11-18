@@ -95,12 +95,11 @@ namespace WebApiClient
 
             if (!response.IsSuccessful)
             {
-                throw new Exception($"Error getting the number of participants in the challenge. Message was: {response.Content}");
+                throw new Exception($"Error getting the number of participants in the challenge. Message was: {response.Data}");
             }
-            else
-            {
+            
                 return response.Data;
-            }
+            
         }
 
         public async Task<QuizDto> GetChallengeQuizAsync(CourseDto course)

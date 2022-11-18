@@ -102,21 +102,30 @@ namespace WebclientWebserverIntegrationTesting
             }
             finally
             {
-                await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+                //await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
             }
 
         }
 
         [Test]
-        public async Task CheckingIfUserIsInChallengeExpectingTrue()
+        public async Task CheckingNumberOfParticipants()
         {
+            try
+            {
             // Arrange
-            //var 
-
-            // Act
-
+            //_challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
 
             // Assert
+            var numberOfParticipantsAfterRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
+
+            // Act
+            Assert.That(numberOfParticipantsAfterRegistration, Is.EqualTo(1));
+
+            }
+            finally
+            {
+                //await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+            }
         }
         
     }

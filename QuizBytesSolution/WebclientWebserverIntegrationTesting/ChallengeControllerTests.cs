@@ -22,7 +22,7 @@ namespace WebclientWebserverIntegrationTesting
 
         public WebUserDto WebUserDto { get; set; }
 
-        private async Task<WebUserDto> CreateNewWebUserAsync()
+        private async Task<WebUserDto> CreateAndInsertNewWebUserAsync()
         {
             _userDto = new WebUserDto()
             {
@@ -38,7 +38,7 @@ namespace WebclientWebserverIntegrationTesting
             return _userDto;
         }
 
-        private async Task<CourseDto> CreateNewCourseAsync()
+        private async Task<CourseDto> CreateAndInsertNewCourseAsync()
         {
             _courseDto = new CourseDto()
             {
@@ -55,23 +55,57 @@ namespace WebclientWebserverIntegrationTesting
         {
             _currentChallengeParticipantDto = new CurrentChallengeParticipantDto()
             {
-                WebUser = await CreateNewWebUserAsync(),
-                Course = await CreateNewCourseAsync()
+                WebUser = await CreateAndInsertNewWebUserAsync(),
+                Course = await CreateAndInsertNewCourseAsync()
             };
 
             return _currentChallengeParticipantDto;
         }
 
+        //private async Task InsertCurrentChallengeParticipant()
+        //{
+        //    await _challangeFacadeApiClient.Reg
+        //}
+
+   
+
         [SetUp]
-        public async Task SetUpAsync()
-        {
-            
-        }
+        public async Task SetUpAsync() => await CreateNewCurrentChallengeParticipantDtoAsync();
+       
 
         [TearDown]
         public async Task CleanUpAsync()
         {
+            await _courseDataAccess.DeleteCourseAsync(_courseDto.Id);
+            await _webUserDataAccess.DeleteWebUserAsync(_userDto.Id);
 
+        }
+
+        [Test]
+        public async Task TestingRegisterParticipantExpectingPositiveResult()
+        {
+            // Arrange in SetUp
+
+
+            // Act
+            var participantId = await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+
+
+            // Assert
+
+
+        }
+
+        [Test]
+        public async Task CheckingIfUserIsInChallengeExpectingTrue()
+        {
+            // Arrange
+            //var 
+
+            // Act
+
+
+            // Assert
         }
         
     }

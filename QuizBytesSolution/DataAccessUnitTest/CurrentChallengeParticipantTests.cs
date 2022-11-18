@@ -25,7 +25,7 @@ namespace DataAccessUnitTest
             _user = new WebUser(randomId, "testusername", "testpassword", "testemail", randomTotalPoints, randomAvailablePoints);
             _course = new Course("testname", "testdescription");
 
-            _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock(Configuration.CONNECTION_STRING);
+            _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock();
 
         }
 

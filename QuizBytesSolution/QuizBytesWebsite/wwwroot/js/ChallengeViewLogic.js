@@ -3,7 +3,6 @@
 //2. Button must either register or spit out an error based on result
 //3. button must change text
 let registered = false;
-//registered = DotNet.InvokeMethodAsync('{assemblyname}', '{methodid}', {argument});
 let availableSpaces = 1;
 $("#register-button-logic").ready(
 function changeButtonLogicToHandleRegisterAndDeregister() {

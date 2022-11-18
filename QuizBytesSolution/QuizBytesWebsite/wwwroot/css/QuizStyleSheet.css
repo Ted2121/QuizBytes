@@ -12,13 +12,11 @@ width: 100vw;
 .quiz{
     display:grid;
     grid-template-rows:60px auto;
-
 }
 
 
 .question-text {
 color: orange;
-width:50%;
 }
 .quiz-body{
 padding: 20px 30px;
@@ -47,7 +45,7 @@ border: 2px solid #000000;
 color: black;
 }
 
-.option.active{
+.active{
 background-color:orange;
 color: white;
 border-color:white;

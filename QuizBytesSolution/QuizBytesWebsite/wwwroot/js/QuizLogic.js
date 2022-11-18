@@ -55,29 +55,29 @@ function toggleActive() {
             for (let i = 0; i < option.length; i++) {
                 if (option[i].classList.contains("active")) {
                     option[i].classList.remove("active");
+                    userAnswer = null;
                 }
             }
             option[i].classList.add("active");
+            let userAnswer = $(".active").text();
+            console.log(userAnswer);
         }
     }
 }
 
 function next() {
-    if (questionCount == questions.length) {
+    if (questionCount == questions.length-1) {
         location.href = "../Leaderboard/Display"
     }
-    else {
-        questionCount++;
-        show(questionCount);
-        console.log(questionCount);
-    }
+    //let userAnswer = document.querySelector(".active");
+    let userAnswer = $(".active").text();
+    console.log(userAnswer);
 
     if (userAnswer == questions[questionCount].answer) {
-        let userAnswer = document.querySelector("li.option.active").innerHTML;
         correctAnswers++;
         sessionStorage.setItem("Correct Answers:", correctAnswers)
         console.log(correctAnswers);
     }
-
+    questionCount++;
     show(questionCount);
 }

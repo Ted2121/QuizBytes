@@ -2,18 +2,16 @@
 //1. Button must check if there are available spots on click
 //2. Button must either register or spit out an error based on result
 //3. button must change text
-var registered = false;
+let registered = false;
 //registered = DotNet.InvokeMethodAsync('{assemblyname}', '{methodid}', {argument});
-var availableSpaces = 2;
+let availableSpaces = 1;
 $("#register-button-logic").ready(
 function changeButtonLogicToHandleRegisterAndDeregister() {
-    if (registered === false) {
+    if (registered === false&&availableSpaces>0) {
         document.getElementById("register-button-logic").innerHTML = "FOR THE HORDE";
         $("#register-button-logic").on("click", function () {
-            if (availableSpaces > 0) {
-                 location.replace("Start")
+            location.replace("Start");
                 document.getElementById("error-message").innerHTML = "You have been registered!";
-            }
         })
     }
     if (registered === true) {
@@ -30,10 +28,10 @@ function changeButtonLogicToHandleRegisterAndDeregister() {
             document.getElementById("error-message").innerHTML = "Oi!Told you to bugger off and try next time!";
             $("#register-button-logic").on("click", function () {
                 document.getElementById("error-message").innerHTML = "That's it, I'm sending you back to the home page next time!";
-            });
             $("#register-button-logic").on("click", function () {
                     location.replace("../Home/index")
-                })
+            })
+            })
         })
     }
 })

@@ -218,41 +218,41 @@ public class ChallengeControllerTests
 
     //}
 
-    [Test]
-    public async Task TestingRewardsDistributionExpectingPointsToBeAddedToUser()
-    {
+    //[Test]
+    //public async Task TestingRewardsDistributionExpectingPointsToBeAddedToUser()
+    //{
 
-        try
-        {
-            // Arrange
-            _secondUserDto = new WebUserDto()
-            {
-                Username = "Joe",
-                PasswordHash = "JoeProtecc",
-                Email = "joe@Bob.com",
-                TotalPoints = 3242,
-                AvailablePoints = 69,
-                NumberOfCorrectAnswers = 5
-            };
-            _secondUserDto.Id = await _webUserDataAccess.InsertWebUserAsync(_secondUserDto.FromDto());
+    //    try
+    //    {
+    //        // Arrange
+    //        _secondUserDto = new WebUserDto()
+    //        {
+    //            Username = "Joe",
+    //            PasswordHash = "JoeProtecc",
+    //            Email = "joe@Bob.com",
+    //            TotalPoints = 3242,
+    //            AvailablePoints = 69,
+    //            NumberOfCorrectAnswers = 5
+    //        };
+    //        _secondUserDto.Id = await _webUserDataAccess.InsertWebUserAsync(_secondUserDto.FromDto());
 
-            await _challangeFacadeApiClient.RegisterParticipantAsync(_secondUserDto, _courseDto);
+    //        await _challangeFacadeApiClient.RegisterParticipantAsync(_secondUserDto, _courseDto);
 
-            await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+    //        await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
 
 
 
-            // Act
-            await _challangeFacadeApiClient.DistributeRewardsAsync();
+    //        // Act
+    //        await _challangeFacadeApiClient.DistributeRewardsAsync();
 
-            // Assert
+    //        // Assert
 
-        }
-        finally
-        {
-            await _webUserDataAccess.DeleteWebUserAsync(_secondUserDto.Id);
-            await _challangeFacadeApiClient.DeregisterParticipantAsync(_secondUserDto.Id);
-            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
-        }
-    }
+    //    }
+    //    finally
+    //    {
+    //        await _webUserDataAccess.DeleteWebUserAsync(_secondUserDto.Id);
+    //        await _challangeFacadeApiClient.DeregisterParticipantAsync(_secondUserDto.Id);
+    //        await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+    //    }
+    //}
 }

@@ -90,9 +90,5 @@ public class RewardsDistributionHelper : IRewardsDistributionHelper
         }
     }
 
-    public Task<IEnumerable<CurrentChallengeParticipant>> BuildLeaderboardFromParticipantList(IEnumerable<CurrentChallengeParticipant> currentChallengeEntries)
-    {
-
-        currentChallengeEntries.OrderByDescending(challengeRow => WebUserDataAccess.GetWebUserByIdAsync(challengeRow.FKWebUserId).Result.ToDto().NumberOfCorrectAnswers);
-    }
+   
 }

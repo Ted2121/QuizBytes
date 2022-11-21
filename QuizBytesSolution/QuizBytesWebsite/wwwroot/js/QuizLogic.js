@@ -10,7 +10,7 @@
     ]
     //need to figure out a way to populate this list. Shouldn't be an issue. These two are test questions to see if the quiz and button will work.
 },
-    {
+  {
         id: 2,
         question: "Which of these is the hardest?",
         answer: "That's what she said",
@@ -25,7 +25,8 @@
 ];
 
 let questionCount = 0;
-let points = 0;
+let correctAnswers = 0;
+var userAnswer;
 
 window.onload = function () {
     show(questionCount);
@@ -36,7 +37,7 @@ function show(count) {
     let [first, second, third, fourth] = questions[count].options;
 
     question.innerHTML = `<h2 class ="question-text">Q${count +1}. ${questions[count].question}<h2>
-        <ul class="question-options">
+        <ul class="question-options ">
         <li class="option">${first}</li>
         <li class="option">${second}</li>
         <li class="option">${third}</li>
@@ -54,30 +55,29 @@ function toggleActive() {
             for (let i = 0; i < option.length; i++) {
                 if (option[i].classList.contains("active")) {
                     option[i].classList.remove("active");
+                    userAnswer = null;
                 }
             }
             option[i].classList.add("active");
+            let userAnswer = $(".active").text();
+            console.log(userAnswer);
         }
     }
 }
 
 function next() {
-    if (questionCount == question.length - 1) {
+    if (questionCount == questions.length-1) {
         location.href = "../Leaderboard/Display"
     }
-    else {
-        show(questionCount); //doesnt work, says question is undefined which is very weird -- show error ss
+    //let userAnswer = document.querySelector(".active");
+    let userAnswer = $(".active").text();
+    console.log(userAnswer);
+
+    if (userAnswer == questions[questionCount].answer) {
+        correctAnswers++;
+        sessionStorage.setItem("Correct Answers:", correctAnswers)
+        console.log(correctAnswers);
     }
-    console.log(questionCount);
+    questionCount++;
+    show(questionCount);
 }
-
-let userAnswer = document.querySelector("li.option.active").innerHTML; 
-
-if (userAnswer == questions[questionCount].answer) {
-    points += 10;
-    sessionStorage.setItem("points",points)
-}
-console.log(points);
-
-questionCount++;
-show(questionCount);

@@ -43,9 +43,9 @@ namespace WebApiClient
             }
         }
 
-        public async Task<bool> DistributeRewardsAsync()
+        public async Task<bool> DistributeRewardsAsync(IEnumerable<WebUserDto> leaderboard)
         {
-            var response = await _restClient.RequestAsync(Method.PUT, $"Challenge/rewards");
+            var response = await _restClient.RequestAsync(Method.PUT, $"Challenge/rewards", leaderboard);
 
             if (response.IsSuccessful)
             {
@@ -75,7 +75,7 @@ namespace WebApiClient
 
         public async Task<int> RegisterParticipantAsync(WebUserDto webUser, CourseDto course)
         {
-            var resource = new ChallengeParticipantInfoDto() { WebUser = webUser, Course = course };
+            var resource = new CurrentChallengeParticipantDto() { WebUser = webUser, Course = course };
             var response = await _restClient.RequestAsync<int>(Method.POST, $"Challenge", resource);
 
             if (!response.IsSuccessful)

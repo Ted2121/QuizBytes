@@ -36,7 +36,7 @@ public class ChallengeController : ControllerBase
     {
         var currentChallengeEntries = await CurrentChallengeParticipantDataAccess.GetAllRowsInChallengeAsync();
 
-        currentChallengeEntries.OrderByDescending(challengeRow => WebUserDataAccess.GetWebUserByIdAsync(challengeRow.FKWebUserId).Result.AvailablePoints);
+        //var leaderboard = await RewardsDistributionHelper.BuildLeaderboardFromParticipantList(currentChallengeEntries.ToDtos());
 
         if (currentChallengeEntries == null)
         {
@@ -59,17 +59,15 @@ public class ChallengeController : ControllerBase
 
     [HttpPut]
     [Route("rewards")]
-    public async Task<ActionResult> DistributeRewardsAsync()
+    public async Task<ActionResult> DistributeRewardsAsync(IEnumerable<WebUserDto> leaderboard)
     {
-        var leaderboardResult = await GetAllParticipantsAsync();
-        var leaderboard = leaderboardResult.Value?.ToList();
         
         if(leaderboard == null)
         {
             return NotFound();
         }
 
-        await RewardsDistributionHelper.DistributeChallengeRewardsAsync(leaderboard);
+        await RewardsDistributionHelper.DistributeChallengeRewardsAsync(leaderboard.ToList());
 
         return Ok();
 
@@ -88,7 +86,7 @@ public class ChallengeController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> RegisterParticipantAsync(ChallengeParticipantInfoDto challengeParticipantInfo)
+    public async Task<ActionResult<int>> RegisterParticipantAsync(CurrentChallengeParticipantDto challengeParticipantInfo)
     {
         if(challengeParticipantInfo == null)
         {

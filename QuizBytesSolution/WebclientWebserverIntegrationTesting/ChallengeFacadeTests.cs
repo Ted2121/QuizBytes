@@ -255,7 +255,8 @@ public class ChallengeFacadeTests
             // Act
 
             await _challangeFacadeApiClient.DistributeRewardsAsync(leaderboard);
-            var availablePointsAfterDistribution = _secondUserDto.AvailablePoints;
+            var secondUser = await _webUserDataAccess.GetWebUserByIdAsync(_secondUserDto.Id);
+            var availablePointsAfterDistribution = secondUser.AvailablePoints;
 
             // Assert
             Assert.That(availablePointsAfterDistribution, Is.EqualTo(availablePointsBeforeDistribution + pointsToBeAdded));

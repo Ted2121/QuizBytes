@@ -86,7 +86,7 @@ public class ChallengeController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> RegisterParticipantAsync(ChallengeParticipantInfoDto challengeParticipantInfo)
+    public async Task<ActionResult<int>> RegisterParticipantAsync(CurrentChallengeParticipantDto challengeParticipantInfo)
     {
         if(challengeParticipantInfo == null)
         {

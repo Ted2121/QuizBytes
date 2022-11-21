@@ -4,213 +4,255 @@ using SQLAccessImplementationLibraryUnitTest;
 using WebApiClient;
 using WebApiClient.DTOs;
 
-namespace WebclientWebserverIntegrationTesting
+namespace WebclientWebserverIntegrationTesting;
+
+[TestFixture]
+public class ChallengeControllerTests
 {
-    [TestFixture]
-    public class ChallengeControllerTests
+    private IChallengeFacadeApiClient _challangeFacadeApiClient = new ChallengeFacadeApiClient(Configuration.WEB_API_URI);
+    private IWebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
+    private IWebUserDataAccess _webUserDataAccess = new WebUserDataAccess(Configuration.CONNECTION_STRING);
+    private ICourseDataAccess _courseDataAccess = new CourseDataAccess(Configuration.CONNECTION_STRING);
+    private WebUserDto _userDto;
+    private WebUserDto _secondUserDto;
+    private CourseDto _courseDto;
+    private CurrentChallengeParticipantDto _currentChallengeParticipantDto;
+    private ICurrentChallengeParticipantDataAccess _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock();
+
+    public WebUserDto WebUserDto { get; set; }
+
+    private async Task<WebUserDto> CreateAndInsertNewWebUserAsync()
     {
-        private IChallengeFacadeApiClient _challangeFacadeApiClient = new ChallengeFacadeApiClient(Configuration.WEB_API_URI);
-        private IWebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
-        private IWebUserDataAccess _webUserDataAccess = new WebUserDataAccess(Configuration.CONNECTION_STRING);
-        private ICourseDataAccess _courseDataAccess = new CourseDataAccess(Configuration.CONNECTION_STRING);
-        private WebUserDto _userDto;
-        private CourseDto _courseDto;
-        private CurrentChallengeParticipantDto _currentChallengeParticipantDto;
-        private ICurrentChallengeParticipantDataAccess _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock();
-
-        public WebUserDto WebUserDto { get; set; }
-
-        private async Task<WebUserDto> CreateAndInsertNewWebUserAsync()
+        _userDto = new WebUserDto()
         {
-            _userDto = new WebUserDto()
-            {
-                Username = "Bob",
-                PasswordHash = "BobProtecc",
-                Email = "bob@Bob.com",
-                TotalPoints = 453,
-                AvailablePoints = 200,
-                NumberOfCorrectAnswers = 4,
-            };
-            _userDto.Id = await _webUserDataAccess.InsertWebUserAsync(_userDto.FromDto());
+            Username = "Bob",
+            PasswordHash = "BobProtecc",
+            Email = "bob@Bob.com",
+            TotalPoints = 453,
+            AvailablePoints = 200,
+            NumberOfCorrectAnswers = 4
+        };
+        _userDto.Id = await _webUserDataAccess.InsertWebUserAsync(_userDto.FromDto());
 
-            return _userDto;
+        return _userDto;
+    }
+
+    private async Task<CourseDto> CreateAndInsertNewCourseAsync()
+    {
+        _courseDto = new CourseDto()
+        {
+            Name = "sys dev",
+            Description = "this is a description",
+
+        };
+        _courseDto.Id = await _courseDataAccess.InsertCourseAsync(_courseDto.FromDto());
+
+        return _courseDto;
+    }
+
+    private async Task<CurrentChallengeParticipantDto> CreateNewCurrentChallengeParticipantDtoAsync()
+    {
+        var user = await CreateAndInsertNewWebUserAsync();
+        var course = await CreateAndInsertNewCourseAsync();
+
+        _currentChallengeParticipantDto = new CurrentChallengeParticipantDto()
+        {
+            WebUser = user,
+            Course = course
+        };
+
+        return _currentChallengeParticipantDto;
+    }
+
+
+
+
+    [SetUp]
+    public async Task SetUpAsync() => await CreateNewCurrentChallengeParticipantDtoAsync();
+
+
+    [TearDown]
+    public async Task CleanUpAsync()
+    {
+        await _courseDataAccess.DeleteCourseAsync(_courseDto.Id);
+        await _webUserDataAccess.DeleteWebUserAsync(_userDto.Id);
+
+    }
+
+    [Test]
+    public async Task TestingRegisterParticipantExpectingPositiveResult()
+    {
+        try
+        {
+            // Arrange
+            var numberOfParticipantsBeforeRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
+
+            // Act
+            await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+            var numberOfParticipantsAfterRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
+
+            // Assert
+            Assert.That(numberOfParticipantsAfterRegistration, Is.EqualTo(numberOfParticipantsBeforeRegistration + 1));
+        }
+        finally
+        {
+            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
         }
 
-        private async Task<CourseDto> CreateAndInsertNewCourseAsync()
+    }
+
+    [Test]
+    public async Task CheckingNumberOfParticipantsExpectingOneMoreAfterInsertion()
+    {
+        try
         {
-            _courseDto = new CourseDto()
-            {
-                Name = "sys dev",
-                Description = "this is a description",
+            // Arrange
+            var numberOfParticipantsBeforeRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
+            await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
 
-            };
-            _courseDto.Id = await _courseDataAccess.InsertCourseAsync(_courseDto.FromDto());
+            // Act
+            var numberOfParticipantsAfterRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
 
-            return _courseDto;
-        }
-
-        private async Task<CurrentChallengeParticipantDto> CreateNewCurrentChallengeParticipantDtoAsync()
-        {
-            var user = await CreateAndInsertNewWebUserAsync();
-            var course = await CreateAndInsertNewCourseAsync();
-
-            _currentChallengeParticipantDto = new CurrentChallengeParticipantDto()
-            {
-                WebUser = user,
-                Course = course
-            };
-
-            return _currentChallengeParticipantDto;
-        }
-
-        //private async Task InsertCurrentChallengeParticipant()
-        //{
-        //    await _challangeFacadeApiClient.Reg
-        //}
-
-
-
-        [SetUp]
-        public async Task SetUpAsync() => await CreateNewCurrentChallengeParticipantDtoAsync();
-
-
-        [TearDown]
-        public async Task CleanUpAsync()
-        {
-            await _courseDataAccess.DeleteCourseAsync(_courseDto.Id);
-            await _webUserDataAccess.DeleteWebUserAsync(_userDto.Id);
+            // Assert
+            Assert.That(numberOfParticipantsAfterRegistration, Is.EqualTo(numberOfParticipantsBeforeRegistration + 1));
 
         }
-
-        [Test]
-        public async Task TestingRegisterParticipantExpectingPositiveResult()
+        finally
         {
-            try
-            {
-                // Arrange
-                var numberOfParticipantsBeforeRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
-
-                // Act
-                await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
-                var numberOfParticipantsAfterRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
-
-                // Assert
-                Assert.That(numberOfParticipantsAfterRegistration, Is.EqualTo(numberOfParticipantsBeforeRegistration + 1));
-            }
-            finally
-            {
-                await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
-            }
-
+            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
         }
+    }
 
-        [Test]
-        public async Task CheckingNumberOfParticipantsExpectingOneMoreAfterInsertion()
+    [Test]
+    public async Task TestingDeregisteringParticipantReturnsTrue()
+    {
+
+        // Arrange
+        await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+
+
+        // Act
+        var result = await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+
+        // Assert
+        Assert.That(result, Is.True);
+
+    }
+
+    [Test]
+    public async Task CheckingIfUserIsInChallengeReturnsTrue()
+    {
+        try
         {
-            try
-            {
-                // Arrange
-                var numberOfParticipantsBeforeRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
-                await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
-
-                // Act
-                var numberOfParticipantsAfterRegistration = await _challangeFacadeApiClient.GetNumberOfParticipantsAsync();
-
-                // Assert
-                Assert.That(numberOfParticipantsAfterRegistration, Is.EqualTo(numberOfParticipantsBeforeRegistration + 1));
-
-            }
-            finally
-            {
-                await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
-            }
-        }
-
-        [Test]
-        public async Task TestingDeregisteringParticipantReturnsTrue()
-        {
-
             // Arrange
             await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
 
 
             // Act
-            var result = await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+            var result = await _challangeFacadeApiClient.CheckIfUserIsInChallengeAsync(_userDto.Id);
 
             // Assert
             Assert.That(result, Is.True);
 
         }
-
-        [Test]
-        public async Task CheckingIfUserIsInChallengeReturnsTrue()
+        finally
         {
-            try
-            {
-                // Arrange
-                await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
-
-
-                // Act
-                var result = await _challangeFacadeApiClient.CheckIfUserIsInChallengeAsync(_userDto.Id);
-
-                // Assert
-                Assert.That(result, Is.True);
-
-            }
-            finally
-            {
-                await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
-            }
-
+            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
         }
 
+    }
 
-        [Test]
-        public async Task CheckingIfUserIsInChallengeWithoutInsertionReturnsFalse()
-        {
 
-            // Arrange in SetUp
+    [Test]
+    public async Task CheckingIfUserIsInChallengeWithoutInsertionReturnsFalse()
+    {
 
-            // Act
-            var result = await _challangeFacadeApiClient.CheckIfUserIsInChallengeAsync(_userDto.Id);
+        // Arrange in SetUp
 
-            // Assert
-            Assert.That(result, Is.False);
+        // Act
+        var result = await _challangeFacadeApiClient.CheckIfUserIsInChallengeAsync(_userDto.Id);
 
-        }
+        // Assert
+        Assert.That(result, Is.False);
 
-        [Test]
-        public async Task TestingIfGettingAllParticipantsHasAnyParticipantExpectingTrue()
-        {
-            try
-            {
-                // Arrange
-                await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+    }
 
-                // Act
-                var participants = await _challangeFacadeApiClient.GetAllParticipantsAsync();
-
-                // Assert
-                Assert.That(participants.Any(), Is.True);
-
-            }
-            finally
-            {
-                await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
-            }
-        }
-
-        [Test]
-        public async Task TestingIfGettingAllParticipantsHasAnyParticipantExpectingFalse()
+    [Test]
+    public async Task TestingIfGettingAllParticipantsHasAnyParticipantExpectingTrue()
+    {
+        try
         {
             // Arrange
-            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+
             // Act
             var participants = await _challangeFacadeApiClient.GetAllParticipantsAsync();
 
             // Assert
-            Assert.That(participants.Any(), Is.False);
+            Assert.That(participants.Any(), Is.True);
+
+        }
+        finally
+        {
+            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+        }
+    }
+
+    [Test]
+    public async Task TestingIfGettingAllParticipantsHasAnyParticipantExpectingFalse()
+    {
+        // Arrange
+        await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+        // Act
+        var participants = await _challangeFacadeApiClient.GetAllParticipantsAsync();
+
+        // Assert
+        Assert.That(participants.Any(), Is.False);
+    }
+
+    //[Test]
+    //public async Task ForceCleanUp()
+    //{
+    //    await _webUserDataAccess.DeleteWebUserAsync(94);
+
+
+    //}
+
+    [Test]
+    public async Task TestingRewardsDistributionExpectingPointsToBeAddedToUser()
+    {
+
+        try
+        {
+            // Arrange
+            _secondUserDto = new WebUserDto()
+            {
+                Username = "Joe",
+                PasswordHash = "JoeProtecc",
+                Email = "joe@Bob.com",
+                TotalPoints = 3242,
+                AvailablePoints = 69,
+                NumberOfCorrectAnswers = 5
+            };
+            _secondUserDto.Id = await _webUserDataAccess.InsertWebUserAsync(_secondUserDto.FromDto());
+
+            await _challangeFacadeApiClient.RegisterParticipantAsync(_secondUserDto, _courseDto);
+
+            await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+
+
+
+            // Act
+            await _challangeFacadeApiClient.DistributeRewardsAsync();
+
+            // Assert
+
+        }
+        finally
+        {
+            await _webUserDataAccess.DeleteWebUserAsync(_secondUserDto.Id);
+            await _challangeFacadeApiClient.DeregisterParticipantAsync(_secondUserDto.Id);
+            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
         }
     }
 }

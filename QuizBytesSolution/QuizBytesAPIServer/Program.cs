@@ -72,6 +72,8 @@ public class Program
             app.UseSwaggerUI();
         }
 
+        app.UseHttpLogging();
+
         app.UseHttpsRedirection();
 
         app.UseAuthorization();

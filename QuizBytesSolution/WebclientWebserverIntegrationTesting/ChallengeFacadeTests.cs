@@ -230,8 +230,8 @@ public class ChallengeFacadeTests
                 Username = "Joe",
                 PasswordHash = "JoeProtecc",
                 Email = "joe@Bob.com",
-                TotalPoints = 0,
-                AvailablePoints = 0,
+                TotalPoints = 100,
+                AvailablePoints = 100,
                 NumberOfCorrectAnswers = 5
             };
 
@@ -245,7 +245,8 @@ public class ChallengeFacadeTests
                 _userDto,
                 _secondUserDto
             };
-
+            LeaderboardDto leaderboardDto = new LeaderboardDto();
+            leaderboardDto.Leaderboard = leaderboard;
             var availablePointsBeforeDistribution = _secondUserDto.AvailablePoints;
 
             var secondPlaceReward = 128;
@@ -254,7 +255,7 @@ public class ChallengeFacadeTests
 
             // Act
 
-            await _challangeFacadeApiClient.DistributeRewardsAsync(leaderboard);
+            await _challangeFacadeApiClient.DistributeRewardsAsync(leaderboardDto);
             var secondUser = await _webUserDataAccess.GetWebUserByIdAsync(_secondUserDto.Id);
             var availablePointsAfterDistribution = secondUser.AvailablePoints;
 
@@ -264,8 +265,8 @@ public class ChallengeFacadeTests
         }
         finally
         {
-            await _challangeFacadeApiClient.ClearTempTableBeforeNextChallengeAsync();
             await _webUserDataAccess.DeleteWebUserAsync(_secondUserDto.Id);
+            await _challangeFacadeApiClient.ClearTempTableBeforeNextChallengeAsync();
         }
     }
 }

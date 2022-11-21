@@ -15,60 +15,60 @@ public class RewardsDistributionHelper : IRewardsDistributionHelper
         WebUserDataAccess = webUserDataAccess;
     }
 
-    public async Task DistributeChallengeRewardsAsync(List<WebUserDto> leaderboard)
+    public async Task DistributeChallengeRewardsAsync(LeaderboardDto leaderboard)
     {
         int firstPlaceReward = 256;
         int secondPlaceReward = 128;
         int thirdPlaceReward = 64;
         int participationReward = 32;
 
-        for(int i = 0; i < leaderboard.Count; i++)
+        for(int i = 0; i < leaderboard.Leaderboard.Count; i++)
         {
             switch (i)
             {
             case 0:
                 {
-                    int quizPointsToAdd = CalculateRewardsForQuiz(leaderboard[i]);
+                    int quizPointsToAdd = CalculateRewardsForQuiz(leaderboard.Leaderboard[i]);
                     int rankPointsToAdd = firstPlaceReward;
                     int totalPointsToAdd = quizPointsToAdd + rankPointsToAdd;
-                    leaderboard[i].AvailablePoints += totalPointsToAdd;
-                    leaderboard[i].TotalPoints += totalPointsToAdd;
+                    leaderboard.Leaderboard[i].AvailablePoints += totalPointsToAdd;
+                    leaderboard.Leaderboard[i].TotalPoints += totalPointsToAdd;
 
-                    await WebUserDataAccess.UpdateWebUserAsync(leaderboard[i].FromDto());
+                    await WebUserDataAccess.UpdateWebUserAsync(leaderboard.Leaderboard[i].FromDto());
                 }
                 break;
                 case 1:
                 {
-                    int quizPointsToAdd = CalculateRewardsForQuiz(leaderboard[i]);
+                    int quizPointsToAdd = CalculateRewardsForQuiz(leaderboard.Leaderboard[i]);
                     int rankPointsToAdd = secondPlaceReward;
                     int totalPointsToAdd = quizPointsToAdd + rankPointsToAdd;
-                    leaderboard[i].AvailablePoints += totalPointsToAdd;
-                    leaderboard[i].TotalPoints += totalPointsToAdd;
+                    leaderboard.Leaderboard[i].AvailablePoints += totalPointsToAdd;
+                    leaderboard.Leaderboard[i].TotalPoints += totalPointsToAdd;
 
-                    await WebUserDataAccess.UpdateWebUserAsync(leaderboard[i].FromDto());
+                    await WebUserDataAccess.UpdateWebUserAsync(leaderboard.Leaderboard[i].FromDto());
                 }
                 break;
                 case 2:
                 {
 
-                    int quizPointsToAdd = CalculateRewardsForQuiz(leaderboard[i]);
+                    int quizPointsToAdd = CalculateRewardsForQuiz(leaderboard.Leaderboard[i]);
                     int rankPointsToAdd = thirdPlaceReward;
                     int totalPointsToAdd = quizPointsToAdd + rankPointsToAdd;
-                    leaderboard[i].AvailablePoints += totalPointsToAdd;
-                    leaderboard[i].TotalPoints += totalPointsToAdd;
+                    leaderboard.Leaderboard[i].AvailablePoints += totalPointsToAdd;
+                    leaderboard.Leaderboard[i].TotalPoints += totalPointsToAdd;
 
-                    await WebUserDataAccess.UpdateWebUserAsync(leaderboard[i].FromDto());
+                    await WebUserDataAccess.UpdateWebUserAsync(leaderboard.Leaderboard[i].FromDto());
                 }
                 break;
                 default:
                 {
-                    int quizPointsToAdd = CalculateRewardsForQuiz(leaderboard[i]);
+                    int quizPointsToAdd = CalculateRewardsForQuiz(leaderboard.Leaderboard[i]);
                     int rankPointsToAdd = participationReward;
                     int totalPointsToAdd = quizPointsToAdd + rankPointsToAdd;
-                    leaderboard[i].AvailablePoints += totalPointsToAdd;
-                    leaderboard[i].TotalPoints += totalPointsToAdd;
+                    leaderboard.Leaderboard[i].AvailablePoints += totalPointsToAdd;
+                    leaderboard.Leaderboard[i].TotalPoints += totalPointsToAdd;
 
-                    await WebUserDataAccess.UpdateWebUserAsync(leaderboard[i].FromDto());
+                    await WebUserDataAccess.UpdateWebUserAsync(leaderboard.Leaderboard[i].FromDto());
                 }
                 break;
             }

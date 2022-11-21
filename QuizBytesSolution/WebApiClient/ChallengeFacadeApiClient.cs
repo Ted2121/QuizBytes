@@ -43,7 +43,7 @@ namespace WebApiClient
             }
         }
 
-        public async Task<bool> DistributeRewardsAsync(IEnumerable<WebUserDto> leaderboard)
+        public async Task<bool> DistributeRewardsAsync(LeaderboardDto leaderboard)
         {
             var response = await _restClient.RequestAsync(Method.PUT, $"Challenge/rewards", leaderboard);
 

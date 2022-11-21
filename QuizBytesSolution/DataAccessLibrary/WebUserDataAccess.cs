@@ -139,16 +139,20 @@ namespace SQLAccessImplementationLibrary
             try
             {
                 string commandText = "UPDATE WebUser " +
-                    "SET TotalPoints = @TotalPoints, " +
+                    "SET " +
+                    "Username = @Username, " +
+                    "TotalPoints = @TotalPoints, " +
                     "AvailablePoints = @AvailablePoints, " +
                     "Email = @Email, " +
                     "PointsAccumulatedInChallenge = @PointsAccumulatedInChallenge, " +
                     "ElapsedSecondsInChallenge = @ElapsedSecondsInChallenge " +
-                    "WHERE PKWebUserId = @PKWebUserId";
+                    "WHERE PKWebUserId = @PKWebUserId;";
+
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
+                        Username = webUser.Username,
                         TotalPoints = webUser.TotalPoints,
                         AvailablePoints = webUser.AvailablePoints,
                         Email = webUser.Email,

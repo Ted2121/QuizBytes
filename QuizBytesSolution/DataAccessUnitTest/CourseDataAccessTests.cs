@@ -106,5 +106,30 @@ namespace SQLAccessImplementationLibraryUnitTest
                 await _courseDataAccess.DeleteCourseAsync(_course.PKCourseId);
             }
         }
+
+        [Test]
+        public async Task TestingUpdateExpectingPropertiesChangeInDB()
+        {
+            try
+            {
+
+                // Arrange
+                _course.PKCourseId = await _courseDataAccess.InsertCourseAsync(_course);
+                var newName = "Bobcourse";
+                _course.Name = newName;
+
+                // Act
+                await _courseDataAccess.UpdateCourseAsync(_course);
+                var courseFromDb = await _courseDataAccess.GetCourseByIdAsync(_course.PKCourseId);
+                var nameFromDb = courseFromDb.Name;
+
+                // Assert
+                Assert.That(nameFromDb, Is.EqualTo(newName));
+            }
+            finally
+            {
+                await _courseDataAccess.DeleteCourseAsync(_course.PKCourseId);
+            }
+        }
     }
 }

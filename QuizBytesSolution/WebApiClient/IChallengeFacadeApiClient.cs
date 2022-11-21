@@ -4,7 +4,7 @@ namespace WebApiClient
 {
     public interface IChallengeFacadeApiClient
     {
-        Task<bool> CheckIfUserIsInChallengeAsync(int webUserId);
+        Task<bool> CheckIfUserIsInChallengeAsync(int id);
         Task<bool> ClearTempTableBeforeNextChallengeAsync();
         Task<bool> DeregisterParticipantAsync(int id);
         Task<bool> DistributeRewardsAsync();

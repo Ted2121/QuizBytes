@@ -70,7 +70,7 @@ public class WebUserController : ControllerBase
     [Route("password")]
     public async Task<ActionResult> UpdatePasswordAsync(WebUserDto webUser)
     {
-        if (!await WebUserDataAccess.UpdatePasswordAsync(webUser.Username, webUser.Password, webUser.NewPassword))
+        if (!await WebUserDataAccess.UpdatePasswordAsync(webUser.Username, webUser.PasswordHash, webUser.NewPassword))
         {
             return BadRequest();
         }

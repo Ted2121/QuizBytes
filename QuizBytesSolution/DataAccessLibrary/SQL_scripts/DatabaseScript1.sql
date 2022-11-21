@@ -1,6 +1,6 @@
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[QuestionAnswer]') AND type in (N'U'))
-DROP TABLE [dbo].QuestionAnswer
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Answer]') AND type in (N'U'))
+DROP TABLE [dbo].Answer
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Question]') AND type in (N'U'))
@@ -36,26 +36,26 @@ GO
 Create table [dbo].[Course] -- done
 (
 PKCourseId int PRIMARY KEY IDENTITY(1,1),
-[Name] varchar NOT NULL UNIQUE,
-[Description] varchar,
+[Name] varchar(100) NOT NULL UNIQUE,
+[Description] varchar(500),
 )
 GO
 
 Create table [dbo].[Subject] -- done
 (
 PKSubjectId int PRIMARY KEY IDENTITY(1,1),
-[Name] varchar NOT NULL UNIQUE,
+[Name] varchar(100) NOT NULL UNIQUE,
 FKCourseId int FOREIGN KEY REFERENCES dbo.Course(PKCourseId) On Delete Cascade, 
-[Description] varchar,
+[Description] varchar(500),
 )
 GO
 
 Create table [dbo].[Chapter] -- done
 (
 PKChapterId int PRIMARY KEY IDENTITY(1,1),
-[Name] varchar UNIQUE NOT NULL,
+[Name] varchar(100) UNIQUE NOT NULL,
 FKSubjectId int FOREIGN KEY REFERENCES dbo.Subject(PKSubjectId) On Delete Cascade,
-[Description] varchar,
+[Description] varchar(500),
 )
 GO
 
@@ -63,11 +63,11 @@ GO
 Create table[dbo].[WebUser] -- done
 (
 PKWebUserId int PRIMARY KEY IDENTITY(1,1),
-Username varchar UNIQUE,
-PasswordHash varchar NOT NULL,
+Username varchar(50) UNIQUE NOT NULL,
+PasswordHash varchar(50) NOT NULL,
 TotalPoints int,
 AvailablePoints int,
-Email varchar UNIQUE NOT NULL,
+Email varchar(300) UNIQUE NOT NULL,
 PointsAccumulatedInChallenge int,
 ElapsedSecondsInChallenge int,
 )
@@ -91,8 +91,8 @@ GO
 Create table[dbo].[Question] --done
 (
 PKQuestionId int PRIMARY KEY IDENTITY(1,1),
-QuestionText varchar NOT NULL,
-Hint varchar,
+QuestionText varchar(300) NOT NULL,
+Hint varchar(300),
 FKChapterId int FOREIGN KEY REFERENCES dbo.Chapter(PKChapterId) On Delete Cascade NOT NULL,
 )
 GO
@@ -101,8 +101,8 @@ Create table [dbo].[Answer] --done
 (
 PKAnswerId int PRIMARY KEY IDENTITY(1,1),
 FKQuestionId int FOREIGN KEY REFERENCES dbo.Question(PKQuestionId) On Delete Cascade,
-Answer varchar,
-isCorrect varchar,
+AnswerText varchar(250) NOT NULL,
+isCorrect varchar(10),
 )
 GO
 /*

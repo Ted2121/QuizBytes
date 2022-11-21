@@ -7,13 +7,8 @@ using System.Data.SqlClient;
 
 namespace SQLAccessImplementationLibraryUnitTest
 {
-    public class CurrentChallengeParticipantDataAccessMock : BaseDataAccess, ICurrentChallengeParticipantDataAccess
+    public class CurrentChallengeParticipantDataAccessMock : ICurrentChallengeParticipantDataAccess
     {
-
-        public CurrentChallengeParticipantDataAccessMock(string connectionstring) : base(connectionstring)
-        {
-
-        }
 
         public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
         {
@@ -160,7 +155,7 @@ namespace SQLAccessImplementationLibraryUnitTest
 
         public async Task<bool> CheckIfWebUserIsInChallengeAsync(int webUserId)
         {
-            using (SqlConnection connection = CreateConnection())
+            using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
             {
                 string readCommand = "SELECT COUNT(FKWebUserId) FROM TestCurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
                 var param = new

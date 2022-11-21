@@ -91,16 +91,15 @@ namespace WebApiClient
 
         public async Task<int> GetNumberOfParticipantsAsync()
         {
-            var response = await _restClient.RequestAsync<int>(Method.GET, $"Challenge/count");
+            var response = await _restClient.RequestAsync<int>(Method.GET, $"/Challenge/count");
 
             if (!response.IsSuccessful)
             {
                 throw new Exception($"Error getting the number of participants in the challenge. Message was: {response.Content}");
             }
-            else
-            {
+            
                 return response.Data;
-            }
+            
         }
 
         public async Task<QuizDto> GetChallengeQuizAsync(CourseDto course)
@@ -123,7 +122,7 @@ namespace WebApiClient
 
             if (!response.IsSuccessful)
             {
-                throw new Exception($"Error checking if the user is in challenge. Message was: {response.Content}");
+                return false;
             }
             else
             {

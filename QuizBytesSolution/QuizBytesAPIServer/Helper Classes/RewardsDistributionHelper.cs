@@ -1,4 +1,5 @@
 ﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
+using DataAccessDefinitionLibrary.Data_Access_Models;
 using QuizBytesAPIServer.DTOs;
 using QuizBytesAPIServer.DTOs.Converters;
 
@@ -21,30 +22,49 @@ public class RewardsDistributionHelper : IRewardsDistributionHelper
         int thirdPlaceReward = 64;
         int participationReward = 32;
 
-        var firstPlaceUserDto = leaderboard[0].WebUser;
-        var secondPlaceUserDto = leaderboard[1].WebUser;
-        var thirdPlaceUserDto = leaderboard[2].WebUser;
-
-       
-        firstPlaceUserDto.AvailablePoints += firstPlaceReward;
-        firstPlaceUserDto.AvailablePoints += CalculateRewardsForQuiz(firstPlaceUserDto);
-
-        secondPlaceUserDto.AvailablePoints += secondPlaceReward;
-        secondPlaceUserDto.AvailablePoints += CalculateRewardsForQuiz(secondPlaceUserDto);
-
-        thirdPlaceUserDto.AvailablePoints += thirdPlaceReward;
-        thirdPlaceUserDto.AvailablePoints += CalculateRewardsForQuiz(thirdPlaceUserDto);
-
-        await WebUserDataAccess.UpdateWebUserAsync(firstPlaceUserDto.FromDto());
-        await WebUserDataAccess.UpdateWebUserAsync(secondPlaceUserDto.FromDto());
-        await WebUserDataAccess.UpdateWebUserAsync(thirdPlaceUserDto.FromDto());
-
-        for(int i = 3; i < leaderboard.Count; i++)
+        if (leaderboard[0] != null)
         {
-            var webUserDto = leaderboard[i].WebUser;
-            webUserDto.AvailablePoints += participationReward;
-            webUserDto.AvailablePoints += CalculateRewardsForQuiz(webUserDto);
-            await WebUserDataAccess.UpdateWebUserAsync(webUserDto.FromDto());
+
+            var firstPlaceUserDto = leaderboard[0].WebUser;
+
+            firstPlaceUserDto.AvailablePoints += firstPlaceReward;
+            firstPlaceUserDto.AvailablePoints += CalculateRewardsForQuiz(firstPlaceUserDto);
+
+            await WebUserDataAccess.UpdateWebUserAsync(firstPlaceUserDto.FromDto());
+        }
+
+
+        if (leaderboard[1] != null)
+        {
+            var secondPlaceUserDto = leaderboard[1].WebUser;
+
+            secondPlaceUserDto.AvailablePoints += secondPlaceReward;
+            secondPlaceUserDto.AvailablePoints += CalculateRewardsForQuiz(secondPlaceUserDto);
+
+            await WebUserDataAccess.UpdateWebUserAsync(secondPlaceUserDto.FromDto());
+        }
+
+        if (leaderboard[2] != null)
+        {
+            var thirdPlaceUserDto = leaderboard[2].WebUser;
+
+            thirdPlaceUserDto.AvailablePoints += thirdPlaceReward;
+            thirdPlaceUserDto.AvailablePoints += CalculateRewardsForQuiz(thirdPlaceUserDto);
+
+            await WebUserDataAccess.UpdateWebUserAsync(thirdPlaceUserDto.FromDto());
+
+        }
+
+        if (leaderboard.Count > 3)
+        {
+            for (int i = 3; i < leaderboard.Count; i++)
+            {
+                var webUserDto = leaderboard[i].WebUser;
+                webUserDto.AvailablePoints += participationReward;
+                webUserDto.AvailablePoints += CalculateRewardsForQuiz(webUserDto);
+                await WebUserDataAccess.UpdateWebUserAsync(webUserDto.FromDto());
+            }
+
         }
 
     }
@@ -57,7 +77,18 @@ public class RewardsDistributionHelper : IRewardsDistributionHelper
 
     private int CalculateRewardsForQuiz(WebUserDto webUserDto)
     {
-        int questionRewardValue = 8;
-        return webUserDto.NumberOfCorrectAnswers * questionRewardValue;
+        if (webUserDto.NumberOfCorrectAnswers > 0)
+        {
+            int questionRewardValue = 8;
+            return webUserDto.NumberOfCorrectAnswers * questionRewardValue;
+
+        }
+        else
+        {
+            return 0;
+
+        }
     }
+
+   
 }

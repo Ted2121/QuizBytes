@@ -104,6 +104,7 @@ public class ChallengeController : ControllerBase
     {
         var numberOfParticipants = await CurrentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
         return Ok(numberOfParticipants);
+
     }
 
     [HttpGet]

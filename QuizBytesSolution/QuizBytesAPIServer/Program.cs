@@ -1,5 +1,6 @@
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using QuizBytesAPIServer.DTOs;
+using QuizBytesAPIServer.Extension_Methods;
 using QuizBytesAPIServer.Factories;
 using QuizBytesAPIServer.Helper_Classes;
 using SQLAccessImplementationLibrary;
@@ -71,6 +72,7 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+        app.ConfigureExceptionHandler();
 
         app.UseHttpsRedirection();
 

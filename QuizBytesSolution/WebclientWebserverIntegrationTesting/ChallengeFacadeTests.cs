@@ -7,7 +7,7 @@ using WebApiClient.DTOs;
 namespace WebclientWebserverIntegrationTesting;
 
 [TestFixture]
-public class ChallengeControllerTests
+public class ChallengeFacadeTests
 {
     private IChallengeFacadeApiClient _challangeFacadeApiClient = new ChallengeFacadeApiClient(Configuration.WEB_API_URI);
     private IWebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
@@ -218,41 +218,53 @@ public class ChallengeControllerTests
 
     //}
 
-    //[Test]
-    //public async Task TestingRewardsDistributionExpectingPointsToBeAddedToUser()
-    //{
+    [Test]
+    public async Task TestingRewardsDistributionExpectingAvailablePointsToBeAddedToUser()
+    {
 
-    //    try
-    //    {
-    //        // Arrange
-    //        _secondUserDto = new WebUserDto()
-    //        {
-    //            Username = "Joe",
-    //            PasswordHash = "JoeProtecc",
-    //            Email = "joe@Bob.com",
-    //            TotalPoints = 3242,
-    //            AvailablePoints = 69,
-    //            NumberOfCorrectAnswers = 5
-    //        };
-    //        _secondUserDto.Id = await _webUserDataAccess.InsertWebUserAsync(_secondUserDto.FromDto());
+        try
+        {
+            // Arrange
+            _secondUserDto = new WebUserDto()
+            {
+                Username = "Joe",
+                PasswordHash = "JoeProtecc",
+                Email = "joe@Bob.com",
+                TotalPoints = 0,
+                AvailablePoints = 0,
+                NumberOfCorrectAnswers = 5
+            };
 
-    //        await _challangeFacadeApiClient.RegisterParticipantAsync(_secondUserDto, _courseDto);
+            _secondUserDto.Id = await _webUserDataAccess.InsertWebUserAsync(_secondUserDto.FromDto());
 
-    //        await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
+            await _challangeFacadeApiClient.RegisterParticipantAsync(_secondUserDto, _courseDto);
+            await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
 
+            List<WebUserDto> leaderboard = new List<WebUserDto>()
+            {
+                _userDto,
+                _secondUserDto
+            };
 
+            var availablePointsBeforeDistribution = _secondUserDto.AvailablePoints;
 
-    //        // Act
-    //        await _challangeFacadeApiClient.DistributeRewardsAsync();
+            var secondPlaceReward = 128;
+            var pointsPerCorrectAnswer = 8;
+            var pointsToBeAdded = (_secondUserDto.NumberOfCorrectAnswers * pointsPerCorrectAnswer) + secondPlaceReward;
 
-    //        // Assert
+            // Act
 
-    //    }
-    //    finally
-    //    {
-    //        await _webUserDataAccess.DeleteWebUserAsync(_secondUserDto.Id);
-    //        await _challangeFacadeApiClient.DeregisterParticipantAsync(_secondUserDto.Id);
-    //        await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
-    //    }
-    //}
+            await _challangeFacadeApiClient.DistributeRewardsAsync(leaderboard);
+            var availablePointsAfterDistribution = _secondUserDto.AvailablePoints;
+
+            // Assert
+            Assert.That(availablePointsAfterDistribution, Is.EqualTo(availablePointsBeforeDistribution + pointsToBeAdded));
+
+        }
+        finally
+        {
+            await _challangeFacadeApiClient.ClearTempTableBeforeNextChallengeAsync();
+            await _webUserDataAccess.DeleteWebUserAsync(_secondUserDto.Id);
+        }
+    }
 }

@@ -149,7 +149,6 @@ namespace SQLAccessImplementationLibrary
                 {
                     var parameters = new
                     {
-                        WebUserId = webUser.PKWebUserId,
                         TotalPoints = webUser.TotalPoints,
                         AvailablePoints = webUser.AvailablePoints,
                         Email = webUser.Email,

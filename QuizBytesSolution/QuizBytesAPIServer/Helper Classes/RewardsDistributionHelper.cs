@@ -15,7 +15,7 @@ public class RewardsDistributionHelper : IRewardsDistributionHelper
         WebUserDataAccess = webUserDataAccess;
     }
 
-    public async Task DistributeChallengeRewardsAsync(List<CurrentChallengeParticipantDto> leaderboard)
+    public async Task DistributeChallengeRewardsAsync(List<WebUserDto> leaderboard)
     {
         int firstPlaceReward = 256;
         int secondPlaceReward = 128;
@@ -25,10 +25,13 @@ public class RewardsDistributionHelper : IRewardsDistributionHelper
         if (leaderboard[0] != null)
         {
 
-            var firstPlaceUserDto = leaderboard[0].WebUser;
+            var firstPlaceUserDto = leaderboard[0];
 
-            firstPlaceUserDto.AvailablePoints += firstPlaceReward;
-            firstPlaceUserDto.AvailablePoints += CalculateRewardsForQuiz(firstPlaceUserDto);
+            int quizPointsToAdd = CalculateRewardsForQuiz(firstPlaceUserDto);
+            int rankPointsToAdd = firstPlaceReward;
+            int totalPointsToAdd = quizPointsToAdd + rankPointsToAdd;
+            firstPlaceUserDto.AvailablePoints += totalPointsToAdd;
+            firstPlaceUserDto.TotalPoints += totalPointsToAdd;
 
             await WebUserDataAccess.UpdateWebUserAsync(firstPlaceUserDto.FromDto());
         }
@@ -36,20 +39,26 @@ public class RewardsDistributionHelper : IRewardsDistributionHelper
 
         if (leaderboard[1] != null)
         {
-            var secondPlaceUserDto = leaderboard[1].WebUser;
+            var secondPlaceUserDto = leaderboard[1];
 
-            secondPlaceUserDto.AvailablePoints += secondPlaceReward;
-            secondPlaceUserDto.AvailablePoints += CalculateRewardsForQuiz(secondPlaceUserDto);
+            int quizPointsToAdd = CalculateRewardsForQuiz(secondPlaceUserDto);
+            int rankPointsToAdd = secondPlaceReward;
+            int totalPointsToAdd = quizPointsToAdd + rankPointsToAdd;
+            secondPlaceUserDto.AvailablePoints += totalPointsToAdd;
+            secondPlaceUserDto.TotalPoints += totalPointsToAdd;
 
             await WebUserDataAccess.UpdateWebUserAsync(secondPlaceUserDto.FromDto());
         }
 
         if (leaderboard[2] != null)
         {
-            var thirdPlaceUserDto = leaderboard[2].WebUser;
+            var thirdPlaceUserDto = leaderboard[2];
 
-            thirdPlaceUserDto.AvailablePoints += thirdPlaceReward;
-            thirdPlaceUserDto.AvailablePoints += CalculateRewardsForQuiz(thirdPlaceUserDto);
+            int quizPointsToAdd = CalculateRewardsForQuiz(thirdPlaceUserDto);
+            int rankPointsToAdd = thirdPlaceReward;
+            int totalPointsToAdd = quizPointsToAdd + rankPointsToAdd;
+            thirdPlaceUserDto.AvailablePoints += totalPointsToAdd;
+            thirdPlaceUserDto.TotalPoints += totalPointsToAdd;
 
             await WebUserDataAccess.UpdateWebUserAsync(thirdPlaceUserDto.FromDto());
 
@@ -59,9 +68,13 @@ public class RewardsDistributionHelper : IRewardsDistributionHelper
         {
             for (int i = 3; i < leaderboard.Count; i++)
             {
-                var webUserDto = leaderboard[i].WebUser;
-                webUserDto.AvailablePoints += participationReward;
-                webUserDto.AvailablePoints += CalculateRewardsForQuiz(webUserDto);
+                var webUserDto = leaderboard[i];
+                int quizPointsToAdd = CalculateRewardsForQuiz(webUserDto);
+                int rankPointsToAdd = participationReward;
+                int totalPointsToAdd = quizPointsToAdd + rankPointsToAdd;
+                webUserDto.AvailablePoints += totalPointsToAdd;
+                webUserDto.TotalPoints += totalPointsToAdd;
+
                 await WebUserDataAccess.UpdateWebUserAsync(webUserDto.FromDto());
             }
 

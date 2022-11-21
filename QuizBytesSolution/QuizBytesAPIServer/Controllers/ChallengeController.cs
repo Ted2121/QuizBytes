@@ -59,10 +59,8 @@ public class ChallengeController : ControllerBase
 
     [HttpPut]
     [Route("rewards")]
-    public async Task<ActionResult> DistributeRewardsAsync(IEnumerable<CurrentChallengeParticipantDto> leaderboard)
+    public async Task<ActionResult> DistributeRewardsAsync(IEnumerable<WebUserDto> leaderboard)
     {
-        //var leaderboardResult = await GetAllParticipantsAsync();
-        //var leaderboard = leaderboardResult.Value?.ToList();
         
         if(leaderboard == null)
         {

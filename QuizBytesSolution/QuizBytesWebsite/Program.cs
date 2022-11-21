@@ -12,6 +12,7 @@ namespace QuizBytesWebsite
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddTransient<ITimerLogicHelper, TimerLogicHelper>();
+            builder.Services.AddScoped<ILeaderboardBuilder, LeaderboardBuilder>();
 
             builder.Services.AddSignalR();
 

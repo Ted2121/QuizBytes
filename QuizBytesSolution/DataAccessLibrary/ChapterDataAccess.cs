@@ -108,7 +108,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM Chapters WHERE Name = @Name";
+                string commandText = "SELECT * FROM Chapter WHERE Name = @Name";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
@@ -134,7 +134,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "INSERT INTO Chapters (Name, FKSubjectId, Description) VALUES (@Name, @FKSubjectId, @Description); SELECT CAST(scope_identity() AS int)";
+                string commandText = "INSERT INTO Chapter (Name, FKSubjectId, Description) VALUES (@Name, @FKSubjectId, @Description); SELECT CAST(scope_identity() AS int)";
                 using (SqlConnection connection = CreateConnection())
                 {
 

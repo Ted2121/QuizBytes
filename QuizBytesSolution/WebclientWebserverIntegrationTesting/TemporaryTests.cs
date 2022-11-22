@@ -19,11 +19,11 @@ namespace WebclientWebserverIntegrationTesting
         [Test]
         public async Task ForceCleanUp()
         {
-            await _webUserDataAccess.DeleteWebUserAsync(32);
+            //await _webUserDataAccess.DeleteWebUserAsync(32);
             //await _webUserDataAccess.DeleteWebUserAsync(265);
 
-            //await _courseDataAccess.DeleteCourseAsync(250);
-            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            await _courseDataAccess.DeleteCourseAsync(72);
+            //await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
         }
     }

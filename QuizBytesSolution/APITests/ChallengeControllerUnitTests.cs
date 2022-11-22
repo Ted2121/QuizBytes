@@ -72,7 +72,8 @@ public class Tests
             _currentChallengeParticipantDataAccess,
             _webUserDataAccess,
             _rewardsDistributionHelper,
-            _quizFactory
+            _quizFactory,
+            _courseDataAccess
             );
 
         _firstCurrentChallengeParticipantDto = new CurrentChallengeParticipantDto()

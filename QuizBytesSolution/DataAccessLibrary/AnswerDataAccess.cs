@@ -56,7 +56,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM QuestionAnswer WHERE FKQuestionId = @FKQuestionId";
+                string commandText = "SELECT * FROM Answer WHERE FKQuestionId = @FKQuestionId";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
@@ -80,7 +80,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "INSERT INTO QuestionAnswer(FKQuestionId, AnswerText, IsCorrect) VALUES (@FKQuestionId, @AnswerText, @IsCorrect); SELECT CAST(scope_identity() AS int)";
+                string commandText = "INSERT INTO Answer(FKQuestionId, AnswerText, IsCorrect) VALUES (@FKQuestionId, @AnswerText, @IsCorrect); SELECT CAST(scope_identity() AS int)";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new

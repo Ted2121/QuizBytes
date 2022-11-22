@@ -23,13 +23,17 @@ public class QuizFactory : IQuizFactory
                 numberOfQuestions = 8;
                 var questionsFromChapterInQuiz = ShuffleAndTakeQuestions(await QuestionAnswerLinkFactory
                     .GetAllQuestionsWithAnswersByChapter(chapter), numberOfQuestions);
-                return new QuizDto(questionsFromChapterInQuiz);
+                var quizFromChapter = new QuizDto();
+                quizFromChapter.QuizQuestions = questionsFromChapterInQuiz;
+                return quizFromChapter;
 
             case CourseDto course:
                 numberOfQuestions = 16;
                 var questionsFromCourseInQuiz = ShuffleAndTakeQuestions(await QuestionAnswerLinkFactory
                 .GetAllQuestionsWithAnswersByCourse(course), numberOfQuestions);
-                return new QuizDto(questionsFromCourseInQuiz);
+                var quizFromCourse = new QuizDto();
+                quizFromCourse.QuizQuestions = questionsFromCourseInQuiz;
+                return quizFromCourse;
 
             default:
                 throw new ArgumentException($"Invalid source type: {source.GetType()}");

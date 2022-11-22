@@ -12,13 +12,24 @@ public class ChallengeFacadeTests
 {
     private IChallengeFacadeApiClient _challangeFacadeApiClient = new ChallengeFacadeApiClient(Configuration.WEB_API_URI);
     private IWebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
+
     private IWebUserDataAccess _webUserDataAccess = new WebUserDataAccess(Configuration.CONNECTION_STRING);
     private ICourseDataAccess _courseDataAccess = new CourseDataAccess(Configuration.CONNECTION_STRING);
+    private IChapterDataAccess _chapterDataAccess = new ChapterDataAccess(Configuration.CONNECTION_STRING);
+    private ISubjectDataAccess _subjectDataAccess = new SubjectDataAccess(Configuration.CONNECTION_STRING);
+    private ICurrentChallengeParticipantDataAccess _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock();
+    private IQuestionDataAccess _questionDataAccess = new QuestionDataAccess(Configuration.CONNECTION_STRING);
+    private IAnswerDataAccess _answerDataAccess = new AnswerDataAccess(Configuration.CONNECTION_STRING);
+
     private WebUserDto _userDto;
     private WebUserDto _secondUserDto;
     private CourseDto _courseDto;
+    private Course _courseToInsert;
+    private Subject _subjectToInsert;
+    private Chapter _chapterToInsert;
+
     private CurrentChallengeParticipantDto _currentChallengeParticipantDto;
-    private ICurrentChallengeParticipantDataAccess _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock();
+
 
     public WebUserDto WebUserDto { get; set; }
 
@@ -146,7 +157,7 @@ public class ChallengeFacadeTests
         try
         {
             // Arrange
-           
+
             await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
 
 
@@ -231,7 +242,7 @@ public class ChallengeFacadeTests
 
             _secondUserDto.Id = await _webUserDataAccess.InsertWebUserAsync(_secondUserDto.FromDto());
 
-            
+
 
             await _challangeFacadeApiClient.RegisterParticipantAsync(_secondUserDto, _courseDto);
             await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
@@ -264,5 +275,112 @@ public class ChallengeFacadeTests
             await _webUserDataAccess.DeleteWebUserAsync(_secondUserDto.Id);
             await _challangeFacadeApiClient.ClearTempTableBeforeNextChallengeAsync();
         }
+
     }
+
+    [Test]
+    public async Task TestingGetChallengeQuizReturnsAQuizDtoWithSixteenQuestions()
+    {
+        List<int> questionIds = new List<int>();
+        List<int> answerIds = new List<int>();
+        try
+        {
+            // Arrange
+            CreateCourse();
+            var courseId = await _courseDataAccess.InsertCourseAsync(_courseToInsert);
+            _courseToInsert.Id = courseId;
+
+            CreateSubject();
+            _subjectToInsert.FKCourseId = courseId;
+            var subjectId = await _subjectDataAccess.InsertSubjectAsync(_subjectToInsert);
+            _subjectToInsert.Id = subjectId;
+
+            CreateChapter();
+            _chapterToInsert.FKSubjectId = subjectId;
+            var chapterId = await _chapterDataAccess.InsertChapterAsync(_chapterToInsert);
+            _chapterToInsert.Id = chapterId;
+
+            Question[] questions = new Question[20];
+            Answer[] answers = new Answer[80];
+
+            for (int i = 0; i < questions.Length; i++)
+            {
+                questions[i] = new Question()
+                {
+                    QuestionText = $"Question {i}",
+                    FKChapterId = _chapterToInsert.Id
+                };
+
+                var questionId = await _questionDataAccess.InsertQuestionAsync(questions[i]);
+                questionIds.Add(questionId);
+
+                for (int j = 0; j < 4; j++)
+                {
+                    answers[j] = new Answer()
+                    {
+                        FKQuestionId = questions[i].Id,
+                        IsCorrect = j == 2 ? "yes" : "no",
+                        AnswerText = $"AnswerText {i + 1} - {j}"
+                    };
+
+                    var answerId = await _answerDataAccess.InsertAnswerAsync(answers[j]);
+                    answerIds.Add(answerId);
+                }
+            }
+
+            // Act
+            var quizDto = await _challangeFacadeApiClient.GetChallengeQuizAsync(_courseToInsert.ToDto());
+
+            // Assert
+            Assert.That(quizDto.QuizQuestions.Any, Is.True);
+        }
+        finally
+        {
+            foreach (var id in questionIds)
+            {
+                await _questionDataAccess.DeleteQuestionAsync(id);
+            }
+
+            foreach (var id in answerIds)
+            {
+                await _answerDataAccess.DeleteAnswerAsync(id);
+            }
+
+            await _chapterDataAccess.DeleteChapterAsync(_chapterToInsert.Id);
+            await _subjectDataAccess.DeleteSubjectAsync(_subjectToInsert.Id);
+            await _courseDataAccess.DeleteCourseAsync(_courseToInsert.Id);
+
+        }
+    }
+
+    private void CreateCourse()
+    {
+        _courseToInsert = new Course()
+        {
+            Name = "CourseName",
+            Description = "CourseDescription"
+        };
+
+    }
+
+    private void CreateSubject()
+    {
+        _subjectToInsert = new Subject()
+        {
+            Name = "SubjectName",
+            Description = "SubjectDescription"
+        };
+
+    }
+
+    private void CreateChapter()
+    {
+        _chapterToInsert = new Chapter()
+        {
+            Name = "ChapterName",
+            Description = "ChapterDescription"
+        };
+
+    }
+
 }

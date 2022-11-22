@@ -17,17 +17,20 @@ public class ChallengeController : ControllerBase
     private IWebUserDataAccess WebUserDataAccess { get; set; }
     private IRewardsDistributionHelper RewardsDistributionHelper { get; set; }
     private IQuizFactory QuizFactory { get; set; }
+    private ICourseDataAccess CourseDataAccess { get; set; }
 
     public ChallengeController(
         ICurrentChallengeParticipantDataAccess currentChallengeParticipantDataAccess,
         IWebUserDataAccess webUserDataAccess,
         IRewardsDistributionHelper rewardsDistributionHelper,
-        IQuizFactory quizFactory)
+        IQuizFactory quizFactory,
+        ICourseDataAccess courseDataAccess)
     {
         CurrentChallengeParticipantDataAccess = currentChallengeParticipantDataAccess;
         WebUserDataAccess = webUserDataAccess;
         RewardsDistributionHelper = rewardsDistributionHelper;
         QuizFactory = quizFactory;
+        CourseDataAccess = courseDataAccess;
     }
 
     [HttpGet]
@@ -106,10 +109,11 @@ public class ChallengeController : ControllerBase
     }
 
     [HttpGet]
-    [Route("quiz")]
-    public async Task<ActionResult<QuizDto>> GetChallengeQuizAsync(CourseDto course)
+    [Route("quiz/{id}")]
+    public async Task<ActionResult<QuizDto>> GetChallengeQuizAsync(int id)
     {
-        var quiz = await QuizFactory.CreateQuizDto(course);
+        var course = await CourseDataAccess.GetCourseByIdAsync(id);
+        var quiz = await QuizFactory.CreateQuizDto(course.ToDto());
 
         return Ok(quiz);
     }

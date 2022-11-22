@@ -104,7 +104,8 @@ namespace WebApiClient
 
         public async Task<QuizDto> GetChallengeQuizAsync(CourseDto course)
         {
-            var response = await _restClient.RequestAsync<QuizDto>(Method.GET, $"Challenge/quiz", course);
+            var id = course.Id;
+            var response = await _restClient.RequestAsync<QuizDto>(Method.GET, $"Challenge/quiz/{id}");
 
             if (!response.IsSuccessful)
             {

@@ -8,5 +8,9 @@ namespace QuizBytesWebsite.Controllers
         {
             return View();
         }
+        public IActionResult QuizCourses()
+        {
+            return View();
+        }
     }
 }

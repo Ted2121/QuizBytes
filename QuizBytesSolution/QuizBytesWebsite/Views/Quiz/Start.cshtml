@@ -3,10 +3,11 @@
     ViewData["Title"] = "Start";
 }
 <link rel="stylesheet" href="~/css/QuizViewStyleSheet.css" />
+<link rel="stylesheet" href="~/css/QuizViewPageElementsStyleSheet.css" />
 <div class="left">
     <div class="side-navbar">
         <div class="item">
-            <a class="submenu-btn" onclick="expand()">Courses</a>
+            <a class="submenu-btn" onclick="expand()">Programming</a>
             <div id="submenu">
                 
             </div>
@@ -17,15 +18,19 @@
                 
             </div>
             </div>
-        <div class="item">
-
-            <a class="submenu-btn">Chapters</a>
-            <div id="submenu">
-
-            </div>
-            </div>
     </div>
 
+</div>
+
+<div class="page-elements-wrapper">
+    <div class="page-elements">
+        <section class="row">
+            <article class="element">
+                <i class="element-text">This is a subject/chapter</i>
+                <button class="element-button"></button>
+        </article>
+        </section>
+    </div>
 </div>
 
 <script src="~/js/QuizViewLogic.js"></script>

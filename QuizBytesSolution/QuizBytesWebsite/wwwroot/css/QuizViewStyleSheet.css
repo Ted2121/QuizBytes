@@ -41,13 +41,13 @@ color:black;
 font-style:oblique;
 overflow:auto;
 }
-.side-navbar div a:hover {
+/*.side-navbar div a:hover {
     background-color: orangered;
     color: white;
     transition: 0.5s ease-in;
-}
+}*/
 .active {
-    background-color: darkorange;
+    background-color: orangered;
     color: white;
     border-color: white;
 }

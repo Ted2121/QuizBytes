@@ -45,7 +45,8 @@ function show(count) {
         </ul>`
     toggleActive();
     //only works with questions that have 4 answers but I can write a separate method for ones with two answers
-    // there id definitely a better way to code this but this works and I don't want to code js anymore today so yeah
+    // there is definitely a better way to code this but this works and I don't want to code js anymore today so yeah
+    //figured out a better way to do this
 }
 
 function toggleActive() {

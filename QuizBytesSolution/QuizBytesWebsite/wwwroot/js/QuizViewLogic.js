@@ -1,13 +1,13 @@
-﻿let course = [{
+﻿let selected_course = [{
     id: 1,
     type: "course",
     subtype: "subject",
 }];
-let courses= [
-    "Subject1",
-    "Subject2",
-    "Subject3",
-    "Subject4"
+let course_list= [
+    "Course1",
+    "Course2",
+    "Course3",
+    "Course4"
 ];
 
 
@@ -18,13 +18,13 @@ window.onload = function () {
 function loadShit() {
     let submenu_elements = document.querySelectorAll("#submenu");
     let submenu = document.getElementById("submenu");
-    console.log(submenu_elements.length);
-        for (i = 0; i < subtype_elements.length; i++) {
+    console.log(course_list.length);
+    for (i = 0; i < course_list.length; i++) {
             console.log(submenu_elements.length)
             console.log(i)
-            console.log(subtype_elements[i])
+            console.log(course_list[i])
             var element = document.createElement('a');
-            element.textContent = subtype_elements[i];
+            element.textContent = course_list[i];
             submenu.appendChild(element);
     }
 }

@@ -38,11 +38,11 @@ public class Tests
             Username = "Bob",
             PasswordHash = "BobProtecc",
             Email = "bob@Bob.com",
-            TotalPoints = 453,
-            AvailablePoints = 200,
+            TotalPoints = 0,
+            AvailablePoints = 0,
             NumberOfCorrectAnswers = 4
         };
-        _userDto.Id = await _webUserDataAccess.InsertWebUserAsync(_userDto.FromDto());
+        _userDto.PKWebUserId = await _webUserDataAccess.InsertWebUserAsync(_userDto.FromDto());
 
         _secondWebUserDto = new WebUserDto()
         {
@@ -53,7 +53,7 @@ public class Tests
             AvailablePoints = 0,
             NumberOfCorrectAnswers = 5
         };
-        _secondWebUserDto.Id = await _webUserDataAccess.InsertWebUserAsync(_secondWebUserDto.FromDto());
+        _secondWebUserDto.PKWebUserId = await _webUserDataAccess.InsertWebUserAsync(_secondWebUserDto.FromDto());
 
         _courseDto = new CourseDto()
         {
@@ -91,8 +91,8 @@ public class Tests
     [TearDown]
     public async Task TearDown()
     {
-        await _webUserDataAccess.DeleteWebUserAsync(_userDto.Id);
-        await _webUserDataAccess.DeleteWebUserAsync(_secondWebUserDto.Id);
+        await _webUserDataAccess.DeleteWebUserAsync(_userDto.PKWebUserId);
+        await _webUserDataAccess.DeleteWebUserAsync(_secondWebUserDto.PKWebUserId);
         await _courseDataAccess.DeleteCourseAsync(_courseDto.Id);
     }
 
@@ -103,11 +103,14 @@ public class Tests
         //await _challengeController.RegisterParticipantAsync(_firstCurrentChallengeParticipantDto);
         //await _challengeController.RegisterParticipantAsync(_secondCurrentChallengeParticipantDto);
 
-        List<WebUserDto> leaderboard = new List<WebUserDto>()
+        List<WebUserDto> users = new List<WebUserDto>()
             {
                 _userDto,
                 _secondWebUserDto
             };
+
+        LeaderboardDto leaderboardDto = new LeaderboardDto();
+        leaderboardDto.Leaderboard = users;
 
         var availablePointsBeforeDistribution = _secondWebUserDto.AvailablePoints;
 
@@ -116,8 +119,9 @@ public class Tests
         var pointsToBeAdded = (_secondWebUserDto.NumberOfCorrectAnswers * pointsPerCorrectAnswer) + secondPlaceReward;
 
         // Act
-        await _challengeController.DistributeRewardsAsync(leaderboard);
-        var availablePointsAfterDistribution = _secondWebUserDto.AvailablePoints;
+        await _challengeController.DistributeRewardsAsync(leaderboardDto);
+        var userAfterDistribution = await _webUserDataAccess.GetWebUserByIdAsync(_secondWebUserDto.PKWebUserId);
+        var availablePointsAfterDistribution = userAfterDistribution.AvailablePoints;
 
         // Assert
         Assert.That(availablePointsAfterDistribution, Is.EqualTo(availablePointsBeforeDistribution + pointsToBeAdded));

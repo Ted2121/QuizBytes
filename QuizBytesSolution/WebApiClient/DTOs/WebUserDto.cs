@@ -9,7 +9,7 @@ namespace WebApiClient.DTOs
 {
     public class WebUserDto
     {
-        public int Id { get; set; }
+        public int PKWebUserId { get; set; }
         public string Username { get; set; }
         public string PasswordHash { get; set; }
         public string? NewPassword { get; set; }

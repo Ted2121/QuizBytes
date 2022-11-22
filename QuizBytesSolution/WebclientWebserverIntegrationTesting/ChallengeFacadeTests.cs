@@ -28,11 +28,11 @@ public class ChallengeFacadeTests
             Username = "Bob",
             PasswordHash = "BobProtecc",
             Email = "bob@Bob.com",
-            TotalPoints = 453,
-            AvailablePoints = 200,
+            TotalPoints = 0,
+            AvailablePoints = 0,
             NumberOfCorrectAnswers = 4
         };
-        _userDto.Id = await _webUserDataAccess.InsertWebUserAsync(_userDto.FromDto());
+        _userDto.PKWebUserId = await _webUserDataAccess.InsertWebUserAsync(_userDto.FromDto());
 
         return _userDto;
     }
@@ -75,7 +75,7 @@ public class ChallengeFacadeTests
     public async Task CleanUpAsync()
     {
         await _courseDataAccess.DeleteCourseAsync(_courseDto.Id);
-        await _webUserDataAccess.DeleteWebUserAsync(_userDto.Id);
+        await _webUserDataAccess.DeleteWebUserAsync(_userDto.PKWebUserId);
 
     }
 
@@ -96,7 +96,7 @@ public class ChallengeFacadeTests
         }
         finally
         {
-            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.PKWebUserId);
         }
 
     }
@@ -119,7 +119,7 @@ public class ChallengeFacadeTests
         }
         finally
         {
-            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.PKWebUserId);
         }
     }
 
@@ -132,7 +132,7 @@ public class ChallengeFacadeTests
 
 
         // Act
-        var result = await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+        var result = await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.PKWebUserId);
 
         // Assert
         Assert.That(result, Is.True);
@@ -149,7 +149,7 @@ public class ChallengeFacadeTests
 
 
             // Act
-            var result = await _challangeFacadeApiClient.CheckIfUserIsInChallengeAsync(_userDto.Id);
+            var result = await _challangeFacadeApiClient.CheckIfUserIsInChallengeAsync(_userDto.PKWebUserId);
 
             // Assert
             Assert.That(result, Is.True);
@@ -157,7 +157,7 @@ public class ChallengeFacadeTests
         }
         finally
         {
-            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.PKWebUserId);
         }
 
     }
@@ -170,7 +170,7 @@ public class ChallengeFacadeTests
         // Arrange in SetUp
 
         // Act
-        var result = await _challangeFacadeApiClient.CheckIfUserIsInChallengeAsync(_userDto.Id);
+        var result = await _challangeFacadeApiClient.CheckIfUserIsInChallengeAsync(_userDto.PKWebUserId);
 
         // Assert
         Assert.That(result, Is.False);
@@ -194,7 +194,7 @@ public class ChallengeFacadeTests
         }
         finally
         {
-            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.PKWebUserId);
         }
     }
 
@@ -210,14 +210,6 @@ public class ChallengeFacadeTests
         Assert.That(participants.Any(), Is.False);
     }
 
-    //[Test]
-    //public async Task ForceCleanUp()
-    //{
-    //    await _webUserDataAccess.DeleteWebUserAsync(94);
-
-
-    //}
-
     [Test]
     public async Task TestingRewardsDistributionExpectingAvailablePointsToBeAddedToUser()
     {
@@ -230,12 +222,12 @@ public class ChallengeFacadeTests
                 Username = "Joe",
                 PasswordHash = "JoeProtecc",
                 Email = "joe@Bob.com",
-                TotalPoints = 100,
-                AvailablePoints = 100,
+                TotalPoints = 0,
+                AvailablePoints = 0,
                 NumberOfCorrectAnswers = 5
             };
 
-            _secondUserDto.Id = await _webUserDataAccess.InsertWebUserAsync(_secondUserDto.FromDto());
+            _secondUserDto.PKWebUserId = await _webUserDataAccess.InsertWebUserAsync(_secondUserDto.FromDto());
 
             await _challangeFacadeApiClient.RegisterParticipantAsync(_secondUserDto, _courseDto);
             await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
@@ -256,7 +248,7 @@ public class ChallengeFacadeTests
             // Act
 
             await _challangeFacadeApiClient.DistributeRewardsAsync(leaderboardDto);
-            var secondUser = await _webUserDataAccess.GetWebUserByIdAsync(_secondUserDto.Id);
+            var secondUser = await _webUserDataAccess.GetWebUserByIdAsync(_secondUserDto.PKWebUserId);
             var availablePointsAfterDistribution = secondUser.AvailablePoints;
 
             // Assert
@@ -265,7 +257,7 @@ public class ChallengeFacadeTests
         }
         finally
         {
-            await _webUserDataAccess.DeleteWebUserAsync(_secondUserDto.Id);
+            await _webUserDataAccess.DeleteWebUserAsync(_secondUserDto.PKWebUserId);
             await _challangeFacadeApiClient.ClearTempTableBeforeNextChallengeAsync();
         }
     }

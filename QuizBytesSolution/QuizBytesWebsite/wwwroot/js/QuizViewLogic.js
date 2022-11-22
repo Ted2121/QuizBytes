@@ -10,6 +10,7 @@ let courses= [
     "Subject4"
 ];
 
+
 window.onload = function () {
     loadShit();
 }

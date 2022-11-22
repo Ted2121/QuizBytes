@@ -48,8 +48,8 @@ public class ChallengeController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("participants/{id}")]
-    public async Task<ActionResult> DeregisterParticipantAsync([FromQuery]int id)
+    [Route("{id}")]
+    public async Task<ActionResult> DeregisterParticipantAsync(int id)
     {
         if (!await CurrentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(id))
         { return NotFound(); }
@@ -115,8 +115,8 @@ public class ChallengeController : ControllerBase
     }
 
     [HttpGet]
-    [Route("query-participation/{id}")]
-    public async Task<ActionResult<bool>> CheckIfUserIsInChallengeAsync([FromQuery]int id)
+    [Route("{id}")]
+    public async Task<ActionResult<bool>> CheckIfUserIsInChallengeAsync(int id)
     {
         var result = await CurrentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(id);
         if (!result)

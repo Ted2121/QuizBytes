@@ -1,4 +1,5 @@
 ﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
+using DataAccessDefinitionLibrary.Data_Access_Models;
 using SQLAccessImplementationLibrary;
 using SQLAccessImplementationLibraryUnitTest;
 using WebApiClient;
@@ -96,7 +97,7 @@ public class ChallengeFacadeTests
         }
         finally
         {
-            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+            await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_userDto.Id);
         }
 
     }
@@ -145,6 +146,7 @@ public class ChallengeFacadeTests
         try
         {
             // Arrange
+           
             await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);
 
 
@@ -157,7 +159,7 @@ public class ChallengeFacadeTests
         }
         finally
         {
-            await _challangeFacadeApiClient.DeregisterParticipantAsync(_userDto.Id);
+            await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_userDto.Id);
         }
 
     }
@@ -228,6 +230,8 @@ public class ChallengeFacadeTests
             };
 
             _secondUserDto.Id = await _webUserDataAccess.InsertWebUserAsync(_secondUserDto.FromDto());
+
+            
 
             await _challangeFacadeApiClient.RegisterParticipantAsync(_secondUserDto, _courseDto);
             await _challangeFacadeApiClient.RegisterParticipantAsync(_userDto, _courseDto);

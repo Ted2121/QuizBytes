@@ -31,7 +31,7 @@ namespace WebApiClient
 
         public async Task<bool> DeregisterParticipantAsync(int id)
         {
-            var response = await _restClient.RequestAsync(Method.DELETE, $"Challenge/participants/{id}");
+            var response = await _restClient.RequestAsync(Method.DELETE, $"Challenge/{id}");
 
             if (response.IsSuccessful)
             {
@@ -118,7 +118,7 @@ namespace WebApiClient
 
         public async Task<bool> CheckIfUserIsInChallengeAsync(int id)
         {
-            var response = await _restClient.RequestAsync<bool>(Method.GET, $"Challenge/query-participation/{id}");
+            var response = await _restClient.RequestAsync<bool>(Method.GET, $"Challenge/{id}", id);
 
             if (!response.IsSuccessful)
             {

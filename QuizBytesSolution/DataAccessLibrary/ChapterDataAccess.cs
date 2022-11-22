@@ -15,12 +15,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM Chapter WHERE PKChapterId = @PKChapterId";
+                string commandText = "DELETE FROM Chapter WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKChapterId = chapterId
+                        Id = chapterId
                     };
 
 
@@ -63,7 +63,7 @@ namespace SQLAccessImplementationLibrary
 
                     var parameters = new
                     {
-                        FKSubjectId = subject.PKSubjectId
+                        FKSubjectId = subject.Id
                     };
 
                     var chapters = await connection.QueryAsync<Chapter>(commandText, parameters);
@@ -73,7 +73,7 @@ namespace SQLAccessImplementationLibrary
             }
             catch (SqlException ex)
             {
-                throw new Exception($"Exception while trying to read all rows from the Chapter table with the foreign key attribute: FKSubjectId = {subject.PKSubjectId}. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to read all rows from the Chapter table with the foreign key attribute: FKSubjectId = {subject.Id}. The exception was: '{ex.Message}'", ex);
 
             }
         }
@@ -82,12 +82,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM Chapter WHERE PKChapterId = @PKChapterId";
+                string commandText = "SELECT * FROM Chapter WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKChapterId = chapterId
+                        Id = chapterId
                     };
 
                     var chapter = await connection.QuerySingleOrDefaultAsync<Chapter>(commandText, parameters);
@@ -146,7 +146,7 @@ namespace SQLAccessImplementationLibrary
                     };
 
 
-                    return chapter.PKChapterId = await connection.QuerySingleAsync<int>(commandText, parameters);
+                    return chapter.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
             catch (SqlException ex)
@@ -165,7 +165,7 @@ namespace SQLAccessImplementationLibrary
                     "SET Name = @Name, " +
                     "FKSubjectId = @FKSubjectId, " +
                     "Description = @Description " +
-                    "WHERE PKChapterId = @PKChapterId";
+                    "WHERE Id = @Id";
 
                 using (SqlConnection connection = CreateConnection())
                 {
@@ -174,7 +174,7 @@ namespace SQLAccessImplementationLibrary
                         Name = chapter.Name,
                         FKSubjectId = chapter.FKSubjectId,
                         Description = chapter.Description,
-                        PKChapterId = chapter.PKChapterId
+                        Id = chapter.Id
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters) > 0;

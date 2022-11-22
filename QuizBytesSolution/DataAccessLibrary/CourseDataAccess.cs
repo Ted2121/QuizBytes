@@ -15,12 +15,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM Course WHERE PKCourseId = @PKCourseId";
+                string commandText = "DELETE FROM Course WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKCourseId = courseId
+                        Id = courseId
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
@@ -56,12 +56,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM Course WHERE PKCourseId = @PKCourseId";
+                string commandText = "SELECT * FROM Course WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKCourseId = courseId
+                        Id = courseId
                     };
 
                     var course = await connection.QuerySingleOrDefaultAsync<Course>(commandText, parameters);
@@ -92,7 +92,7 @@ namespace SQLAccessImplementationLibrary
                         Description = course.Description
                     };
 
-                    return course.PKCourseId = await connection.QuerySingleAsync<int>(commandText, parameters);
+                    return course.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
 
                 }
             }
@@ -110,7 +110,7 @@ namespace SQLAccessImplementationLibrary
                 string commandText = "UPDATE Course " +
                      "SET Name = @Name, " +
                      "Description = @Description " +
-                     "WHERE PKCourseId = @PKCourseId";
+                     "WHERE Id = @Id";
 
                 using (SqlConnection connection = CreateConnection())
                 {
@@ -118,7 +118,7 @@ namespace SQLAccessImplementationLibrary
                     {
                         Name = course.Name,
                         Description = course.Description,
-                        PKCourseId = course.PKCourseId
+                        Id = course.Id
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters) > 0;

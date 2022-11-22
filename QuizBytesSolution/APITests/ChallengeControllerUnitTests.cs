@@ -42,7 +42,7 @@ public class Tests
             AvailablePoints = 0,
             NumberOfCorrectAnswers = 4
         };
-        _userDto.PKWebUserId = await _webUserDataAccess.InsertWebUserAsync(_userDto.FromDto());
+        _userDto.Id = await _webUserDataAccess.InsertWebUserAsync(_userDto.FromDto());
 
         _secondWebUserDto = new WebUserDto()
         {
@@ -53,7 +53,7 @@ public class Tests
             AvailablePoints = 0,
             NumberOfCorrectAnswers = 5
         };
-        _secondWebUserDto.PKWebUserId = await _webUserDataAccess.InsertWebUserAsync(_secondWebUserDto.FromDto());
+        _secondWebUserDto.Id = await _webUserDataAccess.InsertWebUserAsync(_secondWebUserDto.FromDto());
 
         _courseDto = new CourseDto()
         {
@@ -91,8 +91,8 @@ public class Tests
     [TearDown]
     public async Task TearDown()
     {
-        await _webUserDataAccess.DeleteWebUserAsync(_userDto.PKWebUserId);
-        await _webUserDataAccess.DeleteWebUserAsync(_secondWebUserDto.PKWebUserId);
+        await _webUserDataAccess.DeleteWebUserAsync(_userDto.Id);
+        await _webUserDataAccess.DeleteWebUserAsync(_secondWebUserDto.Id);
         await _courseDataAccess.DeleteCourseAsync(_courseDto.Id);
     }
 
@@ -120,7 +120,7 @@ public class Tests
 
         // Act
         await _challengeController.DistributeRewardsAsync(leaderboardDto);
-        var userAfterDistribution = await _webUserDataAccess.GetWebUserByIdAsync(_secondWebUserDto.PKWebUserId);
+        var userAfterDistribution = await _webUserDataAccess.GetWebUserByIdAsync(_secondWebUserDto.Id);
         var availablePointsAfterDistribution = userAfterDistribution.AvailablePoints;
 
         // Assert

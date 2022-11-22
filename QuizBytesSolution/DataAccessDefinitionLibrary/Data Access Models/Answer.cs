@@ -8,7 +8,7 @@ namespace DataAccessDefinitionLibrary.Data_Access_Models;
 
 public class Answer
 {
-    public int PKAnswerId { get; set; }
+    public int Id { get; set; }
     public int FKQuestionId { get; set; }
     public string IsCorrect { get; set; }
     public string AnswerText { get; set; }

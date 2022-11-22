@@ -16,12 +16,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM WebUser WHERE PKWebUserId = @PKWebUserId";
+                string commandText = "DELETE FROM WebUser WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKWebUserId = webUserId
+                        Id = webUserId
                     };
 
 
@@ -83,12 +83,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM WebUser WHERE PKWebUserId = @PKWebUserId";
+                string commandText = "SELECT * FROM WebUser WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKWebUserId = webUserId
+                        Id = webUserId
                     };
 
                     var webUser = await connection.QuerySingleOrDefaultAsync<WebUser>(commandText, parameters);
@@ -107,7 +107,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "INSERT INTO WebUser(Username, PasswordHash, TotalPoints, AvailablePoints, Email, PointsAccumulatedInChallenge, ElapsedSecondsInChallenge) VALUES (@Username, @PasswordHash, @TotalPoints, @AvailablePoints, @Email, @PointsAccumulatedInChallenge, @ElapsedSecondsInChallenge); SELECT CAST(scope_identity() AS int)";
+                string commandText = "INSERT INTO WebUser(Username, PasswordHash, TotalPoints, AvailablePoints, Email, ElapsedSecondsInChallenge) VALUES (@Username, @PasswordHash, @TotalPoints, @AvailablePoints, @Email, @ElapsedSecondsInChallenge); SELECT CAST(scope_identity() AS int)";
 
                 using (SqlConnection connection = CreateConnection())
                 {
@@ -119,11 +119,10 @@ namespace SQLAccessImplementationLibrary
                         TotalPoints = webUser.TotalPoints,
                         AvailablePoints = webUser.AvailablePoints,
                         Email = webUser.Email,
-                        PointsAccumulatedInChallenge = webUser.PointsAccumulatedInChallenge,
                         ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge
                     };
 
-                    return webUser.PKWebUserId = await connection.QuerySingleAsync<int>(commandText, parameters);
+                    return webUser.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
             catch (SqlException ex)
@@ -144,9 +143,8 @@ namespace SQLAccessImplementationLibrary
                     "TotalPoints = @TotalPoints, " +
                     "AvailablePoints = @AvailablePoints, " +
                     "Email = @Email, " +
-                    "PointsAccumulatedInChallenge = @PointsAccumulatedInChallenge, " +
                     "ElapsedSecondsInChallenge = @ElapsedSecondsInChallenge " +
-                    "WHERE PKWebUserId = @PKWebUserId;";
+                    "WHERE Id = @Id;";
 
                 using (SqlConnection connection = CreateConnection())
                 {
@@ -156,9 +154,8 @@ namespace SQLAccessImplementationLibrary
                         TotalPoints = webUser.TotalPoints,
                         AvailablePoints = webUser.AvailablePoints,
                         Email = webUser.Email,
-                        PointsAccumulatedInChallenge = webUser.PointsAccumulatedInChallenge,
                         ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge,
-                        PKWebUserId = webUser.PKWebUserId
+                        Id = webUser.Id
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters)>0;
@@ -177,7 +174,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT PKWebUserId, PasswordHash FROM WebUser WHERE Username = @Username";
+                string commandText = "SELECT Id, PasswordHash FROM WebUser WHERE Username = @Username";
 
                 using var connection = CreateConnection();
 
@@ -185,7 +182,7 @@ namespace SQLAccessImplementationLibrary
 
                 if(webUserTuple != null && BCryptTool.ValidatePassword(password, webUserTuple.PasswordHash))
                 {
-                    return webUserTuple.PKWebUserId;
+                    return webUserTuple.Id;
                 }
                 return -1;
             }
@@ -200,13 +197,13 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "UPDATE WebUser SET PasswordHash = @PasswordHash WHERE PKWebUserId = @PKWebUserId;";
+                string commandText = "UPDATE WebUser SET PasswordHash = @PasswordHash WHERE Id = @Id;";
                 var id = await LoginAsync(username, oldPassword);
                 if(id > 0)
                 {
                     var newPasswordHash = BCryptTool.HashPassword(newPassword);
                     using var connection = CreateConnection();
-                    return await connection.ExecuteAsync(commandText, new { PKWebUserId = id, NewPasswordHash = newPasswordHash }) > 0;
+                    return await connection.ExecuteAsync(commandText, new { Id = id, NewPasswordHash = newPasswordHash }) > 0;
                 }
                 return false;
             }
@@ -219,7 +216,7 @@ namespace SQLAccessImplementationLibrary
 
         internal class WebUserTuple
         {
-            public int PKWebUserId;
+            public int Id;
             public string PasswordHash;
         }
     }

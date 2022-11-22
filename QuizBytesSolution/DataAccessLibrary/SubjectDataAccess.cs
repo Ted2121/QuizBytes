@@ -15,12 +15,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM Subject WHERE PKSubjectId = @PKSubjectId";
+                string commandText = "DELETE FROM Subject WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKSubjectId = subjectId
+                        Id = subjectId
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
@@ -62,7 +62,7 @@ namespace SQLAccessImplementationLibrary
 
                     var parameters = new
                     {
-                        FKCourseId = course.PKCourseId
+                        FKCourseId = course.Id
                     };
 
                     var subjects = await connection.QueryAsync<Subject>(commandText, parameters);
@@ -72,7 +72,7 @@ namespace SQLAccessImplementationLibrary
             }
             catch (SqlException ex)
             {
-                throw new Exception($"Exception while trying to read all rows from the Subject table with the foreign key attribute: FKCourseId = {course.PKCourseId}. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to read all rows from the Subject table with the foreign key attribute: FKCourseId = {course.Id}. The exception was: '{ex.Message}'", ex);
 
             }
         }
@@ -81,12 +81,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM Subject WHERE PKSubjectId = @PKSubjectId";
+                string commandText = "SELECT * FROM Subject WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKSubjectId = subjectId
+                        Id = subjectId
                     };
 
                     var subject = await connection.QuerySingleOrDefaultAsync<Subject>(commandText, parameters);
@@ -118,7 +118,7 @@ namespace SQLAccessImplementationLibrary
                         Description = subject.Description
                     };
 
-                    return subject.PKSubjectId = await connection.QuerySingleAsync<int>(commandText, parameters);
+                    return subject.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
             catch (SqlException ex)
@@ -136,7 +136,7 @@ namespace SQLAccessImplementationLibrary
                     "SET Name = @Name, " +
                     "FKCourseId = @FKCourseId, " +
                     "Description = @Description " +
-                    "WHERE PKSubjectId = @PKSubjectId";
+                    "WHERE Id = @Id";
 
                 using (SqlConnection connection = CreateConnection())
                 {
@@ -145,7 +145,7 @@ namespace SQLAccessImplementationLibrary
                         Name = subject.Name,
                         FKCourseId = subject.FKCourseId,
                         Description = subject.Description,
-                        PKSubjectId = subject.PKSubjectId
+                        Id = subject.Id
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters) > 0;

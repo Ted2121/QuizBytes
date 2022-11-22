@@ -2,7 +2,7 @@
 
 public class Chapter
 {
-    public int PKChapterId { get; set; }
+    public int Id { get; set; }
     public string Name { get; set; }
     public int FKSubjectId { get; set; }
     public string Description { get; set; }

@@ -70,9 +70,9 @@ namespace DataAccessUnitTest
             //Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
             int randomTestId = 1;
-            _user.PKWebUserId = randomTestId;
-            _course.PKCourseId = randomTestId;
-            var expected = _user.PKWebUserId;
+            _user.Id = randomTestId;
+            _course.Id = randomTestId;
+            var expected = _user.Id;
 
             //Act
             var actual = await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
@@ -98,7 +98,7 @@ namespace DataAccessUnitTest
             await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
             //Act
-            bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.PKWebUserId);
+            bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.Id);
 
             //Assert
             try
@@ -120,7 +120,7 @@ namespace DataAccessUnitTest
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
             //Act
-            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.PKWebUserId);
+            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.Id);
 
             // Assert
             
@@ -137,7 +137,7 @@ namespace DataAccessUnitTest
             await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
             //Act
-            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.PKWebUserId);
+            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.Id);
 
             // Assert
             try

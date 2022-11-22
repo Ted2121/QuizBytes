@@ -73,15 +73,12 @@ public class Program
             app.UseSwaggerUI();
         }
 
-<<<<<<< HEAD
         if (!app.Environment.IsDevelopment())
         {
         app.ConfigureExceptionHandler();
 
         }
-=======
         app.UseHttpLogging();
->>>>>>> feature-DAL
 
         app.UseHttpsRedirection();
 

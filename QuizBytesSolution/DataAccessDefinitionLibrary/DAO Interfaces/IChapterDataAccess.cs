@@ -6,10 +6,10 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces;
 public interface IChapterDataAccess
 {
     Task<int> InsertChapterAsync(Chapter chapter);
-    Task<Chapter> GetChapterByIdAsync(int chapterId);
+    Task<Chapter> GetChapterByIdAsync(int id);
     Task<Chapter> GetChapterByNameAsync(string chapterName);
     Task<IEnumerable<Chapter>> GetAllChaptersAsync();
     Task<IEnumerable<Chapter>> GetAllChaptersBySubjectAsync(Subject subject);
     Task<bool> UpdateChapterAsync(Chapter chapter);
-    Task<bool> DeleteChapterAsync(int chapterId);
+    Task<bool> DeleteChapterAsync(int id);
 }

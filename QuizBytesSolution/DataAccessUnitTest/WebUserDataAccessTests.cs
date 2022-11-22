@@ -34,7 +34,7 @@ namespace SQLAccessImplementationLibraryUnitTest
         [TearDown]
         public async Task TearDownAsync()
         {
-            await _webUserDataAccess.DeleteWebUserAsync(_webUser.PKWebUserId);
+            await _webUserDataAccess.DeleteWebUserAsync(_webUser.Id);
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace SQLAccessImplementationLibraryUnitTest
 
             // Act
             var test = await _webUserDataAccess.UpdateWebUserAsync(_webUser);
-            var userFromDb = await _webUserDataAccess.GetWebUserByIdAsync(_webUser.PKWebUserId);
+            var userFromDb = await _webUserDataAccess.GetWebUserByIdAsync(_webUser.Id);
             var usernameFromDb = userFromDb.Username;
 
             // Assert

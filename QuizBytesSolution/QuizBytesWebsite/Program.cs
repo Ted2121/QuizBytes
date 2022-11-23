@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using QuizBytesWebsite.Helpers;
 using QuizBytesWebsite.Hubs;
+using WebApiClient;
 
 namespace QuizBytesWebsite
 {
@@ -8,11 +10,16 @@ namespace QuizBytesWebsite
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            ConfigurationManager configuration = builder.Configuration;
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+       .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
             builder.Services.AddTransient<ITimerLogicHelper, TimerLogicHelper>();
             builder.Services.AddScoped<ILeaderboardBuilder, LeaderboardBuilder>();
+            builder.Services.AddScoped<IWebUserFacadeApiClient>((conf) => new WebUserFacadeApiClient(configuration["WebApiURI"]));
 
             builder.Services.AddSignalR();
 
@@ -32,11 +39,17 @@ namespace QuizBytesWebsite
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            //MvcOptions.EnableEndpointRouting = false;
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+           
+
+
 
             app.MapHub<TimerHub>("/timerHub");
 

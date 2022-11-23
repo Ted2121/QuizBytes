@@ -1,6 +1,7 @@
 ﻿using DataAccessDefinitionLibrary.Data_Access_Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace WebApiClient.DTOs
         public int Id { get; set; }
         public string Username { get; set; }
         public string PasswordHash { get; set; }
-        public string? NewPassword { get; set; }
+        public string NewPassword { get; set; }
 
         public string Email { get; set; }
         public int TotalPoints { get; set; }

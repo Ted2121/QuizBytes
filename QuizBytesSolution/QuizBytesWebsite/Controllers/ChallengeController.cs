@@ -12,11 +12,11 @@ namespace QuizBytesWebsite.Controllers
         //    Client = client;
         //}
 
-        public ActionResult Register()
+        public IActionResult Register()
         {
             return View();
         }
-        public ActionResult Start()
+        public IActionResult Start()
         {
             return View();
         }

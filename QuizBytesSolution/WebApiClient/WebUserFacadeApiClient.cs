@@ -22,7 +22,7 @@ public class WebUserFacadeApiClient : IWebUserFacadeApiClient
 
         if (!response.IsSuccessful)
         {
-            throw new Exception($"Error retrieving all web users. Message was {response.Content}");
+            throw new Exception($"Error retrieving all web users. Message was {response.Data}");
         }
 
         return response.Data;
@@ -34,7 +34,7 @@ public class WebUserFacadeApiClient : IWebUserFacadeApiClient
 
         if (!response.IsSuccessful)
         {
-            throw new Exception($"Error creating the web user. Message was {response.Content}");
+            throw new Exception($"Error creating the web user. Message was {response.Data}");
         }
 
         return response.Data;
@@ -47,7 +47,7 @@ public class WebUserFacadeApiClient : IWebUserFacadeApiClient
 
         if (!response.IsSuccessful)
         {
-            throw new Exception($"Error retrieving the web user with the username {username}. Message was {response.Content}");
+            throw new Exception($"Error retrieving the web user with the username {username}. Message was {response.Data}");
         }
 
         return response.Data;
@@ -85,7 +85,7 @@ public class WebUserFacadeApiClient : IWebUserFacadeApiClient
 
         if (!response.IsSuccessful)
         {
-            throw new Exception($"Error getting the web user by id. Message was {response.Content}");
+            throw new Exception($"Error getting the web user by id. Message was {response.Data}");
         }
 
         return response.Data;
@@ -109,7 +109,7 @@ public class WebUserFacadeApiClient : IWebUserFacadeApiClient
 
         if (!response.IsSuccessful)
         {
-            throw new Exception($"Error getting web user's unlocked chapters. Message was {response.Content}");
+            throw new Exception($"Error getting web user's unlocked chapters. Message was {response.Data}");
         }
 
         return response.Data;
@@ -125,6 +125,16 @@ public class WebUserFacadeApiClient : IWebUserFacadeApiClient
         }
 
         return true;
+    }
+
+    public async Task<WebUserDto> LoginAsync(WebUserDto webUser)
+    {
+        var response = await _restClient.RequestAsync<WebUserDto>(Method.POST, $"Accounts", webUser);
+        if (!response.IsSuccessful)
+        {
+            throw new Exception($"Error logging in for WebUser with username = {webUser.Username}. Message was {response.Data}");
+        }
+        return response.Data;
     }
 
 }

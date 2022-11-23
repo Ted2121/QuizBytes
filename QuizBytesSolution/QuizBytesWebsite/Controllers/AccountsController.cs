@@ -31,10 +31,10 @@ namespace QuizBytesWebsite.Controllers
             if (user != null)
             {
                 var claims = new List<Claim>
-                {
-                    new Claim("id", user.Id.ToString()),
-                    new Claim("username", user.Username)
-                };
+                    {
+                        new Claim("id", user.Id.ToString()),
+                        new Claim("username", user.Username)
+                    };
 
                 await SignInUsingClaims(claims);
                 TempData["Message"] = $"You are logged in as {user.Username}";

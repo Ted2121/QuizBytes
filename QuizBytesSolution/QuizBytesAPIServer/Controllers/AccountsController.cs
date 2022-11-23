@@ -1,25 +1,27 @@
 ﻿using DataAccessDefinitionLibrary.DAO_Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuizBytesAPIServer.DTOs;
 using QuizBytesAPIServer.DTOs.Converters;
 
-namespace QuizBytesAPIServer.Controllers;
-
-[ApiController]
-[Route("api/v1/[controller]")]
-public class AccountsController : ControllerBase
+namespace QuizBytesAPIServer.Controllers
 {
-    private IWebUserDataAccess WebUserDataAccess { get; set; }
-    public AccountsController(IWebUserDataAccess webUserDataAccess)
+    [Route("api/v1/[controller]")]
+    [ApiController]
+    public class AccountsController : ControllerBase
     {
-        WebUserDataAccess = webUserDataAccess;
-    }
+        private IWebUserDataAccess WebUserDataAccess { get; set; }
+        public AccountsController(IWebUserDataAccess webUserDataAccess)
+        {
+            WebUserDataAccess = webUserDataAccess;
+        }
 
-    [HttpPost]
-    public async Task<ActionResult<WebUserDto>> LoginAsync(WebUserDto webUser)
-    {
+        [HttpPost]
+        public async Task<ActionResult<WebUserDto>> LoginUserAsync(WebUserDto webUser)
+        {
             var user = await WebUserDataAccess.LoginAsync(webUser.Username, webUser.PasswordHash);
-        return Ok(user.ToDto());
+            return Ok(user.ToDto());
 
+        }
     }
 }

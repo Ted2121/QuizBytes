@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebApiClient.DTOs
 {
-    internal class UserScoreInChallengeDto
+    public class LeaderboardDto
     {
+        public List<WebUserDto> Leaderboard { get; set; }
     }
 }

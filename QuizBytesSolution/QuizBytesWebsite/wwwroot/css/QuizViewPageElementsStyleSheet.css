@@ -1,0 +1,19 @@
+﻿/*this is the style sheet for the page elements while the other one(QuizViewStyleSheet) is for the navbar
+    and body. In here I will style the containers for the Courses,Subjects and Chapters that will be displayed after 
+    one of them is selected in the side-navbar
+*/
+
+body{
+    overflow-y:scroll;
+}
+.page-elements-wrapper{
+    position:fixed;
+    margin-left: 7vw;
+    margin-top: 15vh;
+    border-block-color:limegreen;
+    align-items:center;
+}
+
+i{
+   
+}

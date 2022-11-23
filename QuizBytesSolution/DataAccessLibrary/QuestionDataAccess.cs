@@ -15,12 +15,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM Question WHERE PKQuestionId = @PKQuestionId";
+                string commandText = "DELETE FROM Question WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKQuestionId = questionId
+                        Id = questionId
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
@@ -56,12 +56,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM Question WHERE PKQuestionId = @PKQuestionId";
+                string commandText = "SELECT * FROM Question WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKQuestionId = questionId
+                        Id = questionId
                     };
 
                     var question = await connection.QuerySingleOrDefaultAsync<Question>(commandText, parameters);
@@ -78,7 +78,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<Question> InsertQuestionAsync(Question question)
+        public async Task<int> InsertQuestionAsync(Question question)
         {
             try
             {
@@ -94,9 +94,7 @@ namespace SQLAccessImplementationLibrary
                     };
 
 
-                    await connection.ExecuteAsync(commandText, parameters);
-                    question.PKQuestionId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
-                    return question;
+                    return question.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
             catch (SqlException ex)
@@ -115,7 +113,7 @@ namespace SQLAccessImplementationLibrary
                     "FKChapterId = @FKChapterId, " +
                     "QuestionText = @QuestionText, " +
                     "Hint = @Hint " +
-                    "WHERE PKQuestionId = @PKQuestionId";
+                    "WHERE Id = @Id";
 
                 using (SqlConnection connection = CreateConnection())
                 {
@@ -124,7 +122,7 @@ namespace SQLAccessImplementationLibrary
                         FKChapterId = question.FKChapterId,
                         QuestionText = question.QuestionText,
                         Hint = question.Hint,
-                        PKQuestionId = question.PKQuestionId
+                        Id = question.Id
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
@@ -149,7 +147,7 @@ namespace SQLAccessImplementationLibrary
 
                     var parameters = new
                     {
-                        FKChapterId = chapter.PKChapterId
+                        FKChapterId = chapter.Id
                     };
 
                     var questions = await connection.QueryAsync<Question>(commandText, parameters);
@@ -159,7 +157,7 @@ namespace SQLAccessImplementationLibrary
             }
             catch (SqlException ex)
             {
-                throw new Exception($"Exception while trying to read all rows from the Question table with the foreign key attribute: FKChapterId = {chapter.PKChapterId}. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to read all rows from the Question table with the foreign key attribute: FKChapterId = {chapter.Id}. The exception was: '{ex.Message}'", ex);
 
             }
         }

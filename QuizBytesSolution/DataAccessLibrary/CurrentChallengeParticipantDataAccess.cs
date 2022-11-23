@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -14,49 +15,67 @@ namespace SQLAccessImplementationLibrary
 
         }
 
-        public async Task<int> AddWebUserToChallengeAsync(WebUser webUser,Course course)
+        public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
         {
+            var currentChallengeRowId = 0;
             int userLimitForChallenges = 100;
-            var rowAmount = await GetRowAmountFromDatabaseAsync();
-            if (rowAmount < userLimitForChallenges)
+
+            using (SqlConnection connection = CreateConnection())
             {
-                using (SqlConnection connection = CreateConnection())
+                connection.Open();
+                IsolationLevel isolationLevel = IsolationLevel.RepeatableRead;
+                SqlTransaction transaction = connection.BeginTransaction(isolationLevel);
+                string commandText = "INSERT INTO CurrentChallengeParticipant (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
+                var parameters = new
                 {
-                    connection.Open();
-                    IsolationLevel isolationLevel = IsolationLevel.RepeatableRead;
-                    SqlTransaction transaction = connection.BeginTransaction(isolationLevel);
-                    string commandText = "INSERT INTO CurrentChallengeParticipant (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
-                    var parameters = new
+                    FKWebUserId = webUser.Id,
+                    FKCourseId = course.Id
+                };
+                try
+                {
+                    var rowAmount = await GetRowAmountFromDatabaseAsync();
+                    if (rowAmount < userLimitForChallenges)
                     {
-                        FKWebUserId = webUser.PKWebUserId,
-                        FKCourseId = course.PKCourseId
-                    };
-                    try
-                    {
-                        await connection.ExecuteAsync(commandText, parameters);
+                        currentChallengeRowId = await connection.QuerySingleAsync<int>(commandText, parameters, transaction: transaction);
+
                         transaction.Commit();
-                        var currentChallengeRowId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
+
                         return currentChallengeRowId;
                     }
-                    // TODO add catching Exception as well
-                    catch (SqlException ex)
+                    else
                     {
                         try
                         {
                             transaction.Rollback();
-                            throw new Exception($"Exception while trying to insert into CurrentChallengeParticipant table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
+                            throw new Exception($"SqlException while trying to insert into CurrentChallengeParticipant table. Transaction successfully rolled back");
                         }
                         catch
                         {
-                            throw new Exception($"Exception while trying to rollback transaction. The exception was: '{ex.Message}'", ex);
+                            throw new Exception($"Exception while trying to rollback transaction.");
                         }
                     }
+
+                   
                 }
+                catch (SqlException ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"SqlException while trying to insert into CurrentChallengeParticipant table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
+                    }
+                    catch
+                    {
+                        throw new Exception($"Exception while trying to rollback transaction. The exception was: '{ex.Message}'", ex);
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Exception while trying to insert into CurrentChallengeParticipant table.The exception was: '{e.Message}'", e);
+                }
+
             }
-            else
-            {
-                return 0;
-            }
+
         }
 
         public async Task<IEnumerable<CurrentChallengeParticipant>> GetAllRowsInChallengeAsync()
@@ -85,13 +104,13 @@ namespace SQLAccessImplementationLibrary
             try
             {
                 string commandText = "DELETE FROM CurrentChallengeParticipant WHERE FKWebUserId = @FKWebUserId";
+                
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
                         FKWebUserId = webUserId,
                     };
-
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
             }
@@ -108,8 +127,12 @@ namespace SQLAccessImplementationLibrary
             try
             {
                 string commandText = "DELETE FROM CurrentChallengeParticipant";
+                string commandToReseedIdentity = "DBCC CHECKIDENT ('[CurrentChallengeParticipant]', RESEED, 0)";
+
                 using (SqlConnection connection = CreateConnection())
                 {
+                    await connection.ExecuteAsync(commandToReseedIdentity);
+
                     return await connection.ExecuteAsync(commandText) > 0;
                 }
             }
@@ -122,13 +145,13 @@ namespace SQLAccessImplementationLibrary
 
         public async Task<int> GetRowAmountFromDatabaseAsync()
         {
-            string commandText = "SELECT COUNT PKCurrentChallengeParticipantId FROM CurrentChallengeParticipant";
+            string commandText = "SELECT COUNT(Id) FROM CurrentChallengeParticipant";
             try
             {
                 using (SqlConnection connection = CreateConnection())
                 {
-                    var rowAmount = await connection.ExecuteAsync(commandText);
-                    return rowAmount;
+                    var rowAmount = await connection.ExecuteScalarAsync(commandText);
+                    return (int)rowAmount;
                 }
             }
             catch (SqlException ex)
@@ -136,6 +159,22 @@ namespace SQLAccessImplementationLibrary
 
                 throw new Exception($"Exception while trying to count the rows in the CurrentChallengeParticipant table. The exception was: '{ex.Message}'", ex);
             }
+        }
+
+        public async Task<bool> CheckIfWebUserIsInChallengeAsync(int webUserId)
+        {
+            using (SqlConnection connection = CreateConnection())
+            {
+                string readCommand = "SELECT COUNT(FKWebUserId) FROM CurrentChallengeParticipant WHERE FKWebUSerId = @FkWebUserId";
+                var param = new
+                {
+                    FKWebUSerId = webUserId
+                };
+                var result = await connection.QuerySingleAsync<int>(readCommand, param);
+
+                return result > 0;
+            }
+
         }
     }
 }

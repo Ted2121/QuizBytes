@@ -7,112 +7,127 @@ using QuizBytesAPIServer.Factories;
 using QuizBytesAPIServer.Helper_Classes;
 using SQLAccessImplementationLibrary;
 
-namespace QuizBytesAPIServer.Controllers
+namespace QuizBytesAPIServer.Controllers;
+
+[ApiController]
+[Route("api/v1/[controller]")]
+public class ChallengeController : ControllerBase
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class ChallengeController : ControllerBase
+    private ICurrentChallengeParticipantDataAccess CurrentChallengeParticipantDataAccess { get; set; }
+    private IWebUserDataAccess WebUserDataAccess { get; set; }
+    private IRewardsDistributionHelper RewardsDistributionHelper { get; set; }
+    private IQuizFactory QuizFactory { get; set; }
+    private ICourseDataAccess CourseDataAccess { get; set; }
+
+    public ChallengeController(
+        ICurrentChallengeParticipantDataAccess currentChallengeParticipantDataAccess,
+        IWebUserDataAccess webUserDataAccess,
+        IRewardsDistributionHelper rewardsDistributionHelper,
+        IQuizFactory quizFactory,
+        ICourseDataAccess courseDataAccess)
     {
-        public ICurrentChallengeParticipantDataAccess CurrentChallengeParticipantDataAccess { get; set; }
-        public IWebUserDataAccess WebUserDataAccess { get; set; }
-        public IRewardsDistributionHelper RewardsDistributionHelper { get; set; }
-        public IQuizFactory QuizFactory { get; set; }
+        CurrentChallengeParticipantDataAccess = currentChallengeParticipantDataAccess;
+        WebUserDataAccess = webUserDataAccess;
+        RewardsDistributionHelper = rewardsDistributionHelper;
+        QuizFactory = quizFactory;
+        CourseDataAccess = courseDataAccess;
+    }
 
-        public ChallengeController(
-            ICurrentChallengeParticipantDataAccess currentChallengeParticipantDataAccess,
-            IWebUserDataAccess webUserDataAccess,
-            IRewardsDistributionHelper rewardsDistributionHelper,
-            IQuizFactory quizFactory)
+    [HttpGet]
+    [Route("participants")]
+    public async Task<ActionResult<IEnumerable<CurrentChallengeParticipantDto>>> GetAllParticipantsAsync()
+    {
+        var currentChallengeEntries = await CurrentChallengeParticipantDataAccess.GetAllRowsInChallengeAsync();
+
+        //var leaderboard = await RewardsDistributionHelper.BuildLeaderboardFromParticipantList(currentChallengeEntries.ToDtos());
+
+        if (currentChallengeEntries == null)
         {
-            CurrentChallengeParticipantDataAccess = currentChallengeParticipantDataAccess;
-            WebUserDataAccess = webUserDataAccess;
-            RewardsDistributionHelper = rewardsDistributionHelper;
-            QuizFactory = quizFactory;
+            return NotFound();
+        }
+        return Ok(currentChallengeEntries.ToDtos());
+
+
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    public async Task<ActionResult> DeregisterParticipantAsync(int id)
+    {
+        if (!await CurrentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(id))
+        { return NotFound(); }
+        else
+        { return Ok(); }
+    }
+
+    [HttpPut]
+    [Route("rewards")]
+    public async Task<ActionResult> DistributeRewardsAsync([FromBody] LeaderboardDto leaderboard)
+    {
+        
+        if(leaderboard == null)
+        {
+            return NotFound();
         }
 
-        [HttpGet]
-        [Route("participants")]
-        public async Task<ActionResult<IEnumerable<CurrentChallengeParticipantDto>>> GetAllParticipantsAsync()
+        await RewardsDistributionHelper.DistributeChallengeRewardsAsync(leaderboard);
+
+        return Ok();
+
+    }
+
+    [HttpDelete]
+    [Route("cleartable")]
+    public async Task<ActionResult> ClearTempTableBeforeNextChallengeAsync()
+    {
+        
+        if(!await CurrentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync())
         {
-            var currentChallengeEntries = await CurrentChallengeParticipantDataAccess.GetAllRowsInChallengeAsync();
-
-            currentChallengeEntries.OrderByDescending(challengeRow => WebUserDataAccess.GetWebUserByIdAsync(challengeRow.FKWebUserId).Result.AvailablePoints);
-
-            if (currentChallengeEntries == null)
-            {
-                return NotFound();
-            }
-            return Ok(currentChallengeEntries.ToDtos());
-
+            return BadRequest();
         }
+        return Ok();
+    }
 
-        [HttpDelete]
-        [Route("delete/{id}")]
-        public async Task<ActionResult> DeregisterParticipantAsync(int id)
+    [HttpPost]
+    public async Task<ActionResult<int>> RegisterParticipantAsync(CurrentChallengeParticipantDto challengeParticipantInfo)
+    {
+        if(challengeParticipantInfo == null)
         {
-            if (!await CurrentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(id))
-            { return NotFound(); }
-            else
-            { return Ok(); }
+            return NotFound();
         }
+        
+        return Ok(await CurrentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(challengeParticipantInfo.WebUser.FromDto(), challengeParticipantInfo.Course.FromDto()));
+    }
 
-        [HttpPut]
-        [Route("rewards")]
-        public async Task<ActionResult> DistributeRewardsAsync()
+    [HttpGet]
+    [Route("count")]
+    public async Task<ActionResult<int>> GetNumberOfParticipantsAsync()
+    {
+        var numberOfParticipants = await CurrentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
+        return Ok(numberOfParticipants);
+
+    }
+
+    [HttpGet]
+    [Route("quiz/{id}")]
+    public async Task<ActionResult<QuizDto>> GetChallengeQuizAsync(int id)
+    {
+        var course = await CourseDataAccess.GetCourseByIdAsync(id);
+        var quiz = await QuizFactory.CreateQuizDto(course.ToDto());
+
+        return Ok(quiz);
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    public async Task<ActionResult<bool>> CheckIfUserIsInChallengeAsync(int id)
+    {
+        var result = await CurrentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(id);
+        if (!result)
         {
-            var leaderboardResult = await GetAllParticipantsAsync();
-            var leaderboard = leaderboardResult.Value?.ToList();
-            
-            if(leaderboard == null)
-            {
-                return NotFound();
-            }
-
-            await RewardsDistributionHelper.DistributeChallengeRewardsAsync(leaderboard);
-
-            return Ok();
-
+            return NotFound();
         }
-
-        [HttpDelete]
-        [Route("cleartable")]
-        public async Task<ActionResult> ClearTempTableBeforeNextChallengeAsync()
-        {
-            
-            if(!await CurrentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync())
-            {
-                return BadRequest();
-            }
-            return Ok();
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> RegisterParticipantAsync(WebUserDto webUser, CourseDto course)
-        {
-            if(webUser == null || course == null)
-            {
-                return NotFound();
-            }
-            await CurrentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(webUser.FromDto(), course.FromDto());
-            return Ok();
-        }
-
-        [HttpGet]
-        [Route("count")]
-        public async Task<ActionResult<int>> GetNumberOfParticipantsAsync()
-        {
-            var numberOfParticipants = await CurrentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
-            return Ok(numberOfParticipants);
-        }
-
-        [HttpGet]
-        [Route("quiz")]
-        public async Task<ActionResult<QuizDto>> GetChallengeQuizAsync(CourseDto course)
-        {
-            var quiz = await QuizFactory.CreateQuizDto(course);
-
-            return Ok(quiz);
-        }
+        return Ok(result);
     }
 }
 

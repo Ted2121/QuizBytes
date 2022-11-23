@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using DataAccessDefinitionLibrary.Authentication;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
 using System.Data.SqlClient;
@@ -15,15 +16,17 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM WebUser WHERE PKWebUserId = @PKWebUserId";
+                string commandText = "DELETE FROM WebUser WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKWebUserId = webUserId
+                        Id = webUserId
                     };
 
+
                    return await connection.ExecuteAsync(commandText, parameters)>0;
+
                 }
             }
             catch (SqlException ex)
@@ -80,12 +83,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM WebUser WHERE PKWebUserId = @PKWebUserId";
+                string commandText = "SELECT * FROM WebUser WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKWebUserId = webUserId
+                        Id = webUserId
                     };
 
                     var webUser = await connection.QuerySingleOrDefaultAsync<WebUser>(commandText, parameters);
@@ -100,11 +103,11 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<WebUser> InsertWebUserAsync(WebUser webUser)
+        public async Task<int> InsertWebUserAsync(WebUser webUser)
         {
             try
             {
-                string commandText = "INSERT INTO WebUsers(Username, PasswordHash, TotalPoints, AvailablePoints, Email, PointsAccumulatedInChallenge, ElapsedSecondsInChallenge) VALUES (@Username, @PasswordHash, @TotalPoints, @AvailablePoints, @Email, @PointsAccumulatedInChallenge, @ElapsedSecondsInChallenge); SELECT CAST(scope_identity() AS int)";
+                string commandText = "INSERT INTO WebUser(Username, PasswordHash, TotalPoints, AvailablePoints, Email, ElapsedSecondsInChallenge) VALUES (@Username, @PasswordHash, @TotalPoints, @AvailablePoints, @Email, @ElapsedSecondsInChallenge); SELECT CAST(scope_identity() AS int)";
 
                 using (SqlConnection connection = CreateConnection())
                 {
@@ -112,17 +115,14 @@ namespace SQLAccessImplementationLibrary
                     var parameters = new
                     {
                         Username = webUser.Username,
-                        PasswordHash = webUser.PasswordHash,
+                        PasswordHash = BCryptTool.HashPassword(webUser.PasswordHash),
                         TotalPoints = webUser.TotalPoints,
                         AvailablePoints = webUser.AvailablePoints,
                         Email = webUser.Email,
-                        PointsAccumulatedInChallenge = webUser.PointsAccumulatedInChallenge,
                         ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge
                     };
 
-                    await connection.ExecuteAsync(commandText, parameters);
-                    webUser.PKWebUserId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
-                    return webUser;
+                    return webUser.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
             catch (SqlException ex)
@@ -138,25 +138,24 @@ namespace SQLAccessImplementationLibrary
             try
             {
                 string commandText = "UPDATE WebUser " +
-                    "SET PasswordHash = @PasswordHash, " +
+                    "SET " +
+                    "Username = @Username, " +
                     "TotalPoints = @TotalPoints, " +
                     "AvailablePoints = @AvailablePoints, " +
                     "Email = @Email, " +
-                    "PointsAccumulatedInChallenge = @PointsAccumulatedInChallenge, " +
                     "ElapsedSecondsInChallenge = @ElapsedSecondsInChallenge " +
-                    "WHERE PKWebUserId = @PKWebUserId";
+                    "WHERE Id = @Id;";
+
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        WebUserId = webUser.PKWebUserId,
-                        PasswordHash = webUser.PasswordHash,
+                        Username = webUser.Username,
                         TotalPoints = webUser.TotalPoints,
                         AvailablePoints = webUser.AvailablePoints,
                         Email = webUser.Email,
-                        PointsAccumulatedInChallenge = webUser.PointsAccumulatedInChallenge,
                         ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge,
-                        PKWebUserId = webUser.PKWebUserId
+                        Id = webUser.Id
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters)>0;
@@ -169,6 +168,56 @@ namespace SQLAccessImplementationLibrary
                 throw new Exception($"Exception while trying to update WebUser. The exception was: '{ex.Message}'", ex);
 
             }
+        }
+
+        public async Task<int> LoginAsync(string username, string password)
+        {
+            try
+            {
+                string commandText = "SELECT Id, PasswordHash FROM WebUser WHERE Username = @Username";
+
+                using var connection = CreateConnection();
+
+                var webUserTuple = await connection.QueryFirstOrDefaultAsync<WebUserTuple>(commandText, new {UserName = username});
+
+                if(webUserTuple != null && BCryptTool.ValidatePassword(password, webUserTuple.PasswordHash))
+                {
+                    return webUserTuple.Id;
+                }
+                return -1;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception($"Error logging in for WebUser with username: {username}: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<bool> UpdatePasswordAsync(string username, string oldPassword, string newPassword)
+        {
+            try
+            {
+                string commandText = "UPDATE WebUser SET PasswordHash = @PasswordHash WHERE Id = @Id;";
+                var id = await LoginAsync(username, oldPassword);
+                if(id > 0)
+                {
+                    var newPasswordHash = BCryptTool.HashPassword(newPassword);
+                    using var connection = CreateConnection();
+                    return await connection.ExecuteAsync(commandText, new { Id = id, NewPasswordHash = newPasswordHash }) > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception($"Error updating password: '{ex.Message}'.", ex);
+            }
+        }
+
+        internal class WebUserTuple
+        {
+            public int Id;
+            public string PasswordHash;
         }
     }
 }

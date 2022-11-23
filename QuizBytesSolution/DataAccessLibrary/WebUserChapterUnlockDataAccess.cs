@@ -64,7 +64,7 @@ namespace SQLAccessImplementationLibrary
 
                     var parameters = new
                     {
-                        FKChapterId = chapter.PKChapterId
+                        FKChapterId = chapter.Id
                     };
 
                     var webUserChapterUnlocks = await connection.QueryAsync<WebUserChapterUnlock>(commandText, parameters);
@@ -74,7 +74,7 @@ namespace SQLAccessImplementationLibrary
             }
             catch (SqlException ex)
             {
-                throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table with the foreign key attribute: FKChapterId = {chapter.PKChapterId}. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table with the foreign key attribute: FKChapterId = {chapter.Id}. The exception was: '{ex.Message}'", ex);
 
             }
         }
@@ -89,7 +89,7 @@ namespace SQLAccessImplementationLibrary
 
                     var parameters = new
                     {
-                        FKWebUserId = webUser.PKWebUserId
+                        FKWebUserId = webUser.Id
                     };
 
                     var webUserChapterUnlocks = await connection.QueryAsync<WebUserChapterUnlock>(commandText, parameters);
@@ -99,13 +99,13 @@ namespace SQLAccessImplementationLibrary
             }
             catch (SqlException ex)
             {
-                throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table with the foreign key attribute: FKChapterId = {webUser.PKWebUserId}. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table with the foreign key attribute: FKChapterId = {webUser.Id}. The exception was: '{ex.Message}'", ex);
 
             }
         }
 
 
-        public async Task InsertWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock)
+        public async Task<(int, int)> InsertWebUserChapterUnlockAsync(int webUserId, int chapterId)
         {
             try
             {
@@ -115,11 +115,13 @@ namespace SQLAccessImplementationLibrary
                 {
                     var parameters = new
                     {
-                        FKChapterId = webUserChapterUnlock.FKChapterId,
-                        FKWebUserId = webUserChapterUnlock.FKWebUserId
+                        FKChapterId = chapterId,
+                        FKWebUserId = webUserId
                     };
 
                     await connection.ExecuteAsync(commandText, parameters);
+
+                    return (webUserId, chapterId);
                 }
             }
             catch (SqlException ex)

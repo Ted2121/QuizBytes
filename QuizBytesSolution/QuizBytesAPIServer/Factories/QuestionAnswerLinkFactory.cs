@@ -73,7 +73,7 @@ public class QuestionAnswerLinkFactory : IQuestionAnswerLinkFactory
         {
             QuestionAnswerLinkDto questionAnswerLinkDto = new QuestionAnswerLinkDto();
             questionAnswerLinkDto.Question = question;
-            var answerModels = await AnswerDataAccess.GetAllAnswersByQuestionIdAsync(question.FromDto().PKQuestionId);
+            var answerModels = await AnswerDataAccess.GetAllAnswersByQuestionIdAsync(question.FromDto().Id);
 
             ICollection<AnswerDto> answerDtos = new List<AnswerDto>();
             foreach (var answerModel in answerModels)

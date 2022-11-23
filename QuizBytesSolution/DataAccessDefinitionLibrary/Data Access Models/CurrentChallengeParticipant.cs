@@ -9,7 +9,7 @@ namespace DataAccessDefinitionLibrary.Data_Access_Models;
 public class CurrentChallengeParticipant
 {
 
-    public int PKCurrentChallengeId { get; set; }
+    public int Id { get; set; }
     public int FKWebUserId { get; set; }
     public int FKCourseId { get; set; }
     

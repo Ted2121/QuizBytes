@@ -23,8 +23,8 @@ namespace SQLAccessImplementationLibraryUnitTest
                 string commandText = "INSERT INTO TestCurrentChallengeParticipant (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
                 var parameters = new
                 {
-                    FKWebUserId = webUser.PKWebUserId,
-                    FKCourseId = course.PKCourseId
+                    FKWebUserId = webUser.Id,
+                    FKCourseId = course.Id
                 };
                 try
                 {
@@ -137,7 +137,7 @@ namespace SQLAccessImplementationLibraryUnitTest
 
         public async Task<int> GetRowAmountFromDatabaseAsync()
         {
-            string commandText = "SELECT COUNT(PKCurrentChallengeParticipantId) FROM TestCurrentChallengeParticipant";
+            string commandText = "SELECT COUNT(Id) FROM TestCurrentChallengeParticipant";
             try
             {
                 using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))

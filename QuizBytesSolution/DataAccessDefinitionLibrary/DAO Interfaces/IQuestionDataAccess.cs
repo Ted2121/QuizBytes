@@ -10,10 +10,10 @@ namespace DataAccessDefinitionLibrary.DAO_Interfaces;
 public interface IQuestionDataAccess
 {
     Task<int> InsertQuestionAsync(Question question);
-    Task<Question> GetQuestionByIdAsync(int questionId);
+    Task<Question> GetQuestionByIdAsync(int id);
 
     Task<IEnumerable<Question>> GetQuestionsByChapterAsync(Chapter chapter);
     Task<IEnumerable<Question>> GetAllQuestionsAsync();
     Task<bool> UpdateQuestionAsync(Question question);
-    Task<bool> DeleteQuestionAsync(int questionId);
+    Task<bool> DeleteQuestionAsync(int id);
 }

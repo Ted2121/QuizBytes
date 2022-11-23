@@ -8,9 +8,9 @@ namespace DataAccessDefinitionLibrary.Data_Access_Models;
 
 public class Question
 {
-    public int PKQuestionId { get; set; }
+    public int Id { get; set; }
     public string QuestionText { get; set; }
-    public string Hint { get; set; }
+    public string Hint { get; set; } = String.Empty;
     public int FKChapterId { get; set; }
     
     public Question(string questionText, string hint, int fkChapterId)

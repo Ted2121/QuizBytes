@@ -39,6 +39,8 @@ namespace DataAccessUnitTest
         public async Task TestUserLimitBlockOnInsertAsync()
         {
 
+            try
+            {
             // Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
@@ -51,8 +53,6 @@ namespace DataAccessUnitTest
 
             // Act & Assert
 
-            try
-            {
                 Assert.That(async () => await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course), Throws.Exception);
             }
             finally
@@ -67,19 +67,19 @@ namespace DataAccessUnitTest
         [Test]
         public async Task TestInsertMethodPositiveExpectationAsync()
         {
+            try
+            {
             //Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
             int randomTestId = 1;
-            _user.PKWebUserId = randomTestId;
-            _course.PKCourseId = randomTestId;
-            var expected = _user.PKWebUserId;
+            _user.Id = randomTestId;
+            _course.Id = randomTestId;
+            var expected = _user.Id;
 
             //Act
             var actual = await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
             //Assert
-            try
-            {
                 Assert.That(actual, Is.EqualTo(expected));
             }
             finally
@@ -93,16 +93,16 @@ namespace DataAccessUnitTest
         [Test]
         public async Task TestDeleteWithExistingUser() // not sure if we want to test for non existing users or not, that's why I added the "WithExisting" part
         {
+            try
+            {
             //Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
             await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
             //Act
-            bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.PKWebUserId);
+            bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.Id);
 
             //Assert
-            try
-            {
                 Assert.That(deleted, Is.True);
             }
             finally
@@ -120,7 +120,7 @@ namespace DataAccessUnitTest
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
             //Act
-            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.PKWebUserId);
+            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.Id);
 
             // Assert
             
@@ -132,16 +132,16 @@ namespace DataAccessUnitTest
         [Test]
         public async Task CheckingIfWebUserIsInChallengeExpectingTrueAsync()
         {
+            try
+            {
             //Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
             await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
             //Act
-            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.PKWebUserId);
+            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.Id);
 
             // Assert
-            try
-            {
                 Assert.That(actual, Is.True);
             }
             finally
@@ -155,6 +155,8 @@ namespace DataAccessUnitTest
         [Test]
         public async Task TestingIfCorrectRowAmountIsReturnedAsync()
         {
+            try
+            {
             // Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
             await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
@@ -163,8 +165,6 @@ namespace DataAccessUnitTest
             var actual = await _currentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
 
             // Assert
-            try
-            {
                 Assert.That(actual, Is.EqualTo(1));
             }
             finally

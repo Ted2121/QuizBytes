@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebApiClient.DTOs
 {
-    public class ChallengeParticipantInfoDto
+    public class LeaderboardDto
     {
-        public WebUserDto WebUser { get; set; }
-        public CourseDto Course { get; set; }
+        public List<WebUserDto> Leaderboard { get; set; }
     }
 }

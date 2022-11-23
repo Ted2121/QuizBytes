@@ -31,7 +31,7 @@ namespace WebApiClient
 
         public async Task<bool> DeregisterParticipantAsync(int id)
         {
-            var response = await _restClient.RequestAsync(Method.DELETE, $"Challenge/participants/{id}");
+            var response = await _restClient.RequestAsync(Method.DELETE, $"Challenge/{id}");
 
             if (response.IsSuccessful)
             {
@@ -43,9 +43,9 @@ namespace WebApiClient
             }
         }
 
-        public async Task<bool> DistributeRewardsAsync()
+        public async Task<bool> DistributeRewardsAsync(LeaderboardDto leaderboard)
         {
-            var response = await _restClient.RequestAsync(Method.PUT, $"Challenge/rewards");
+            var response = await _restClient.RequestAsync(Method.PUT, $"Challenge/rewards", leaderboard);
 
             if (response.IsSuccessful)
             {
@@ -75,7 +75,7 @@ namespace WebApiClient
 
         public async Task<int> RegisterParticipantAsync(WebUserDto webUser, CourseDto course)
         {
-            var resource = new ChallengeParticipantInfoDto() { WebUser = webUser, Course = course };
+            var resource = new CurrentChallengeParticipantDto() { WebUser = webUser, Course = course };
             var response = await _restClient.RequestAsync<int>(Method.POST, $"Challenge", resource);
 
             if (!response.IsSuccessful)
@@ -104,7 +104,8 @@ namespace WebApiClient
 
         public async Task<QuizDto> GetChallengeQuizAsync(CourseDto course)
         {
-            var response = await _restClient.RequestAsync<QuizDto>(Method.GET, $"Challenge/quiz", course);
+            var id = course.Id;
+            var response = await _restClient.RequestAsync<QuizDto>(Method.GET, $"Challenge/quiz/{id}");
 
             if (!response.IsSuccessful)
             {
@@ -118,7 +119,7 @@ namespace WebApiClient
 
         public async Task<bool> CheckIfUserIsInChallengeAsync(int id)
         {
-            var response = await _restClient.RequestAsync<bool>(Method.GET, $"Challenge/query-participation/{id}");
+            var response = await _restClient.RequestAsync<bool>(Method.GET, $"Challenge/{id}", id);
 
             if (!response.IsSuccessful)
             {

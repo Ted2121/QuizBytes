@@ -17,17 +17,20 @@ public class ChallengeController : ControllerBase
     private IWebUserDataAccess WebUserDataAccess { get; set; }
     private IRewardsDistributionHelper RewardsDistributionHelper { get; set; }
     private IQuizFactory QuizFactory { get; set; }
+    private ICourseDataAccess CourseDataAccess { get; set; }
 
     public ChallengeController(
         ICurrentChallengeParticipantDataAccess currentChallengeParticipantDataAccess,
         IWebUserDataAccess webUserDataAccess,
         IRewardsDistributionHelper rewardsDistributionHelper,
-        IQuizFactory quizFactory)
+        IQuizFactory quizFactory,
+        ICourseDataAccess courseDataAccess)
     {
         CurrentChallengeParticipantDataAccess = currentChallengeParticipantDataAccess;
         WebUserDataAccess = webUserDataAccess;
         RewardsDistributionHelper = rewardsDistributionHelper;
         QuizFactory = quizFactory;
+        CourseDataAccess = courseDataAccess;
     }
 
     [HttpGet]
@@ -48,8 +51,8 @@ public class ChallengeController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("participants/{id}")]
-    public async Task<ActionResult> DeregisterParticipantAsync([FromQuery]int id)
+    [Route("{id}")]
+    public async Task<ActionResult> DeregisterParticipantAsync(int id)
     {
         if (!await CurrentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(id))
         { return NotFound(); }
@@ -59,7 +62,7 @@ public class ChallengeController : ControllerBase
 
     [HttpPut]
     [Route("rewards")]
-    public async Task<ActionResult> DistributeRewardsAsync(IEnumerable<WebUserDto> leaderboard)
+    public async Task<ActionResult> DistributeRewardsAsync([FromBody] LeaderboardDto leaderboard)
     {
         
         if(leaderboard == null)
@@ -67,7 +70,7 @@ public class ChallengeController : ControllerBase
             return NotFound();
         }
 
-        await RewardsDistributionHelper.DistributeChallengeRewardsAsync(leaderboard.ToList());
+        await RewardsDistributionHelper.DistributeChallengeRewardsAsync(leaderboard);
 
         return Ok();
 
@@ -86,7 +89,7 @@ public class ChallengeController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> RegisterParticipantAsync(ChallengeParticipantInfoDto challengeParticipantInfo)
+    public async Task<ActionResult<int>> RegisterParticipantAsync(CurrentChallengeParticipantDto challengeParticipantInfo)
     {
         if(challengeParticipantInfo == null)
         {
@@ -102,20 +105,22 @@ public class ChallengeController : ControllerBase
     {
         var numberOfParticipants = await CurrentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
         return Ok(numberOfParticipants);
+
     }
 
     [HttpGet]
-    [Route("quiz")]
-    public async Task<ActionResult<QuizDto>> GetChallengeQuizAsync(CourseDto course)
+    [Route("quiz/{id}")]
+    public async Task<ActionResult<QuizDto>> GetChallengeQuizAsync(int id)
     {
-        var quiz = await QuizFactory.CreateQuizDto(course);
+        var course = await CourseDataAccess.GetCourseByIdAsync(id);
+        var quiz = await QuizFactory.CreateQuizDto(course.ToDto());
 
         return Ok(quiz);
     }
 
     [HttpGet]
-    [Route("query-participation/{id}")]
-    public async Task<ActionResult<bool>> CheckIfUserIsInChallengeAsync([FromQuery]int id)
+    [Route("{id}")]
+    public async Task<ActionResult<bool>> CheckIfUserIsInChallengeAsync(int id)
     {
         var result = await CurrentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(id);
         if (!result)

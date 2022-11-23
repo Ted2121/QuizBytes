@@ -15,6 +15,5 @@ public class WebUserDto
     
     public IEnumerable<ChapterDto>? WebUserChapterUnlocks { get; set; }
     public bool IsInChallenge { get; set; }
-    public int PointsAccumulatedInChallenge { get; set; }
     public int ElapsedSecondsInChallenge { get; set; }
 }

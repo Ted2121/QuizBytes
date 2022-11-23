@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiClient", "WebApiClien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLAccessImplementationLibraryUnitTest", "DataAccessUnitTest\SQLAccessImplementationLibraryUnitTest.csproj", "{6990E3B1-170C-4511-970C-DD7A2F53E99B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebclientWebserverIntegrationTesting", "WebclientWebserverIntegrationTesting\WebclientWebserverIntegrationTesting.csproj", "{AFB7467C-5112-452C-822E-E35899E6AED3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebclientWebserverIntegrationTesting", "WebclientWebserverIntegrationTesting\WebclientWebserverIntegrationTesting.csproj", "{AFB7467C-5112-452C-822E-E35899E6AED3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APITests", "APITests\APITests.csproj", "{67BBE8A3-9586-4ECC-9B63-B5AB3CFA2BF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{AFB7467C-5112-452C-822E-E35899E6AED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFB7467C-5112-452C-822E-E35899E6AED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFB7467C-5112-452C-822E-E35899E6AED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67BBE8A3-9586-4ECC-9B63-B5AB3CFA2BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67BBE8A3-9586-4ECC-9B63-B5AB3CFA2BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67BBE8A3-9586-4ECC-9B63-B5AB3CFA2BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67BBE8A3-9586-4ECC-9B63-B5AB3CFA2BF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

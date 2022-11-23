@@ -12,7 +12,7 @@ public interface IAnswerDataAccess
 
     Task<int> InsertAnswerAsync(Answer answer);
     Task<bool> UpdateAnswerAsync(Answer answer);
-    Task<IEnumerable<Answer>> GetAllAnswersByQuestionIdAsync(int questionId);
+    Task<IEnumerable<Answer>> GetAllAnswersByQuestionIdAsync(int id);
     Task<IEnumerable<Answer>> GetAllAnswersAsync();
-    Task<bool> DeleteAnswerAsync(int answerId);
+    Task<bool> DeleteAnswerAsync(int id);
 }

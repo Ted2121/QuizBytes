@@ -36,16 +36,16 @@ namespace SQLAccessImplementationLibraryUnitTest
             // Arrange is done in Set up
 
             // Act
-            _course.PKCourseId = await _courseDataAccess.InsertCourseAsync(_course);
+            _course.Id = await _courseDataAccess.InsertCourseAsync(_course);
 
             // Assert
             try
             {
-                Assert.That(_course.PKCourseId, Is.GreaterThan(0));
+                Assert.That(_course.Id, Is.GreaterThan(0));
             }
             finally
             {
-                await _courseDataAccess.DeleteCourseAsync(_course.PKCourseId);
+                await _courseDataAccess.DeleteCourseAsync(_course.Id);
             }
         }
 
@@ -61,7 +61,7 @@ namespace SQLAccessImplementationLibraryUnitTest
             }
             finally
             {
-                await _courseDataAccess.DeleteCourseAsync(_course.PKCourseId);
+                await _courseDataAccess.DeleteCourseAsync(_course.Id);
             }
 
         }
@@ -70,10 +70,10 @@ namespace SQLAccessImplementationLibraryUnitTest
         public async Task TestingGetCourseByIdReturnsTheCorrectCourse()
         {
             // Arrange
-            _course.PKCourseId = await _courseDataAccess.InsertCourseAsync(_course);
+            _course.Id = await _courseDataAccess.InsertCourseAsync(_course);
 
             // Act
-            var actual = await _courseDataAccess.GetCourseByIdAsync(_course.PKCourseId);
+            var actual = await _courseDataAccess.GetCourseByIdAsync(_course.Id);
 
             // Assert
             try
@@ -82,7 +82,7 @@ namespace SQLAccessImplementationLibraryUnitTest
             }
             finally
             {
-                await _courseDataAccess.DeleteCourseAsync(_course.PKCourseId);
+                await _courseDataAccess.DeleteCourseAsync(_course.Id);
             }
         }
 
@@ -90,10 +90,10 @@ namespace SQLAccessImplementationLibraryUnitTest
         public async Task TestingGetCourseByIdReturnsNullIfThereIsNoUserWithId()
         {
             // Arrange
-            _course.PKCourseId = await _courseDataAccess.InsertCourseAsync(_course);
+            _course.Id = await _courseDataAccess.InsertCourseAsync(_course);
 
             // Act
-            var actual = await _courseDataAccess.GetCourseByIdAsync(_course.PKCourseId + 100);
+            var actual = await _courseDataAccess.GetCourseByIdAsync(_course.Id + 100);
 
             try
             {
@@ -103,7 +103,32 @@ namespace SQLAccessImplementationLibraryUnitTest
             }
             finally
             {
-                await _courseDataAccess.DeleteCourseAsync(_course.PKCourseId);
+                await _courseDataAccess.DeleteCourseAsync(_course.Id);
+            }
+        }
+
+        [Test]
+        public async Task TestingUpdateExpectingPropertiesChangeInDB()
+        {
+            try
+            {
+
+                // Arrange
+                _course.Id = await _courseDataAccess.InsertCourseAsync(_course);
+                var newName = "Bobcourse";
+                _course.Name = newName;
+
+                // Act
+                await _courseDataAccess.UpdateCourseAsync(_course);
+                var courseFromDb = await _courseDataAccess.GetCourseByIdAsync(_course.Id);
+                var nameFromDb = courseFromDb.Name;
+
+                // Assert
+                Assert.That(nameFromDb, Is.EqualTo(newName));
+            }
+            finally
+            {
+                await _courseDataAccess.DeleteCourseAsync(_course.Id);
             }
         }
     }

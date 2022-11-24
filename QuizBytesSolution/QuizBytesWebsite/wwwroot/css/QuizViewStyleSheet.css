@@ -1,18 +1,4 @@
-﻿*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-.border-bottom {
-border-bottom: 1px solid darkorange !important;
-}
-body {
-padding: 0;
-font-size: 100%;
-height:100vh;
-}
-
-.left {
+﻿.left {
 width: 10vw;
 left: 0;
 margin-top: -1vh;
@@ -41,19 +27,11 @@ color:black;
 font-style:oblique;
 overflow:auto;
 }
-/*.side-navbar div a:hover {
-background-color: orangered;
-color: white;
-transition: 0.5s ease-in;
-}*/
+
 .active {
 background-color: orangered;
 color: white;
 border-color: white;
-}
-#submenu {
-max-height:40vh;
-overflow:auto;
 }
 
 .content {

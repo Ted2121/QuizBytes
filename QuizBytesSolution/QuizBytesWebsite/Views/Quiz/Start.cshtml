@@ -7,14 +7,14 @@
 <div class="left">
     <div class="side-navbar">
         <div class="item">
-            <a class="submenu-btn" onclick="expand()">Programming</a>
-            <div class="content" id="submenu">
+            <a class="submenu-btn" onclick="expandCourses()">Programming</a>
+            <div class="content courses" id="submenuCourses">
                 
             </div>
             </div>
         <div class="item">
-            <a class ="submenu-btn">Subjects</a>
-            <div id="submenu">
+            <a class ="submenu-btn" onclick="expandSubjects()">Subjects</a>
+            <div class ="content subjects" id="submenuSubjects">
                 
             </div>
             </div>
@@ -22,14 +22,20 @@
 
 </div>
 
-<div class="page-elements-wrapper">
-    <div class="page-elements">
-        <section class="row">
-            <article class="element">
-                <i class="element-text">This is a subject/chapter</i>
-                <button class="element-button"></button>
-        </article>
-        </section>
+<div class="container overflow-hidden text-center ">
+    <div class="row gy-5">
+        <div class="body col-4" id="unlocked-chapters">
+            <p>Unlocked Chapters:</p>
+
+        </div>
+        <div class="body col-4" id="unlockedable-chapters">
+            <p>Unlockedable Chapters:</p>
+
+        </div>
+        <div class="body col-4" id="Locked-chapters">
+            <p>Locked Chapters:</p>
+
+        </div>
     </div>
 </div>
 

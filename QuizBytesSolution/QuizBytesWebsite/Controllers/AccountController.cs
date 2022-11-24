@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using WebApiClient;
@@ -7,17 +7,16 @@ using WebApiClient.DTOs;
 
 namespace QuizBytesWebsite.Controllers
 {
-    
-    public class AccountsController : Controller
+
+    public class AccountController : Controller
     {
         private IWebUserFacadeApiClient WebUserFacadeApiClient { get; set; }
 
-        public AccountsController(IWebUserFacadeApiClient webUserFacadeApiClient)
+        public AccountController(IWebUserFacadeApiClient webUserFacadeApiClient)
         {
             WebUserFacadeApiClient = webUserFacadeApiClient;
         }
 
-        [HttpGet]
         public IActionResult Login()
         {
             return View();
@@ -73,8 +72,44 @@ namespace QuizBytesWebsite.Controllers
             return RedirectToAction("Index", "");
         }
 
-        public ActionResult AccessDenied()
+        public IActionResult AccessDenied()
         {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(WebUserDto webUser)
+        {
+            ModelState.Remove("NewPassword");
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ErrorMessage = "Failed to register your account - please try again later!";
+            }
+            else
+            {
+                try
+                {
+                    if (await WebUserFacadeApiClient.CreateWebUserAsync(webUser) > 0)
+                    {
+                        TempData["Message"] = $"Welcome, {webUser.Username}! Enjoy quizzing on our website.";
+                        return RedirectToAction(nameof(Index), "Home");
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "Failed to register your account - please try again later!";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.ErrorMessage = ex.Message;
+                }
+            }
             return View();
         }
     }

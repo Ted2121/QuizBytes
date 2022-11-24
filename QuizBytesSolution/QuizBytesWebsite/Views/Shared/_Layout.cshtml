@@ -30,7 +30,25 @@
                             <a class="nav-item-style" asp-area="" asp-controller="Leaderboard" asp-action="Display">Leaderboard</a>
                         </li>
                         <li class="nav-customitem">
-                            <a class="nav-item-style" asp-area="" asp-controller="Accounts" asp-action="Login">Login</a>
+                            <a class="nav-item-style" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                        
+                        <li class="nav-customitem">
+                           @if (Context.User.Identity.IsAuthenticated)
+                            {
+                                <a class="nav-item-style" asp-area="" asp-controller="Account" asp-action="Logout">Log out</a>
+                            }
+                            else
+                            {
+                                <a class="nav-item-style" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
+                            }
+
+                            @*TODO Move to top right*@
+                            @if (Context.User.Identity.IsAuthenticated)
+                            {
+                                <a class="nav-item-style" asp-area="" asp-controller="Account" asp-action="Profile">Profile</a>
+                            }
+                            
                         </li>
                     </ul>
                 </div>

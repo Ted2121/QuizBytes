@@ -8,10 +8,10 @@ namespace QuizBytesAPIServer.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class AccountsController : ControllerBase
+    public class AccountController : ControllerBase
     {
         private IWebUserDataAccess WebUserDataAccess { get; set; }
-        public AccountsController(IWebUserDataAccess webUserDataAccess)
+        public AccountController(IWebUserDataAccess webUserDataAccess)
         {
             WebUserDataAccess = webUserDataAccess;
         }

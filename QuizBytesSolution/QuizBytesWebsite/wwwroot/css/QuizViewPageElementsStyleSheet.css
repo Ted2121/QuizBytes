@@ -12,8 +12,13 @@ body{
     margin-top: 15vh;
     border-block-color:limegreen;
     align-items:center;
+    background-color:orange;
+}
+.element{
+    margin-left: 2vw;
 }
 
-i{
-   
+.div-border{
+    border:2px solid limegreen;
+    box-shadow: darkgreen 10px inset;
 }

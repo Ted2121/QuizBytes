@@ -17,6 +17,7 @@ namespace QuizBytesAPIServer.Controllers
         }
 
         [HttpPost]
+        [Route("login")]
         public async Task<ActionResult<WebUserDto>> LoginUserAsync(WebUserDto webUser)
         {
             var user = await WebUserDataAccess.LoginAsync(webUser.Username, webUser.PasswordHash);

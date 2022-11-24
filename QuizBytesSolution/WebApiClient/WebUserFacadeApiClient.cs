@@ -129,7 +129,7 @@ public class WebUserFacadeApiClient : IWebUserFacadeApiClient
 
     public async Task<WebUserDto> LoginAsync(WebUserDto webUser)
     {
-        var response = await _restClient.RequestAsync<WebUserDto>(Method.POST, $"Accounts", webUser);
+        var response = await _restClient.RequestAsync<WebUserDto>(Method.POST, $"Account/login", webUser);
         if (!response.IsSuccessful)
         {
             throw new Exception($"Error logging in for WebUser with username = {webUser.Username}. Message was {response.Data}");

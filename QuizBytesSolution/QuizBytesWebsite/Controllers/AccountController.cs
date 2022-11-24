@@ -23,7 +23,7 @@ namespace QuizBytesWebsite.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromForm] WebUserDto loginInfo, [FromQuery] string returnUrl)
+        public async Task<IActionResult> Login([FromForm] WebUserDto loginInfo, [FromQuery] string? returnUrl)
         {
             var user = await WebUserFacadeApiClient.LoginAsync(loginInfo);
 

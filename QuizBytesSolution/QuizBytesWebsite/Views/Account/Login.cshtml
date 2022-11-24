@@ -1,4 +1,7 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment env
+
+@model WebApiClient.DTOs.WebUserDto
+@{
     Layout = null;
 }
 @{
@@ -6,22 +9,53 @@
 }
 
     <link rel="stylesheet" href="~/css/LoginViewStyleSheet.css" />
+
+@if (!Context.User.Identity.IsAuthenticated)
+{
+    
     <h2>Login Page</h2>
     <br>
     <div class="login">
-        <form id="login" method="get" action="login.php">
-            <label>
-                <b>Username </b>
-            </label>
-            <input type="text" name="Username" id="Username" placeholder="Username">
-            <br><br>
-            <label>
-                <b> Password </b>
-            </label>
-            <input type="Password" name="Pass" id="Pass" placeholder="Password">
-            <br><br>
-            <Button class="button" asp-controller="Home" asp-action="Index"><span>Login</span></Button>
-            <br><br>
-          <a href="#">  Forgot Password?</a>
+        <form id="login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <label asp-for="Username">
+                    <b>Username </b>
+                </label>
+                <input asp-for="Username" type="text" name="Username" id="Username" placeholder="Username">
+                <br><br>
+                <label asp-for="PasswordHash">
+                    <b> Password </b>
+                </label>
+                <input asp-for="PasswordHash" type="Password" name="PasswordHash" id="Pass" placeholder="Password">
+                <br><br>
+                @*<input type="submit" value="Login" class="button" />*@
+                <Button class="button" type="submit"><span>Login</span></Button>
+                <br><br>
+                <a href="#">  Forgot Password?</a>
+            
         </form>
+
+        <span style="background-color:wheat; color:red;">@ViewBag.ErrorMessage</span>
+        <div>
+            <a asp-action="Index" asp-controller="Home">Back to front page</a>
+        </div>
+        
+
     </div>
+
+    @if (env.IsDevelopment())
+    {
+        <br />
+    <p>Use the username 'Ted' and the password 'test' to authenticate for testing.</p>
+
+    }
+ 
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+}
+

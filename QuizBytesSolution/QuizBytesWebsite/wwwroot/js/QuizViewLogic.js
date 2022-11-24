@@ -1,6 +1,6 @@
 ﻿//script for loading up the sidenav-bar and expanding/collapsing it.
 let courseId = 1; // will store the id of the currect course
-let course_list= [ // will retrieve all courses
+let course_list= [ // will retrieve all courses, every course will have to contain an ID as well
     "Course1",
     "Course2",
     "Course3",
@@ -74,14 +74,31 @@ function expandSubjects() {
 //script for loading chapters on the page
 
 function loadChapters() {
-    let chapters = document.getElementById("chapters");
+    let chapters = document.getElementById("unlocked-chapters");
     for (i = 0; i < unlocked_chapters.length; i++) {
-        /*const element = document.createElement('div');
-        element.setAttribute('class', 'card chapters');
-        element.textContent = unlocked_chapters[i];
-        chapters.appendChild(element);*/
-        chapters.innerHTML = `
-<ul>
+
+        var card = document.createElement('div');
+        this.cardBody = document.createElement('div')
+        this.chapterDescription = document.createElement('p')
+        this.chapterButtonDiv = document.createElement('div')
+        this.chapterButton = document.createElement('a')
+
+        chapterButtonDiv.setAttribute('class', 'cardbody')
+        cardBody.setAttribute('class', "card-body")
+        card.setAttribute('class', 'chapters');
+        chapterButton.setAttribute('class' ,'card-link')
+
+        chapterButton.textContent = "Start Quiz";
+        chapterDescription.textContent = chapter_descriptions[0];
+        card.textContent = unlocked_chapters[i];
+
+        chapterButtonDiv.appendChild(this.chapterButton);
+        card.appendChild(this.chapterDescription);
+        card.appendChild(this.chapterButtonDiv);
+        card.appendChild(cardBody);
+        chapters.appendChild(card);
+
+ /*       chapters.innerHTML = `
         <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">${unlocked_chapters[i]}</h5>
@@ -91,8 +108,7 @@ function loadChapters() {
     <a asp-controller="Quiz" asp-action="Quiz" class="card-link">Start Quiz</a> 
   </div>
 </div>
-<ul>
-`
+`*/
     }
 }
 

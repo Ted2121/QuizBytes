@@ -22,3 +22,17 @@ body{
     border:2px solid limegreen;
     box-shadow: darkgreen 10px inset;
 }
+
+.chapters {
+    width: 18vw !important;
+    margin-block: 50px;
+    margin-left: 8vw;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+}

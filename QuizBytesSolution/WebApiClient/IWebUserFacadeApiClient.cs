@@ -10,7 +10,7 @@ namespace WebApiClient
         Task<IEnumerable<ChapterDto>> GetUnlockedChaptersOfWebUserAsync(WebUserDto webUser);
         Task<WebUserDto> GetWebUserByIdAsync(int id);
         Task<WebUserDto> GetWebUserByUsernameAsync(string username);
-        Task<WebUserDto> LoginAsync(WebUserDto webUser);
+        Task<WebUserDto> LoginUserAsync(WebUserDto webUser);
         Task<bool> UnlockChapterAsync(WebUserChapterUnlockDto webUserChapterUnlock);
         Task<bool> UpdatePasswordAsync(WebUserDto webUser);
         Task<bool> UpdateWebUserAsync(WebUserDto webUser);

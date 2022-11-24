@@ -21,15 +21,14 @@ namespace WebApiClient.DTOs
         [Required]
         [RegularExpression(@"[^\s]+", ErrorMessage = "No spaces in password")]
         [DataType(DataType.Password)]
-        public string NewPassword { get; set; }
+        public string? NewPassword { get; set; }
         [Required]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         public int TotalPoints { get; set; }
         public int AvailablePoints { get; set; }
         public int NumberOfCorrectAnswers { get; set; }
         public IEnumerable<ChapterDto>? WebUserChapterUnlocks { get; set; }
         public bool IsInChallenge { get; set; }
-        //public int PointsAccumulatedInChallenge { get; set; }
         public int ElapsedSecondsInChallenge { get; set; }
     }
 }

@@ -11,10 +11,18 @@ namespace WebApiClient.DTOs
     public class WebUserDto
     {
         public int Id { get; set; }
+        [Required]
+        [RegularExpression(@"[^\s]+", ErrorMessage = "No spaces in username")]
         public string Username { get; set; }
+        [Required]
+        [RegularExpression(@"[^\s]+", ErrorMessage = "No spaces in password")]
+        [DataType(DataType.Password)]
         public string PasswordHash { get; set; }
+        [Required]
+        [RegularExpression(@"[^\s]+", ErrorMessage = "No spaces in password")]
+        [DataType(DataType.Password)]
         public string NewPassword { get; set; }
-
+        [Required]
         public string Email { get; set; }
         public int TotalPoints { get; set; }
         public int AvailablePoints { get; set; }

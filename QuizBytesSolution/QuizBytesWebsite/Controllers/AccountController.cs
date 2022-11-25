@@ -23,6 +23,7 @@ namespace QuizBytesWebsite.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromForm] WebUserDto loginInfo, [FromQuery] string? returnUrl)
         {
             var user = await WebUserFacadeApiClient.LoginUserAsync(loginInfo);
@@ -36,7 +37,7 @@ namespace QuizBytesWebsite.Controllers
                     };
 
                 await SignInUsingClaims(claims);
-                TempData["Message"] = $"You are logged in as {user.Username}";
+                //TempData["Message"] = $"You are logged in as {user.Username}";
             }
             else
             {
@@ -110,6 +111,11 @@ namespace QuizBytesWebsite.Controllers
                     ViewBag.ErrorMessage = ex.Message;
                 }
             }
+            return View();
+        }
+
+        public IActionResult Profile()
+        {
             return View();
         }
     }

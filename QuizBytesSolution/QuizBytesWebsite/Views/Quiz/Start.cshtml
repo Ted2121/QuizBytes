@@ -40,3 +40,13 @@
 </div>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/QuizViewLogic.js"></script>
+<script>
+    jQuery.ajax({
+        url: '@Url.Action("getCourses")',
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            console.log(result);
+        }
+    })
+</script>

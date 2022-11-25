@@ -1,4 +1,13 @@
 ﻿//script for loading up the sidenav-bar and expanding/collapsing it.
+//let courses = jQuery.ajax({
+//    url: '../Controllers/QuizController/GetCourses',
+//    type: 'GET',
+//    dataType: "json",
+//    success: function (result) {
+//        console.log(result);
+//    }
+//})
+//still need to figure out the url to be able to call this here, right now it's being called internally which sucks
 let course_list = [{// will retrieve all courses, every course will have to contain an ID as well
         courseName: "Course1",
         id:1
@@ -16,6 +25,7 @@ let course_list = [{// will retrieve all courses, every course will have to cont
         id: 4
     },
 ];
+
 
 let subject_list = [{ //will call the method that will retrieve all subjects in a course via id
     subjectName: "Subject1",

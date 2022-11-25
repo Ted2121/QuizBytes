@@ -20,7 +20,7 @@ namespace QuizBytesWebsite
             builder.Services.AddTransient<ITimerLogicHelper, TimerLogicHelper>();
             builder.Services.AddScoped<ILeaderboardBuilder, LeaderboardBuilder>();
             builder.Services.AddScoped<IWebUserFacadeApiClient>((conf) => new WebUserFacadeApiClient(configuration["WebApiURI"]));
-
+            builder.Services.AddScoped<ICourseFacadeApiClient>((conf) => new CourseFacadeApiClient(configuration["WebApiURI"]));
             builder.Services.AddSignalR();
 
 

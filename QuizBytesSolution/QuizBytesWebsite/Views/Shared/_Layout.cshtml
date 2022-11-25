@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - QuizBytes</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/QuizBytesWebsite.styles.css" asp-append-version="true" />
 </head>
@@ -33,18 +34,18 @@
                         <li class="nav-customitem">
                             @if (!Context.User.Identity.IsAuthenticated)
                             {
-                            <a class="nav-item-style" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                            <a class="nav-item-style btn-right" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
                             }
                         </li>
                         
                         <li class="nav-customitem">
                            @if (Context.User.Identity.IsAuthenticated)
                             {
-                                <a class="nav-item-style" asp-area="" asp-controller="Account" asp-action="Logout">Log out</a>
+                                <a class="nav-item-style btn-right" asp-area="" asp-controller="Account" asp-action="Logout">Log out</a>
                             }
                             else
                             {
-                                <a class="nav-item-style" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
+                                <a class="nav-item-style logged-in" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
                             }
 
                             @*TODO Move to top right*@
@@ -54,7 +55,7 @@
                             }
                             @if (Context.User.Identity.IsAuthenticated)
                             {
-                                <span>
+                                <span class="nav-item-style logged-in">
                                     Logged in as
                                     @Context.User.Claims.FirstOrDefault((claim)=> claim.Type == "username")?.Value
                                     @*(id:@Context.User.Claims.FirstOrDefault((claim)=> claim.Type == "id")?.Value)*@

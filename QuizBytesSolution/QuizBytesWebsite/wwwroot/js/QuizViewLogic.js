@@ -1,33 +1,81 @@
 ﻿//script for loading up the sidenav-bar and expanding/collapsing it.
-let courseId = 1; // will store the id of the currect course
-let course_list= [ // will retrieve all courses, every course will have to contain an ID as well
-    "Course1",
-    "Course2",
-    "Course3",
-    "Course4"
+let course_list = [{// will retrieve all courses, every course will have to contain an ID as well
+        courseName: "Course1",
+        id:1
+    },
+    {
+        courseName: "Course2",
+        id: 2
+    },
+    {
+        courseName: "Course3",
+        id: 3
+    },
+    {
+        courseName: "Course4",
+        id: 4
+    },
 ];
 
-let subject_list = [ //will call the method that will retrieve all subjects in a course via id
-    "Subject1",
-    "Subject2",
-    "Subject3",
-    "Subject4"
+let subject_list = [{ //will call the method that will retrieve all subjects in a course via id
+    subjectName: "Subject1",
+    id: 1
+},
+    {
+        subjectName: "Subject2",
+        id: 2
+    },
+    {
+        subjectName: "Subject3",
+        id: 3
+    },
+    {
+        subjectName: "Subject4",
+        id: 4
+    },
+
 ];
-let unlocked_chapters = [ //will store the unlocked chapters and load them before any other chapters
-    "Chapter1",
-    "Chapter2",
-    "Chapter3",
-    "Chapter4"
+let unlocked_chapters = [{
+    id: 1,
+    chapterName:  "Chapter1",
+    description:  "Description",
+},
+    {
+        id: 2,
+        chapterName: "Chapter2",
+        description: "Description",
+    }
+]
+let unlockedable_chapters = [{
+    id: 1,
+    chapterName: "Chapter1",
+    description: "Description",
+},
+{
+    id: 2,
+        chapterName: "Chapter2",
+            description: "Description",
+    }
+]
+let locked_chapters = [{
+    id: 1,
+    chapterName: "Chapter1",
+    description: "Description",
+},
+{
+    id: 2,
+        chapterName: "Chapter2",
+            description: "Description",
+    }
 ]
 
-let chapter_descriptions = [
-    "description"
-]
 
 window.onload = function () {
     loadCourses();
     loadSubjects();
-    loadChapters();
+    loadUnlockedChapters();
+    loadUnlockedableChapters();
+    loadLockedChapters();
 }
 
 function loadCourses() {
@@ -36,7 +84,7 @@ function loadCourses() {
     for (i = 0; i < course_list.length; i++) {
         const element = document.createElement('a');
         element.setAttribute('id', 'subtype');
-            element.textContent = course_list[i];
+            element.textContent = course_list[i].courseName;
             courses.appendChild(element);
     }
 }
@@ -46,7 +94,7 @@ function loadSubjects() {
     for (i = 0; i < subject_list.length; i++) {
         const element = document.createElement('a');
         element.setAttribute('id', 'subtype');
-        element.textContent = subject_list[i];
+        element.textContent = subject_list[i].subjectName;
         subjects.appendChild(element);
     }
 }
@@ -73,10 +121,40 @@ function expandSubjects() {
 
 //script for loading chapters on the page
 
-function loadChapters() {
-    let chapters = document.getElementById("unlocked-chapters");
+function loadUnlockedChapters() {
+    let unlockedChaptersHTML = document.getElementById("unlocked-chapters");
     for (i = 0; i < unlocked_chapters.length; i++) {
+        var card = document.createElement('div');
+        this.cardBody = document.createElement('div')
+        this.chapterDescription = document.createElement('p')
+        this.chapterButtonDiv = document.createElement('div')
+        this.chapterButton = document.createElement('button')
 
+        chapterButtonDiv.setAttribute('class', 'cardbody')
+        cardBody.setAttribute('class', "card-body")
+        card.setAttribute('class', 'chapters');
+        chapterButton.setAttribute('class', 'card-link')
+        chapterButtonDiv.setAttribute('id', 'startbtn')
+        $("#startbtn").on("click", function () {
+            //pseudocode for now but it will basically be getChapterById(chapterId) and then it will send it to the QuizController which
+            //will pull the questions and answers from the db and create a quiz. After that is done it will load the view.
+            location.replace("Quiz")
+            console.log(1);
+        })
+
+        chapterButton.textContent = "Start Quiz";
+        chapterDescription.textContent = unlocked_chapters[i].description;
+        card.textContent = unlocked_chapters[i].chapterName;
+        chapterButtonDiv.appendChild(this.chapterButton);
+        card.appendChild(this.chapterDescription);
+        card.appendChild(this.chapterButtonDiv);
+        card.appendChild(cardBody);
+        unlockedChaptersHTML.appendChild(card);
+    }
+}
+function loadUnlockedableChapters() {
+    let unlockedableChaptersHTML = document.getElementById("unlockedable-chapters");
+    for (i = 0; i < unlockedable_chapters.length; i++) {
         var card = document.createElement('div');
         this.cardBody = document.createElement('div')
         this.chapterDescription = document.createElement('p')
@@ -86,34 +164,47 @@ function loadChapters() {
         chapterButtonDiv.setAttribute('class', 'cardbody')
         cardBody.setAttribute('class', "card-body")
         card.setAttribute('class', 'chapters');
-        chapterButton.setAttribute('class' ,'card-link')
+        chapterButton.setAttribute('class', 'card-link')
+        chapterButton.setAttribute('id', 'buybtn')
 
-        chapterButton.textContent = "Start Quiz";
-        chapterDescription.textContent = chapter_descriptions[0];
-        card.textContent = unlocked_chapters[i];
+        chapterButton.textContent = "System.out.println(Wanna buy this?)";
+        chapterDescription.textContent = unlockedable_chapters[i].description;
+        card.textContent = unlockedable_chapters[i].chapterName;
 
         chapterButtonDiv.appendChild(this.chapterButton);
         card.appendChild(this.chapterDescription);
         card.appendChild(this.chapterButtonDiv);
         card.appendChild(cardBody);
-        chapters.appendChild(card);
-
- /*       chapters.innerHTML = `
-        <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">${unlocked_chapters[i]}</h5>
-    <p class="card-text">${chapter_descriptions}.</p>
-  </div>
-  <div class="card-body">
-    <a asp-controller="Quiz" asp-action="Quiz" class="card-link">Start Quiz</a> 
-  </div>
-</div>
-`*/
+        unlockedableChaptersHTML.appendChild(card);
     }
 }
 
-//script for loading chapters on screen.
+function loadLockedChapters() {
+    let unlockedableChaptersHTML = document.getElementById("locked-chapters");
+    for (i = 0; i < locked_chapters.length; i++) {
+        var card = document.createElement('div');
+        this.cardBody = document.createElement('div')
+        this.chapterDescription = document.createElement('p')
+        this.chapterButtonDiv = document.createElement('div')
+        this.chapterButton = document.createElement('button')
 
-function goToSelectedElementSubtype() {
+        chapterButtonDiv.setAttribute('class', 'cardbody')
+        cardBody.setAttribute('class', "card-body")
+        card.setAttribute('class', 'chapters');
+        chapterButton.setAttribute('class', 'card-link')
 
+        chapterButton.textContent = "Affordable=false";
+        chapterDescription.textContent = locked_chapters[i].description;
+        card.textContent = locked_chapters[i].chapterName;
+
+        chapterButtonDiv.appendChild(this.chapterButton);
+        card.appendChild(this.chapterDescription);
+        card.appendChild(this.chapterButtonDiv);
+        card.appendChild(cardBody);
+        unlockedableChaptersHTML.appendChild(card);
+    }
 }
+
+$("#buybtn").on("click", function () {
+    //pseudocode for now but it will basically be userPoints - chapterPrice
+})

@@ -57,3 +57,14 @@ body {
     white-space: nowrap;
     font-weight: 600
 }
+
+.logged-in{
+    position:absolute;
+    right:8vw;
+    top:1.3vh;
+}
+.btn-right {
+    position: absolute;
+    right: 0vw;
+    top: 1.3vh;
+}

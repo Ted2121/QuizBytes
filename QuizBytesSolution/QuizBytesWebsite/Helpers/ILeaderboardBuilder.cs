@@ -7,7 +7,7 @@ namespace QuizBytesWebsite.Helpers
         IEnumerable<CurrentChallengeParticipantDto> Participants { get; set; }
 
         void AddParticipantToLeaderboard(CurrentChallengeParticipantDto newParticipant);
-        IEnumerable<WebUserDto> BuildLeaderboardFromParticipantList();
+        LeaderboardDto BuildLeaderboardFromParticipantList();
         void InitializeChallenge();
     }
 }

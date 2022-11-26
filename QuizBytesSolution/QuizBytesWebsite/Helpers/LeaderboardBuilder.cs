@@ -8,12 +8,16 @@ public class LeaderboardBuilder : ILeaderboardBuilder
 {
     public IEnumerable<CurrentChallengeParticipantDto> Participants { get; set; }
 
-    public IEnumerable<WebUserDto> BuildLeaderboardFromParticipantList()
+    public LeaderboardDto BuildLeaderboardFromParticipantList()
     {
         var participantUsers = Participants.Select(participant => participant.WebUser);
 
-        return participantUsers.OrderByDescending(user => user.NumberOfCorrectAnswers).ThenBy(user => user.ElapsedSecondsInChallenge);
+        var orderedParticipants =  participantUsers.OrderByDescending(user => user.NumberOfCorrectAnswers).ThenBy(user => user.ElapsedSecondsInChallenge);
 
+        return new LeaderboardDto()
+        {
+            Leaderboard = orderedParticipants.ToList()
+        };
     }
 
     // Called when the challenge starts. It's important that everytime it's a new list

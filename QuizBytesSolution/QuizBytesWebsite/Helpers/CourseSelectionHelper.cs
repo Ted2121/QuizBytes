@@ -43,7 +43,6 @@ public class CourseSelectionHelper : ICourseSelectionHelper
         }
         catch (Exception ex)
         {
-
             throw new Exception($"Could not get the course for the challenge, Message was: {0}", ex);
         }
     }

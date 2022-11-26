@@ -47,7 +47,7 @@ namespace QuizBytesWebsite.Controllers
             }
             else
             {
-            return null;
+                return null;
             }
         }
 

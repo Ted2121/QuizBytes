@@ -13,8 +13,16 @@ public class Answer
     public string IsCorrect { get; set; }
     public string AnswerText { get; set; }
 
+
     public Answer()
     {
 
+    }
+
+    public Answer(int fKQuestionId, string isCorrect, string answerText)
+    {
+        FKQuestionId = fKQuestionId;
+        IsCorrect = isCorrect;
+        AnswerText = answerText;
     }
 }

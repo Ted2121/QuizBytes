@@ -1,11 +1,12 @@
-﻿using WebApiClient;
-using WebApiClient.DTOs;
+﻿using WebApiClient.DTOs;
 
 namespace QuizBytesWebsite.Helpers
 {
     public interface ICourseSelectionHelper
     {
+        Func<int> DayOfTheWeek { get; set; }
+
         Task<CourseDto> GetCourseForChallenge();
-        Task<CourseDto> GetCourseForChallenge(string day);
+        Task<CourseDto> GetCourseForChallenge(int dayNumber);
     }
 }

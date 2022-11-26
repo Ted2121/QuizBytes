@@ -5,69 +5,41 @@ namespace QuizBytesWebsite.Helpers;
 
 public class CourseSelectionHelper : ICourseSelectionHelper
 {
+
     private CourseFacadeApiClient CourseFacadeApiClient { get; set; }
-    public CourseSelectionHelper(CourseFacadeApiClient courseFacadeApiClient)
+    public Func<int> DayOfTheWeek { get; set; }
+    public CourseSelectionHelper(CourseFacadeApiClient courseFacadeApiClient, Func<int> dayOfTheWeek = null)
     {
         CourseFacadeApiClient = courseFacadeApiClient;
+        if (dayOfTheWeek == null)
+        {
+            dayOfTheWeek = () => (int)DateTime.Now.DayOfWeek;
+        }
+        DayOfTheWeek = dayOfTheWeek;
     }
 
-    // This overload is intended for testing so that we don't depend on the current time of day
-    public async Task<CourseDto> GetCourseForChallenge(string day)
+    public async Task<CourseDto> GetCourseForChallenge() => await GetCourseForChallenge(DayOfTheWeek());
+
+    public async Task<CourseDto> GetCourseForChallenge(int dayNumber)
     {
         try
         {
-            switch (day.ToLower())
-            {
-                case "monday":
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(1); //Programming
-                case "tuesday":
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(2) ?? await CourseFacadeApiClient.GetCourseByIdAsync(1); //Technology or Programming
-                case "wednesday":
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(3) ?? await CourseFacadeApiClient.GetCourseByIdAsync(1); //Dev Ops or Programming
-                case "thursday":
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(4) ?? await CourseFacadeApiClient.GetCourseByIdAsync(1); // Computer World or Programming
-                case "friday":
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(1); //Programming
-                case "saturday":
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(2) ?? await CourseFacadeApiClient.GetCourseByIdAsync(1); //Technology or Programming
-                case "sunday":
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(3) ?? await CourseFacadeApiClient.GetCourseByIdAsync(1); //Dev Ops or Programming
-                default:
-                    return null;
-            }
-        }
-        catch (Exception ex)
-        {
-
-            throw new Exception($"Could not get the course for the challenge, Message was: {0}", ex);
-        }
-    }
-
-    // Preferred overload for production - gets the course for the current day
-    public async Task<CourseDto> GetCourseForChallenge()
-    {
-        try
-        {
-            switch ((int)DateTime.Now.DayOfWeek)
+            switch (dayNumber)
             {
                 case 1:
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(1); //Programming
-                case 2:
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(2) ?? await CourseFacadeApiClient.GetCourseByIdAsync(1); //Technology or Programming
-                case 3:
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(3) ?? await CourseFacadeApiClient.GetCourseByIdAsync(1); //Dev Ops or Programming
-                case 4:
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(4) ?? await CourseFacadeApiClient.GetCourseByIdAsync(1); // Computer World or Programming
-                case 5:
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(1); //Programming
                 case 6:
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(2) ?? await CourseFacadeApiClient.GetCourseByIdAsync(1); //Technology or Programming
+                    return await CourseFacadeApiClient.GetCourseByNameAsync("Programming"); //Programming
+                case 2:
+                case 5:
+                    return await CourseFacadeApiClient.GetCourseByNameAsync("Technology") ?? await CourseFacadeApiClient.GetCourseByNameAsync("Programming"); //Technology or Programming
+                case 3:
                 case 7:
-                    return await CourseFacadeApiClient.GetCourseByIdAsync(3) ?? await CourseFacadeApiClient.GetCourseByIdAsync(1); //Dev Ops or Programming
+                    return await CourseFacadeApiClient.GetCourseByNameAsync("Dev Ops") ?? await CourseFacadeApiClient.GetCourseByNameAsync("Programming"); //Dev Ops or Programming
+                case 4:
+                    return await CourseFacadeApiClient.GetCourseByNameAsync("Computer World") ?? await CourseFacadeApiClient.GetCourseByNameAsync("Programming"); // Computer World or Programming
                 default:
                     return null;
             }
-
         }
         catch (Exception ex)
         {
@@ -75,4 +47,6 @@ public class CourseSelectionHelper : ICourseSelectionHelper
             throw new Exception($"Could not get the course for the challenge, Message was: {0}", ex);
         }
     }
+
+
 }

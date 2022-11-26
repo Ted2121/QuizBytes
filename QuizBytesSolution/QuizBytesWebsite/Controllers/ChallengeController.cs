@@ -5,17 +5,26 @@ namespace QuizBytesWebsite.Controllers
 {
     public class ChallengeController : Controller
     {
-        //public IChallengeFacadeApiClient Client { get; set; }
+        public IChallengeFacadeApiClient ChallengeFacadeApiClient { get; set; }
 
-        //public ChallengeController(IChallengeFacadeApiClient client)
-        //{
-        //    Client = client;
-        //}
+        public ChallengeController(IChallengeFacadeApiClient client)
+        {
+            ChallengeFacadeApiClient = client;
+        }
 
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register()
+        {
+            await ChallengeFacadeApiClient.RegisterParticipantAsync();
+        }
+
         public IActionResult Start()
         {
             return View();

@@ -44,6 +44,18 @@ public class CoursesController : ControllerBase
         return Ok(course.ToDto());
     }
 
+    [HttpGet]
+    [Route("{name}")]
+    public async Task<ActionResult<CourseDto>> GetCourseByIdAsync([FromQuery] string name)
+    {
+        var course = await CourseDataAccess.GetCourseByNameAsync(name);
+        if (course == null)
+        {
+            return NotFound();
+        }
+        return Ok(course.ToDto());
+    }
+
     [HttpDelete]
     [Route("{id}")]
     public async Task<ActionResult> DeleteCourseAsync([FromQuery] int id)

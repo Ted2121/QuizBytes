@@ -26,10 +26,9 @@ namespace SQLAccessImplementationLibrary
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to delete a row from Course table. The exception was: '{ex.Message}'", ex);
-
             }
         }
 
@@ -45,10 +44,9 @@ namespace SQLAccessImplementationLibrary
                     return courses;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the Course table. The exception was: '{ex.Message}'", ex);
-
             }
         }
 
@@ -69,12 +67,33 @@ namespace SQLAccessImplementationLibrary
                     return course;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
+            {
+                throw new($"Exception while trying to find the Course with the '{courseId}'. The exception was: '{ex.Message}'", ex);
+            }
+        }
+
+        public async Task<Course> GetCourseByNameAsync(string courseName)
+        {
+            try
+            {
+                string commandText = "SELECT * FROM Course WHERE Name = @Name";
+                using (SqlConnection connection = CreateConnection())
+                {
+                    var parameters = new
+                    {
+                        Name = courseName
+                    };
+
+                    var course = await connection.QuerySingleOrDefaultAsync<Course>(commandText, parameters);
+
+                    return course;
+                }
+            }
+            catch (Exception ex)
             {
 
-                throw new($"Exception while trying to find the Course with the '{courseId}'. The exception was: '{ex.Message}'", ex);
-
-
+                throw new($"Exception while trying to find the Course with the '{courseName}'. The exception was: '{ex.Message}'", ex);
             }
         }
 
@@ -95,11 +114,11 @@ namespace SQLAccessImplementationLibrary
                     return course.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
 
                 }
+
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new($"Exception while trying to insert a Course object. The exception was: '{ex.Message}'", ex);
-
             }
         }
 
@@ -125,7 +144,7 @@ namespace SQLAccessImplementationLibrary
 
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new Exception($"Exception while trying to update Course. The exception was: '{ex.Message}'", ex);

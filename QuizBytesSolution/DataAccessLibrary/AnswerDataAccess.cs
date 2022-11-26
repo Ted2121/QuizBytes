@@ -26,7 +26,7 @@ namespace SQLAccessImplementationLibrary
                 }
 
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to delete a row from Answer table. The exception was: '{ex.Message}'", ex);
             }
@@ -45,7 +45,7 @@ namespace SQLAccessImplementationLibrary
                     return answers;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the Answer table. The exception was: '{ex.Message}'", ex);
             }
@@ -69,7 +69,7 @@ namespace SQLAccessImplementationLibrary
                     return answers;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all Answers related to QuestionId: {questionId}. The exception was: '{ex.Message}'", ex);
             }
@@ -94,7 +94,7 @@ namespace SQLAccessImplementationLibrary
                     
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to insert an Answer object. The exception was: '{ex.Message}'", ex);
             }
@@ -125,7 +125,7 @@ namespace SQLAccessImplementationLibrary
 
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to update Answer. The exception was: '{ex.Message}'", ex);
             }

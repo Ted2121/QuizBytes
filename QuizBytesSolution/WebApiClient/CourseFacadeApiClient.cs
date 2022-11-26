@@ -39,5 +39,17 @@ public class CourseFacadeApiClient : ICourseFacadeApiClient
         return response.Data;
     }
 
+    public async Task<CourseDto> GetCourseByNameAsync(string name)
+    {
+        var response = await _restClient.RequestAsync<CourseDto>(Method.GET, $"Courses/{name}");
+
+        if (!response.IsSuccessful)
+        {
+            throw new Exception($"Error getting the course with the id {name}. Message was {response.Content}");
+        }
+
+        return response.Data;
+    }
+
 
 }

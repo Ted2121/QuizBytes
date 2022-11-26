@@ -29,7 +29,7 @@ namespace SQLAccessImplementationLibrary
 
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to delete a row from WebUser table. The exception was: '{ex.Message}'", ex);
 
@@ -48,7 +48,7 @@ namespace SQLAccessImplementationLibrary
                     return webUsers;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the WebUser table. The exception was: '{ex.Message}'", ex);
 
@@ -72,7 +72,7 @@ namespace SQLAccessImplementationLibrary
                     return webUser;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new($"Exception while trying to find the WebUser with the '{username}'. The exception was: '{ex.Message}'", ex);
 
@@ -96,7 +96,7 @@ namespace SQLAccessImplementationLibrary
                     return webUser;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new($"Exception while trying to find the WebUser with the '{webUserId}'. The exception was: '{ex.Message}'", ex);
 
@@ -125,7 +125,7 @@ namespace SQLAccessImplementationLibrary
                     return webUser.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new($"Exception while trying to insert a WebUser object. The exception was: '{ex.Message}'", ex);
@@ -162,7 +162,7 @@ namespace SQLAccessImplementationLibrary
 
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new Exception($"Exception while trying to update WebUser. The exception was: '{ex.Message}'", ex);

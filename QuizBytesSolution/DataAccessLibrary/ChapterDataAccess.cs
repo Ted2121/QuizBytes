@@ -27,10 +27,11 @@ namespace SQLAccessImplementationLibrary
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to delete a row from Chapter table. The exception was: '{ex.Message}'", ex);
             }
+
 
         }
 
@@ -46,7 +47,7 @@ namespace SQLAccessImplementationLibrary
                     return chapters;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the Chapter table. The exception was: '{ex.Message}'", ex);
             }
@@ -71,7 +72,7 @@ namespace SQLAccessImplementationLibrary
                     return chapters;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the Chapter table with the foreign key attribute: FKSubjectId = {subject.Id}. The exception was: '{ex.Message}'", ex);
 
@@ -95,7 +96,7 @@ namespace SQLAccessImplementationLibrary
                     return chapter;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new($"Exception while trying to find the Chapter with the '{chapterId}'. The exception was: '{ex.Message}'", ex);
@@ -121,7 +122,7 @@ namespace SQLAccessImplementationLibrary
                     return chapter;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new($"Exception while trying to find the Chapter with the '{chapterName}'. The exception was: '{ex.Message}'", ex);
@@ -149,7 +150,7 @@ namespace SQLAccessImplementationLibrary
                     return chapter.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new($"Exception while trying to insert a Chapter object. The exception was: '{ex.Message}'", ex);
@@ -181,7 +182,7 @@ namespace SQLAccessImplementationLibrary
 
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new Exception($"Exception while trying to update chapter. The exception was: '{ex.Message}'", ex);

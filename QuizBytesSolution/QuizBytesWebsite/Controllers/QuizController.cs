@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
-using QuizBytesAPIServer.DTOs;
 using WebApiClient;
 
 namespace QuizBytesWebsite.Controllers

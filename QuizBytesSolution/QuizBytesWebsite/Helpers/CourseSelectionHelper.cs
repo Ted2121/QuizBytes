@@ -1,11 +1,11 @@
-﻿using QuizBytesAPIServer.DTOs;
-using WebApiClient;
+﻿using WebApiClient;
+using WebApiClient.DTOs;
 
 namespace QuizBytesWebsite.Helpers;
 
-public class CourseSelectionHelper
+public class CourseSelectionHelper : ICourseSelectionHelper
 {
-    public CourseFacadeApiClient CourseFacadeApiClient { get; set; }
+    private CourseFacadeApiClient CourseFacadeApiClient { get; set; }
     public CourseSelectionHelper(CourseFacadeApiClient courseFacadeApiClient)
     {
         CourseFacadeApiClient = courseFacadeApiClient;

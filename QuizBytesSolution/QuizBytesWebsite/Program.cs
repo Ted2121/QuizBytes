@@ -17,13 +17,20 @@ namespace QuizBytesWebsite
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            #region Helper Classes Injection
             builder.Services.AddTransient<ITimerLogicHelper, TimerLogicHelper>();
             builder.Services.AddScoped<ILeaderboardBuilder, LeaderboardBuilder>();
+            builder.Services.AddScoped<ICourseSelectionHelper, CourseSelectionHelper>();
+            #endregion
+
+            #region REST Client Facade Injection
             builder.Services.AddScoped<IWebUserFacadeApiClient>((conf) => new WebUserFacadeApiClient(configuration["WebApiURI"]));
             builder.Services.AddScoped<ICourseFacadeApiClient>((conf) => new CourseFacadeApiClient(configuration["WebApiURI"]));
             builder.Services.AddScoped<IChallengeFacadeApiClient>((conf) => new ChallengeFacadeApiClient(configuration["WebApiURI"]));
-            builder.Services.AddSignalR();
+            #endregion
 
+
+            builder.Services.AddSignalR();
 
             var app = builder.Build();
 

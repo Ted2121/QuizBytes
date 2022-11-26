@@ -132,8 +132,8 @@ namespace SQLAccessImplementationLibrary
                 using (SqlConnection connection = CreateConnection())
                 {
                     await connection.ExecuteAsync(commandToReseedIdentity);
-
-                    return await connection.ExecuteAsync(commandText) > 0;
+                    await connection.ExecuteAsync(commandText);
+                    return await GetRowAmountFromDatabaseAsync() == 0;
                 }
             }
             catch (SqlException ex)

@@ -21,6 +21,7 @@ namespace QuizBytesWebsite
             builder.Services.AddScoped<ILeaderboardBuilder, LeaderboardBuilder>();
             builder.Services.AddScoped<IWebUserFacadeApiClient>((conf) => new WebUserFacadeApiClient(configuration["WebApiURI"]));
             builder.Services.AddScoped<ICourseFacadeApiClient>((conf) => new CourseFacadeApiClient(configuration["WebApiURI"]));
+            builder.Services.AddScoped<IChallengeFacadeApiClient>((conf) => new ChallengeFacadeApiClient(configuration["WebApiURI"]));
             builder.Services.AddSignalR();
 
 

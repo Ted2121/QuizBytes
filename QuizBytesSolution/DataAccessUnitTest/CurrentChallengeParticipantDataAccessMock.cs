@@ -125,7 +125,8 @@ namespace SQLAccessImplementationLibraryUnitTest
                 using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
                 {
                     await connection.ExecuteAsync(commandToReseedIdentity);
-                    return await connection.ExecuteAsync(commandText) > 0;
+                    await connection.ExecuteAsync(commandText);
+                    return await GetRowAmountFromDatabaseAsync() == 0;
                 }
             }
             catch (SqlException ex)

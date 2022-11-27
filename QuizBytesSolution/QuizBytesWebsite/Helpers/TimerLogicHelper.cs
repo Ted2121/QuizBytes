@@ -55,10 +55,10 @@ namespace QuizBytesWebsite.Helpers
             var oneSecondLeft = new TimeSpan(0, 0, 1);
 
             // This starts the first ever challenge of the server
-            if (LeaderboardBuilder.Participants == null)
-            {
-                LeaderboardBuilder.InitializeChallenge();
-            }
+            //if (LeaderboardBuilder.Participants == null)
+            //{
+            //    LeaderboardBuilder.InitializeChallenge();
+            //}
             // Have the timer fire repeated events (true is the default)
             _timer.AutoReset = true;
 

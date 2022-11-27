@@ -39,15 +39,11 @@ public class ChallengeController : ControllerBase
     {
         var currentChallengeEntries = await CurrentChallengeParticipantDataAccess.GetAllRowsInChallengeAsync();
 
-        //var leaderboard = await RewardsDistributionHelper.BuildLeaderboardFromParticipantList(currentChallengeEntries.ToDtos());
-
         if (currentChallengeEntries == null)
         {
             return NotFound();
         }
         return Ok(currentChallengeEntries.ToDtos());
-
-
     }
 
     [HttpDelete]
@@ -80,7 +76,6 @@ public class ChallengeController : ControllerBase
     [Route("cleartable")]
     public async Task<ActionResult> ClearTempTableBeforeNextChallengeAsync()
     {
-        
         if(!await CurrentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync())
         {
             return BadRequest();
@@ -104,8 +99,8 @@ public class ChallengeController : ControllerBase
     public async Task<ActionResult<int>> GetNumberOfParticipantsAsync()
     {
         var numberOfParticipants = await CurrentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
-        return Ok(numberOfParticipants);
 
+        return Ok(numberOfParticipants);
     }
 
     [HttpGet]

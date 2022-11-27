@@ -20,7 +20,7 @@ namespace QuizBytesWebsite
 
             #region Helper Classes Injection
             builder.Services.AddTransient<ITimerLogicHelper, TimerLogicHelper>();
-            builder.Services.AddScoped<ILeaderboardBuilder, LeaderboardBuilder>();
+            builder.Services.AddSingleton<ILeaderboardBuilder, LeaderboardBuilder>();
             builder.Services.AddScoped<ICourseSelectionHelper, CourseSelectionHelper>();
             #endregion
 

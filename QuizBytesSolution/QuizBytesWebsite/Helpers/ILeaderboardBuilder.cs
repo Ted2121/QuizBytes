@@ -4,7 +4,7 @@ namespace QuizBytesWebsite.Helpers
 {
     public interface ILeaderboardBuilder
     {
-        IEnumerable<CurrentChallengeParticipantDto> Participants { get; set; }
+        List<CurrentChallengeParticipantDto> Participants { get; set; }
 
         void AddParticipantToLeaderboard(CurrentChallengeParticipantDto newParticipant);
         LeaderboardDto BuildLeaderboardFromParticipantList();

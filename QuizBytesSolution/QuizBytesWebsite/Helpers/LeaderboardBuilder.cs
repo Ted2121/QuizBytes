@@ -6,10 +6,15 @@ namespace QuizBytesWebsite.Helpers;
 
 public class LeaderboardBuilder : ILeaderboardBuilder
 {
-    public IEnumerable<CurrentChallengeParticipantDto> Participants { get; set; }
+    public List<CurrentChallengeParticipantDto> Participants { get; set; }
 
     public LeaderboardDto BuildLeaderboardFromParticipantList()
     {
+        if (Participants == null)
+        {
+            InitializeChallenge();
+        }
+
         var participantUsers = Participants.Select(participant => participant.WebUser);
 
         var orderedParticipants =  participantUsers.OrderByDescending(user => user.NumberOfCorrectAnswers).ThenBy(user => user.ElapsedSecondsInChallenge);
@@ -32,9 +37,10 @@ public class LeaderboardBuilder : ILeaderboardBuilder
         // Ensures that a participant is not added twice to the list when the time expires
         if (!Participants.Select(participant => participant.WebUser.Username).Contains(newParticipant.WebUser.Username))
         {
-
-            Participants.Append(newParticipant);
+            Participants.Add(newParticipant);
         }
     }
+
+   
 
 }

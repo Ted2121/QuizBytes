@@ -60,8 +60,9 @@ namespace QuizBytesWebsite.Controllers
             return View();
         }
 
-
+        [AllowAnonymous]
         [HttpGet]
+        [Route("Challenge/Quiz/efHFkfd923md03zz0dfj")]
         public async Task<JsonResult> Quiz()
         {
             // TODO replace the line with monday with parameterless once u r done testing the challenge

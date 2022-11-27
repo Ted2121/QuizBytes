@@ -48,7 +48,6 @@
                                 <a class="nav-item-style logged-in" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
                             }
 
-                            @*TODO Move to top right*@
                             @if (Context.User.Identity.IsAuthenticated)
                             {
                                 <a class="nav-item-style" asp-area="" asp-controller="Account" asp-action="Profile">Profile</a>

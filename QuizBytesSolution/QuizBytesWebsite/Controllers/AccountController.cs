@@ -121,9 +121,22 @@ namespace QuizBytesWebsite.Controllers
             return View();
         }
 
-        public IActionResult Profile()
+        public async Task<IActionResult> Profile()
         {
-            return View();
+            WebUserDto user = null;
+            var userIdFromClaim = HttpContext.User.Claims.FirstOrDefault((claim) => claim.Type == "id")?.Value;
+            int userId;
+            bool success = int.TryParse(userIdFromClaim, out userId);
+
+            if (success)
+            {
+            user = await WebUserFacadeApiClient.GetWebUserByIdAsync(userId);
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Failed to find your profile - please try again later!";
+            }
+            return View(user);
         }
     }
 }

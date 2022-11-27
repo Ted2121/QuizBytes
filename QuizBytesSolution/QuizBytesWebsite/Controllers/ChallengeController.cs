@@ -31,7 +31,7 @@ namespace QuizBytesWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Start(int id)
         {
-            var userToRegister = await GetUserFromClaim();
+            var userToRegister = await GetUserFromClaimAsync();
             // TODO replace the line with monday with parameterless once u r done testing the challenge
             //var courseForChallenge = await CourseSelectionHelper.GetCourseForChallenge();
             var courseForChallenge = await CourseSelectionHelper.GetCourseForChallenge("monday");
@@ -39,7 +39,7 @@ namespace QuizBytesWebsite.Controllers
             return RedirectToAction("Start");
         }
 
-        private async Task<WebUserDto> GetUserFromClaim()
+        private async Task<WebUserDto> GetUserFromClaimAsync()
         {
             var stringIdOfUserToRegister = HttpContext.User.Claims.FirstOrDefault((claim) => claim.Type == "id")?.Value;
             int userId;
@@ -55,8 +55,13 @@ namespace QuizBytesWebsite.Controllers
             }
         }
 
-        public IActionResult Start()
+        public async Task<IActionResult> Start()
         {
+            var user = await GetUserFromClaimAsync();
+            if (await ChallengeFacadeApiClient.CheckIfUserIsInChallengeAsync(user.Id))
+            {
+                return RedirectToAction("Refuse");
+            }
             return View();
         }
 
@@ -74,6 +79,12 @@ namespace QuizBytesWebsite.Controllers
         private async Task<QuizDto> GetQuiz(CourseDto courseForChallenge)
         {
             return await ChallengeFacadeApiClient.GetChallengeQuizAsync(courseForChallenge);
+        }
+
+
+        public IActionResult Refuse()
+        {
+            return View();
         }
     }
 }

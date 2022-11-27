@@ -18,21 +18,21 @@ namespace QuizBytesWebsite.Helpers
         private TimeSpan day = new TimeSpan(24, 00, 00);    // 24 hours in a day.
         private System.Timers.Timer _timer = new System.Timers.Timer();
         // the time of day to fire the event
-        // private TimeSpan activationTime = new TimeSpan(13, 45, 00);
+        private TimeSpan activationTime = new TimeSpan(13, 45, 00);
 
         #region TESTING ONLY - adding 5 seconds to current time to be able to test starting the quiz
-        private static int _timeInstance;
+        //private static int _timeInstance;
 
-        private TimeSpan activationTime = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, GetTimeInstance() + 5);
+        //private TimeSpan activationTime = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, GetTimeInstance() + 5);
 
-        public static int GetTimeInstance()
-        {
-            if (_timeInstance == 0)
-            {
-                _timeInstance = DateTime.Now.Second;
-            }
-            return _timeInstance;
-        }
+        //public static int GetTimeInstance()
+        //{
+        //    if (_timeInstance == 0)
+        //    {
+        //        _timeInstance = DateTime.Now.Second;
+        //    }
+        //    return _timeInstance;
+        //}
         #endregion
 
         public TimeSpan calcTimeLeftUntilEvent()

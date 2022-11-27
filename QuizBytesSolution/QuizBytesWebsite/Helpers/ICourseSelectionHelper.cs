@@ -4,9 +4,9 @@ namespace QuizBytesWebsite.Helpers
 {
     public interface ICourseSelectionHelper
     {
-        Func<int> DayOfTheWeek { get; set; }
+        Func<string> DayOfTheWeek { get; set; }
 
         Task<CourseDto> GetCourseForChallenge();
-        Task<CourseDto> GetCourseForChallenge(int dayNumber);
+        Task<CourseDto> GetCourseForChallenge(string day);
     }
 }

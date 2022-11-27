@@ -7,35 +7,35 @@ public class CourseSelectionHelper : ICourseSelectionHelper
 {
 
     private ICourseFacadeApiClient CourseFacadeApiClient { get; set; }
-    public Func<int> DayOfTheWeek { get; set; }
-    public CourseSelectionHelper(ICourseFacadeApiClient courseFacadeApiClient, Func<int> dayOfTheWeek = null)
+    public Func<string> DayOfTheWeek { get; set; }
+    public CourseSelectionHelper(ICourseFacadeApiClient courseFacadeApiClient, Func<string> dayOfTheWeek = null)
     {
         CourseFacadeApiClient = courseFacadeApiClient;
         if (dayOfTheWeek == null)
         {
-            dayOfTheWeek = () => (int)DateTime.Now.DayOfWeek;
+            dayOfTheWeek = () => DateTime.Now.DayOfWeek.ToString();
         }
         DayOfTheWeek = dayOfTheWeek;
     }
 
     public async Task<CourseDto> GetCourseForChallenge() => await GetCourseForChallenge(DayOfTheWeek());
 
-    public async Task<CourseDto> GetCourseForChallenge(int dayNumber)
+    public async Task<CourseDto> GetCourseForChallenge(string day)
     {
         try
         {
-            switch (dayNumber)
+            switch (day.ToLower())
             {
-                case 1:
-                case 6:
+                case "monday":
+                case "saturday":
                     return await CourseFacadeApiClient.GetCourseByNameAsync("Programming"); //Programming
-                case 2:
-                case 5:
+                case "tuesday":
+                case "friday":
                     return await CourseFacadeApiClient.GetCourseByNameAsync("Technology") ?? await CourseFacadeApiClient.GetCourseByNameAsync("Programming"); //Technology or Programming
-                case 3:
-                case 7:
+                case "wednesday":
+                case "sunday":
                     return await CourseFacadeApiClient.GetCourseByNameAsync("Dev Ops") ?? await CourseFacadeApiClient.GetCourseByNameAsync("Programming"); //Dev Ops or Programming
-                case 4:
+                case "thursday":
                     return await CourseFacadeApiClient.GetCourseByNameAsync("Computer World") ?? await CourseFacadeApiClient.GetCourseByNameAsync("Programming"); // Computer World or Programming
                 default:
                     return null;

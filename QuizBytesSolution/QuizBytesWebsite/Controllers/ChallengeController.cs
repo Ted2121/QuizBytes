@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QuizBytesWebsite.Helpers;
 using WebApiClient;
 using WebApiClient.DTOs;
 
 namespace QuizBytesWebsite.Controllers
 {
+    [Authorize]
     public class ChallengeController : Controller
     {
         private IWebUserFacadeApiClient WebUserFacadeApiClient { get; set; }
@@ -27,7 +29,7 @@ namespace QuizBytesWebsite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterUser()
+        public async Task<IActionResult> Start(int id)
         {
             // example of id from claim:@Context.User.Claims.FirstOrDefault((claim)=> claim.Type == "id")?.Value
             var userToRegister = await GetUserFromClaim();

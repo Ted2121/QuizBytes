@@ -34,7 +34,7 @@ public class CoursesController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<ActionResult<CourseDto>> GetCourseByIdAsync([FromQuery] int id)
+    public async Task<ActionResult<CourseDto>> GetCourseByIdAsync(int id)
     {
         var course = await CourseDataAccess.GetCourseByIdAsync(id);
         if (course == null)
@@ -45,8 +45,8 @@ public class CoursesController : ControllerBase
     }
 
     [HttpGet]
-    [Route("{name}")]
-    public async Task<ActionResult<CourseDto>> GetCourseByIdAsync([FromQuery] string name)
+    [Route("name/{name}")]
+    public async Task<ActionResult<CourseDto>> GetCourseByNameAsync(string name)
     {
         var course = await CourseDataAccess.GetCourseByNameAsync(name);
         if (course == null)

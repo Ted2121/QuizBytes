@@ -10,6 +10,7 @@ namespace QuizBytesWebsite
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
             ConfigurationManager configuration = builder.Configuration;
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
        .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -48,14 +49,23 @@ namespace QuizBytesWebsite
             app.UseRouting();
 
             app.UseAuthentication();
+
             app.UseAuthorization();
-            //MvcOptions.EnableEndpointRouting = false;
 
+            if (app.Environment.IsDevelopment())
+                app.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}").AllowAnonymous();
+            else
+            {
             app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
 
-           
+            }
+              
+
+
 
 
 

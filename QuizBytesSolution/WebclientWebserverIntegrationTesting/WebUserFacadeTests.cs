@@ -19,8 +19,8 @@ namespace WebclientWebserverIntegrationTesting
 
         private IWebUserDataAccess _webUserDataAccess = new WebUserDataAccess(Configuration.CONNECTION_STRING);
 
-        private WebUserDto _userDto;
-        private WebUserDto _secondUserDto;
+        private WebUserDto? _userDto;
+        private WebUserDto? _secondUserDto;
 
         private async Task<WebUserDto> CreateAndInsertNewWebUserAsync()
         {

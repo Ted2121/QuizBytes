@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using WebApiClient;
@@ -7,7 +8,7 @@ using WebApiClient.DTOs;
 
 namespace QuizBytesWebsite.Controllers
 {
-
+    [Authorize]
     public class AccountController : Controller
     {
         private IWebUserFacadeApiClient WebUserFacadeApiClient { get; set; }
@@ -17,11 +18,13 @@ namespace QuizBytesWebsite.Controllers
             WebUserFacadeApiClient = webUserFacadeApiClient;
         }
 
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromForm] WebUserDto loginInfo, [FromQuery] string? returnUrl)
@@ -66,6 +69,7 @@ namespace QuizBytesWebsite.Controllers
                 authProperties);
         }
 
+        
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -73,16 +77,19 @@ namespace QuizBytesWebsite.Controllers
             return RedirectToAction("Index", "");
         }
 
+        [AllowAnonymous]
         public IActionResult AccessDenied()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(WebUserDto webUser)

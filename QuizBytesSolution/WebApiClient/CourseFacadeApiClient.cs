@@ -41,7 +41,7 @@ public class CourseFacadeApiClient : ICourseFacadeApiClient
 
     public async Task<CourseDto> GetCourseByNameAsync(string name)
     {
-        var response = await _restClient.RequestAsync<CourseDto>(Method.GET, $"Courses/{name}");
+        var response = await _restClient.RequestAsync<CourseDto>(Method.GET, $"Courses/name/{name}");
 
         if (!response.IsSuccessful)
         {

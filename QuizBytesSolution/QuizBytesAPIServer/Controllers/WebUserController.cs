@@ -79,7 +79,7 @@ public class WebUserController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<ActionResult<WebUserDto>> GetWebUserByIdAsync([FromQuery] int id)
+    public async Task<ActionResult<WebUserDto>> GetWebUserByIdAsync(int id)
     {
         var user = await WebUserDataAccess.GetWebUserByIdAsync(id);
 
@@ -87,7 +87,7 @@ public class WebUserController : ControllerBase
         {
             return NotFound();
         }
-        return Ok();
+        return Ok(user);
 
     }
 

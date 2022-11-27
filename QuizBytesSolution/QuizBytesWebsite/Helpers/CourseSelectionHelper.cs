@@ -6,9 +6,9 @@ namespace QuizBytesWebsite.Helpers;
 public class CourseSelectionHelper : ICourseSelectionHelper
 {
 
-    private CourseFacadeApiClient CourseFacadeApiClient { get; set; }
+    private ICourseFacadeApiClient CourseFacadeApiClient { get; set; }
     public Func<int> DayOfTheWeek { get; set; }
-    public CourseSelectionHelper(CourseFacadeApiClient courseFacadeApiClient, Func<int> dayOfTheWeek = null)
+    public CourseSelectionHelper(ICourseFacadeApiClient courseFacadeApiClient, Func<int> dayOfTheWeek = null)
     {
         CourseFacadeApiClient = courseFacadeApiClient;
         if (dayOfTheWeek == null)

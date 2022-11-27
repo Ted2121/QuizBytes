@@ -33,6 +33,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -58,12 +59,14 @@
             this.chaptersConfirmButton = new System.Windows.Forms.PictureBox();
             this.chaptersCancelButton = new System.Windows.Forms.PictureBox();
             this.chaptersDeleteButton = new System.Windows.Forms.PictureBox();
+            this.chapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.topicChaptersDataGrid)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersEditButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersConfirmButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersCancelButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersDeleteButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dashboardNavigationButton
@@ -161,6 +164,7 @@
             this.topicChaptersDataGrid.EnableHeadersVisualStyles = false;
             this.topicChaptersDataGrid.GridColor = System.Drawing.Color.White;
             this.topicChaptersDataGrid.Location = new System.Drawing.Point(375, 80);
+            this.topicChaptersDataGrid.MultiSelect = false;
             this.topicChaptersDataGrid.Name = "topicChaptersDataGrid";
             this.topicChaptersDataGrid.RowHeadersVisible = false;
             this.topicChaptersDataGrid.RowHeadersWidth = 51;
@@ -171,6 +175,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.topicChaptersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.topicChaptersDataGrid.RowTemplate.Height = 25;
+            this.topicChaptersDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.topicChaptersDataGrid.Size = new System.Drawing.Size(1450, 400);
             this.topicChaptersDataGrid.TabIndex = 11;
             this.topicChaptersDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.singleAnswerDataGrid_CellContentClick);
@@ -237,6 +242,7 @@
             this.chapterNameTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chapterNameTextBox.Location = new System.Drawing.Point(680, 710);
             this.chapterNameTextBox.Name = "chapterNameTextBox";
+            this.chapterNameTextBox.ReadOnly = true;
             this.chapterNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.chapterNameTextBox.Size = new System.Drawing.Size(561, 39);
             this.chapterNameTextBox.TabIndex = 24;
@@ -332,6 +338,10 @@
             this.chaptersDeleteButton.TabIndex = 23;
             this.chaptersDeleteButton.TabStop = false;
             // 
+            // chapterBindingSource
+            // 
+            this.chapterBindingSource.DataSource = typeof(ByteManager.BussinesObjects.Chapter);
+            // 
             // Chapters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
@@ -369,6 +379,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chaptersConfirmButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersCancelButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersDeleteButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,5 +403,6 @@
         private PictureBox chaptersConfirmButton;
         private PictureBox chaptersCancelButton;
         private PictureBox chaptersDeleteButton;
+        private BindingSource chapterBindingSource;
     }
 }

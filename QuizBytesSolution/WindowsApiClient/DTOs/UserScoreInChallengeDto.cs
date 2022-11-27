@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsApiClient.DTOs
 {
-    internal class UserScoreInChallengeDto
+    public class UserScoreInChallengeDto
     {
     }
 }

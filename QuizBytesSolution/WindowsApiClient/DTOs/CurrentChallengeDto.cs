@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace WindowsApiClient.DTOs
 {
-    internal class CurrentChallengeDto
+    public class CurrentChallengeDto
     {
+        public WebUserDto WebUser { get; set; }
+        public CourseDto Course { get; set; }
     }
 }

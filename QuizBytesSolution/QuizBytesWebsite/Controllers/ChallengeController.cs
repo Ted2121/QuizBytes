@@ -93,7 +93,6 @@ public class ChallengeController : Controller
     [Route("Challenge/Quiz/efHFkfd923md03zz0dfj")]
     public async Task<JsonResult> Quiz()
     {
-        // TODO replace the line with monday with parameterless once u r done testing the challenge
         //var courseForChallenge = await CourseSelectionHelper.GetCourseForChallenge();
         var courseForChallenge = await CourseSelectionHelper.GetCourseForChallenge("monday");
         var quiz = await GetQuiz(courseForChallenge);

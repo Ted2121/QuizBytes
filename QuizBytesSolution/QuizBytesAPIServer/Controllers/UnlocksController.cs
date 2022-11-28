@@ -7,15 +7,15 @@ using QuizBytesAPIServer.DTOs.Converters;
 
 namespace QuizBytesAPIServer.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 [ApiController]
-public class WebUserChapterUnlocksController : ControllerBase
+public class UnlocksController : ControllerBase
 {
     private IWebUserChapterUnlockDataAccess WebUserChapterUnlockDataAccess { get; set; }
     private IChapterDataAccess ChapterDataAccess { get; set; }
     private IWebUserDataAccess WebUserDataAccess { get; set; }
 
-    public WebUserChapterUnlocksController(IWebUserChapterUnlockDataAccess webUserChapterUnlockData, IChapterDataAccess chapterDataAccess, IWebUserDataAccess webUserDataAccess)
+    public UnlocksController(IWebUserChapterUnlockDataAccess webUserChapterUnlockData, IChapterDataAccess chapterDataAccess, IWebUserDataAccess webUserDataAccess)
     {
         WebUserChapterUnlockDataAccess = webUserChapterUnlockData;
         ChapterDataAccess = chapterDataAccess;
@@ -23,21 +23,21 @@ public class WebUserChapterUnlocksController : ControllerBase
     }
 
     [HttpGet]
-    [Route("webuser")]
-    public async Task<ActionResult<IEnumerable<ChapterDto>>> GetUnlockedChaptersOfWebUserAsync(WebUserDto webUser)
+    [Route("webuser/{id}")]
+    public async Task<ActionResult<IEnumerable<ChapterDto>>> GetUnlockedChaptersOfWebUserAsync(int id)
     {
-        var webUserUnlocks = await WebUserChapterUnlockDataAccess.GetAllWebUserChapterUnlocksByWebUserAsync(webUser.FromDto());
+        var user = await WebUserDataAccess.GetWebUserByIdAsync(id);
+        var webUserUnlocks = await WebUserChapterUnlockDataAccess.GetAllWebUserChapterUnlocksByWebUserAsync(user);
 
         // We need to do this because in the DB we only store the Ids of the webusers and chapters in the WebUserChapterUnlock table
         // and we want to return the whole chapter object that matches the Id
         ICollection<ChapterDto> chapters = new List<ChapterDto>();
 
-        Parallel.ForEach(webUserUnlocks,
-            async unlock =>
-            {
-                var chapter = await ChapterDataAccess.GetChapterByIdAsync(unlock.FKChapterId);
-                chapters.Add(chapter.ToDto());
-            });
+        foreach(var unlock in webUserUnlocks)
+        {
+            var chapter = await ChapterDataAccess.GetChapterByIdAsync(unlock.FKChapterId);
+            chapters.Add(chapter.ToDto());
+        }
 
         if(chapters == null)
         {
@@ -48,10 +48,11 @@ public class WebUserChapterUnlocksController : ControllerBase
     }
 
     [HttpGet]
-    [Route("chapter")]
-    public async Task<ActionResult<IEnumerable<WebUserDto>>> GetAllWebUserChapterUnlocksByChapterAsync(ChapterDto chapter)
+    [Route("chapter/{id}")]
+    public async Task<ActionResult<IEnumerable<WebUserDto>>> GetAllWebUserChapterUnlocksByChapterAsync(int id)
     {
-        var webUserUnlocks = await WebUserChapterUnlockDataAccess.GetAllWebUserChapterUnlocksByChapterAsync(chapter.FromDto());
+        var chapterFound = await ChapterDataAccess.GetChapterByIdAsync(id);
+        var webUserUnlocks = await WebUserChapterUnlockDataAccess.GetAllWebUserChapterUnlocksByChapterAsync(chapterFound);
 
         ICollection<WebUserDto> webUsers = new List<WebUserDto>();
 
@@ -72,14 +73,20 @@ public class WebUserChapterUnlocksController : ControllerBase
     }
 
     [HttpPost]
-    [Route("unlock")]
     public async Task<ActionResult<WebUserChapterUnlockDto>> UnlockChapterAsync(WebUserChapterUnlockDto webUserChapterUnlock)
     {
-        
-        if(await WebUserChapterUnlockDataAccess.InsertWebUserChapterUnlockAsync(webUserChapterUnlock.WebUser.Id, webUserChapterUnlock.Chapter.Id) == (0, 0))
+        int unlockPrice = 64;
+        var webUserDto = webUserChapterUnlock.WebUserDto;
+        if (webUserDto.AvailablePoints < unlockPrice)
         {
             return BadRequest();
         }
+        if(await WebUserChapterUnlockDataAccess.InsertWebUserChapterUnlockAsync(webUserChapterUnlock.WebUserDto.Id, webUserChapterUnlock.ChapterDto.Id) == (0, 0))
+        {
+            return NotFound();
+        }
+        webUserDto.AvailablePoints -= unlockPrice;
+        await WebUserDataAccess.UpdateWebUserAsync(webUserDto.FromDto());
         return Ok(webUserChapterUnlock);
     }
 

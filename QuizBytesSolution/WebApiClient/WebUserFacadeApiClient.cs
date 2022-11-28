@@ -103,9 +103,9 @@ public class WebUserFacadeApiClient : IWebUserFacadeApiClient
         return true;
     }
 
-    public async Task<IEnumerable<ChapterDto>> GetUnlockedChaptersOfWebUserAsync(WebUserDto webUser)
+    public async Task<IEnumerable<ChapterDto>> GetUnlockedChaptersOfWebUserAsync(int id)
     {
-        var response = await _restClient.RequestAsync<IEnumerable<ChapterDto>>(Method.GET, $"WebUserChapterUnlocks/webuser", webUser);
+        var response = await _restClient.RequestAsync<IEnumerable<ChapterDto>>(Method.GET, $"Unlocks/webuser/{id}");
 
         if (!response.IsSuccessful)
         {
@@ -117,7 +117,7 @@ public class WebUserFacadeApiClient : IWebUserFacadeApiClient
 
     public async Task<bool> UnlockChapterAsync(WebUserChapterUnlockDto webUserChapterUnlock)
     {
-        var response = await _restClient.RequestAsync(Method.POST, $"WebUserChapterUnlocks/unlock", webUserChapterUnlock);
+        var response = await _restClient.RequestAsync(Method.POST, $"Unlocks", webUserChapterUnlock);
 
         if (!response.IsSuccessful)
         {

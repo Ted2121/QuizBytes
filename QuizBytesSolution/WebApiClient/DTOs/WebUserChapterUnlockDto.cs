@@ -8,7 +8,7 @@ namespace WebApiClient.DTOs
 {
     public class WebUserChapterUnlockDto
     {
-        public WebUserDto WebUser { get; set; }
-        public ChapterDto ChapterDto { get; set; }
+        public WebUserDto? WebUserDto { get; set; }
+        public ChapterDto? ChapterDto { get; set; }
     }
 }

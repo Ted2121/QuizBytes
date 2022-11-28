@@ -93,7 +93,7 @@ public class WebUserController : ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
-    public async Task<ActionResult> DeleteWebUserAsync([FromQuery] int id)
+    public async Task<ActionResult> DeleteWebUserAsync(int id)
     {
         if(!await WebUserDataAccess.DeleteWebUserAsync(id))
         {

@@ -7,7 +7,7 @@ public interface IWebUserFacadeApiClient
     Task<int> CreateWebUserAsync(WebUserDto webUser);
     Task<bool> DeleteWebUserAsync(int id);
     Task<IEnumerable<WebUserDto>> GetAllWebUsersAsync();
-    Task<IEnumerable<ChapterDto>> GetUnlockedChaptersOfWebUserAsync(WebUserDto webUser);
+    Task<IEnumerable<ChapterDto>> GetUnlockedChaptersOfWebUserAsync(int webUserId);
     Task<WebUserDto> GetWebUserByIdAsync(int id);
     Task<WebUserDto> GetWebUserByUsernameAsync(string username);
     Task<WebUserDto> LoginUserAsync(WebUserDto webUser);

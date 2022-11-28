@@ -207,7 +207,7 @@ namespace SQLAccessImplementationLibrary
                 {
                     var newPasswordHash = BCryptTool.HashPassword(newPassword);
                     using var connection = CreateConnection();
-                    return await connection.ExecuteAsync(commandText, new { Id = id, NewPasswordHash = newPasswordHash }) > 0;
+                    return await connection.ExecuteAsync(commandText, new { Id = id, PasswordHash = newPasswordHash }) > 0;
                 }
                 return false;
             }

@@ -340,7 +340,6 @@
             // 
             // chapterBindingSource
             // 
-            this.chapterBindingSource.DataSource = typeof(ByteManager.BussinesObjects.Chapter);
             // 
             // Chapters
             // 

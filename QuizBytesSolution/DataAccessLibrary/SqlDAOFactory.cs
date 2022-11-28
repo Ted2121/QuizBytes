@@ -26,7 +26,7 @@ namespace SQLAccessImplementationLibrary
                     return new QuestionDataAccess(connectionstring) as T;
                 case "ISubjectDataAccess":
                     return new SubjectDataAccess(connectionstring) as T;
-                case "IWebUserChapterUnlocksDataAccess":
+                case "IWebUserChapterUnlockDataAccess":
                     return new WebUserChapterUnlockDataAccess(connectionstring) as T;
                 case "IWebUserDataAccess":
                     return new WebUserDataAccess(connectionstring) as T;

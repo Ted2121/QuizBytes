@@ -37,7 +37,8 @@ namespace WebclientWebserverIntegrationTesting
             //await _webUserDataAccess.DeleteWebUserAsync(265);
 
             //await _courseDataAccess.DeleteCourseAsync(72);
-            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            //await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            await _courseDataAccess.DeleteCourseAsync(107);
 
         }
 

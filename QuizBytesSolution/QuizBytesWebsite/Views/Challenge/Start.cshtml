@@ -1,10 +1,4 @@
-﻿@*
-For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-<link rel="stylesheet" href="~/css/ChallengeQuizStyleSheet.css" />
+﻿<link rel="stylesheet" href="~/css/ChallengeQuizStyleSheet.css" />
 <div class="wrapper">
 <div class="quiz">
 <div class="quiz-body">
@@ -15,78 +9,103 @@ For more information on enabling MVC for empty projects, visit https://go.micros
 </div>
 </div>
 
-<button class="btn-next" @*onclick="next()"*@>Next</button>
+<button class="btn-next" onclick="next()">Next</button>
 <script src ="~/lib/jquery/dist/jquery.js"></script>
 @*<script src="~/js/ChallengeQuizLogic.js"></script>*@
+
 <script>
-    var questions= []; 
-$.ajax({
+
+    let questionCount;
+    let questions= []; 
+    let unfoldedQuestions = [];
+
+window.onload = () => {
+
+    $.ajax({
         url: "@Url.Action("Quiz")",
         type: 'GET',
         dataType: "json",
         success: function (result) {
-            console.log(result);
+                //console.log(result);
             for(let question of Object.values(result)){
-                questions.push(question);
-                console.log(questions);
+                    questions.push(question);
+                    //console.log(questions);
+            }
+        
+            for(let array of questions){
+                for(let question of array){
+                unfoldedQuestions.push(question);
+                }
             }
 
-    let questionCount = 0;
-    let correctAnswers = 0;
-    var userAnswer;
+            //console.log(unfoldedQuestions);
 
-    window.onload = function () {
-        show(questionCount);
+            questionCount = unfoldedQuestions.length;
+            
+            //console.log(questionCount);
+            let correctAnswers = 0;
+            let userAnswer;
+            //console.log("test1");
 
-    }
 
-    function show(count) {
-        let question = document.getElementById("quiz-questions");
-        let [first, second, third, fourth] = questions[0][count].answers.answerText;
+            let questionIndex = 0;
+                let question = document.getElementById("quiz-questions");
+                    question.innerHTML = `<h2 class ="question-text">Q${questionIndex + 1}. ${unfoldedQuestions[questionIndex].question.questionText}</h2>`
+                let ul = document.createElement("ul");
+                    ul.setAttribute("class", "question-options");
+                    question.appendChild(ul);
+                let answers = [];
 
-        question.innerHTML = `<h2 class ="question-text">Q${count + 1}. ${questions[count].question}<h2>
-            <ul class="question-options ">
-            <li class="option">${first}</li>
-            <li class="option">${second}</li>
-            <li class="option">${third}</li>
-            <li class="option">${fourth}</li>
-            </ul>`
-        toggleActive();
-        //only works with questions that have 4 answers but I can write a separate method for ones with two answers
-        // there is definitely a better way to code this but this works and I don't want to code js anymore today so yeah
-        //figured out a better way to do this
-    }
+                    for (let answer of unfoldedQuestions[questionIndex].answers) {
+                        var li = document.createElement("li");
+                        li.setAttribute("class", "option");
+                        li.appendChild(document.createTextNode(answer.answerText));
+                        console.log(answer.answerText);
+                        ul.appendChild(li);
+                    answers.push(answer);
+                }
+                //console.log(answers);
+                toggleActive();
 
-    function toggleActive() {
-        let option = document.querySelectorAll("li.option");
-        for (let i = 0; i < option.length; i++) {
-            option[i].onclick = function () {
+            function toggleActive() {
+                console.log("test in toggleActive function");
+                let option = document.querySelectorAll("li.option");
                 for (let i = 0; i < option.length; i++) {
-                    if (option[i].classList.contains("active")) {
-                        option[i].classList.remove("active");
-                        userAnswer = null;
+                    option[i].onclick = function () {
+                        for (let i = 0; i < option.length; i++) {
+                            if (option[i].classList.contains("active")) {
+                                option[i].classList.remove("active");
+                                userAnswer = null;
+                            }
+                        }
+                        option[i].classList.add("active");
                     }
                 }
-                option[i].classList.add("active");
             }
         }
-    }
+
+    }) 
+
+}// onload
 
     function next() {
-        if (questionCount == questions.length - 1) {
+        if (questionCount == unfoldedQuestions.length - 1) {
             location.href = "../Leaderboard/Display"
+            console.log("test in next func");
         }
+
         let userAnswer = $(".active").text();
         console.log(userAnswer);
 
-        if (userAnswer == questions[questionCount].answer) {
+        if (userAnswer == unfoldedQuestions[questionCount].answer) {
             correctAnswers++;
             sessionStorage.setItem("Correct Answers:", correctAnswers)
             console.log(correctAnswers);
         }
+
         questionCount++;
         show(questionCount);
-}
-}
-})
+
+    }
+
 </script>

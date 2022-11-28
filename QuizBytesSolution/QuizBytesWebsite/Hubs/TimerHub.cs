@@ -1,20 +1,24 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using QuizBytesWebsite.Helpers;
+using WebApiClient;
 
 namespace QuizBytesWebsite.Hubs
 {
     public class TimerHub : Hub
     {
-        public ITimerLogicHelper TimerLogicHelper { get; set; }
-        public TimerHub(ITimerLogicHelper timerLogicHelper)
+        private ITimerLogicHelper TimerLogicHelper { get; set; }
+        private IChallengeFacadeApiClient ChallengeFacadeApiClient { get; set; }
+        public TimerHub(ITimerLogicHelper timerLogicHelper, IChallengeFacadeApiClient challengeFacadeApiClient)
         {
             TimerLogicHelper = timerLogicHelper;
+            ChallengeFacadeApiClient = challengeFacadeApiClient;
         }
 
         //TimerLogicHelper _timerLogicHelper = new TimerLogicHelper();
         public async Task PrintTime()
         {
-            await Clients.All.SendAsync("DisplayTime", TimerLogicHelper.calcTime().ToString(@"hh\:mm\:ss"));
+            var timeSpan = await TimerLogicHelper.CleanUpCurrentChallengeOnTimeElapsed(ChallengeFacadeApiClient);
+            await Clients.All.SendAsync("DisplayTime", timeSpan.ToString(@"hh\:mm\:ss"));
         }
     }
 }

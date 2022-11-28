@@ -1,11 +1,12 @@
 ﻿using System.Timers;
+using WebApiClient;
 
 namespace QuizBytesWebsite.Helpers
 {
     public interface ITimerLogicHelper
     {
-        TimeSpan calcTime();
+        TimeSpan calcTimeLeftUntilEvent();
         void OnTimedEvent(object sender, ElapsedEventArgs e);
-        void SetUpTimer();
+        Task<TimeSpan> CleanUpCurrentChallengeOnTimeElapsed(IChallengeFacadeApiClient challengeFacadeApiClient);
     }
 }

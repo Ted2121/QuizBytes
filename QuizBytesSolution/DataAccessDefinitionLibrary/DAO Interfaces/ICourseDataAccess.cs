@@ -6,6 +6,7 @@ public interface ICourseDataAccess
 {
     Task<int> InsertCourseAsync(Course course);
     Task<Course> GetCourseByIdAsync(int id);
+    Task<Course> GetCourseByNameAsync(string courseName);
     Task<IEnumerable<Course>> GetAllCoursesAsync();
     Task<bool> UpdateCourseAsync(Course course);
     Task<bool> DeleteCourseAsync(int id);

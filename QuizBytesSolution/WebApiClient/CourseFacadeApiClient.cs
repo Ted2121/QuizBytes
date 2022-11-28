@@ -1,10 +1,10 @@
-﻿using QuizBytesAPIServer.DTOs;
-using RestSharp;
+﻿using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApiClient.DTOs;
 using WebApiClient.Extensions;
 
 namespace WebApiClient;
@@ -34,6 +34,18 @@ public class CourseFacadeApiClient : ICourseFacadeApiClient
         if (!response.IsSuccessful)
         {
             throw new Exception($"Error getting the course with the id {id}. Message was {response.Content}");
+        }
+
+        return response.Data;
+    }
+
+    public async Task<CourseDto> GetCourseByNameAsync(string name)
+    {
+        var response = await _restClient.RequestAsync<CourseDto>(Method.GET, $"Courses/name/{name}");
+
+        if (!response.IsSuccessful)
+        {
+            throw new Exception($"Error getting the course with the id {name}. Message was {response.Content}");
         }
 
         return response.Data;

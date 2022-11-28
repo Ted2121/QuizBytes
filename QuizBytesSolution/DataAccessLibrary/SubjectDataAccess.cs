@@ -26,7 +26,7 @@ namespace SQLAccessImplementationLibrary
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to delete a row from Subject table. The exception was: '{ex.Message}'", ex);
 
@@ -45,7 +45,7 @@ namespace SQLAccessImplementationLibrary
                     return subjects;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the Subject table. The exception was: '{ex.Message}'", ex);
 
@@ -70,7 +70,7 @@ namespace SQLAccessImplementationLibrary
                     return subjects;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the Subject table with the foreign key attribute: FKCourseId = {course.Id}. The exception was: '{ex.Message}'", ex);
 
@@ -94,7 +94,7 @@ namespace SQLAccessImplementationLibrary
                     return subject;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new($"Exception while trying to find the Subject with the '{subjectId}'. The exception was: '{ex.Message}'", ex);
@@ -121,7 +121,7 @@ namespace SQLAccessImplementationLibrary
                     return subject.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new($"Exception while trying to insert a Subject object. The exception was: '{ex.Message}'", ex);
 
@@ -152,7 +152,7 @@ namespace SQLAccessImplementationLibrary
 
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new Exception($"Exception while trying to update Subject. The exception was: '{ex.Message}'", ex);

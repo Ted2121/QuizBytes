@@ -1,8 +1,7 @@
 ﻿.button {
 position:absolute;
-left:450px;
-right:400px;
-top:290px;
+left:35%;
+top:35vh;
 }
 p{
     position:absolute;

@@ -29,7 +29,7 @@ namespace SQLAccessImplementationLibrary
 
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to delete a row from WebUser table. The exception was: '{ex.Message}'", ex);
 
@@ -48,7 +48,7 @@ namespace SQLAccessImplementationLibrary
                     return webUsers;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the WebUser table. The exception was: '{ex.Message}'", ex);
 
@@ -72,7 +72,7 @@ namespace SQLAccessImplementationLibrary
                     return webUser;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new($"Exception while trying to find the WebUser with the '{username}'. The exception was: '{ex.Message}'", ex);
 
@@ -96,7 +96,7 @@ namespace SQLAccessImplementationLibrary
                     return webUser;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new($"Exception while trying to find the WebUser with the '{webUserId}'. The exception was: '{ex.Message}'", ex);
 
@@ -125,7 +125,7 @@ namespace SQLAccessImplementationLibrary
                     return webUser.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new($"Exception while trying to insert a WebUser object. The exception was: '{ex.Message}'", ex);
@@ -162,7 +162,7 @@ namespace SQLAccessImplementationLibrary
 
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new Exception($"Exception while trying to update WebUser. The exception was: '{ex.Message}'", ex);
@@ -170,7 +170,7 @@ namespace SQLAccessImplementationLibrary
             }
         }
 
-        public async Task<int> LoginAsync(string username, string password)
+        public async Task<WebUser> LoginAsync(string username, string password)
         {
             try
             {
@@ -182,9 +182,12 @@ namespace SQLAccessImplementationLibrary
 
                 if(webUserTuple != null && BCryptTool.ValidatePassword(password, webUserTuple.PasswordHash))
                 {
-                    return webUserTuple.Id;
+                    return await GetWebUserByIdAsync(webUserTuple.Id);
                 }
-                return -1;
+                else
+                {
+                    throw new Exception($"Error logging in for WebUser with username: {username}");
+                }
             }
             catch (Exception ex)
             {
@@ -198,7 +201,8 @@ namespace SQLAccessImplementationLibrary
             try
             {
                 string commandText = "UPDATE WebUser SET PasswordHash = @PasswordHash WHERE Id = @Id;";
-                var id = await LoginAsync(username, oldPassword);
+                var user = await LoginAsync(username, oldPassword);
+                var id = user.Id;
                 if(id > 0)
                 {
                     var newPasswordHash = BCryptTool.HashPassword(newPassword);

@@ -1,15 +1,16 @@
 ﻿@{
 ViewData["Title"] = "Challenge";
 }
-@*
-For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+
 @{
 }
 <body class="body">
 <link rel="stylesheet" href="~/css/ChallengeViewStyleSheet.css" />
 <p id="timer"></p>
-<button class ="button" id="register-button-logic"></button>
+<form method="post">
+
+<button class ="button" id="register-button-logic" type="submit" asp-action="Start"></button>
+</form>
 <p id="error-message"></p>
 <br />
     <div class="row">

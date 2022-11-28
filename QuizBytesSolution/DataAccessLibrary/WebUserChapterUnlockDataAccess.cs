@@ -28,7 +28,7 @@ namespace SQLAccessImplementationLibrary
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to delete a row from WebUserChapterUnlock table. The exception was: '{ex.Message}'", ex);
 
@@ -47,7 +47,7 @@ namespace SQLAccessImplementationLibrary
                     return webUserChapterUnlocks;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table. The exception was: '{ex.Message}'", ex);
 
@@ -72,7 +72,7 @@ namespace SQLAccessImplementationLibrary
                     return webUserChapterUnlocks;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table with the foreign key attribute: FKChapterId = {chapter.Id}. The exception was: '{ex.Message}'", ex);
 
@@ -97,7 +97,7 @@ namespace SQLAccessImplementationLibrary
                     return webUserChapterUnlocks;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table with the foreign key attribute: FKChapterId = {webUser.Id}. The exception was: '{ex.Message}'", ex);
 
@@ -124,7 +124,7 @@ namespace SQLAccessImplementationLibrary
                     return (webUserId, chapterId);
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new($"Exception while trying to insert a WebUserChapterUnlock object. The exception was: '{ex.Message}'", ex);
 

@@ -322,6 +322,40 @@ public class WebUserFacadeTests
         }
     }
 
+    [Test]
+    public async Task TestingUpdatePasswordExpectingPositiveResult()
+    {
+        // Arrange
+        _userDto.NewPassword = "newPassword";
+
+        // Act
+        var updated = await _webUserFacadeApiClient.UpdatePasswordAsync(_userDto);
+
+        // Assert
+        Assert.That(updated, Is.True);
+    }
+
+    [Test]
+    public async Task TestingUpdatePasswordWithoutNewPasswordExpectingException()
+    {
+        // Arrange in setup
+
+        // Act & Assert
+        Assert.That(async () => await _webUserFacadeApiClient.UpdatePasswordAsync(_userDto), Throws.Exception);
+    }
+
+    [Test]
+    public async Task TestingUpdateUserExpectingPositiveResult()
+    {
+        // Arrange
+        _userDto.Username = "NewUsername";
+
+        // Act
+        var updated = await _webUserFacadeApiClient.UpdateWebUserAsync(_userDto);
+
+        // Assert
+        Assert.That(updated, Is.True);
+    }
 
     private async Task CreateAndInsertObjectsAsync()
     {

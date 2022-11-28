@@ -33,7 +33,7 @@ public class ChaptersController : ControllerBase
 
     [HttpGet]
     [Route("subject")]
-    public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersBySubjectAsync([FromBody] SubjectDto subject)
+    public async Task<ActionResult<IEnumerable<ChapterDto>>> GetAllChaptersBySubjectAsync(SubjectDto subject)
     {
         var chapters = await ChapterDataAccess.GetAllChaptersBySubjectAsync(subject.FromDto());
 
@@ -46,7 +46,7 @@ public class ChaptersController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<ActionResult<ChapterDto>> GetChapterByIdAsync([FromQuery] int id)
+    public async Task<ActionResult<ChapterDto>> GetChapterByIdAsync(int id)
     {
         var chapter = await ChapterDataAccess.GetChapterByIdAsync(id);
         if (chapter == null)
@@ -58,7 +58,7 @@ public class ChaptersController : ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
-    public async Task<ActionResult> DeleteChapterAsync([FromQuery] int id)
+    public async Task<ActionResult> DeleteChapterAsync(int id)
     {
         if (!await ChapterDataAccess.DeleteChapterAsync(id))
         { return NotFound(); }
@@ -67,7 +67,7 @@ public class ChaptersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<ChapterDto>> InsertChapterAsync([FromBody] ChapterDto chapter)
+    public async Task<ActionResult<ChapterDto>> InsertChapterAsync(ChapterDto chapter)
     {
         if (chapter == null)
         {
@@ -79,7 +79,7 @@ public class ChaptersController : ControllerBase
 
 
     [HttpPut]
-    public async Task<ActionResult> UpdateChapterAsync([FromBody] ChapterDto chapter)
+    public async Task<ActionResult> UpdateChapterAsync(ChapterDto chapter)
     {
 
         if (chapter == null || !await ChapterDataAccess.UpdateChapterAsync(chapter.FromDto()))

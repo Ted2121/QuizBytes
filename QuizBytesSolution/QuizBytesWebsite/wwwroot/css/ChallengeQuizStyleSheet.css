@@ -6,9 +6,15 @@ background-color: #0f0e0d;
 display:flex;
 justify-content:center;
 align-items:center;
-width: 100vw;
+position:relative;
 }
-
+.timer{
+    position:absolute;
+    top:10vh;
+    right: 5vw;
+    color:orange;
+    font-size:2rem;
+}
 .quiz{
     display:grid;
     grid-template-rows:60px auto;
@@ -17,6 +23,7 @@ width: 100vw;
 
 .question-text {
 color: orange;
+max-width:50vw;
 }
 .quiz-body{
 padding: 20px 30px;
@@ -56,10 +63,12 @@ border: none;
 padding: 15px 35px;
 background-color: white;
 color: black;
+width:10vw;
 border-radius: 15px;
 transition: 0.4s all;
-margin-right:10px;
-position:relative;
+position:absolute;
+bottom:10vh;
+right: 5vh;
 }
 
 .btn-next:hover{

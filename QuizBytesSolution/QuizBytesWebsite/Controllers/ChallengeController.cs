@@ -107,12 +107,18 @@ public class ChallengeController : Controller
     #region Finish
     [AllowAnonymous]
     [HttpPost]
+<<<<<<< HEAD
     public async Task UpdateUser(WebUserChallengeInfoDto userInfo)
+=======
+    public async Task<IActionResult> UpdateUser(WebUserChallengeInfoDto userInfo)
+>>>>>>> 29db193d1b1f5544a74311a7f4dc01cea0f89977
     {
         var user = await GetUserFromClaimAsync();
         user.NumberOfCorrectAnswers = userInfo.CorrectAnswers;
         user.ElapsedSecondsInChallenge = userInfo.ElapsedTime;
         await WebUserFacadeApiClient.UpdateWebUserAsync(user);
+
+        return Ok();
     }
 
     [HttpPost]

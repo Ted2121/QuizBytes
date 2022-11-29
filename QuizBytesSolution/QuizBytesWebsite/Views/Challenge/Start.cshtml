@@ -25,7 +25,7 @@
     let answers= [];
     let correctAnswers = 0;
     var Interval;
-    var elapsedTime;
+    var elapsedTime = 0;
 window.onload = () => {
         clearInterval(Interval);
         Interval = setInterval(startTimer, 900);
@@ -146,6 +146,7 @@ window.onload = () => {
             var minutesInSeconds = parseInt($('#minutes').text()) * 60;
             elapsedTime = seconds2 + minutesInSeconds;
             var score = new UserScore(elapsedTime, correctAnswers);
+    
             console.log(score);
             $.ajax({
                 url: "@Url.Action("UpdateUser")",
@@ -153,7 +154,7 @@ window.onload = () => {
                 data: JSON.stringify(score),
                 dataType: "json",
                 success: function (response) {
-                    if (respone != null) {
+                    if (response != null) {
                         alert("Amount of correct answers:" + correctAnswers + ", Elapsed time for challenge in seconds:" + elapsedTime);
                     }
                     else {
@@ -161,10 +162,14 @@ window.onload = () => {
                     }
                 },
                 failure: function (response) {
-                    alert(response.responseText);
+                    alert("Failure with ajax call with user score");
+                console.log(response.d);
+                console.log(response.responseText);
                 },
                 error: function (response) {
-                    alert(response.responseText)
+                    alert("error with ajax call with user score")
+                    console.log(response.d);
+                console.log(response.responseText);
                 }
             });
         }
@@ -175,7 +180,7 @@ window.onload = () => {
             type: "POST",
             data: 5,
             success: function (response) {
-                if (respone != null) {
+                if (response != null) {
                     alert("User Added");
                 }
                 else {
@@ -183,10 +188,14 @@ window.onload = () => {
                 }
             },
             failure: function (response) {
-                alert(response.responseText);
+                alert("Ajax call to finish failure");
+                console.log(response.d);
+                console.log(response.responseText);
             },
             error: function (response) {
-                alert(response.responseText)
+                alert("error in Ajax call to finish")
+                console.log(response.d);
+                console.log(response.responseText);
             }
         });
     }
@@ -196,7 +205,7 @@ window.onload = () => {
             url: "@Url.Action("Finish")",
             type: "GET",
             success: function (response) {
-                if (respone != null) {
+                if (response != null) {
                     alert("Amount of correct answers:" + correctAnswers + ", Elapsed time for challenge in seconds:" + elapsedTime);
                 }
                 else {

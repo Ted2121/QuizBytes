@@ -106,9 +106,8 @@ public class ChallengeController : Controller
 
     #region Finish
     [AllowAnonymous]
-    [ValidateAntiForgeryToken]
     [HttpPost]
-    private async Task UpdateUser(WebUserChallengeInfoDto userInfo)
+    public async Task UpdateUser(WebUserChallengeInfoDto userInfo)
     {
         var user = await GetUserFromClaimAsync();
         user.NumberOfCorrectAnswers = userInfo.CorrectAnswers;
@@ -135,49 +134,7 @@ public class ChallengeController : Controller
         // The leaderboard itself is created in js
         return RedirectToAction("Display", "Leaderboard");
     }
-    public async Task<JsonResult> Leaderboard()
-    {
-
-        var leaderboard = LeaderboardBuilder.BuildLeaderboardFromParticipantList();
-        var leaderboardInfo = FilterUserProperties(leaderboard);
-        return Json(leaderboardInfo);
-    }
-
-    private List<LeaderboardInfo> FilterUserProperties(LeaderboardDto leaderboard)
-    {
-        var leaderboardWithFilteredProperties = new List<LeaderboardInfo>();
-        var users = leaderboard.Leaderboard;
-
-        if (users.Any())
-        {
-            for (int i = 0; i < users.Count; i++)
-            {
-                var leaderboardInfo = new LeaderboardInfo()
-                {
-                    Username = users[i].Username,
-                    Points = CalculateUserPoints(users[i].NumberOfCorrectAnswers),
-                    ElapsedTime = ElapsedSecondsToString(users[i].ElapsedSecondsInChallenge)
-                };
-
-                leaderboardWithFilteredProperties.Add(leaderboardInfo);
-            }
-        }
-        return leaderboardWithFilteredProperties;
-    }
-
-    private int CalculateUserPoints(int numberOfCorrectAnswers) => numberOfCorrectAnswers * 8;
-    private string ElapsedSecondsToString(int elapsedSeconds)
-    {
-        var timespan = TimeSpan.FromSeconds(elapsedSeconds);
-        return timespan.ToString(@"hh\:mm\:ss");
-    }
-
-    internal class LeaderboardInfo
-    {
-        public string? Username { get; set; }
-        public int Points { get; set; }
-        public string? ElapsedTime { get; set; }
-    }
+    
     #endregion
 
 }

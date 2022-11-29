@@ -7,24 +7,23 @@ using System.Threading.Tasks;
 using WebApiClient.DTOs;
 using WebApiClient.Extensions;
 
-namespace WebApiClient
+namespace WebApiClient;
+
+public class QuizFacadeApiClient
 {
-    public class ChapterFacadeApiClient
+    private RestClient _restClient;
+
+    public QuizFacadeApiClient(string uri) => _restClient = new RestClient(uri);
+
+    public async Task<ChapterDto> GetChapterByIdAsync(int id)
     {
-        private RestClient _restClient;
+        var response = await _restClient.RequestAsync<ChapterDto>(Method.GET, $"Chapters/{id}");
 
-        public ChapterFacadeApiClient(string uri) => _restClient = new RestClient(uri);
-
-        public async Task<ChapterDto> GetChapterByIdAsync(int id)
+        if (!response.IsSuccessful)
         {
-            var response = await _restClient.RequestAsync<ChapterDto>(Method.GET, $"Chapters/{id}");
-
-            if (!response.IsSuccessful)
-            {
-                throw new Exception($"Error getting the chapter with id {id}. Message was {response.Content}");
-            }
-
-            return response.Data;
+            throw new Exception($"Error getting the chapter with id {id}. Message was {response.Content}");
         }
+
+        return response.Data;
     }
 }

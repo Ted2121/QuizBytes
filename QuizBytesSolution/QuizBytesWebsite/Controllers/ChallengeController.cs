@@ -135,7 +135,6 @@ public class ChallengeController : Controller
         // The leaderboard itself is created in js
         return RedirectToAction("Display", "Leaderboard");
     }
-
     public async Task<JsonResult> Leaderboard()
     {
 
@@ -180,4 +179,5 @@ public class ChallengeController : Controller
         public string? ElapsedTime { get; set; }
     }
     #endregion
+
 }

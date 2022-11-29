@@ -10,12 +10,12 @@ namespace WebclientWebserverIntegrationTesting;
 public class WebUserFacadeTests
 {
     private IWebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
-    private ChapterFacadeApiClient _chapterFacade = new ChapterFacadeApiClient(Configuration.WEB_API_URI);
     private ICourseDataAccess _courseDataAccess = new CourseDataAccess(Configuration.CONNECTION_STRING);
     private ISubjectDataAccess _subjectDataAccess = new SubjectDataAccess(Configuration.CONNECTION_STRING);
     private IWebUserDataAccess _webUserDataAccess = new WebUserDataAccess(Configuration.CONNECTION_STRING);
     private IChapterDataAccess _chapterDataAccess = new ChapterDataAccess(Configuration.CONNECTION_STRING);
     private IWebUserChapterUnlockDataAccess _chapterUnlockDataAccess = new WebUserChapterUnlockDataAccess(Configuration.CONNECTION_STRING);
+    private QuizFacadeApiClient _quizFacadeApiClient = new QuizFacadeApiClient(Configuration.WEB_API_URI);
 
 
     private WebUserDto? _userDto;
@@ -160,7 +160,7 @@ public class WebUserFacadeTests
         {
             // Arrange
             await CreateAndInsertObjectsAsync();
-            var chapterDto = await _chapterFacade.GetChapterByIdAsync(chapterId);
+            var chapterDto = await _quizFacadeApiClient.GetChapterByIdAsync(chapterId);
 
             WebUserChapterUnlockDto chapterUnlock = new()
             {
@@ -193,7 +193,7 @@ public class WebUserFacadeTests
         {
             // Arrange
             await CreateAndInsertObjectsAsync();
-            var chapterDto = await _chapterFacade.GetChapterByIdAsync(chapterId);
+            var chapterDto = await _quizFacadeApiClient.GetChapterByIdAsync(chapterId);
             _userDto.AvailablePoints = chapterPrice - 1;
 
             WebUserChapterUnlockDto chapterUnlock = new()
@@ -225,7 +225,7 @@ public class WebUserFacadeTests
         {
             // Arrange
             await CreateAndInsertObjectsAsync();
-            var chapterDto = await _chapterFacade.GetChapterByIdAsync(chapterId);
+            var chapterDto = await _quizFacadeApiClient.GetChapterByIdAsync(chapterId);
 
             WebUserChapterUnlockDto chapterUnlock = new()
             {
@@ -295,7 +295,7 @@ public class WebUserFacadeTests
         {
             // Arrange
             await CreateAndInsertObjectsAsync();
-            var chapterDto = await _chapterFacade.GetChapterByIdAsync(chapterId);
+            var chapterDto = await _quizFacadeApiClient.GetChapterByIdAsync(chapterId);
 
             WebUserChapterUnlockDto chapterUnlock = new()
             {

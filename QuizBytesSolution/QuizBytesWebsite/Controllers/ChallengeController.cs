@@ -139,7 +139,7 @@ public class ChallengeController : Controller
     public async Task<JsonResult> Leaderboard()
     {
 
-        var leaderboard = await Task.Run(() => LeaderboardBuilder.BuildLeaderboardFromParticipantList());
+        var leaderboard = LeaderboardBuilder.BuildLeaderboardFromParticipantList();
         var leaderboardInfo = FilterUserProperties(leaderboard);
         return Json(leaderboardInfo);
     }
@@ -151,28 +151,27 @@ public class ChallengeController : Controller
 
         if (users.Any())
         {
-
             for (int i = 0; i < users.Count; i++)
             {
                 var leaderboardInfo = new LeaderboardInfo()
                 {
                     Username = users[i].Username,
                     Points = CalculateUserPoints(users[i].NumberOfCorrectAnswers),
-                    // TODO call the method to format elapsed time
-                    ElapsedTime = users[i].ElapsedSecondsInChallenge.ToString()
+                    ElapsedTime = ElapsedSecondsToString(users[i].ElapsedSecondsInChallenge)
                 };
 
                 leaderboardWithFilteredProperties.Add(leaderboardInfo);
             }
-
         }
         return leaderboardWithFilteredProperties;
-
     }
 
     private int CalculateUserPoints(int numberOfCorrectAnswers) => numberOfCorrectAnswers * 8;
-    // TODO format the elapsed time of the user as mm:ss
-    //private string ElapsedSecondsToString(int elapsedSeconds) => elapsedSeconds
+    private string ElapsedSecondsToString(int elapsedSeconds)
+    {
+        var timespan = TimeSpan.FromSeconds(elapsedSeconds);
+        return timespan.ToString(@"hh\:mm\:ss");
+    }
 
     internal class LeaderboardInfo
     {

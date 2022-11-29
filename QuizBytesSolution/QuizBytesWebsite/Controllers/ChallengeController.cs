@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using QuizBytesWebsite.Helpers;
 using WebApiClient;
 using WebApiClient.DTOs;
@@ -109,6 +110,12 @@ public class ChallengeController : Controller
     [HttpPost]
     public async Task<IActionResult> UpdateUser(WebUserChallengeInfoDto userInfo)
     {
+        using (var bodyReader = new StreamReader(HttpContext.Request.Body))
+        {
+            Task<string> requests = bodyReader.ReadToEndAsync();
+
+           //WebUserChallengeInfoDto userInfo1 = await JsonSerializer.Deserialize<WebUserChallengeInfoDto>(requests);
+        }
         var user = await GetUserFromClaimAsync();
         user.NumberOfCorrectAnswers = userInfo.CorrectAnswers;
         user.ElapsedSecondsInChallenge = userInfo.ElapsedTime;
@@ -128,13 +135,6 @@ public class ChallengeController : Controller
             WebUser = userToRegister,
             Course = courseForChallenge
         });
-    }
-
-    [HttpGet]
-    public IActionResult Finish()
-    {
-        // The leaderboard itself is created in js
-        return RedirectToAction("Display", "Leaderboard");
     }
     public async Task<JsonResult> Leaderboard()
     {

@@ -88,10 +88,10 @@ window.onload = () => {
         if (questionCount == unfoldedQuestions.length - 1) {
             //location.href = "../Leaderboard/Display"
             clearInterval(Interval);
-            ajaxCallWithUserScore();
+           // ajaxCallWithUserScore();
             ajaxCallToFinish();
             //ajaxCallToLeaderboard
-            ajaxCallToRedirect();
+            location.replace("../Leaderboard/Display")
         }
         let userAnswer = $(".active").text();
         let finalAnswer;
@@ -141,38 +141,38 @@ window.onload = () => {
         }
     }
 
-    function ajaxCallWithUserScore(){
-            var seconds2 = parseInt($('#seconds').text());
-            var minutesInSeconds = parseInt($('#minutes').text()) * 60;
-            elapsedTime = seconds2 + minutesInSeconds;
-            var score = new UserScore(elapsedTime, correctAnswers);
+    //function ajaxCallWithUserScore(){
+    //        var seconds2 = parseInt($('#seconds').text());
+    //        var minutesInSeconds = parseInt($('#minutes').text()) * 60;
+    //        elapsedTime = seconds2 + minutesInSeconds;
+    //        var score = new UserScore(elapsedTime, correctAnswers);
     
-            console.log(score);
-            $.ajax({
-                url: "@Url.Action("UpdateUser")",
-                type: "POST",
-                data: JSON.stringify(score),
-                dataType: "json",
-                success: function (response) {
-                    if (response != null) {
-                        alert("Amount of correct answers:" + correctAnswers + ", Elapsed time for challenge in seconds:" + elapsedTime);
-                    }
-                    else {
-                        alert("Something went wrong...again")
-                    }
-                },
-                failure: function (response) {
-                    alert("Failure with ajax call with user score");
-                console.log(response.d);
-                console.log(response.responseText);
-                },
-                error: function (response) {
-                    alert("error with ajax call with user score")
-                    console.log(response.d);
-                console.log(response.responseText);
-                }
-            });
-        }
+    //        console.log(score);
+    //        $.ajax({
+    //            url: "@Url.Action("UpdateUser")",
+    //            type: "POST",
+    //            data: JSON.stringify(score),
+    //            dataType: "json",
+    //            success: function (response) {
+    //                if (response != null) {
+    //                    alert("Amount of correct answers:" + correctAnswers + ", Elapsed time for challenge in seconds:" + elapsedTime);
+    //                }
+    //                else {
+    //                    alert("Something went wrong...again")
+    //                }
+    //            },
+    //            failure: function (response) {
+    //                alert("Failure with ajax call with user score");
+    //            console.log(response.d);
+    //            console.log(response.responseText);
+    //            },
+    //            error: function (response) {
+    //                alert("error with ajax call with user score")
+    //                console.log(response.d);
+    //            console.log(response.responseText);
+    //            }
+    //        });
+    //    }
 
     function ajaxCallToFinish(){
         $.ajax({
@@ -198,20 +198,5 @@ window.onload = () => {
                 console.log(response.responseText);
             }
         });
-    }
-
-    function ajaxCallToRedirect(){
-        $.ajax({
-            url: "@Url.Action("Finish")",
-            type: "GET",
-            success: function (response) {
-                if (response != null) {
-                    alert("Amount of correct answers:" + correctAnswers + ", Elapsed time for challenge in seconds:" + elapsedTime);
-                }
-                else {
-                    alert("Something went wrong...again")
-                }
-    }
-        })
     }
 </script>

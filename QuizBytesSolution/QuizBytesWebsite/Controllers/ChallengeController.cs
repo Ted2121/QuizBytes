@@ -108,7 +108,7 @@ public class ChallengeController : Controller
     #region Finish
     [AllowAnonymous]
     [HttpPost]
-    public async Task<IActionResult> UpdateUser(WebUserChallengeInfoDto userInfo)
+    public async Task UpdateUser(WebUserChallengeInfoDto userInfo)
     {
         using (var bodyReader = new StreamReader(HttpContext.Request.Body))
         {

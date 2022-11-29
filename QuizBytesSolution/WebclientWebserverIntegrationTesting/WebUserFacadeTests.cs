@@ -10,7 +10,7 @@ namespace WebclientWebserverIntegrationTesting;
 public class WebUserFacadeTests
 {
     private IWebUserFacadeApiClient _webUserFacadeApiClient = new WebUserFacadeApiClient(Configuration.WEB_API_URI);
-    private ChapterFacadeApiClient _chapterFacade = new ChapterFacadeApiClient(Configuration.WEB_API_URI);
+    private QuizFacadeApiClient _chapterFacade = new QuizFacadeApiClient(Configuration.WEB_API_URI);
     private ICourseDataAccess _courseDataAccess = new CourseDataAccess(Configuration.CONNECTION_STRING);
     private ISubjectDataAccess _subjectDataAccess = new SubjectDataAccess(Configuration.CONNECTION_STRING);
     private IWebUserDataAccess _webUserDataAccess = new WebUserDataAccess(Configuration.CONNECTION_STRING);

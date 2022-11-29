@@ -14,7 +14,6 @@ namespace QuizBytesWebsite.Hubs
             ChallengeFacadeApiClient = challengeFacadeApiClient;
         }
 
-        //TimerLogicHelper _timerLogicHelper = new TimerLogicHelper();
         public async Task PrintTime()
         {
             var timeSpan = await TimerLogicHelper.CleanUpCurrentChallengeOnTimeElapsed(ChallengeFacadeApiClient);

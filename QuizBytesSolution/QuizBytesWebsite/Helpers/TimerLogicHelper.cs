@@ -54,15 +54,8 @@ namespace QuizBytesWebsite.Helpers
             var timeSpan = calcTimeLeftUntilEvent();
             var oneSecondLeft = new TimeSpan(0, 0, 1);
 
-            // This starts the first ever challenge of the server
-            //if (LeaderboardBuilder.Participants == null)
-            //{
-            //    LeaderboardBuilder.InitializeChallenge();
-            //}
-            // Have the timer fire repeated events (true is the default)
             _timer.AutoReset = true;
 
-            //TODO remove console logging
             // Start the timer
             if (timeSpan <= oneSecondLeft)
             {
@@ -70,15 +63,12 @@ namespace QuizBytesWebsite.Helpers
                 {
                     await challengeFacadeApiClient.DistributeRewardsAsync(LeaderboardBuilder.BuildLeaderboardFromParticipantList());
                     await challengeFacadeApiClient.ClearTempTableBeforeNextChallengeAsync();
-                    Console.WriteLine("TEST cleaned up");
-
                     // Once the rewards are distributed and the current challenge table has been cleared, we start a new challenge
                     LeaderboardBuilder.InitializeChallenge();
                 }
                 catch
                 {
                     _timer.Stop();
-                    Console.WriteLine("TEST could not clean up");
                     return new TimeSpan(0, 0, 0);
 
                 }

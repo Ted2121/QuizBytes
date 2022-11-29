@@ -15,10 +15,11 @@
 
 <script>
 
-    let questionCount;
+    let questionCount = 0;
     let questions= []; 
     let unfoldedQuestions = [];
-
+    let answers= [];
+    let correctAnswers = 0;
 window.onload = () => {
 
     $.ajax({
@@ -26,62 +27,16 @@ window.onload = () => {
         type: 'GET',
         dataType: "json",
         success: function (result) {
-                //console.log(result);
             for(let question of Object.values(result)){
                     questions.push(question);
-                    //console.log(questions);
             }
         
             for(let array of questions){
                 for(let question of array){
                 unfoldedQuestions.push(question);
                 }
-            }
-
-            //console.log(unfoldedQuestions);
-
-            questionCount = unfoldedQuestions.length;
-            
-            //console.log(questionCount);
-            let correctAnswers = 0;
-            let userAnswer;
-            //console.log("test1");
-
-
-            let questionIndex = 0;
-                let question = document.getElementById("quiz-questions");
-                    question.innerHTML = `<h2 class ="question-text">Q${questionIndex + 1}. ${unfoldedQuestions[questionIndex].question.questionText}</h2>`
-                let ul = document.createElement("ul");
-                    ul.setAttribute("class", "question-options");
-                    question.appendChild(ul);
-                let answers = [];
-
-                    for (let answer of unfoldedQuestions[questionIndex].answers) {
-                        var li = document.createElement("li");
-                        li.setAttribute("class", "option");
-                        li.appendChild(document.createTextNode(answer.answerText));
-                        console.log(answer.answerText);
-                        ul.appendChild(li);
-                    answers.push(answer);
-                }
-                //console.log(answers);
-                toggleActive();
-
-            function toggleActive() {
-                console.log("test in toggleActive function");
-                let option = document.querySelectorAll("li.option");
-                for (let i = 0; i < option.length; i++) {
-                    option[i].onclick = function () {
-                        for (let i = 0; i < option.length; i++) {
-                            if (option[i].classList.contains("active")) {
-                                option[i].classList.remove("active");
-                                userAnswer = null;
-                            }
-                        }
-                        option[i].classList.add("active");
-                    }
-                }
-            }
+            }            
+            show(questionCount);
         }
 
     }) 
@@ -91,21 +46,60 @@ window.onload = () => {
     function next() {
         if (questionCount == unfoldedQuestions.length - 1) {
             location.href = "../Leaderboard/Display"
-            console.log("test in next func");
         }
 
         let userAnswer = $(".active").text();
         console.log(userAnswer);
-
-        if (userAnswer == unfoldedQuestions[questionCount].answer) {
-            correctAnswers++;
-            sessionStorage.setItem("Correct Answers:", correctAnswers)
-            console.log(correctAnswers);
+        console.log(answers.lenght);
+        console.log(answers);
+        var finalAnswer;
+        for(var i =0; i<answers.length; i++){
+            if(userAnswer == answers[i].answerText){
+                console.log(answers[i].isCorrect)
+                finalAnswer = answers[i];
+                console.log(finalAnswer);
+            }
         }
-
+        if(finalAnswer.isCorrect = "Yes"){
+            correctAnswers++;
+            console.log(correctAnswers);
+            sessionStorage.setItem("Correct Answers:", correctAnswers)
+        }
         questionCount++;
         show(questionCount);
 
+    }
+
+    function show(count) {
+        answers = [];
+        let questionIndex = 0;
+        let question = document.getElementById("quiz-questions");
+        question.innerHTML = `<h2 class ="question-text">Q${questionCount + 1}. ${unfoldedQuestions[questionCount].question.questionText}</h2>`
+        let ul = document.createElement("ul");
+        ul.setAttribute("class", "question-options");
+        question.appendChild(ul);
+
+        for (let answer of unfoldedQuestions[questionCount].answers) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "option");
+            li.appendChild(document.createTextNode(answer.answerText));
+            ul.appendChild(li);
+            answers.push(answer);
+            toggleActive();
+        }
+    }
+    function toggleActive() {
+        let option = document.querySelectorAll("li.option");
+        for (let i = 0; i < option.length; i++) {
+            option[i].onclick = function () {
+                for (let i = 0; i < option.length; i++) {
+                    if (option[i].classList.contains("active")) {
+                        option[i].classList.remove("active");
+                    }
+                }
+                option[i].classList.add("active");
+            }
+        }
     }
 
 </script>

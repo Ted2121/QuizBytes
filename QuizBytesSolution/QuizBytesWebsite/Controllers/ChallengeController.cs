@@ -106,14 +106,15 @@ public class ChallengeController : Controller
 
     #region Finish
     [AllowAnonymous]
-    [ValidateAntiForgeryToken]
     [HttpPost]
-    private async Task UpdateUser(WebUserChallengeInfoDto userInfo)
+    public async Task<IActionResult> UpdateUser(WebUserChallengeInfoDto userInfo)
     {
         var user = await GetUserFromClaimAsync();
         user.NumberOfCorrectAnswers = userInfo.CorrectAnswers;
         user.ElapsedSecondsInChallenge = userInfo.ElapsedTime;
         await WebUserFacadeApiClient.UpdateWebUserAsync(user);
+
+        return Ok();
     }
 
     [HttpPost]

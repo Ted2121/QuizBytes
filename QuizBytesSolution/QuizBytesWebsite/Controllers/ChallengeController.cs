@@ -108,14 +108,8 @@ public class ChallengeController : Controller
     #region Finish
     [AllowAnonymous]
     [HttpPost]
-    public async Task<IActionResult> UpdateUser(WebUserChallengeInfoDto userInfo)
+    public async Task<IActionResult> UpdateUser([FromBody] WebUserChallengeInfoDto userInfo)
     {
-        using (var bodyReader = new StreamReader(HttpContext.Request.Body))
-        {
-            Task<string> requests = bodyReader.ReadToEndAsync();
-
-           //WebUserChallengeInfoDto userInfo1 = await JsonSerializer.Deserialize<WebUserChallengeInfoDto>(requests);
-        }
         var user = await GetUserFromClaimAsync();
         user.NumberOfCorrectAnswers = userInfo.CorrectAnswers;
         user.ElapsedSecondsInChallenge = userInfo.ElapsedTime;

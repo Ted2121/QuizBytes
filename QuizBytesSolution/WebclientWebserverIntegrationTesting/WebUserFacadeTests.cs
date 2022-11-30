@@ -35,7 +35,7 @@ public class WebUserFacadeTests
             Email = "bob@Bob.com",
             TotalPoints = 0,
             AvailablePoints = 64,
-            NumberOfCorrectAnswers = 4
+            CorrectAnswers = 4
         };
         _userDto.Id = await _webUserDataAccess.InsertWebUserAsync(_userDto.FromDto());
 

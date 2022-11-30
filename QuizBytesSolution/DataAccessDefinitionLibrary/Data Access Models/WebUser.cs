@@ -11,7 +11,8 @@ public class WebUser
     public int AvailablePoints { get; set; }
     public string Email { get; set; }
     public int ElapsedSecondsInChallenge { get; set; }
-    
+    public int CorrectAnswers { get; set; }
+
     public WebUser(int id, string username, string password, string email, int totalPoints, int availablePoints)
     {
         //constuctor for receiving and build an object -- why not just remove ID here since I don't think we'll need it?

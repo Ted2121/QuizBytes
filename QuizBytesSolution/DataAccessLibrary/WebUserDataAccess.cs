@@ -107,7 +107,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "INSERT INTO WebUser(Username, PasswordHash, TotalPoints, AvailablePoints, Email, ElapsedSecondsInChallenge) VALUES (@Username, @PasswordHash, @TotalPoints, @AvailablePoints, @Email, @ElapsedSecondsInChallenge); SELECT CAST(scope_identity() AS int)";
+                string commandText = "INSERT INTO WebUser(Username, PasswordHash, TotalPoints, AvailablePoints, Email, ElapsedSecondsInChallenge, CorrectAnswers) VALUES (@Username, @PasswordHash, @TotalPoints, @AvailablePoints, @Email, @ElapsedSecondsInChallenge, @CorrectAnswers); SELECT CAST(scope_identity() AS int)";
 
                 using (SqlConnection connection = CreateConnection())
                 {
@@ -119,7 +119,8 @@ namespace SQLAccessImplementationLibrary
                         TotalPoints = webUser.TotalPoints,
                         AvailablePoints = webUser.AvailablePoints,
                         Email = webUser.Email,
-                        ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge
+                        ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge,
+                        CorrectAnswers = webUser.CorrectAnswers
                     };
 
                     return webUser.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
@@ -144,6 +145,7 @@ namespace SQLAccessImplementationLibrary
                     "AvailablePoints = @AvailablePoints, " +
                     "Email = @Email, " +
                     "ElapsedSecondsInChallenge = @ElapsedSecondsInChallenge " +
+                    "CorrectAnswers = @CorrectAnswers " +
                     "WHERE Id = @Id;";
 
                 using (SqlConnection connection = CreateConnection())
@@ -155,6 +157,7 @@ namespace SQLAccessImplementationLibrary
                         AvailablePoints = webUser.AvailablePoints,
                         Email = webUser.Email,
                         ElapsedSecondsInChallenge = webUser.ElapsedSecondsInChallenge,
+                        CorrectAnswers = webUser.CorrectAnswers,
                         Id = webUser.Id
                     };
 

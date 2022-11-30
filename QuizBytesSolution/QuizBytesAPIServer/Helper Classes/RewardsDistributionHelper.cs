@@ -84,10 +84,10 @@ public class RewardsDistributionHelper : IRewardsDistributionHelper
 
     private int CalculateRewardsForQuiz(WebUserDto webUserDto)
     {
-        if (webUserDto.NumberOfCorrectAnswers > 0)
+        if (webUserDto.CorrectAnswers > 0)
         {
             int questionRewardValue = 8;
-            return webUserDto.NumberOfCorrectAnswers * questionRewardValue;
+            return webUserDto.CorrectAnswers * questionRewardValue;
 
         }
         else

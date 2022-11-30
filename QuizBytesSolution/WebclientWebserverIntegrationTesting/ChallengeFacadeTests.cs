@@ -42,7 +42,7 @@ public class ChallengeFacadeTests
             Email = "bob@Bob.com",
             TotalPoints = 0,
             AvailablePoints = 0,
-            NumberOfCorrectAnswers = 4
+            CorrectAnswers = 4
         };
         _userDto.Id = await _webUserDataAccess.InsertWebUserAsync(_userDto.FromDto());
 
@@ -237,7 +237,7 @@ public class ChallengeFacadeTests
                 Email = "joe@Bob.com",
                 TotalPoints = 0,
                 AvailablePoints = 0,
-                NumberOfCorrectAnswers = 5
+                CorrectAnswers = 5
             };
 
             _secondUserDto.Id = await _webUserDataAccess.InsertWebUserAsync(_secondUserDto.FromDto());
@@ -258,7 +258,7 @@ public class ChallengeFacadeTests
 
             var secondPlaceReward = 128;
             var pointsPerCorrectAnswer = 8;
-            var pointsToBeAdded = (_secondUserDto.NumberOfCorrectAnswers * pointsPerCorrectAnswer) + secondPlaceReward;
+            var pointsToBeAdded = (_secondUserDto.CorrectAnswers * pointsPerCorrectAnswer) + secondPlaceReward;
 
             // Act
 

@@ -17,7 +17,7 @@ public class LeaderboardBuilder : ILeaderboardBuilder
 
         var participantUsers = Participants.Select(participant => participant.WebUser);
 
-        var orderedParticipants =  participantUsers.OrderByDescending(user => user.NumberOfCorrectAnswers).ThenBy(user => user.ElapsedSecondsInChallenge);
+        var orderedParticipants =  participantUsers.OrderByDescending(user => user.CorrectAnswers).ThenBy(user => user.ElapsedSecondsInChallenge);
 
         return new LeaderboardDto()
         {

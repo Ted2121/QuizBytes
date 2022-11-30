@@ -111,7 +111,7 @@ public class ChallengeController : Controller
     public async Task<IActionResult> UpdateUser([FromBody] WebUserChallengeInfoDto userInfo)
     {
         var user = await GetUserFromClaimAsync();
-        user.NumberOfCorrectAnswers = userInfo.CorrectAnswers;
+        user.CorrectAnswers = userInfo.CorrectAnswers;
         user.ElapsedSecondsInChallenge = userInfo.ElapsedTime;
         await WebUserFacadeApiClient.UpdateWebUserAsync(user);
 
@@ -150,7 +150,7 @@ public class ChallengeController : Controller
                 var leaderboardInfo = new LeaderboardInfo()
                 {
                     Username = users[i].Username,
-                    Points = CalculateUserPoints(users[i].NumberOfCorrectAnswers),
+                    Points = CalculateUserPoints(users[i].CorrectAnswers),
                     ElapsedTime = ElapsedSecondsToString(users[i].ElapsedSecondsInChallenge)
                 };
 

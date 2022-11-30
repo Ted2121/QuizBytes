@@ -39,7 +39,7 @@ public class LeaderboardController : Controller
                 var leaderboardInfo = new LeaderboardInfo()
                 {
                     Username = users[i].Username,
-                    Points = CalculateUserPoints(users[i].NumberOfCorrectAnswers),
+                    Points = CalculateUserPoints(users[i].CorrectAnswers),
                     ElapsedTime = ElapsedSecondsToString(users[i].ElapsedSecondsInChallenge)
                 };
 

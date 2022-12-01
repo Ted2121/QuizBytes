@@ -68,7 +68,6 @@ namespace QuizBytesWebsite.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity),
                 authProperties);
         }
-
         
         public async Task<IActionResult> LogOut()
         {

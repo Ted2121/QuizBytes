@@ -144,7 +144,7 @@ namespace SQLAccessImplementationLibrary
                     "TotalPoints = @TotalPoints, " +
                     "AvailablePoints = @AvailablePoints, " +
                     "Email = @Email, " +
-                    "ElapsedSecondsInChallenge = @ElapsedSecondsInChallenge " +
+                    "ElapsedSecondsInChallenge = @ElapsedSecondsInChallenge, " +
                     "CorrectAnswers = @CorrectAnswers " +
                     "WHERE Id = @Id;";
 

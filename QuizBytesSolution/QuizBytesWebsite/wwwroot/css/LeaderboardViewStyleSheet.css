@@ -1,5 +1,5 @@
 ﻿﻿#leaderboard {
-width: 600px;
+width: 50%;
 height: auto;
 border-block:solid;
 }
@@ -15,11 +15,17 @@ border-bottom: 1px solid #AFAFAF;
 .name {
     position: relative;
     display: inline-block;
-    width: 75%;
+    width: 50%;
     line-height: 45px;
 }
 
 .score {
+    position: relative;
+    display: inline-block;
+    width: 25%;
+}
+
+.time {
     position: relative;
     display: inline-block;
     width: 25%;

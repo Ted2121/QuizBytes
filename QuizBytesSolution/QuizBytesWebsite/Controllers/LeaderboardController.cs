@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuizBytesWebsite.Helpers;
+using QuizBytesWebsite.Models;
 using WebApiClient.DTOs;
 
 namespace QuizBytesWebsite.Controllers;
@@ -15,19 +16,23 @@ public class LeaderboardController : Controller
     }
 
     [AllowAnonymous]
+    [HttpGet]
     public IActionResult Display()
     {
-        return View();
-    }
-
-    [HttpGet]
-    public async Task<JsonResult> Leaderboard()
-    {
-
         var leaderboard = LeaderboardBuilder.BuildLeaderboardFromParticipantList();
-        var leaderboardInfo = FilterUserProperties(leaderboard);
-        return Json(leaderboardInfo);
+        LeaderboardModel leaderboardModel = new LeaderboardModel();
+          leaderboardModel.Leaderboard  = FilterUserProperties(leaderboard);
+        return View(leaderboardModel);
     }
+
+    //[AllowAnonymous]
+    //[HttpGet]
+    //public JsonResult Leaderboard()
+    //{
+
+
+    //    return Json(leaderboardInfo);
+    //}
 
     private List<LeaderboardInfo> FilterUserProperties(LeaderboardDto leaderboard)
     {
@@ -58,11 +63,8 @@ public class LeaderboardController : Controller
         return timespan.ToString(@"hh\:mm\:ss");
     }
 
-    internal class LeaderboardInfo
-    {
-        public string? Username { get; set; }
-        public int Points { get; set; }
-        public string? ElapsedTime { get; set; }
-    }
 }
+
+
+
 

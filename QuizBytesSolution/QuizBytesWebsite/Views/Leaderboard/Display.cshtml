@@ -1,14 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Leaderboard";
 }
+@model QuizBytesWebsite.Models.LeaderboardModel
+
 <link rel="stylesheet" href="~/css/LeaderboardViewStyleSheet.css" />
 <h1>Leaderboard</h1>
 <p1>Best overall players:</p1>
 <div id="leaderboard">
-    <div class="row">
-        <div class="name">Player1</div><div class="score">430</div>
-    </div>
+    @foreach(var user in Model.Leaderboard){
 
+    <div class="row">
+            <div class="name">@user.Username</div><div class="score">@user.Points</div><div class="time">@user.ElapsedTime</div>
+    </div>
+    }
+@*
     <div class="row">
         <div class="name">Player2</div><div class="score">580</div>
     </div>
@@ -23,18 +28,20 @@
 
     <div class="row">
         <div class="name">Player5</div><div class="score">495</div>
-    </div>
+    </div>*@
 </div>
 <div id="leaderboard">
     <p1>Highest latest challenge scores:</p1>
 </div>
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script src="~/js/LeaderboardSortingByScore.js"></script>
-<script>
+@*<script>
     window.onload = () => {
         $.ajax = ({
             url: "@Url.Action("Leaderboard")",
             type: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             dataType: "json",
             success: function (result) {
                 console.log(result)
@@ -42,4 +49,6 @@
         })
     }
 
-</script>
+</script>*@
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/LeaderboardSortingByScore.js"></script>

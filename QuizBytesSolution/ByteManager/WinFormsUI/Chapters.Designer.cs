@@ -430,14 +430,12 @@
         private PictureBox chaptersConfirmButton;
         private PictureBox chaptersCancelButton;
         private PictureBox chaptersDeleteButton;
-<<<<<<< HEAD
         private DataGridViewTextBoxColumn course;
         private DataGridViewTextBoxColumn subject;
         private DataGridViewTextBoxColumn chapterName;
         private Label chapterDescription;
         private TextBox descriptionTextBox;
-=======
-        private BindingSource chapterBindingSource;
->>>>>>> feature-web-mvc
+
+
     }
 }

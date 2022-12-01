@@ -64,7 +64,9 @@ namespace ByteManager.WinFormsUI
 
         private void chaptersEditButton_Click(object sender, EventArgs e)
         {
-
+            chapterNameTextBox.ReadOnly = false;
+            topicComboBox.DropDownStyle = ComboBoxStyle.DropDown;
+            subTopicComboBox.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private void questionsNavigationButton_Click(object sender, EventArgs e)

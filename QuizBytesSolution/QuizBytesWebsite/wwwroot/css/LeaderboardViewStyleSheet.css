@@ -1,0 +1,44 @@
+﻿﻿#leaderboard {
+width: 50%;
+height: auto;
+border-block:solid;
+}
+
+.row {
+position: relative;
+width:15%!important;
+display: block;
+height: 40px;
+border-bottom: 1px solid #AFAFAF;
+}
+
+.name {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    line-height: 45px;
+}
+
+.score {
+    position: relative;
+    display: inline-block;
+    width: 25%;
+}
+
+.time {
+    position: relative;
+    display: inline-block;
+    width: 25%;
+}
+
+.row:nth-child(1) {
+    background: gold;
+}
+
+.row:nth-child(2) {
+    background: #c0c0c0;
+}
+
+.row:nth-child(3) {
+    background: #cd7f32;
+}

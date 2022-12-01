@@ -1,15 +1,14 @@
-﻿using DataAccessDefinitionLibrary.Data_Access_Models;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace QuizBytesAPIServer.DTOs
+namespace QuizBytesAPIServer.DTOs;
+
+public class WebUserChapterUnlockDto
 {
-    public class WebUserChapterUnlockDto
-    {
-        public int WebUserId { get; set; }
-        public int ChapterId { get; set; }
-        public WebUser WebUserDto { get; set; }
-        public Chapter ChapterDto { get; set; }
-
-        // TODO add this as logic for unlocking the chapter
-        // if(webUser.AvailablePoints >= chapter.UnlockPrice)
-    }
+    public WebUserDto? WebUserDto { get; set; }
+    public ChapterDto? ChapterDto { get; set; }
 }

@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Start";
+}
+<link rel="stylesheet" href="~/css/QuizViewStyleSheet.css" />
+<link rel="stylesheet" href="~/css/QuizViewPageElementsStyleSheet.css" />
+<div class="left">
+    <div class="side-navbar">
+        <div class="item">
+            <a class="submenu-btn" onclick="expandCourses()">Programming</a>
+            <div class="content courses" id="submenuCourses">
+                
+            </div>
+            </div>
+        <div class="item">
+            <a class ="submenu-btn" onclick="expandSubjects()">Subjects</a>
+            <div class ="content subjects" id="submenuSubjects">
+                
+            </div>
+            </div>
+    </div>
+
+</div>
+
+<div class="container overflow-hidden text-center ">
+    <div class="row gy-5">
+        <div class="body col-4" id="unlocked-chapters">
+            <p>Unlocked Chapters:</p>
+
+        </div>
+        <div class="body col-4" id="unlockedable-chapters">
+            <p>Unlockedable Chapters:</p>
+
+        </div>
+        <div class="body col-4" id="locked-chapters">
+            <p>Locked Chapters:</p>
+
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/QuizViewLogic.js"></script>
+<script>
+    jQuery.ajax({
+        url: '@Url.Action("getCourses")',
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            console.log(result);
+        }
+    })
+</script>

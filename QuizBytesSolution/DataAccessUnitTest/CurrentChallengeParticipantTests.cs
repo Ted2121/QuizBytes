@@ -1,8 +1,6 @@
-using SQLAccessImplementationLibrary;
+using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
 using NUnit.Framework;
-using System;
-using DataAccessDefinitionLibrary.DAO_Interfaces;
 using SQLAccessImplementationLibraryUnitTest;
 using Assert = NUnit.Framework.Assert;
 
@@ -11,84 +9,183 @@ namespace DataAccessUnitTest
     [TestFixture]
     public class CurrentChallengeParticipantTests
     {
-        WebUser? _user;
-        Course? _course;
-        Random _random;
-
-        ICurrentChallengeParticipantDataAccess _currentChallengeParticipantDataAccess;
+        private WebUser? _user;
+        private Course? _course;
+        private Random? _random;
+        private ICurrentChallengeParticipantDataAccess? _currentChallengeParticipantDataAccess;
 
         [SetUp]
-        public async void SetUp()
+        public async Task SetUpAsync()
         {
-            int randomId = _random.Next(1, 500);
+            _random = new Random();
+            int randomId = _random.Next(101, 500);
             int randomTotalPoints = _random.Next(1, 500);
             int randomAvailablePoints = _random.Next(1, 500);
 
             _user = new WebUser(randomId, "testusername", "testpassword", "testemail", randomTotalPoints, randomAvailablePoints);
             _course = new Course("testname", "testdescription");
-            _random = new Random();
 
-            _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock(Configuration.CONNECTION_STRING);
+            _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock();
 
-           
         }
 
         [TearDown]
-        public async void TearDown()
+        public async Task TearDownAsync()
         {
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
         }
 
         [Test]
-        public async Task TestUserLimitBlockOnInsertAttemptWithRandomUserIds()
+        public async Task TestUserLimitBlockOnInsertAsync()
         {
 
+            try
+            {
             // Arrange
-            int randomId = _random.Next(1, 500);
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
-            // sadly logic cannot be avoided in this test as we need to create 100 users to reach the challenge limit
-            WebUser[] webUsers = new WebUser[100];
+            WebUser[] webUsers = new WebUser[10];
             for (int i = 0; i < webUsers.Length; i++)
             {
-                // we only care about it for the challenge test
-                webUsers[i] = new WebUser(randomId); //can't we just put i here so the I would just be a counter
+                webUsers[i] = new WebUser(i + 1);
                 await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(webUsers[i], _course);
             }
 
-            // Act
-            
-            var insertion = () =>  _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+            // Act & Assert
 
-            // Assert
+                Assert.That(async () => await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course), Throws.Exception);
+            }
+            finally
+            {
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
-            Assert.That(insertion, Throws.Exception);
+            }
+
 
         }
+
         [Test]
-        public async Task TestInsertMethodPositiveExpectation()
+        public async Task TestInsertMethodPositiveExpectationAsync()
         {
+            try
+            {
             //Arrange
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
             int randomTestId = 1;
-            _user.PKWebUserId = randomTestId;
-            _course.PKCourseId = randomTestId;
-            var expected = _user.PKWebUserId; 
+            _user.Id = randomTestId;
+            _course.Id = randomTestId;
+            var expected = _user.Id;
 
             //Act
             var actual = await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
             //Assert
-            Assert.AreEqual(expected, actual);
+                Assert.That(actual, Is.EqualTo(expected));
+            }
+            finally
+            {
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
+            }
+
         }
+
         [Test]
         public async Task TestDeleteWithExistingUser() // not sure if we want to test for non existing users or not, that's why I added the "WithExisting" part
         {
-            //Arrange is done in SetUp
+            try
+            {
+            //Arrange
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
             await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
-            //act
-            bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.PKWebUserId);
+
+            //Act
+            bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.Id);
 
             //Assert
-            Assert.That(deleted, Is.True);
+                Assert.That(deleted, Is.True);
+            }
+            finally
+            {
+
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            }
+
+        }
+
+        [Test]
+        public async Task CheckingIfWebUserIsInChallengeExpectingFalseAsync()
+        {
+            //Arrange
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
+            //Act
+            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.Id);
+
+            // Assert
+            
+                Assert.That(actual, Is.False);
+         
+
+        }
+
+        [Test]
+        public async Task CheckingIfWebUserIsInChallengeExpectingTrueAsync()
+        {
+            try
+            {
+            //Arrange
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+
+            //Act
+            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.Id);
+
+            // Assert
+                Assert.That(actual, Is.True);
+            }
+            finally
+            {
+                await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
+            }
+
+        }
+
+        [Test]
+        public async Task TestingIfCorrectRowAmountIsReturnedAsync()
+        {
+            try
+            {
+            // Arrange
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+
+            // Act
+            var actual = await _currentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
+
+            // Assert
+                Assert.That(actual, Is.EqualTo(1));
+            }
+            finally
+            {
+
+            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+            }
+        }
+
+        [Test]
+        public async Task TestingIfClearingTheTableWorksAsync()
+        {
+            // Arrange
+            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+
+
+            // Act
+            var actual = await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
+            // Assert
+            Assert.That(actual, Is.EqualTo(true));
         }
     }
 }

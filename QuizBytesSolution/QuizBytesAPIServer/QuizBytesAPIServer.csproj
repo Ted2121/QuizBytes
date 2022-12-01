@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DataAccessDefinitionLibrary\DataAccessDefinitionLibrary.csproj" />
     <ProjectReference Include="..\DataAccessLibrary\SQLAccessImplementationLibrary.csproj" />
+    <ProjectReference Include="..\DataAccessUnitTest\SQLAccessImplementationLibraryUnitTest.csproj" />
   </ItemGroup>
 
 </Project>

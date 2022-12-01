@@ -5,15 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessDefinitionLibrary.DAO_Interfaces
-{
-    public interface IAnswerDataAccess
-    {
+namespace DataAccessDefinitionLibrary.DAO_Interfaces;
 
-        Task<Answer> InsertAnswerAsync(Answer answer);
-        Task<bool> UpdateAnswerAsync(Answer answer);
-        Task<IEnumerable<Answer>> GetAllAnswersByQuestionIdAsync(int questionId);
-        Task<IEnumerable<Answer>> GetAllAnswersAsync();
-        Task<bool> DeleteAnswerAsync(int answerId);
-    }
+public interface IAnswerDataAccess
+{
+
+    Task<int> InsertAnswerAsync(Answer answer);
+    Task<bool> UpdateAnswerAsync(Answer answer);
+    Task<IEnumerable<Answer>> GetAllAnswersByQuestionIdAsync(int id);
+    Task<IEnumerable<Answer>> GetAllAnswersAsync();
+    Task<bool> DeleteAnswerAsync(int id);
 }

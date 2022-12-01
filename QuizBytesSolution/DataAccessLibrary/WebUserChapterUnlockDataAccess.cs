@@ -15,7 +15,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM WebUserChapterUnlock WHERE FKWebUserId = @FKWebUserId AND FKChapterId = @FKChapterId";
+                string commandText = "DELETE FROM UserChapterUnlock WHERE FKWebUserId = @FKWebUserId AND FKChapterId = @FKChapterId";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
@@ -28,9 +28,9 @@ namespace SQLAccessImplementationLibrary
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                throw new Exception($"Exception while trying to delete a row from WebUserChapterUnlock table. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to delete a row from UserChapterUnlock table. The exception was: '{ex.Message}'", ex);
 
             }
         }
@@ -39,7 +39,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = " SELECT * FROM WebUserChapterUnlock";
+                string commandText = " SELECT * FROM UserChapterUnlock";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var webUserChapterUnlocks = await connection.QueryAsync<WebUserChapterUnlock>(commandText);
@@ -47,9 +47,9 @@ namespace SQLAccessImplementationLibrary
                     return webUserChapterUnlocks;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to read all rows from the UserChapterUnlock table. The exception was: '{ex.Message}'", ex);
 
             }
         }
@@ -58,13 +58,13 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM WebUserChapterUnlock WHERE FKChapterId = @FKChapterId";
+                string commandText = "SELECT * FROM UserChapterUnlock WHERE FKChapterId = @FKChapterId";
                 using (SqlConnection connection = CreateConnection())
                 {
 
                     var parameters = new
                     {
-                        FKChapterId = chapter.PKChapterId
+                        FKChapterId = chapter.Id
                     };
 
                     var webUserChapterUnlocks = await connection.QueryAsync<WebUserChapterUnlock>(commandText, parameters);
@@ -72,9 +72,9 @@ namespace SQLAccessImplementationLibrary
                     return webUserChapterUnlocks;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table with the foreign key attribute: FKChapterId = {chapter.PKChapterId}. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to read all rows from the UserChapterUnlock table with the foreign key attribute: FKChapterId = {chapter.Id}. The exception was: '{ex.Message}'", ex);
 
             }
         }
@@ -83,13 +83,13 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM WebUserChapterUnlock WHERE FKWebUserId = @FKChapterId";
+                string commandText = "SELECT * FROM UserChapterUnlock WHERE FKWebUserId = @FKWebUserId";
                 using (SqlConnection connection = CreateConnection())
                 {
 
                     var parameters = new
                     {
-                        FKWebUserId = webUser.PKWebUserId
+                        FKWebUserId = webUser.Id
                     };
 
                     var webUserChapterUnlocks = await connection.QueryAsync<WebUserChapterUnlock>(commandText, parameters);
@@ -97,34 +97,36 @@ namespace SQLAccessImplementationLibrary
                     return webUserChapterUnlocks;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                throw new Exception($"Exception while trying to read all rows from the WebUserChapterUnlock table with the foreign key attribute: FKChapterId = {webUser.PKWebUserId}. The exception was: '{ex.Message}'", ex);
+                throw new Exception($"Exception while trying to read all rows from the UserChapterUnlock table with the foreign key attribute: FKChapterId = {webUser.Id}. The exception was: '{ex.Message}'", ex);
 
             }
         }
 
 
-        public async Task InsertWebUserChapterUnlockAsync(WebUserChapterUnlock webUserChapterUnlock)
+        public async Task<(int, int)> InsertWebUserChapterUnlockAsync(int webUserId, int chapterId)
         {
             try
             {
-                string commandText = "INSERT INTO WebUserChapterUnlock (FKChapterId, FKWebUserId) VALUES (@FKChapterId, @FKWebUserId))";
+                string commandText = "INSERT INTO UserChapterUnlock (FKChapterId, FKWebUserId) VALUES (@FKChapterId, @FKWebUserId)";
 
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        FKChapterId = webUserChapterUnlock.FKChapterId,
-                        FKWebUserId = webUserChapterUnlock.FKWebUserId
+                        FKChapterId = chapterId,
+                        FKWebUserId = webUserId
                     };
 
                     await connection.ExecuteAsync(commandText, parameters);
+
+                    return (webUserId, chapterId);
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                throw new($"Exception while trying to insert a WebUserChapterUnlock object. The exception was: '{ex.Message}'", ex);
+                throw new($"Exception while trying to insert a UserChapterUnlock object. The exception was: '{ex.Message}'", ex);
 
             }
         }

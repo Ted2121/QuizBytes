@@ -15,21 +15,20 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "DELETE FROM Course WHERE PKCourseId = @PKCourseId";
+                string commandText = "DELETE FROM Course WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKCourseId = courseId
+                        Id = courseId
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to delete a row from Course table. The exception was: '{ex.Message}'", ex);
-
             }
         }
 
@@ -45,10 +44,9 @@ namespace SQLAccessImplementationLibrary
                     return courses;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the Course table. The exception was: '{ex.Message}'", ex);
-
             }
         }
 
@@ -56,12 +54,12 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM Course WHERE PKCourseId = @PKCourseId";
+                string commandText = "SELECT * FROM Course WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKCourseId = courseId
+                        Id = courseId
                     };
 
                     var course = await connection.QuerySingleOrDefaultAsync<Course>(commandText, parameters);
@@ -69,16 +67,37 @@ namespace SQLAccessImplementationLibrary
                     return course;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-
                 throw new($"Exception while trying to find the Course with the '{courseId}'. The exception was: '{ex.Message}'", ex);
-
-
             }
         }
 
-        public async Task<Course> InsertCourseAsync(Course course)
+        public async Task<Course> GetCourseByNameAsync(string courseName)
+        {
+            try
+            {
+                string commandText = "SELECT * FROM Course WHERE Name = @Name";
+                using (SqlConnection connection = CreateConnection())
+                {
+                    var parameters = new
+                    {
+                        Name = courseName
+                    };
+
+                    var course = await connection.QuerySingleOrDefaultAsync<Course>(commandText, parameters);
+
+                    return course;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new($"Exception while trying to find the Course with the '{courseName}'. The exception was: '{ex.Message}'", ex);
+            }
+        }
+
+        public async Task<int> InsertCourseAsync(Course course)
         {
             try
             {
@@ -92,15 +111,14 @@ namespace SQLAccessImplementationLibrary
                         Description = course.Description
                     };
 
-                    await connection.ExecuteAsync(commandText, parameters);
-                    course.PKCourseId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
-                    return course;
+                    return course.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
+
                 }
+
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new($"Exception while trying to insert a Course object. The exception was: '{ex.Message}'", ex);
-
             }
         }
 
@@ -111,7 +129,7 @@ namespace SQLAccessImplementationLibrary
                 string commandText = "UPDATE Course " +
                      "SET Name = @Name, " +
                      "Description = @Description " +
-                     "WHERE PKCourseId = @PKCourseId";
+                     "WHERE Id = @Id";
 
                 using (SqlConnection connection = CreateConnection())
                 {
@@ -119,14 +137,14 @@ namespace SQLAccessImplementationLibrary
                     {
                         Name = course.Name,
                         Description = course.Description,
-                        PKCourseId = course.PKCourseId
+                        Id = course.Id
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
 
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
 
                 throw new Exception($"Exception while trying to update Course. The exception was: '{ex.Message}'", ex);

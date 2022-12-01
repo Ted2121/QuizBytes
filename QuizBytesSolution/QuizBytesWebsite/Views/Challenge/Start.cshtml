@@ -1,0 +1,203 @@
+﻿<link rel="stylesheet" href="~/css/ChallengeQuizStyleSheet.css" />
+<div class="wrapper">
+    <p class="timer"><span id="minutes">00</span>:<span id="seconds">00</span></p>
+<div class="quiz">
+<div class="quiz-body">
+    <div id="quiz-questions">
+        <p id="error-message"></p>
+    </div>
+    </div>
+</div>
+</div>
+
+<button class="btn-next" onclick="next()">Next</button>
+<script src ="~/lib/jquery/dist/jquery.js"></script>
+@*<script src="~/js/ChallengeQuizLogic.js"></script>*@
+
+<script>
+    var seconds = 00;
+    var minutes = 00;
+    var appendMinutes = document.getElementById("minutes")
+    var appendSeconds = document.getElementById("seconds")
+    let questionCount = 0;
+    let questions= []; 
+    let unfoldedQuestions = [];
+    let answers= [];
+    let correctAnswers = 0;
+    var Interval;
+    var elapsedTime = 0;
+window.onload = () => {
+        clearInterval(Interval);
+        Interval = setInterval(startTimer, 900);
+        function startTimer() {
+            seconds++;
+
+            if (seconds <= 9) {
+                appendSeconds.innerHTML = "0" + seconds;
+            }
+
+            if (seconds > 9) {
+                appendSeconds.innerHTML = seconds;
+
+            }
+
+            if (seconds > 60) {
+                console.log("minutes");
+                minutes++;
+                appendMinutes.innerHTML = "0" + minutes;
+                seconds = 0;
+                appendSeconds.innerHTML = "0" + 0;
+            }
+
+            if (seconds > 9) {
+                appendSeconds.innerHTML = seconds;
+            }
+
+
+
+    }
+    $.ajax({
+        url: "@Url.Action("Quiz")",
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            for(let question of Object.values(result)){
+                    questions.push(question);
+            }
+        
+            for(let array of questions){
+                for(let question of array){
+                unfoldedQuestions.push(question);
+                }
+            }            
+            show(questionCount);
+        }
+
+    }) 
+
+}// onload
+
+    //class UserScore{
+    //    constructor(elapsedTime, correctAnswers){
+    //    this.elapsedTime = elapsedTime;
+    //    this.correctAnswers = correctAnswers;
+    //}
+    //}
+
+    function next() {
+        if (questionCount == unfoldedQuestions.length - 1) {
+            clearInterval(Interval);
+             ajaxCallWithUserScore();
+            ajaxCallToFinish();
+            location.href = "../Leaderboard/Display";
+            //ajaxCallToLeaderboard
+        }
+        let userAnswer = $(".active").text();
+        let finalAnswer;
+        for(var i =0; i<answers.length; i++){
+            if(userAnswer == answers[i].answerText){
+                finalAnswer = answers[i];
+            }
+        }
+        if(finalAnswer.isCorrect === "Yes"){
+            correctAnswers++;
+            sessionStorage.setItem("Correct Answers:", correctAnswers)
+        }
+        questionCount++;
+        show(questionCount);
+
+    }
+
+    function show(count) {
+        answers = [];
+        let questionIndex = 0;
+        let question = document.getElementById("quiz-questions");
+        question.innerHTML = `<h2 class ="question-text">Q${questionCount + 1}. ${unfoldedQuestions[questionCount].question.questionText}</h2>`
+        let ul = document.createElement("ul");
+        ul.setAttribute("class", "question-options");
+        question.appendChild(ul);
+
+        for (let answer of unfoldedQuestions[questionCount].answers) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "option");
+            li.appendChild(document.createTextNode(answer.answerText));
+            ul.appendChild(li);
+            answers.push(answer);
+            toggleActive();
+        }
+    }
+    function toggleActive() {
+        let option = document.querySelectorAll("li.option");
+        for (let i = 0; i < option.length; i++) {
+            option[i].onclick = function () {
+                for (let i = 0; i < option.length; i++) {
+                    if (option[i].classList.contains("active")) {
+                        option[i].classList.remove("active");
+                    }
+                }
+                option[i].classList.add("active");
+            }
+        }
+    }
+
+    function ajaxCallWithUserScore(){
+            var seconds2 = parseInt($('#seconds').text());
+            var minutesInSeconds = parseInt($('#minutes').text()) * 60;
+            elapsedTime = seconds2 + minutesInSeconds;
+            //var score = new UserScore(elapsedTime, correctAnswers);
+            $.ajax({
+                url: "@Url.Action("UpdateUser")",
+                type: "POST",
+            data: JSON.stringify({ "CorrectAnswers": correctAnswers, "ElapsedTime": elapsedTime }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+                dataType: "json",
+                success: function (response) {
+                    if (response != null) {
+                        alert("Amount of correct answers:" + correctAnswers + ", Elapsed time for challenge in seconds:" + elapsedTime);
+                    }
+                    else {
+                        alert("Something went wrong...again")
+                    }
+                },
+                failure: function (response) {
+                    alert("Failure with ajax call with user score");
+                console.log(response.d);
+                console.log(response.responseText);
+                }
+                //error: function (response) {
+                //    alert("error with ajax call with user score")
+                //    console.log(response.d);
+                //console.log(response.responseText);
+                //}
+            });
+        }
+
+    function ajaxCallToFinish(){
+        $.ajax({
+            url: "@Url.Action("Finish")",
+            type: "POST",
+            data: 5,
+            success: function (response) {
+                if (response != null) {
+                    alert("User Added");
+                }
+                else {
+                    alert("Something went wrong...again")
+                }
+            },
+            failure: function (response) {
+                alert("Ajax call to finish failure");
+                console.log(response.d);
+                console.log(response.responseText);
+            },
+            error: function (response) {
+                alert("error in Ajax call to finish")
+                console.log(response.d);
+                console.log(response.responseText);
+            }
+        });
+    }
+</script>

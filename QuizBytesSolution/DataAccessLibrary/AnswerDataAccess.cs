@@ -13,20 +13,20 @@ namespace SQLAccessImplementationLibrary
 
         public async Task<bool> DeleteAnswerAsync(int answerId)
         {
-            string commandText = "DELETE FROM Answer WHERE PKAnswerId = @PKAnswerId";
+            string commandText = "DELETE FROM Answer WHERE Id = @Id";
             try
             {
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
                     {
-                        PKAnswerId = answerId
+                        Id = answerId
                     };
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
                 }
 
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to delete a row from Answer table. The exception was: '{ex.Message}'", ex);
             }
@@ -45,7 +45,7 @@ namespace SQLAccessImplementationLibrary
                     return answers;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all rows from the Answer table. The exception was: '{ex.Message}'", ex);
             }
@@ -56,7 +56,7 @@ namespace SQLAccessImplementationLibrary
         {
             try
             {
-                string commandText = "SELECT * FROM QuestionAnswer WHERE FKQuestionId = @FKQuestionId";
+                string commandText = "SELECT * FROM Answer WHERE FKQuestionId = @FKQuestionId";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
@@ -69,18 +69,18 @@ namespace SQLAccessImplementationLibrary
                     return answers;
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to read all Answers related to QuestionId: {questionId}. The exception was: '{ex.Message}'", ex);
             }
         }
 
 
-        public async Task<Answer> InsertAnswerAsync(Answer answer)
+        public async Task<int> InsertAnswerAsync(Answer answer)
         {
             try
             {
-                string commandText = "INSERT INTO QuestionAnswer(FKQuestionId, AnswerText, IsCorrect) VALUES (@FKQuestionId, @AnswerText, @IsCorrect); SELECT CAST(scope_identity() AS int)";
+                string commandText = "INSERT INTO Answer(FKQuestionId, AnswerText, IsCorrect) VALUES (@FKQuestionId, @AnswerText, @IsCorrect); SELECT CAST(scope_identity() AS int)";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
@@ -90,12 +90,11 @@ namespace SQLAccessImplementationLibrary
                         IsCorrect = answer.IsCorrect
                     };
 
-                    await connection.ExecuteAsync(commandText, parameters);
-                    answer.PKAnswerId = (int)await connection.ExecuteScalarAsync(commandText, parameters);
-                    return answer;
+                    return answer.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
+                    
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to insert an Answer object. The exception was: '{ex.Message}'", ex);
             }
@@ -111,7 +110,7 @@ namespace SQLAccessImplementationLibrary
                 "FKQuestionId = @FKQuestionId, " +
                 "AnswerText = @AnswerText, " +
                 "IsCorrect = @IsCorrect" +
-                "WHERE PKAnswerId = @PKAnswerId";
+                "WHERE Id = @Id";
                 using (SqlConnection connection = CreateConnection())
                 {
                     var parameters = new
@@ -119,14 +118,14 @@ namespace SQLAccessImplementationLibrary
                         FKQuestionId = answer.FKQuestionId,
                         AnswerText = answer.AnswerText,
                         IsCorrect = answer.IsCorrect,
-                        PKAnswerId = answer.PKAnswerId
+                        Id = answer.Id
                     };
 
                     return await connection.ExecuteAsync(commandText, parameters) > 0;
 
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Exception while trying to update Answer. The exception was: '{ex.Message}'", ex);
             }

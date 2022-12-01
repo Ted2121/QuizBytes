@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace WebApiClient.DTOs
 {
-    internal class QuestionDto
+    public class QuestionDto
     {
+        public int Id { get; set; }
+        public string? QuestionText { get; set; }
+        public string? Hint { get; set; }
+        public int ChapterId { get; set; }
     }
 }

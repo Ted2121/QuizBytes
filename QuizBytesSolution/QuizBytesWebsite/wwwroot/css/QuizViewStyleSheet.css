@@ -1,0 +1,43 @@
+﻿.left {
+width: 10vw;
+left: 0;
+margin-top: -1vh;
+position: fixed;
+background-color: darkorange;
+display: flex;
+flex-direction: column;
+height: 100vh;
+overflow-y:auto;
+}
+
+.side-navbar {
+list-style-type: none;
+width: 10vw;
+position: fixed;
+padding-inline-start: 0;
+overflow: auto;
+}
+
+.side-navbar div a{
+display: block;
+line-height: 3em;
+text-decoration: none;
+text-align:center;
+color:black;
+font-style:oblique;
+overflow:auto;
+}
+
+.active {
+background-color: orangered;
+color: white;
+border-color: white;
+}
+
+.content {
+display: none;
+overflow: hidden;
+}
+.activecontent{
+    display:block;
+}

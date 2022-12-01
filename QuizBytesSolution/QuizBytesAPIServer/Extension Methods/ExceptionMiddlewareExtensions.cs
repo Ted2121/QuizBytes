@@ -19,8 +19,6 @@ public static class ExceptionMiddlewareExtensions
 
                 if (contextFeature != null)
                 {
-                    // logger.LogError($"Something went wrong: {contextFeature.Error}");
-
                     await context.Response.WriteAsync(new ErrorDetails
                     {
                         StatusCode = context.Response.StatusCode,

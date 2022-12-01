@@ -17,7 +17,6 @@ public class SubjectsController : ControllerBase
         SubjectDataAccess = subjectDataAccess;
     }
 
-
     [HttpGet]
     public async Task<ActionResult<IEnumerable<SubjectDto>>> GetAllSubjectsAsync()
     {
@@ -59,12 +58,10 @@ public class SubjectsController : ControllerBase
     [Route("{id}")]
     public async Task<ActionResult> DeleteSubjectAsync([FromQuery]int id)
     {
-
         if (!await SubjectDataAccess.DeleteSubjectAsync(id))
         { return NotFound(); }
         else
         { return Ok(); }
-
     }
 
     [HttpPost]
@@ -89,6 +86,5 @@ public class SubjectsController : ControllerBase
         }
 
         return Ok();
-
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Timers;
+﻿using NUnit.Framework.Internal;
+using System;
+using System.Timers;
 using WebApiClient;
 
 namespace QuizBytesWebsite.Helpers
@@ -20,7 +22,8 @@ namespace QuizBytesWebsite.Helpers
         // the time of day to fire the event
         private TimeSpan activationTime = new TimeSpan(13, 45, 00);
 
-        #region TESTING ONLY - adding 5 seconds to current time to be able to test starting the quiz
+        #region TESTING ONLY keep commented
+        // Adding 5 seconds to current time to be able to test cleaning up after the previous challenge and starting a new one
         //private static int _timeInstance;
 
         //private TimeSpan activationTime = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, GetTimeInstance() + 5);
@@ -47,7 +50,7 @@ namespace QuizBytesWebsite.Helpers
             return timeLeftUntilFirstRun;
         }
 
-        // injecting the rest client like this because injecting in the constructor would require AddTransient because of SignalR
+        // injecting the rest client in this method because injecting in the constructor would require AddTransient due to using SignalR
         public async Task<TimeSpan> CleanUpCurrentChallengeOnTimeElapsed(IChallengeFacadeApiClient challengeFacadeApiClient)
         {
             _timer.Enabled = true;

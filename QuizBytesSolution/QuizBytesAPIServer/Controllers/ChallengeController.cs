@@ -69,7 +69,6 @@ public class ChallengeController : ControllerBase
         await RewardsDistributionHelper.DistributeChallengeRewardsAsync(leaderboard);
 
         return Ok();
-
     }
 
     [HttpDelete]

@@ -9,7 +9,6 @@ public interface IQuestionAnswerLinkFactory
     IChapterDataAccess ChapterDataAccess { get; set; }
     IQuestionDataAccess QuestionDataAccess { get; set; }
     ISubjectDataAccess SubjectDataAccess { get; set; }
-
     Task<IEnumerable<QuestionAnswerLinkDto>> GetAllQuestionsWithAnswersByChapter(ChapterDto chapterDto);
     Task<IEnumerable<QuestionAnswerLinkDto>> GetAllQuestionsWithAnswersByCourse(CourseDto course);
 }

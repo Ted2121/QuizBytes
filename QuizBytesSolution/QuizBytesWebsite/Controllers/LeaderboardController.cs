@@ -25,15 +25,6 @@ public class LeaderboardController : Controller
         return View(leaderboardModel);
     }
 
-    //[AllowAnonymous]
-    //[HttpGet]
-    //public JsonResult Leaderboard()
-    //{
-
-
-    //    return Json(leaderboardInfo);
-    //}
-
     private List<LeaderboardInfo> FilterUserProperties(LeaderboardDto leaderboard)
     {
         var leaderboardWithFilteredProperties = new List<LeaderboardInfo>();

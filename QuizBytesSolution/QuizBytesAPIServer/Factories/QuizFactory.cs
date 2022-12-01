@@ -28,7 +28,8 @@ public class QuizFactory : IQuizFactory
                 return quizFromChapter;
 
             case CourseDto course:
-                numberOfQuestions = 16;
+                // changed to 8 instead of 16 for demo purposes
+                numberOfQuestions = 8;
                 var questionsFromCourseInQuiz = ShuffleAndTakeQuestions(await QuestionAnswerLinkFactory
                 .GetAllQuestionsWithAnswersByCourse(course), numberOfQuestions);
                 var quizFromCourse = new QuizDto();

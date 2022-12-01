@@ -49,7 +49,6 @@ public class ChallengeController : Controller
         }
 
         var userToRegister = await GetUserFromClaimAsync();
-        //var courseForChallenge = await CourseSelectionHelper.GetCourseForChallenge();
         if (await ChallengeFacadeApiClient.CheckIfUserIsInChallengeAsync(userToRegister.Id))
         {
             return RedirectToAction("Refuse");
@@ -59,7 +58,6 @@ public class ChallengeController : Controller
         var courseForChallenge = await CourseSelectionHelper.GetCourseForChallenge("monday");
 
         await ChallengeFacadeApiClient.RegisterParticipantAsync(userToRegister, courseForChallenge);
-        //TODO needs to be moved to when the user finishes the challenge (right after getting the number of correct answers and elapsed time as json)
        
 
         return RedirectToAction("Start");
@@ -94,7 +92,6 @@ public class ChallengeController : Controller
     [Route("Challenge/Quiz/efHFkfd923md03zz0dfj")]
     public async Task<JsonResult> Quiz()
     {
-        //var courseForChallenge = await CourseSelectionHelper.GetCourseForChallenge();
         var courseForChallenge = await CourseSelectionHelper.GetCourseForChallenge("monday");
         var quiz = await GetQuiz(courseForChallenge);
         return Json(quiz);

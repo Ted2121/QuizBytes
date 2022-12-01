@@ -88,6 +88,5 @@ public class CoursesController : ControllerBase
         }
 
         return Ok();
-
     }
 }

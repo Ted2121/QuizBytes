@@ -93,9 +93,7 @@ public class RewardsDistributionHelper : IRewardsDistributionHelper
         else
         {
             return 0;
-
         }
     }
-
    
 }

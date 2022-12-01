@@ -43,7 +43,6 @@ public static class DtoConverter
         chapterToConvert.CopyPropertiesTo(chapterDto);
         return chapterDto;
     }
-
     public static Chapter FromDto(this ChapterDto chapterDtoToConvert)
     {
         var chapter = new Chapter();

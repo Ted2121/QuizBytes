@@ -13,7 +13,6 @@ namespace QuizBytesWebsite.Controllers
         {
             return View();
         }
-
        
     }
 }

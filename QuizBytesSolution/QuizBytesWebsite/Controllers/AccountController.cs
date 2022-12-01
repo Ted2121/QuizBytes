@@ -40,7 +40,6 @@ namespace QuizBytesWebsite.Controllers
                     };
 
                 await SignInUsingClaims(claims);
-                //TempData["Message"] = $"You are logged in as {user.Username}";
             }
             else
             {

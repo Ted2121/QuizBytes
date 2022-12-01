@@ -16,16 +16,9 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
-
         builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-
-
-
-
 
         #region Factory DI
 
@@ -39,9 +32,7 @@ public class Program
         #endregion
 
         // allows us to obtain the connection string from appsettings.json
-
         ConfigurationManager configuration = builder.Configuration;
-
 
         #region Data Access DI
 
@@ -63,8 +54,6 @@ public class Program
         #endregion
 
         var app = builder.Build();
-
-
         
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

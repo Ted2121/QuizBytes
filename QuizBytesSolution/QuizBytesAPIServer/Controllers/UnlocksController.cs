@@ -69,7 +69,6 @@ public class UnlocksController : ControllerBase
         }
 
         return Ok(webUsers);
-
     }
 
     [HttpPost]
@@ -89,5 +88,4 @@ public class UnlocksController : ControllerBase
         await WebUserDataAccess.UpdateWebUserAsync(webUserDto.FromDto());
         return Ok(webUserChapterUnlock);
     }
-
 }

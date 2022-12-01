@@ -88,7 +88,5 @@ public class ChaptersController : ControllerBase
         }
 
         return Ok();
-
-
     }
 }

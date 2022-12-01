@@ -15,8 +15,6 @@ public class WebUser
 
     public WebUser(int id, string username, string password, string email, int totalPoints, int availablePoints)
     {
-        //constuctor for receiving and build an object -- why not just remove ID here since I don't think we'll need it?
-        //don't wanna mess with code too much so I'll leave it like this for now.
         Id = id;
         Username = username;
         PasswordHash = password;

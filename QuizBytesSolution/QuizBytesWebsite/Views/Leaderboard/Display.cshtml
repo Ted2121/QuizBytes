@@ -5,7 +5,7 @@
 
 <link rel="stylesheet" href="~/css/LeaderboardViewStyleSheet.css" />
 <h1>Leaderboard</h1>
-<p1>Best overall players:</p1>
+<p1>Highest latest challenge scores:</p1>
 <div id="leaderboard">
     @foreach(var user in Model.Leaderboard){
 
@@ -29,26 +29,9 @@
     <div class="row">
         <div class="name">Player5</div><div class="score">495</div>
     </div>*@
-</div>
+    </div>
 <div id="leaderboard">
-    <p1>Highest latest challenge scores:</p1>
+    <p1>Best Classic Quiz Players:</p1>
 </div>
-@*<script>
-    window.onload = () => {
-        $.ajax = ({
-            url: "@Url.Action("Leaderboard")",
-            type: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            dataType: "json",
-            success: function (result) {
-                console.log(result)
-            }
-        })
-    }
-
-</script>*@
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/LeaderboardSortingByScore.js"></script>

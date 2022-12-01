@@ -6,12 +6,16 @@ border-block:solid;
 
 .row {
 position: relative;
-width:15%!important;
 display: block;
 height: 40px;
 border-bottom: 1px solid #AFAFAF;
+border:solid black 3px;
+border-radius: 5px;
 }
-
+.border{
+    border: solid black;
+    border-radius:5px;
+}
 .name {
     position: relative;
     display: inline-block;

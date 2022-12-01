@@ -19,6 +19,8 @@ public class LeaderboardController : Controller
     {
         return View();
     }
+
+    [HttpGet]
     public async Task<JsonResult> Leaderboard()
     {
 

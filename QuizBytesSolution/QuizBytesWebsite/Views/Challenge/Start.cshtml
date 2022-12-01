@@ -86,12 +86,11 @@ window.onload = () => {
 
     function next() {
         if (questionCount == unfoldedQuestions.length - 1) {
-            //location.href = "../Leaderboard/Display"
             clearInterval(Interval);
              ajaxCallWithUserScore();
             ajaxCallToFinish();
+            location.href = "../Leaderboard/Display";
             //ajaxCallToLeaderboard
-            //location.replace("../Leaderboard/Display")
         }
         let userAnswer = $(".active").text();
         let finalAnswer;

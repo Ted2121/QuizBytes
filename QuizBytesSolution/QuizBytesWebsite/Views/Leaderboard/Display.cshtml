@@ -30,3 +30,16 @@
 </div>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/LeaderboardSortingByScore.js"></script>
+<script>
+    window.onload = () => {
+        $.ajax = ({
+            url: "@Url.Action("Leaderboard")",
+            type: "GET",
+            dataType: "json",
+            success: function (result) {
+                console.log(result)
+            }
+        })
+    }
+
+</script>

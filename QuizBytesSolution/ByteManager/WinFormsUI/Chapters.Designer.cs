@@ -34,19 +34,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Chapters));
             this.dashboardNavigationButton = new System.Windows.Forms.Button();
             this.chaptersNavigationButton = new System.Windows.Forms.Button();
             this.questionsNavigationButton = new System.Windows.Forms.Button();
             this.webusersNavigationButton = new System.Windows.Forms.Button();
             this.lineSeparator = new System.Windows.Forms.Label();
-            this.topicChaptersDataGrid = new System.Windows.Forms.DataGridView();
-            this.course = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horizontalLineSeparator = new System.Windows.Forms.Label();
             this.courseComboBox = new System.Windows.Forms.ComboBox();
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
@@ -59,19 +52,18 @@
             this.chaptersConfirmButton = new System.Windows.Forms.PictureBox();
             this.chaptersCancelButton = new System.Windows.Forms.PictureBox();
             this.chaptersDeleteButton = new System.Windows.Forms.PictureBox();
-<<<<<<< HEAD
             this.chapterDescription = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
-=======
             this.chapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
->>>>>>> feature-web-mvc
-            ((System.ComponentModel.ISupportInitialize)(this.topicChaptersDataGrid)).BeginInit();
+            this.chapterDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ChapterListBox = new System.Windows.Forms.ListBox();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersEditButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersConfirmButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersCancelButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersDeleteButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chapterBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterDtoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dashboardNavigationButton
@@ -145,72 +137,6 @@
             this.lineSeparator.Size = new System.Drawing.Size(1, 960);
             this.lineSeparator.TabIndex = 10;
             // 
-            // topicChaptersDataGrid
-            // 
-            this.topicChaptersDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.topicChaptersDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.topicChaptersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.topicChaptersDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.course,
-            this.subject,
-            this.chapterName});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.topicChaptersDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.topicChaptersDataGrid.EnableHeadersVisualStyles = false;
-            this.topicChaptersDataGrid.GridColor = System.Drawing.Color.White;
-            this.topicChaptersDataGrid.Location = new System.Drawing.Point(375, 80);
-            this.topicChaptersDataGrid.MultiSelect = false;
-            this.topicChaptersDataGrid.Name = "topicChaptersDataGrid";
-            this.topicChaptersDataGrid.RowHeadersVisible = false;
-            this.topicChaptersDataGrid.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.topicChaptersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.topicChaptersDataGrid.RowTemplate.Height = 25;
-            this.topicChaptersDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.topicChaptersDataGrid.Size = new System.Drawing.Size(1450, 400);
-            this.topicChaptersDataGrid.TabIndex = 11;
-            this.topicChaptersDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.singleAnswerDataGrid_CellContentClick);
-            // 
-            // course
-            // 
-            this.course.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.course.HeaderText = "Course";
-            this.course.MinimumWidth = 483;
-            this.course.Name = "course";
-            this.course.Width = 483;
-            // 
-            // subject
-            // 
-            this.subject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.subject.HeaderText = "Subject";
-            this.subject.MinimumWidth = 483;
-            this.subject.Name = "subject";
-            this.subject.Width = 483;
-            // 
-            // chapterName
-            // 
-            this.chapterName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.chapterName.HeaderText = "Chapter Name";
-            this.chapterName.MinimumWidth = 483;
-            this.chapterName.Name = "chapterName";
-            // 
             // horizontalLineSeparator
             // 
             this.horizontalLineSeparator.BackColor = System.Drawing.Color.White;
@@ -228,7 +154,7 @@
             this.courseComboBox.Location = new System.Drawing.Point(690, 679);
             this.courseComboBox.MaxDropDownItems = 10;
             this.courseComboBox.Name = "courseComboBox";
-            this.courseComboBox.Size = new System.Drawing.Size(561, 33);
+            this.courseComboBox.Size = new System.Drawing.Size(561, 40);
             this.courseComboBox.TabIndex = 22;
             this.courseComboBox.SelectedIndexChanged += new System.EventHandler(this.questionTypeComboBox_SelectedIndexChanged);
             // 
@@ -241,7 +167,7 @@
             this.subjectComboBox.Location = new System.Drawing.Point(690, 739);
             this.subjectComboBox.MaxDropDownItems = 10;
             this.subjectComboBox.Name = "subjectComboBox";
-            this.subjectComboBox.Size = new System.Drawing.Size(561, 33);
+            this.subjectComboBox.Size = new System.Drawing.Size(561, 40);
             this.subjectComboBox.TabIndex = 23;
             this.subjectComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -252,7 +178,7 @@
             this.chapterNameTextBox.Name = "chapterNameTextBox";
             this.chapterNameTextBox.ReadOnly = true;
             this.chapterNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.chapterNameTextBox.Size = new System.Drawing.Size(561, 33);
+            this.chapterNameTextBox.Size = new System.Drawing.Size(561, 39);
             this.chapterNameTextBox.TabIndex = 24;
             this.chapterNameTextBox.TextChanged += new System.EventHandler(this.questionTextTextBox_TextChanged);
             // 
@@ -262,7 +188,7 @@
             this.chapterNameLabel.Location = new System.Drawing.Point(480, 618);
             this.chapterNameLabel.Margin = new System.Windows.Forms.Padding(5);
             this.chapterNameLabel.Name = "chapterNameLabel";
-            this.chapterNameLabel.Size = new System.Drawing.Size(157, 30);
+            this.chapterNameLabel.Size = new System.Drawing.Size(201, 38);
             this.chapterNameLabel.TabIndex = 25;
             this.chapterNameLabel.Text = "Chapter Name";
             this.chapterNameLabel.Click += new System.EventHandler(this.chapterNameLabel_Click);
@@ -273,7 +199,7 @@
             this.courseLabel.Location = new System.Drawing.Point(480, 678);
             this.courseLabel.Margin = new System.Windows.Forms.Padding(5);
             this.courseLabel.Name = "courseLabel";
-            this.courseLabel.Size = new System.Drawing.Size(82, 30);
+            this.courseLabel.Size = new System.Drawing.Size(104, 38);
             this.courseLabel.TabIndex = 26;
             this.courseLabel.Text = "Course";
             this.courseLabel.Click += new System.EventHandler(this.label2_Click);
@@ -284,7 +210,7 @@
             this.subjectLabel.Location = new System.Drawing.Point(480, 738);
             this.subjectLabel.Margin = new System.Windows.Forms.Padding(5);
             this.subjectLabel.Name = "subjectLabel";
-            this.subjectLabel.Size = new System.Drawing.Size(87, 30);
+            this.subjectLabel.Size = new System.Drawing.Size(110, 38);
             this.subjectLabel.TabIndex = 27;
             this.subjectLabel.Text = "Subject";
             this.subjectLabel.Click += new System.EventHandler(this.label3_Click);
@@ -346,14 +272,13 @@
             this.chaptersDeleteButton.TabIndex = 23;
             this.chaptersDeleteButton.TabStop = false;
             // 
-<<<<<<< HEAD
             // chapterDescription
             // 
             this.chapterDescription.AutoSize = true;
             this.chapterDescription.Location = new System.Drawing.Point(480, 793);
             this.chapterDescription.Margin = new System.Windows.Forms.Padding(5);
             this.chapterDescription.Name = "chapterDescription";
-            this.chapterDescription.Size = new System.Drawing.Size(127, 30);
+            this.chapterDescription.Size = new System.Drawing.Size(161, 38);
             this.chapterDescription.TabIndex = 38;
             this.chapterDescription.Text = "Description";
             this.chapterDescription.Click += new System.EventHandler(this.label1_Click_1);
@@ -365,18 +290,30 @@
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(561, 140);
             this.descriptionTextBox.TabIndex = 39;
-=======
-            // chapterBindingSource
             // 
->>>>>>> feature-web-mvc
+            // chapterDtoBindingSource
+            // 
+            this.chapterDtoBindingSource.DataSource = typeof(WindowsApiClient.DTOs.ChapterDto);
+            // 
+            // ChapterListBox
+            // 
+            this.ChapterListBox.DataSource = this.chapterDtoBindingSource;
+            this.ChapterListBox.FormattingEnabled = true;
+            this.ChapterListBox.ItemHeight = 37;
+            this.ChapterListBox.Location = new System.Drawing.Point(365, 54);
+            this.ChapterListBox.Name = "ChapterListBox";
+            this.ChapterListBox.Size = new System.Drawing.Size(1480, 485);
+            this.ChapterListBox.TabIndex = 40;
+            this.ChapterListBox.SelectedIndexChanged += new System.EventHandler(this.ChapterListBox_SelectedIndexChanged);
             // 
             // Chapters
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 30F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.ChapterListBox);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.chapterDescription);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -387,7 +324,6 @@
             this.Controls.Add(this.subjectComboBox);
             this.Controls.Add(this.courseComboBox);
             this.Controls.Add(this.horizontalLineSeparator);
-            this.Controls.Add(this.topicChaptersDataGrid);
             this.Controls.Add(this.lineSeparator);
             this.Controls.Add(this.webusersNavigationButton);
             this.Controls.Add(this.questionsNavigationButton);
@@ -403,21 +339,19 @@
             this.Text = "ByteManager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Chapters_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.topicChaptersDataGrid)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chaptersEditButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersConfirmButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersCancelButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersDeleteButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chapterBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chapterDtoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private DataGridView topicChaptersDataGrid;
         private Label horizontalLineSeparator;
         private ComboBox courseComboBox;
         private ComboBox subjectComboBox;
@@ -430,12 +364,9 @@
         private PictureBox chaptersConfirmButton;
         private PictureBox chaptersCancelButton;
         private PictureBox chaptersDeleteButton;
-        private DataGridViewTextBoxColumn course;
-        private DataGridViewTextBoxColumn subject;
-        private DataGridViewTextBoxColumn chapterName;
         private Label chapterDescription;
         private TextBox descriptionTextBox;
-
-
+        private BindingSource chapterDtoBindingSource;
+        private ListBox ChapterListBox;
     }
 }

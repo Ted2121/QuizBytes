@@ -18,7 +18,7 @@ namespace WindowsApiClient
 
         public async Task<IEnumerable<ChapterDto>> GetAllChaptersAsync()
         {
-            var response = await _restClient.RequestAsync<IEnumerable<ChapterDto>>(Method.GET, $"Chapter");
+            var response = await _restClient.RequestAsync<IEnumerable<ChapterDto>>(Method.GET, $"Chapters");
 
             if (!response.IsSuccessful)
             {

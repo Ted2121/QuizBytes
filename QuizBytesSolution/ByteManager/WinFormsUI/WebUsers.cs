@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsApiClient;
 
 namespace ByteManager.WinFormsUI
 {
     public partial class WebUsers : Form
     {
+        private IChapterFacadeApiClient ChapterFacadeApiClient;
+
         public WebUsers()
         {
             InitializeComponent();
@@ -35,7 +38,7 @@ namespace ByteManager.WinFormsUI
         private void chaptersNavigationButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Chapters chapters = new Chapters();
+            Chapters chapters = new Chapters(ChapterFacadeApiClient);
             chapters.Show();
         }
 

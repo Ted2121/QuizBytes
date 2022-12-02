@@ -1,7 +1,10 @@
-﻿namespace ByteManager.WinFormsUI
+﻿using WindowsApiClient;
+
+namespace ByteManager.WinFormsUI
 {
     public partial class Dashboard : Form
     {
+        private IChapterFacadeApiClient ChapterFacadeApiClient;
         public Dashboard()
         {
             InitializeComponent();
@@ -27,7 +30,7 @@
         private void chaptersNavigationButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Chapters chapters = new Chapters();
+            Chapters chapters = new Chapters(ChapterFacadeApiClient);
             chapters.Show();
         }
 

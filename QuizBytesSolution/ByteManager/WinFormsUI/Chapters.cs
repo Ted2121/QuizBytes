@@ -7,19 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsApiClient;
+using WindowsApiClient.DTOs;
 
 namespace ByteManager.WinFormsUI
 {
     public partial class Chapters : Form
     {
-        public Chapters()
+
+        private BindingSource chapterBindingSource = new();
+        private readonly IChapterFacadeApiClient ChapterFacadeApi;
+        public Chapters(IChapterFacadeApiClient ChapterFacadeApi)
         {
             InitializeComponent();
+            GetData(ChapterFacadeApi);
+            this.ChapterFacadeApi = ChapterFacadeApi;
         }
 
         private void singleAnswerDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private async void GetData(IChapterFacadeApiClient ChapterFacadeApi)
+        {
+            var chaptersEnum = await ChapterFacadeApi.GetAllChaptersAsync();
+            var chapterList = chaptersEnum.ToList();
+            chapterBindingSource.DataSource = chapterList;
+            ChapterListBox.DataSource = chapterBindingSource;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -65,8 +80,8 @@ namespace ByteManager.WinFormsUI
         private void chaptersEditButton_Click(object sender, EventArgs e)
         {
             chapterNameTextBox.ReadOnly = false;
-            topicComboBox.DropDownStyle = ComboBoxStyle.DropDown;
-            subTopicComboBox.DropDownStyle = ComboBoxStyle.DropDown;
+            //topicComboBox.DropDownStyle = ComboBoxStyle.DropDown;
+            //subTopicComboBox.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private void questionsNavigationButton_Click(object sender, EventArgs e)
@@ -91,6 +106,11 @@ namespace ByteManager.WinFormsUI
         }
 
         private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChapterListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

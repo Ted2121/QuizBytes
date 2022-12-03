@@ -21,10 +21,8 @@ public class Program
         builder.Services.AddSwaggerGen();
 
         #region Factory DI
-
         builder.Services.AddScoped<IQuestionAnswerLinkFactory, QuestionAnswerLinkFactory>();
         builder.Services.AddScoped<IQuizFactory, QuizFactory>();
-
         #endregion
 
         #region Helper DI
@@ -35,22 +33,19 @@ public class Program
         ConfigurationManager configuration = builder.Configuration;
 
         #region Data Access DI
-
-        builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<IAnswerDataAccess>(configuration.GetConnectionString("DefaultConnection")));
-        builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<IChapterDataAccess>(configuration.GetConnectionString("DefaultConnection")));
-        builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<ICourseDataAccess>(configuration.GetConnectionString("DefaultConnection")));
-        builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<IQuestionDataAccess>(configuration.GetConnectionString("DefaultConnection")));
-        builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<ISubjectDataAccess>(configuration.GetConnectionString("DefaultConnection")));
-        builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<IWebUserDataAccess>(configuration.GetConnectionString("DefaultConnection")));
-        builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<IWebUserChapterUnlockDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddScoped((conf) => SqlDAOFactory.CreateDAO<IAnswerDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddScoped((conf) => SqlDAOFactory.CreateDAO<IChapterDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddScoped((conf) => SqlDAOFactory.CreateDAO<ICourseDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddScoped((conf) => SqlDAOFactory.CreateDAO<IQuestionDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddScoped((conf) => SqlDAOFactory.CreateDAO<ISubjectDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddScoped((conf) => SqlDAOFactory.CreateDAO<IWebUserDataAccess>(configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddScoped((conf) => SqlDAOFactory.CreateDAO<IWebUserChapterUnlockDataAccess>(configuration.GetConnectionString("DefaultConnection")));
 
 #if DEBUG
         builder.Services.AddScoped<ICurrentChallengeParticipantDataAccess, CurrentChallengeParticipantDataAccessMock>();
 #else
         builder.Services.AddScoped((sc) => SqlDAOFactory.CreateDAO<ICurrentChallengeParticipantDataAccess>(configuration.GetConnectionString("DefaultConnection")));
 #endif
-
-
         #endregion
 
         var app = builder.Build();

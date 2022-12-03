@@ -33,8 +33,10 @@ namespace ByteManager.WinFormsUI
         {
             var chaptersEnum = await ChapterFacadeApi.GetAllChaptersAsync();
             var chapterList = chaptersEnum.ToList();
+            //ChapterDataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            ChapterDataGrid_Resize();
             chapterBindingSource.DataSource = chapterList;
-            ChapterListBox.DataSource = chapterBindingSource;
+            ChapterDataGrid.DataSource = chapterBindingSource;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -113,6 +115,15 @@ namespace ByteManager.WinFormsUI
         private void ChapterListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ChapterDataGrid_Resize()
+        {
+            ChapterDataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            ChapterDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ChapterDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ChapterDataGrid.Columns[2].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            ChapterDataGrid.ForeColor = Color.Black;
         }
     }
 }

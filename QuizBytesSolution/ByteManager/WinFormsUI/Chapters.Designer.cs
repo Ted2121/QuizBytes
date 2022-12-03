@@ -56,7 +56,12 @@
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.chapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.chapterDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ChapterListBox = new System.Windows.Forms.ListBox();
+            this.ChapterDataGrid = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subjectIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unlockPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersEditButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersConfirmButton)).BeginInit();
@@ -64,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chaptersDeleteButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chapterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chapterDtoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChapterDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // dashboardNavigationButton
@@ -295,16 +301,69 @@
             // 
             this.chapterDtoBindingSource.DataSource = typeof(WindowsApiClient.DTOs.ChapterDto);
             // 
-            // ChapterListBox
+            // ChapterDataGrid
             // 
-            this.ChapterListBox.DataSource = this.chapterDtoBindingSource;
-            this.ChapterListBox.FormattingEnabled = true;
-            this.ChapterListBox.ItemHeight = 37;
-            this.ChapterListBox.Location = new System.Drawing.Point(365, 54);
-            this.ChapterListBox.Name = "ChapterListBox";
-            this.ChapterListBox.Size = new System.Drawing.Size(1480, 485);
-            this.ChapterListBox.TabIndex = 40;
-            this.ChapterListBox.SelectedIndexChanged += new System.EventHandler(this.ChapterListBox_SelectedIndexChanged);
+            this.ChapterDataGrid.AllowUserToAddRows = false;
+            this.ChapterDataGrid.AllowUserToDeleteRows = false;
+            this.ChapterDataGrid.AllowUserToResizeColumns = false;
+            this.ChapterDataGrid.AllowUserToResizeRows = false;
+            this.ChapterDataGrid.AutoGenerateColumns = false;
+            this.ChapterDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ChapterDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.descriptionDataGridViewTextBoxColumn,
+            this.subjectIdDataGridViewTextBoxColumn,
+            this.unlockPriceDataGridViewTextBoxColumn});
+            this.ChapterDataGrid.DataSource = this.chapterDtoBindingSource;
+            this.ChapterDataGrid.Location = new System.Drawing.Point(346, 41);
+            this.ChapterDataGrid.Name = "ChapterDataGrid";
+            this.ChapterDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.ChapterDataGrid.RowTemplate.Height = 120;
+            this.ChapterDataGrid.ShowEditingIcon = false;
+            this.ChapterDataGrid.Size = new System.Drawing.Size(1526, 482);
+            this.ChapterDataGrid.TabIndex = 41;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // subjectIdDataGridViewTextBoxColumn
+            // 
+            this.subjectIdDataGridViewTextBoxColumn.DataPropertyName = "SubjectId";
+            this.subjectIdDataGridViewTextBoxColumn.HeaderText = "SubjectId";
+            this.subjectIdDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.subjectIdDataGridViewTextBoxColumn.Name = "subjectIdDataGridViewTextBoxColumn";
+            this.subjectIdDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // unlockPriceDataGridViewTextBoxColumn
+            // 
+            this.unlockPriceDataGridViewTextBoxColumn.DataPropertyName = "UnlockPrice";
+            this.unlockPriceDataGridViewTextBoxColumn.HeaderText = "UnlockPrice";
+            this.unlockPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.unlockPriceDataGridViewTextBoxColumn.Name = "unlockPriceDataGridViewTextBoxColumn";
+            this.unlockPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.unlockPriceDataGridViewTextBoxColumn.Width = 125;
             // 
             // Chapters
             // 
@@ -313,7 +372,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1902, 1033);
-            this.Controls.Add(this.ChapterListBox);
+            this.Controls.Add(this.ChapterDataGrid);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.chapterDescription);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -346,6 +405,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chaptersDeleteButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chapterBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chapterDtoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChapterDataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,6 +427,11 @@
         private Label chapterDescription;
         private TextBox descriptionTextBox;
         private BindingSource chapterDtoBindingSource;
-        private ListBox ChapterListBox;
+        private DataGridView ChapterDataGrid;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn subjectIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn unlockPriceDataGridViewTextBoxColumn;
     }
 }

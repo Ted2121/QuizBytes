@@ -38,7 +38,7 @@ namespace QuizBytesWebsite.Helpers
         //}
         #endregion
 
-        public TimeSpan calcTimeLeftUntilEvent()
+        public TimeSpan CalcTimeLeftUntilEvent()
         {
             TimeSpan timeLeftUntilFirstRun = day - now + activationTime;
 
@@ -54,7 +54,7 @@ namespace QuizBytesWebsite.Helpers
         public async Task<TimeSpan> CleanUpCurrentChallengeOnTimeElapsed(IChallengeFacadeApiClient challengeFacadeApiClient)
         {
             _timer.Enabled = true;
-            var timeSpan = calcTimeLeftUntilEvent();
+            var timeSpan = CalcTimeLeftUntilEvent();
             var oneSecondLeft = new TimeSpan(0, 0, 1);
 
             _timer.AutoReset = true;
@@ -80,8 +80,5 @@ namespace QuizBytesWebsite.Helpers
             return timeSpan;
         }
 
-        public void OnTimedEvent(object sender, ElapsedEventArgs e)
-        {
-        }
     }
 }

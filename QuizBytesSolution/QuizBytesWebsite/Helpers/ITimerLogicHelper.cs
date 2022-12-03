@@ -5,8 +5,7 @@ namespace QuizBytesWebsite.Helpers
 {
     public interface ITimerLogicHelper
     {
-        TimeSpan calcTimeLeftUntilEvent();
-        void OnTimedEvent(object sender, ElapsedEventArgs e);
+        TimeSpan CalcTimeLeftUntilEvent();
         Task<TimeSpan> CleanUpCurrentChallengeOnTimeElapsed(IChallengeFacadeApiClient challengeFacadeApiClient);
     }
 }

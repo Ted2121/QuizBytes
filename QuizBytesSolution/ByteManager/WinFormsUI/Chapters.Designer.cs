@@ -60,7 +60,6 @@
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subjectIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unlockPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersEditButton)).BeginInit();
@@ -160,7 +159,7 @@
             this.courseComboBox.Location = new System.Drawing.Point(690, 679);
             this.courseComboBox.MaxDropDownItems = 10;
             this.courseComboBox.Name = "courseComboBox";
-            this.courseComboBox.Size = new System.Drawing.Size(561, 33);
+            this.courseComboBox.Size = new System.Drawing.Size(561, 40);
             this.courseComboBox.TabIndex = 22;
             this.courseComboBox.SelectedIndexChanged += new System.EventHandler(this.questionTypeComboBox_SelectedIndexChanged);
             // 
@@ -173,7 +172,7 @@
             this.subjectComboBox.Location = new System.Drawing.Point(690, 739);
             this.subjectComboBox.MaxDropDownItems = 10;
             this.subjectComboBox.Name = "subjectComboBox";
-            this.subjectComboBox.Size = new System.Drawing.Size(561, 33);
+            this.subjectComboBox.Size = new System.Drawing.Size(561, 40);
             this.subjectComboBox.TabIndex = 23;
             this.subjectComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -184,7 +183,7 @@
             this.chapterNameTextBox.Name = "chapterNameTextBox";
             this.chapterNameTextBox.ReadOnly = true;
             this.chapterNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.chapterNameTextBox.Size = new System.Drawing.Size(561, 33);
+            this.chapterNameTextBox.Size = new System.Drawing.Size(561, 39);
             this.chapterNameTextBox.TabIndex = 24;
             this.chapterNameTextBox.TextChanged += new System.EventHandler(this.questionTextTextBox_TextChanged);
             // 
@@ -194,7 +193,7 @@
             this.chapterNameLabel.Location = new System.Drawing.Point(480, 618);
             this.chapterNameLabel.Margin = new System.Windows.Forms.Padding(5);
             this.chapterNameLabel.Name = "chapterNameLabel";
-            this.chapterNameLabel.Size = new System.Drawing.Size(157, 30);
+            this.chapterNameLabel.Size = new System.Drawing.Size(201, 38);
             this.chapterNameLabel.TabIndex = 25;
             this.chapterNameLabel.Text = "Chapter Name";
             this.chapterNameLabel.Click += new System.EventHandler(this.chapterNameLabel_Click);
@@ -205,7 +204,7 @@
             this.courseLabel.Location = new System.Drawing.Point(480, 678);
             this.courseLabel.Margin = new System.Windows.Forms.Padding(5);
             this.courseLabel.Name = "courseLabel";
-            this.courseLabel.Size = new System.Drawing.Size(82, 30);
+            this.courseLabel.Size = new System.Drawing.Size(104, 38);
             this.courseLabel.TabIndex = 26;
             this.courseLabel.Text = "Course";
             this.courseLabel.Click += new System.EventHandler(this.label2_Click);
@@ -216,7 +215,7 @@
             this.subjectLabel.Location = new System.Drawing.Point(480, 738);
             this.subjectLabel.Margin = new System.Windows.Forms.Padding(5);
             this.subjectLabel.Name = "subjectLabel";
-            this.subjectLabel.Size = new System.Drawing.Size(87, 30);
+            this.subjectLabel.Size = new System.Drawing.Size(110, 38);
             this.subjectLabel.TabIndex = 27;
             this.subjectLabel.Text = "Subject";
             this.subjectLabel.Click += new System.EventHandler(this.label3_Click);
@@ -284,7 +283,7 @@
             this.chapterDescription.Location = new System.Drawing.Point(480, 793);
             this.chapterDescription.Margin = new System.Windows.Forms.Padding(5);
             this.chapterDescription.Name = "chapterDescription";
-            this.chapterDescription.Size = new System.Drawing.Size(127, 30);
+            this.chapterDescription.Size = new System.Drawing.Size(161, 38);
             this.chapterDescription.TabIndex = 38;
             this.chapterDescription.Text = "Description";
             this.chapterDescription.Click += new System.EventHandler(this.label1_Click_1);
@@ -313,7 +312,6 @@
             this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
-            this.subjectIdDataGridViewTextBoxColumn,
             this.unlockPriceDataGridViewTextBoxColumn});
             this.ChapterDataGrid.DataSource = this.chapterDtoBindingSource;
             this.ChapterDataGrid.Location = new System.Drawing.Point(346, 41);
@@ -323,6 +321,7 @@
             this.ChapterDataGrid.ShowEditingIcon = false;
             this.ChapterDataGrid.Size = new System.Drawing.Size(1526, 482);
             this.ChapterDataGrid.TabIndex = 41;
+            this.ChapterDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ChapterDataGrid_CellContentClick);
             this.ChapterDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ChapterDataGrid_CellContentClick);
             // 
             // idDataGridViewTextBoxColumn
@@ -349,14 +348,6 @@
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
             this.descriptionDataGridViewTextBoxColumn.Width = 125;
             // 
-            // subjectIdDataGridViewTextBoxColumn
-            // 
-            this.subjectIdDataGridViewTextBoxColumn.DataPropertyName = "SubjectId";
-            this.subjectIdDataGridViewTextBoxColumn.HeaderText = "SubjectId";
-            this.subjectIdDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.subjectIdDataGridViewTextBoxColumn.Name = "subjectIdDataGridViewTextBoxColumn";
-            this.subjectIdDataGridViewTextBoxColumn.Width = 125;
-            // 
             // unlockPriceDataGridViewTextBoxColumn
             // 
             this.unlockPriceDataGridViewTextBoxColumn.DataPropertyName = "UnlockPrice";
@@ -368,7 +359,7 @@
             // 
             // Chapters
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 30F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -399,6 +390,7 @@
             this.Text = "ByteManager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Chapters_Load);
+            this.Shown += new System.EventHandler(this.Chapters_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chaptersEditButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersConfirmButton)).EndInit();

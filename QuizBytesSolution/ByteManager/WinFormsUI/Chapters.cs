@@ -21,19 +21,16 @@ namespace ByteManager.WinFormsUI
         {
             InitializeComponent();
             ChapterFacadeApi = chapterFacadeApi;
-            GetData(ChapterFacadeApi);
         }
 
         private void singleAnswerDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-
-        private async void GetData(IChapterFacadeApiClient ChapterFacadeApi)
+        private async Task GetData()
         {
             var chaptersEnum = await ChapterFacadeApi.GetAllChaptersAsync();
             var chapterList = chaptersEnum.ToList();
-            //ChapterDataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             ChapterDataGrid_Resize();
             chapterBindingSource.DataSource = chapterList;
             ChapterDataGrid.DataSource = chapterBindingSource;
@@ -44,9 +41,9 @@ namespace ByteManager.WinFormsUI
 
         }
 
-        private void Chapters_Load(object sender, EventArgs e)
+        private async void Chapters_Load(object sender, EventArgs e)
         {
-
+            await GetData();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -128,7 +125,13 @@ namespace ByteManager.WinFormsUI
 
         private void ChapterDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.ChapterDataGrid.Rows[e.RowIndex];
+                chapterNameTextBox.Text = row.Cells[1].Value.ToString();
+                //subjectComboBox.Text = row.Cells[3].Value.ToString();
+                descriptionTextBox.Text = row.Cells[2].Value.ToString();
+            }
         }
     }
 }

@@ -16,12 +16,12 @@ namespace ByteManager.WinFormsUI
     {
 
         private BindingSource chapterBindingSource = new();
-        private readonly IChapterFacadeApiClient ChapterFacadeApi;
-        public Chapters(IChapterFacadeApiClient ChapterFacadeApi)
+        private IChapterFacadeApiClient ChapterFacadeApi { get; set; }
+        public Chapters(IChapterFacadeApiClient chapterFacadeApi)
         {
             InitializeComponent();
+            ChapterFacadeApi = chapterFacadeApi;
             GetData(ChapterFacadeApi);
-            this.ChapterFacadeApi = ChapterFacadeApi;
         }
 
         private void singleAnswerDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -124,6 +124,11 @@ namespace ByteManager.WinFormsUI
             ChapterDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             ChapterDataGrid.Columns[2].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             ChapterDataGrid.ForeColor = Color.Black;
+        }
+
+        private void ChapterDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

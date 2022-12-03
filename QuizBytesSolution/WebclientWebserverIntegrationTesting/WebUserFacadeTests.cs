@@ -15,6 +15,7 @@ public class WebUserFacadeTests
     private IWebUserDataAccess _webUserDataAccess = new WebUserDataAccess(Configuration.CONNECTION_STRING);
     private IChapterDataAccess _chapterDataAccess = new ChapterDataAccess(Configuration.CONNECTION_STRING);
     private IWebUserChapterUnlockDataAccess _chapterUnlockDataAccess = new WebUserChapterUnlockDataAccess(Configuration.CONNECTION_STRING);
+    // TODO when the interface is extracted replace this reference with interface type
     private QuizFacadeApiClient _quizFacadeApiClient = new QuizFacadeApiClient(Configuration.WEB_API_URI);
 
 

@@ -181,7 +181,6 @@
             this.chapterNameTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chapterNameTextBox.Location = new System.Drawing.Point(690, 619);
             this.chapterNameTextBox.Name = "chapterNameTextBox";
-            this.chapterNameTextBox.ReadOnly = true;
             this.chapterNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.chapterNameTextBox.Size = new System.Drawing.Size(561, 39);
             this.chapterNameTextBox.TabIndex = 24;
@@ -254,6 +253,7 @@
             this.chaptersConfirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.chaptersConfirmButton.TabIndex = 21;
             this.chaptersConfirmButton.TabStop = false;
+            this.chaptersConfirmButton.Click += new System.EventHandler(this.chaptersConfirmButton_Click);
             // 
             // chaptersCancelButton
             // 

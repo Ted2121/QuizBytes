@@ -16,24 +16,41 @@ namespace ByteManager.WinFormsUI
     {
 
         private BindingSource chapterBindingSource = new();
+        private BindingSource subjectsBindingSource = new();
         private IChapterFacadeApiClient ChapterFacadeApi { get; set; }
-        public Chapters(IChapterFacadeApiClient chapterFacadeApi)
+        private ISubjectFacadeApiClient SubjectFacadeApi { get; set; }
+        //private ICourseFacadeApiClient CourseFacadeApi { get; set; }
+        private int ChapterId { get; set; }
+        public Chapters(IChapterFacadeApiClient chapterFacadeApi, ISubjectFacadeApiClient subjectFacadeApi)
         {
             InitializeComponent();
             ChapterFacadeApi = chapterFacadeApi;
+            //CourseFacadeApi = courseFacadeApi;
+            SubjectFacadeApi = subjectFacadeApi;
         }
 
         private void singleAnswerDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-        private async Task GetData()
+        private async Task GetChapters()
         {
             var chaptersEnum = await ChapterFacadeApi.GetAllChaptersAsync();
             var chapterList = chaptersEnum.ToList();
             ChapterDataGrid_Resize();
             chapterBindingSource.DataSource = chapterList;
             ChapterDataGrid.DataSource = chapterBindingSource;
+        }
+
+        private async Task GetSubjects()
+        {
+            var subjectsEnum = await SubjectFacadeApi.GetAllSubjectsAsync();
+            var subjectsList = subjectsEnum.ToList();
+            for(int i = 0; i < subjectsList.Count; i++)
+            {
+                subjectsBindingSource.Insert(i, subjectsList[i].Name);
+            }
+            subjectComboBox.DataSource = subjectsBindingSource;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -43,7 +60,8 @@ namespace ByteManager.WinFormsUI
 
         private async void Chapters_Load(object sender, EventArgs e)
         {
-            await GetData();
+            await GetChapters();
+            await GetSubjects();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -76,11 +94,20 @@ namespace ByteManager.WinFormsUI
 
         }
 
-        private void chaptersEditButton_Click(object sender, EventArgs e)
+        private async void chaptersEditButton_Click(object sender, EventArgs e)
         {
-            chapterNameTextBox.ReadOnly = false;
-            //topicComboBox.DropDownStyle = ComboBoxStyle.DropDown;
-            //subTopicComboBox.DropDownStyle = ComboBoxStyle.DropDown;
+            ChapterDto updatedChapter = new()
+            {
+                Id = ChapterId,
+                Description = descriptionTextBox.Text,
+                Name = chapterNameTextBox.Text
+            };
+            await updateChapter(updatedChapter);
+        }
+
+        private async Task updateChapter(ChapterDto chapter)
+        {
+            await ChapterFacadeApi.UpdateChapterAsync(chapter);
         }
 
         private void questionsNavigationButton_Click(object sender, EventArgs e)
@@ -128,10 +155,42 @@ namespace ByteManager.WinFormsUI
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.ChapterDataGrid.Rows[e.RowIndex];
+                ChapterId = int.Parse(row.Cells[0].Value.ToString());
                 chapterNameTextBox.Text = row.Cells[1].Value.ToString();
                 //subjectComboBox.Text = row.Cells[3].Value.ToString();
                 descriptionTextBox.Text = row.Cells[2].Value.ToString();
             }
+        }
+
+        private async void chaptersConfirmButton_Click(object sender, EventArgs e)
+        {
+            var subjectName = subjectComboBox.Text;
+            int subjectId = await getSubjectIdFromName(subjectName);
+            ChapterDto chapter = new()
+            {
+                Description = descriptionTextBox.Text,
+                Name = chapterNameTextBox.Text,
+                FKSubjectId = subjectId,
+            };
+            await createChapter(chapter);
+        }
+
+        private async Task<int> getSubjectIdFromName(string subjectName)
+        {
+            var subjects = await SubjectFacadeApi.GetAllSubjectsAsync();
+            var subjectList = subjects.ToList();
+            for (var i = 0; i < subjectList.Count; i++)
+            {
+                if(subjectName == subjectList[i].Name)
+                {
+                    return subjectList[i].Id;
+                }
+            }
+            return -1;
+        }
+        private async Task createChapter(ChapterDto chapter)
+        {
+            var id = await ChapterFacadeApi.InsertChapterAsync(chapter);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace WindowsApiClient
 
         public async Task<IEnumerable<ChapterDto>> GetAllChaptersBySubjectAsync(SubjectDto subject)
         {
-            var response = await _restClient.RequestAsync<IEnumerable<ChapterDto>>(Method.GET, $"Chapter/{subject}");
+            var response = await _restClient.RequestAsync<IEnumerable<ChapterDto>>(Method.GET, $"Chapters/{subject}");
 
             if (!response.IsSuccessful)
             {
@@ -42,7 +42,7 @@ namespace WindowsApiClient
 
         public async Task<ChapterDto> GetChapterByIdAsync(int id)
         {
-            var response = await _restClient.RequestAsync<ChapterDto>(Method.GET, $"Chapter/{id}");
+            var response = await _restClient.RequestAsync<ChapterDto>(Method.GET, $"Chapters/{id}");
 
             if (!response.IsSuccessful)
             {
@@ -54,7 +54,7 @@ namespace WindowsApiClient
 
         public async Task<bool> DeleteChapterAsync(int id)
         {
-            var response = await _restClient.RequestAsync(Method.DELETE, $"Chapter/{id}");
+            var response = await _restClient.RequestAsync(Method.DELETE, $"Chapters/{id}");
 
             if (!response.IsSuccessful)
             {
@@ -66,7 +66,7 @@ namespace WindowsApiClient
 
         public async Task<int> InsertChapterAsync(ChapterDto chapter)
         {
-            var response = await _restClient.RequestAsync<int>(Method.POST, $"Chapter", chapter);
+            var response = await _restClient.RequestAsync<int>(Method.POST, $"Chapters", chapter);
 
             if (!response.IsSuccessful)
             {

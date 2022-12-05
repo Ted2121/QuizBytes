@@ -14,6 +14,7 @@ namespace ByteManager.WinFormsUI
     public partial class Questions : Form
     {
         private IChapterFacadeApiClient ChapterFacadeApiClient;
+        private ISubjectFacadeApiClient SubjectFacadeApiClient;
 
         public Questions()
         {
@@ -23,7 +24,7 @@ namespace ByteManager.WinFormsUI
         private void chaptersNavigationButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Chapters chapters = new Chapters(ChapterFacadeApiClient);
+            Chapters chapters = new Chapters(ChapterFacadeApiClient, SubjectFacadeApiClient);
             chapters.Show();
         }
 

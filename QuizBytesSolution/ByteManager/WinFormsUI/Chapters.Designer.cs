@@ -41,16 +41,13 @@
             this.webusersNavigationButton = new System.Windows.Forms.Button();
             this.lineSeparator = new System.Windows.Forms.Label();
             this.horizontalLineSeparator = new System.Windows.Forms.Label();
-            this.courseComboBox = new System.Windows.Forms.ComboBox();
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
             this.chapterNameTextBox = new System.Windows.Forms.TextBox();
             this.chapterNameLabel = new System.Windows.Forms.Label();
-            this.courseLabel = new System.Windows.Forms.Label();
             this.subjectLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.chaptersEditButton = new System.Windows.Forms.PictureBox();
             this.chaptersConfirmButton = new System.Windows.Forms.PictureBox();
-            this.chaptersCancelButton = new System.Windows.Forms.PictureBox();
             this.chaptersDeleteButton = new System.Windows.Forms.PictureBox();
             this.chapterDescription = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
@@ -64,7 +61,6 @@
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersEditButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersConfirmButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chaptersCancelButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersDeleteButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chapterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chapterDtoBindingSource)).BeginInit();
@@ -150,26 +146,13 @@
             this.horizontalLineSeparator.Size = new System.Drawing.Size(1480, 1);
             this.horizontalLineSeparator.TabIndex = 21;
             // 
-            // courseComboBox
-            // 
-            this.courseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.courseComboBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.courseComboBox.ForeColor = System.Drawing.Color.Black;
-            this.courseComboBox.FormattingEnabled = true;
-            this.courseComboBox.Location = new System.Drawing.Point(690, 679);
-            this.courseComboBox.MaxDropDownItems = 10;
-            this.courseComboBox.Name = "courseComboBox";
-            this.courseComboBox.Size = new System.Drawing.Size(561, 40);
-            this.courseComboBox.TabIndex = 22;
-            this.courseComboBox.SelectedIndexChanged += new System.EventHandler(this.questionTypeComboBox_SelectedIndexChanged);
-            // 
             // subjectComboBox
             // 
             this.subjectComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.subjectComboBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.subjectComboBox.ForeColor = System.Drawing.Color.Black;
             this.subjectComboBox.FormattingEnabled = true;
-            this.subjectComboBox.Location = new System.Drawing.Point(690, 739);
+            this.subjectComboBox.Location = new System.Drawing.Point(690, 686);
             this.subjectComboBox.MaxDropDownItems = 10;
             this.subjectComboBox.Name = "subjectComboBox";
             this.subjectComboBox.Size = new System.Drawing.Size(561, 40);
@@ -197,21 +180,10 @@
             this.chapterNameLabel.Text = "Chapter Name";
             this.chapterNameLabel.Click += new System.EventHandler(this.chapterNameLabel_Click);
             // 
-            // courseLabel
-            // 
-            this.courseLabel.AutoSize = true;
-            this.courseLabel.Location = new System.Drawing.Point(480, 678);
-            this.courseLabel.Margin = new System.Windows.Forms.Padding(5);
-            this.courseLabel.Name = "courseLabel";
-            this.courseLabel.Size = new System.Drawing.Size(104, 38);
-            this.courseLabel.TabIndex = 26;
-            this.courseLabel.Text = "Course";
-            this.courseLabel.Click += new System.EventHandler(this.label2_Click);
-            // 
             // subjectLabel
             // 
             this.subjectLabel.AutoSize = true;
-            this.subjectLabel.Location = new System.Drawing.Point(480, 738);
+            this.subjectLabel.Location = new System.Drawing.Point(480, 685);
             this.subjectLabel.Margin = new System.Windows.Forms.Padding(5);
             this.subjectLabel.Name = "subjectLabel";
             this.subjectLabel.Size = new System.Drawing.Size(110, 38);
@@ -223,12 +195,11 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.chaptersEditButton);
             this.flowLayoutPanel1.Controls.Add(this.chaptersConfirmButton);
-            this.flowLayoutPanel1.Controls.Add(this.chaptersCancelButton);
             this.flowLayoutPanel1.Controls.Add(this.chaptersDeleteButton);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1737, 596);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(1757, 659);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 11);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 303);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 240);
             this.flowLayoutPanel1.TabIndex = 37;
             // 
             // chaptersEditButton
@@ -255,32 +226,22 @@
             this.chaptersConfirmButton.TabStop = false;
             this.chaptersConfirmButton.Click += new System.EventHandler(this.chaptersConfirmButton_Click);
             // 
-            // chaptersCancelButton
-            // 
-            this.chaptersCancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chaptersCancelButton.Image = global::ByteManager.Properties.Resources.NegativeButton;
-            this.chaptersCancelButton.Location = new System.Drawing.Point(13, 155);
-            this.chaptersCancelButton.Name = "chaptersCancelButton";
-            this.chaptersCancelButton.Size = new System.Drawing.Size(59, 60);
-            this.chaptersCancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.chaptersCancelButton.TabIndex = 22;
-            this.chaptersCancelButton.TabStop = false;
-            // 
             // chaptersDeleteButton
             // 
             this.chaptersDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chaptersDeleteButton.Image = global::ByteManager.Properties.Resources.TrashBinButton;
-            this.chaptersDeleteButton.Location = new System.Drawing.Point(13, 221);
+            this.chaptersDeleteButton.Location = new System.Drawing.Point(13, 155);
             this.chaptersDeleteButton.Name = "chaptersDeleteButton";
             this.chaptersDeleteButton.Size = new System.Drawing.Size(59, 60);
             this.chaptersDeleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.chaptersDeleteButton.TabIndex = 23;
             this.chaptersDeleteButton.TabStop = false;
+            this.chaptersDeleteButton.Click += new System.EventHandler(this.chaptersDeleteButton_Click);
             // 
             // chapterDescription
             // 
             this.chapterDescription.AutoSize = true;
-            this.chapterDescription.Location = new System.Drawing.Point(480, 793);
+            this.chapterDescription.Location = new System.Drawing.Point(480, 751);
             this.chapterDescription.Margin = new System.Windows.Forms.Padding(5);
             this.chapterDescription.Name = "chapterDescription";
             this.chapterDescription.Size = new System.Drawing.Size(161, 38);
@@ -290,7 +251,7 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(690, 800);
+            this.descriptionTextBox.Location = new System.Drawing.Point(690, 759);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(561, 140);
@@ -369,11 +330,9 @@
             this.Controls.Add(this.chapterDescription);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.subjectLabel);
-            this.Controls.Add(this.courseLabel);
             this.Controls.Add(this.chapterNameLabel);
             this.Controls.Add(this.chapterNameTextBox);
             this.Controls.Add(this.subjectComboBox);
-            this.Controls.Add(this.courseComboBox);
             this.Controls.Add(this.horizontalLineSeparator);
             this.Controls.Add(this.lineSeparator);
             this.Controls.Add(this.webusersNavigationButton);
@@ -394,7 +353,6 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chaptersEditButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersConfirmButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chaptersCancelButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chaptersDeleteButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chapterBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chapterDtoBindingSource)).EndInit();
@@ -406,16 +364,13 @@
 
         #endregion
         private Label horizontalLineSeparator;
-        private ComboBox courseComboBox;
         private ComboBox subjectComboBox;
         private TextBox chapterNameTextBox;
         private Label chapterNameLabel;
-        private Label courseLabel;
         private Label subjectLabel;
         private FlowLayoutPanel flowLayoutPanel1;
         private PictureBox chaptersEditButton;
         private PictureBox chaptersConfirmButton;
-        private PictureBox chaptersCancelButton;
         private PictureBox chaptersDeleteButton;
         private Label chapterDescription;
         private TextBox descriptionTextBox;

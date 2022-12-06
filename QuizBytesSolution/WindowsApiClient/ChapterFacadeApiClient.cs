@@ -78,7 +78,7 @@ namespace WindowsApiClient
 
         public async Task<bool> UpdateChapterAsync(ChapterDto chapter)
         {
-            var response = await _restClient.RequestAsync(Method.PUT, $"Chapter", chapter);
+            var response = await _restClient.RequestAsync(Method.PUT, $"Chapters", chapter);
 
             if (!response.IsSuccessful)
             {

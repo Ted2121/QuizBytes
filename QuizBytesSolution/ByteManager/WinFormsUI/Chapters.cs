@@ -99,10 +99,12 @@ namespace ByteManager.WinFormsUI
             ChapterDto updatedChapter = new()
             {
                 Id = ChapterId,
+                FKSubjectId = 20,
                 Description = descriptionTextBox.Text,
                 Name = chapterNameTextBox.Text
             };
             await updateChapter(updatedChapter);
+            await GetChapters();
         }
 
         private async Task updateChapter(ChapterDto chapter)
@@ -173,6 +175,7 @@ namespace ByteManager.WinFormsUI
                 FKSubjectId = subjectId,
             };
             await createChapter(chapter);
+            await GetChapters();
         }
 
         private async Task<int> getSubjectIdFromName(string subjectName)
@@ -191,6 +194,12 @@ namespace ByteManager.WinFormsUI
         private async Task createChapter(ChapterDto chapter)
         {
             var id = await ChapterFacadeApi.InsertChapterAsync(chapter);
+        }
+
+        private async void chaptersDeleteButton_Click(object sender, EventArgs e)
+        {
+            await ChapterFacadeApi.DeleteChapterAsync(ChapterId);
+            await GetChapters();
         }
     }
 }

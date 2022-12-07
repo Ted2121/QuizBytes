@@ -154,12 +154,16 @@ namespace ByteManager.WinFormsUI
 
         private void ChapterDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            ParseDatagridRows(e);
+        }
+
+        private void ParseDatagridRows(DataGridViewCellEventArgs e)
+        {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.ChapterDataGrid.Rows[e.RowIndex];
                 ChapterId = int.Parse(row.Cells[0].Value.ToString());
                 chapterNameTextBox.Text = row.Cells[1].Value.ToString();
-                //subjectComboBox.Text = row.Cells[3].Value.ToString();
                 descriptionTextBox.Text = row.Cells[2].Value.ToString();
             }
         }

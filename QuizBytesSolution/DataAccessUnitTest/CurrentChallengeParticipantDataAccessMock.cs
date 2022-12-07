@@ -28,7 +28,7 @@ namespace SQLAccessImplementationLibraryUnitTest
                 };
                 try
                 {
-                    var rowAmount = await GetRowAmountFromDatabaseAsync();
+                    var rowAmount = await GetRowAmountFromDatabaseAsync(connection);
                     if (rowAmount < userLimitForChallenges)
                     {
                         currentChallengeRowId = await connection.QuerySingleAsync<int>(commandText, parameters, transaction: transaction);
@@ -126,7 +126,7 @@ namespace SQLAccessImplementationLibraryUnitTest
                 {
                     await connection.ExecuteAsync(commandToReseedIdentity);
                     await connection.ExecuteAsync(commandText);
-                    return await GetRowAmountFromDatabaseAsync() == 0;
+                    return await GetRowAmountFromDatabaseAsync(connection) == 0;
                 }
             }
             catch (SqlException ex)
@@ -136,16 +136,20 @@ namespace SQLAccessImplementationLibraryUnitTest
             }
         }
 
-        public async Task<int> GetRowAmountFromDatabaseAsync()
+        public async Task<int> GetRowAmountFromDatabaseAsync(SqlConnection connection = null)
         {
             string commandText = "SELECT COUNT(Id) FROM TestCurrentChallengeParticipant";
             try
             {
-                using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
+                using (connection ?? new SqlConnection(Configuration.CONNECTION_STRING))
                 {
                     var rowAmount = await connection.ExecuteScalarAsync(commandText);
                     return (int)rowAmount;
+
                 }
+
+
+                
             }
             catch (SqlException ex)
             {

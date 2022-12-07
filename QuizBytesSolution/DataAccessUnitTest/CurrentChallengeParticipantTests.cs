@@ -1,7 +1,9 @@
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
 using NUnit.Framework;
+using SQLAccessImplementationLibrary;
 using SQLAccessImplementationLibraryUnitTest;
+using System.Data.SqlClient;
 using Assert = NUnit.Framework.Assert;
 
 namespace DataAccessUnitTest

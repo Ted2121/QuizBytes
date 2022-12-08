@@ -147,18 +147,25 @@ public class CurrentChallengeParticipantDataAccess : BaseDataAccess, ICurrentCha
         string commandText = "SELECT COUNT(Id) FROM CurrentChallengeParticipant";
         try
         {
-            using (connection ?? CreateConnection())
+            if (connection != null)
             {
-                if (transaction != null)
-                {
+                var initialConnectionState = connection.State;
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = commandText;
+                command.Transaction = transaction;
+                if (initialConnectionState == ConnectionState.Closed)
+                { connection.Open(); }
+                var rowAmount = await command.ExecuteScalarAsync();
+                if (initialConnectionState == ConnectionState.Closed)
+                { connection.Close(); }
+                return (int)rowAmount;
 
-                    var rowAmount = await connection.ExecuteScalarAsync(commandText, transaction: transaction);
-                    return (int)rowAmount;
-
-                }
-                else
+            }
+            else
+            {
+                using (var newConnection = CreateConnection())
                 {
-                    var rowAmount = await connection.ExecuteScalarAsync(commandText);
+                    var rowAmount = await newConnection.ExecuteScalarAsync(commandText);
                     return (int)rowAmount;
                 }
             }

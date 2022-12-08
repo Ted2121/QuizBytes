@@ -42,7 +42,7 @@ namespace SQLAccessImplementationLibraryUnitTest
                         {
                             transaction.Rollback();
                             throw new Exception($"SqlException while trying to insert into TestCurrentChallengeParticipant table. Transaction successfully rolled back");
-                            
+
                         }
                         catch
                         {
@@ -147,19 +147,19 @@ namespace SQLAccessImplementationLibraryUnitTest
             string commandText = "SELECT COUNT(Id) FROM TestCurrentChallengeParticipant";
             try
             {
-                if(connection != null)
+                if (connection != null)
                 {
-            var initialConnectionState = connection.State;
-                        SqlCommand command = connection.CreateCommand();
-                        command.CommandText = commandText;
-                        command.Transaction = transaction;
-                        if (initialConnectionState == ConnectionState.Closed)
-                        { connection.Open(); }
-                        var rowAmount = await command.ExecuteScalarAsync();
-                        if (initialConnectionState == ConnectionState.Closed)
-                        { connection.Close(); }
-                        return (int)rowAmount;
-                    
+                    var initialConnectionState = connection.State;
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandText = commandText;
+                    command.Transaction = transaction;
+                    if (initialConnectionState == ConnectionState.Closed)
+                    { connection.Open(); }
+                    var rowAmount = await command.ExecuteScalarAsync();
+                    if (initialConnectionState == ConnectionState.Closed)
+                    { connection.Close(); }
+                    return (int)rowAmount;
+
                 }
                 else
                 {
@@ -169,21 +169,6 @@ namespace SQLAccessImplementationLibraryUnitTest
                         return (int)rowAmount;
                     }
                 }
-
-
-                //using (connection ?? new SqlConnection(Configuration.CONNECTION_STRING))
-                //{
-                //    SqlCommand command = connection.CreateCommand();
-                //    command.CommandText = commandText;
-
-                //    command.Transaction = transaction;
-                //    var rowAmount = await command.ExecuteScalarAsync();
-                //    return (int)rowAmount;
-                    
-
-                //}
-
-
 
             }
             catch (SqlException ex)

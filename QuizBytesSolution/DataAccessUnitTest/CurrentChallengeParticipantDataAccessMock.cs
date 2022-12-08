@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
-using SQLAccessImplementationLibrary;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -21,6 +20,7 @@ namespace SQLAccessImplementationLibraryUnitTest
                 IsolationLevel isolationLevel = IsolationLevel.RepeatableRead;
                 SqlTransaction transaction = connection.BeginTransaction(isolationLevel);
                 string commandText = "INSERT INTO TestCurrentChallengeParticipant (FKWebUserId, FKCourseId) VALUES (@FKWebUserId, @FKCourseId); SELECT CAST(scope_identity() AS int)";
+
                 var parameters = new
                 {
                     FKWebUserId = webUser.Id,
@@ -28,23 +28,29 @@ namespace SQLAccessImplementationLibraryUnitTest
                 };
                 try
                 {
-                    var rowAmount = await GetRowAmountFromDatabaseAsync(connection);
+                    var rowAmount = await GetRowAmountFromDatabaseAsync(connection, transaction);
                     if (rowAmount < userLimitForChallenges)
                     {
                         currentChallengeRowId = await connection.QuerySingleAsync<int>(commandText, parameters, transaction: transaction);
 
-                    transaction.Commit();
+                        transaction.Commit();
+                        connection.Close();
                     }
                     else
                     {
                         try
                         {
-                        transaction.Rollback();
+                            transaction.Rollback();
                             throw new Exception($"SqlException while trying to insert into TestCurrentChallengeParticipant table. Transaction successfully rolled back");
+                            
                         }
                         catch
                         {
                             throw new Exception($"Exception while trying to rollback transaction.");
+                        }
+                        finally
+                        {
+                            connection.Close();
                         }
                     }
 
@@ -136,20 +142,49 @@ namespace SQLAccessImplementationLibraryUnitTest
             }
         }
 
-        public async Task<int> GetRowAmountFromDatabaseAsync(SqlConnection connection = null)
+        public async Task<int> GetRowAmountFromDatabaseAsync(SqlConnection connection = null, SqlTransaction transaction = null)
         {
             string commandText = "SELECT COUNT(Id) FROM TestCurrentChallengeParticipant";
             try
             {
-                using (connection ?? new SqlConnection(Configuration.CONNECTION_STRING))
+                if(connection != null)
                 {
-                    var rowAmount = await connection.ExecuteScalarAsync(commandText);
-                    return (int)rowAmount;
-
+            var initialConnectionState = connection.State;
+                        SqlCommand command = connection.CreateCommand();
+                        command.CommandText = commandText;
+                        command.Transaction = transaction;
+                        if (initialConnectionState == ConnectionState.Closed)
+                        { connection.Open(); }
+                        var rowAmount = await command.ExecuteScalarAsync();
+                        if (initialConnectionState == ConnectionState.Closed)
+                        { connection.Close(); }
+                        return (int)rowAmount;
+                    
+                }
+                else
+                {
+                    using (var newConnection = new SqlConnection(Configuration.CONNECTION_STRING))
+                    {
+                        var rowAmount = await newConnection.ExecuteScalarAsync(commandText);
+                        return (int)rowAmount;
+                    }
                 }
 
 
-                
+                //using (connection ?? new SqlConnection(Configuration.CONNECTION_STRING))
+                //{
+                //    SqlCommand command = connection.CreateCommand();
+                //    command.CommandText = commandText;
+
+                //    command.Transaction = transaction;
+                //    var rowAmount = await command.ExecuteScalarAsync();
+                //    return (int)rowAmount;
+                    
+
+                //}
+
+
+
             }
             catch (SqlException ex)
             {

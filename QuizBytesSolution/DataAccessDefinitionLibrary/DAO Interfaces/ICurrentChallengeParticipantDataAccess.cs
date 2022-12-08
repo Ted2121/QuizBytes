@@ -14,6 +14,6 @@ public interface ICurrentChallengeParticipantDataAccess
     Task<bool> DeleteWebUserFromChallengeAsync(int id);
     Task<IEnumerable<CurrentChallengeParticipant>> GetAllRowsInChallengeAsync();
     Task<bool> ClearTempTableBeforeNextChallengeAsync();
-    Task<int> GetRowAmountFromDatabaseAsync(SqlConnection connection = null);
+    Task<int> GetRowAmountFromDatabaseAsync(SqlConnection connection = null, SqlTransaction transaction = null);
     Task<bool> CheckIfWebUserIsInChallengeAsync(int id);
 }

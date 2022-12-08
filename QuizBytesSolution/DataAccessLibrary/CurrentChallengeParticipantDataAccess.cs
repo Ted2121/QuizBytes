@@ -32,7 +32,7 @@ public class CurrentChallengeParticipantDataAccess : BaseDataAccess, ICurrentCha
             };
             try
             {
-                var rowAmount = await GetRowAmountFromDatabaseAsync(connection);
+                var rowAmount = await GetRowAmountFromDatabaseAsync(connection, transaction);
                 if (rowAmount < userLimitForChallenges)
                 {
                     currentChallengeRowId = await connection.QuerySingleAsync<int>(commandText, parameters, transaction: transaction);
@@ -142,15 +142,25 @@ public class CurrentChallengeParticipantDataAccess : BaseDataAccess, ICurrentCha
         }
     }
 
-    public async Task<int> GetRowAmountFromDatabaseAsync(SqlConnection connection = null)
+    public async Task<int> GetRowAmountFromDatabaseAsync(SqlConnection connection = null, SqlTransaction transaction = null)
     {
         string commandText = "SELECT COUNT(Id) FROM CurrentChallengeParticipant";
         try
         {
             using (connection ?? CreateConnection())
             {
-                var rowAmount = await connection.ExecuteScalarAsync(commandText);
-                return (int)rowAmount;
+                if (transaction != null)
+                {
+
+                    var rowAmount = await connection.ExecuteScalarAsync(commandText, transaction: transaction);
+                    return (int)rowAmount;
+
+                }
+                else
+                {
+                    var rowAmount = await connection.ExecuteScalarAsync(commandText);
+                    return (int)rowAmount;
+                }
             }
         }
         catch (Exception ex)

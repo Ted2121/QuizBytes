@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ByteManager.Client_Singletons;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,13 +20,11 @@ namespace ByteManager.WinFormsUI
         private BindingSource subjectsBindingSource = new();
         private IChapterFacadeApiClient ChapterFacadeApi { get; set; }
         private ISubjectFacadeApiClient SubjectFacadeApi { get; set; }
-        //private ICourseFacadeApiClient CourseFacadeApi { get; set; }
         private int ChapterId { get; set; }
         public Chapters(IChapterFacadeApiClient chapterFacadeApi, ISubjectFacadeApiClient subjectFacadeApi)
         {
             InitializeComponent();
             ChapterFacadeApi = chapterFacadeApi;
-            //CourseFacadeApi = courseFacadeApi;
             SubjectFacadeApi = subjectFacadeApi;
         }
 
@@ -35,6 +34,7 @@ namespace ByteManager.WinFormsUI
         }
         private async Task GetChapters()
         {
+            ChapterFacadeApi = ChapterFacadeSingleton.Instance;
             var chaptersEnum = await ChapterFacadeApi.GetAllChaptersAsync();
             var chapterList = chaptersEnum.ToList();
             ChapterDataGrid_Resize();
@@ -44,6 +44,7 @@ namespace ByteManager.WinFormsUI
 
         private async Task GetSubjects()
         {
+            SubjectFacadeApi = SubjectFacadeSingleton.Instance;
             var subjectsEnum = await SubjectFacadeApi.GetAllSubjectsAsync();
             var subjectsList = subjectsEnum.ToList();
             for(int i = 0; i < subjectsList.Count; i++)
@@ -59,6 +60,11 @@ namespace ByteManager.WinFormsUI
         }
 
         private async void Chapters_Load(object sender, EventArgs e)
+        {
+            await GetChaptersAndSubjects();
+        }
+
+        private async Task GetChaptersAndSubjects()
         {
             await GetChapters();
             await GetSubjects();
@@ -96,6 +102,11 @@ namespace ByteManager.WinFormsUI
 
         private async void chaptersEditButton_Click(object sender, EventArgs e)
         {
+            await EditChapters();
+        }
+
+        private async Task EditChapters()
+        {
             ChapterDto updatedChapter = new()
             {
                 Id = ChapterId,
@@ -103,16 +114,21 @@ namespace ByteManager.WinFormsUI
                 Description = descriptionTextBox.Text,
                 Name = chapterNameTextBox.Text
             };
-            await updateChapter(updatedChapter);
+            await UpdateChapter(updatedChapter);
             await GetChapters();
         }
 
-        private async Task updateChapter(ChapterDto chapter)
+        private async Task UpdateChapter(ChapterDto chapter)
         {
             await ChapterFacadeApi.UpdateChapterAsync(chapter);
         }
 
         private void questionsNavigationButton_Click(object sender, EventArgs e)
+        {
+            ShowQuestions();
+        }
+
+        private void ShowQuestions()
         {
             this.Hide();
             Questions questions = new Questions();
@@ -121,12 +137,22 @@ namespace ByteManager.WinFormsUI
 
         private void webusersNavigationButton_Click(object sender, EventArgs e)
         {
+            ShowWebUsers();
+        }
+
+        private void ShowWebUsers()
+        {
             this.Hide();
             WebUsers webUsers = new WebUsers();
             webUsers.Show();
         }
 
         private void dashboardNavigationButton_Click(object sender, EventArgs e)
+        {
+            ShowDashboard();
+        }
+
+        private void ShowDashboard()
         {
             this.Hide();
             Dashboard dashboard = new Dashboard();

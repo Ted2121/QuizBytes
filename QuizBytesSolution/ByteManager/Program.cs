@@ -1,3 +1,4 @@
+using ByteManager.Client_Singletons;
 using ByteManager.WinFormsUI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,7 +16,7 @@ namespace ByteManager.WinFormsUI
     {
             Configuration configuration = new();
             ApplicationConfiguration.Initialize();
-            Application.Run(new Chapters(new ChapterFacadeApiClient("https://localhost:7215/api/v1/"), new SubjectFacadeApiClient("https://localhost:7215/api/v1/")));
+            Application.Run(new Chapters(ChapterFacadeSingleton.Instance, SubjectFacadeSingleton.Instance));
 
             //    Application.SetHighDpiMode(HighDpiMode.SystemAware);
             //    Application.EnableVisualStyles();

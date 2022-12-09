@@ -41,7 +41,7 @@ namespace SQLAccessImplementationLibraryUnitTest
                         try
                         {
                             transaction.Rollback();
-                            throw new Exception($"SqlException while trying to insert into TestCurrentChallengeParticipant table. Transaction successfully rolled back");
+                            return 0;
 
                         }
                         catch
@@ -62,7 +62,7 @@ namespace SQLAccessImplementationLibraryUnitTest
                     try
                     {
                         transaction.Rollback();
-                        throw new Exception($"SqlException while trying to insert into TestCurrentChallengeParticipant table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
+                        return 0;
                     }
                     catch
                     {

@@ -67,14 +67,14 @@ public class ChaptersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<ChapterDto>> InsertChapterAsync(ChapterDto chapter)
+    public async Task<ActionResult<int>> InsertChapterAsync(ChapterDto chapter)
     {
         if (chapter == null)
         {
             return NotFound();
         }
-        await ChapterDataAccess.InsertChapterAsync(chapter.FromDto());
-        return Ok(chapter);
+        
+        return Ok(await ChapterDataAccess.InsertChapterAsync(chapter.FromDto()));
     }
 
 

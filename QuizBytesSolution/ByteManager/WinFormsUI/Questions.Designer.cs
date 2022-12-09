@@ -28,158 +28,278 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Questions));
-            this.lineSeparator = new System.Windows.Forms.Label();
-            this.webusersNavigationButton = new System.Windows.Forms.Button();
-            this.questionsNavigationButton = new System.Windows.Forms.Button();
-            this.chaptersNavigationButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dashboardNavigationButton = new System.Windows.Forms.Button();
+            this.chaptersNavigationButton = new System.Windows.Forms.Button();
+            this.questionsNavigationButton = new System.Windows.Forms.Button();
+            this.webusersNavigationButton = new System.Windows.Forms.Button();
+            this.lineSeparator = new System.Windows.Forms.Label();
             this.singleAnswerDataGrid = new System.Windows.Forms.DataGridView();
             this.questionsIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.questionText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.wrongAnswerThreeLabel = new System.Windows.Forms.Label();
             this.chapterNameLabel = new System.Windows.Forms.Label();
             this.questionTypeLabel = new System.Windows.Forms.Label();
             this.questionTextLabel = new System.Windows.Forms.Label();
             this.correctAnswerLabel = new System.Windows.Forms.Label();
             this.wrongAnswerOneLabel = new System.Windows.Forms.Label();
             this.wrongAnswerTwoLabel = new System.Windows.Forms.Label();
-            this.wrongAnswerThreeLabel = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.wrongAnswerThreeTextBox = new System.Windows.Forms.TextBox();
-            this.wonrgAnswerTwoTextBox = new System.Windows.Forms.TextBox();
-            this.wrongAnswerOneTextBox = new System.Windows.Forms.TextBox();
-            this.correctAnswerTextBox = new System.Windows.Forms.TextBox();
-            this.questionTextTextBox = new System.Windows.Forms.TextBox();
-            this.questionTypeComboBox = new System.Windows.Forms.ComboBox();
             this.chapterNameCombobox = new System.Windows.Forms.ComboBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.questionTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.questionTextTextBox = new System.Windows.Forms.TextBox();
+            this.correctAnswerTextBox = new System.Windows.Forms.TextBox();
+            this.wrongAnswerOneTextBox = new System.Windows.Forms.TextBox();
+            this.wonrgAnswerTwoTextBox = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.questionsDeleteButton = new System.Windows.Forms.PictureBox();
             this.questionsEditButton = new System.Windows.Forms.PictureBox();
             this.questionsConfirmButton = new System.Windows.Forms.PictureBox();
             this.questionsCancelButton = new System.Windows.Forms.PictureBox();
-            this.questionsDeleteButton = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.singleAnswerDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.questionsDeleteButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionsEditButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionsConfirmButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionsCancelButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.questionsDeleteButton)).BeginInit();
             this.SuspendLayout();
             // 
-            // lineSeparator
+            // tableLayoutPanel1
             // 
-            this.lineSeparator.BackColor = System.Drawing.Color.White;
-            this.lineSeparator.Location = new System.Drawing.Point(315, 40);
-            this.lineSeparator.Name = "lineSeparator";
-            this.lineSeparator.Size = new System.Drawing.Size(1, 960);
-            this.lineSeparator.TabIndex = 9;
-            // 
-            // webusersNavigationButton
-            // 
-            this.webusersNavigationButton.AccessibleName = "";
-            this.webusersNavigationButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.webusersNavigationButton.AutoSize = true;
-            this.webusersNavigationButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.webusersNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.webusersNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.webusersNavigationButton.Location = new System.Drawing.Point(40, 317);
-            this.webusersNavigationButton.Name = "webusersNavigationButton";
-            this.webusersNavigationButton.Size = new System.Drawing.Size(235, 73);
-            this.webusersNavigationButton.TabIndex = 8;
-            this.webusersNavigationButton.Text = "Web Users";
-            this.webusersNavigationButton.UseVisualStyleBackColor = true;
-            // 
-            // questionsNavigationButton
-            // 
-            this.questionsNavigationButton.AccessibleName = "";
-            this.questionsNavigationButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.questionsNavigationButton.AutoSize = true;
-            this.questionsNavigationButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.questionsNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.questionsNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.questionsNavigationButton.Location = new System.Drawing.Point(40, 238);
-            this.questionsNavigationButton.Name = "questionsNavigationButton";
-            this.questionsNavigationButton.Size = new System.Drawing.Size(235, 73);
-            this.questionsNavigationButton.TabIndex = 7;
-            this.questionsNavigationButton.Text = "> Questions";
-            this.questionsNavigationButton.UseVisualStyleBackColor = true;
-            // 
-            // chaptersNavigationButton
-            // 
-            this.chaptersNavigationButton.AccessibleName = "";
-            this.chaptersNavigationButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.chaptersNavigationButton.AutoSize = true;
-            this.chaptersNavigationButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chaptersNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chaptersNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.chaptersNavigationButton.Location = new System.Drawing.Point(40, 159);
-            this.chaptersNavigationButton.Name = "chaptersNavigationButton";
-            this.chaptersNavigationButton.Size = new System.Drawing.Size(235, 73);
-            this.chaptersNavigationButton.TabIndex = 6;
-            this.chaptersNavigationButton.Text = "Chapters";
-            this.chaptersNavigationButton.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel1.ColumnCount = 45;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.222222F));
+            this.tableLayoutPanel1.Controls.Add(this.dashboardNavigationButton, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.chaptersNavigationButton, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.questionsNavigationButton, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.webusersNavigationButton, 2, 9);
+            this.tableLayoutPanel1.Controls.Add(this.lineSeparator, 8, 1);
+            this.tableLayoutPanel1.Controls.Add(this.singleAnswerDataGrid, 10, 3);
+            this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 10, 16);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 41, 16);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 27;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703704F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.703703F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1776, 980);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // dashboardNavigationButton
             // 
             this.dashboardNavigationButton.AccessibleName = "";
-            this.dashboardNavigationButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dashboardNavigationButton.AutoSize = true;
+            this.dashboardNavigationButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel1.SetColumnSpan(this.dashboardNavigationButton, 5);
             this.dashboardNavigationButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dashboardNavigationButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dashboardNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dashboardNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.dashboardNavigationButton.Location = new System.Drawing.Point(40, 80);
+            this.dashboardNavigationButton.Location = new System.Drawing.Point(81, 111);
             this.dashboardNavigationButton.Name = "dashboardNavigationButton";
-            this.dashboardNavigationButton.Size = new System.Drawing.Size(235, 73);
-            this.dashboardNavigationButton.TabIndex = 5;
+            this.tableLayoutPanel1.SetRowSpan(this.dashboardNavigationButton, 2);
+            this.dashboardNavigationButton.Size = new System.Drawing.Size(189, 66);
+            this.dashboardNavigationButton.TabIndex = 6;
             this.dashboardNavigationButton.Text = "Dashboard";
             this.dashboardNavigationButton.UseVisualStyleBackColor = true;
+            this.dashboardNavigationButton.Click += new System.EventHandler(this.dashboardNavigationButton_Click);
+            // 
+            // chaptersNavigationButton
+            // 
+            this.chaptersNavigationButton.AccessibleName = "";
+            this.chaptersNavigationButton.AutoSize = true;
+            this.chaptersNavigationButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel1.SetColumnSpan(this.chaptersNavigationButton, 5);
+            this.chaptersNavigationButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chaptersNavigationButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chaptersNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chaptersNavigationButton.ForeColor = System.Drawing.Color.White;
+            this.chaptersNavigationButton.Location = new System.Drawing.Point(81, 183);
+            this.chaptersNavigationButton.Name = "chaptersNavigationButton";
+            this.tableLayoutPanel1.SetRowSpan(this.chaptersNavigationButton, 2);
+            this.chaptersNavigationButton.Size = new System.Drawing.Size(189, 66);
+            this.chaptersNavigationButton.TabIndex = 7;
+            this.chaptersNavigationButton.Text = "Chapters";
+            this.chaptersNavigationButton.UseVisualStyleBackColor = true;
+            this.chaptersNavigationButton.Click += new System.EventHandler(this.chaptersNavigationButton_Click);
+            // 
+            // questionsNavigationButton
+            // 
+            this.questionsNavigationButton.AccessibleName = "";
+            this.questionsNavigationButton.AutoSize = true;
+            this.questionsNavigationButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel1.SetColumnSpan(this.questionsNavigationButton, 5);
+            this.questionsNavigationButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionsNavigationButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questionsNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.questionsNavigationButton.ForeColor = System.Drawing.Color.White;
+            this.questionsNavigationButton.Location = new System.Drawing.Point(81, 255);
+            this.questionsNavigationButton.Name = "questionsNavigationButton";
+            this.tableLayoutPanel1.SetRowSpan(this.questionsNavigationButton, 2);
+            this.questionsNavigationButton.Size = new System.Drawing.Size(189, 66);
+            this.questionsNavigationButton.TabIndex = 8;
+            this.questionsNavigationButton.Text = "> Questions";
+            this.questionsNavigationButton.UseVisualStyleBackColor = true;
+            // 
+            // webusersNavigationButton
+            // 
+            this.webusersNavigationButton.AccessibleName = "";
+            this.webusersNavigationButton.AutoSize = true;
+            this.webusersNavigationButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel1.SetColumnSpan(this.webusersNavigationButton, 5);
+            this.webusersNavigationButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.webusersNavigationButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webusersNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.webusersNavigationButton.ForeColor = System.Drawing.Color.White;
+            this.webusersNavigationButton.Location = new System.Drawing.Point(81, 327);
+            this.webusersNavigationButton.Name = "webusersNavigationButton";
+            this.tableLayoutPanel1.SetRowSpan(this.webusersNavigationButton, 2);
+            this.webusersNavigationButton.Size = new System.Drawing.Size(189, 66);
+            this.webusersNavigationButton.TabIndex = 9;
+            this.webusersNavigationButton.Text = "Web Users";
+            this.webusersNavigationButton.UseVisualStyleBackColor = true;
+            this.webusersNavigationButton.Click += new System.EventHandler(this.webusersNavigationButton_Click);
+            // 
+            // lineSeparator
+            // 
+            this.lineSeparator.BackColor = System.Drawing.Color.White;
+            this.lineSeparator.Location = new System.Drawing.Point(315, 36);
+            this.lineSeparator.Name = "lineSeparator";
+            this.tableLayoutPanel1.SetRowSpan(this.lineSeparator, 25);
+            this.lineSeparator.Size = new System.Drawing.Size(1, 900);
+            this.lineSeparator.TabIndex = 10;
             // 
             // singleAnswerDataGrid
             // 
             this.singleAnswerDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.singleAnswerDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.singleAnswerDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.singleAnswerDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.singleAnswerDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.questionsIndex,
             this.chapterName,
             this.questionText});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.singleAnswerDataGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            this.tableLayoutPanel1.SetColumnSpan(this.singleAnswerDataGrid, 33);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.singleAnswerDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.singleAnswerDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.singleAnswerDataGrid.EnableHeadersVisualStyles = false;
             this.singleAnswerDataGrid.GridColor = System.Drawing.Color.White;
-            this.singleAnswerDataGrid.Location = new System.Drawing.Point(375, 80);
+            this.singleAnswerDataGrid.Location = new System.Drawing.Point(393, 111);
             this.singleAnswerDataGrid.Name = "singleAnswerDataGrid";
             this.singleAnswerDataGrid.RowHeadersVisible = false;
             this.singleAnswerDataGrid.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.singleAnswerDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.singleAnswerDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.tableLayoutPanel1.SetRowSpan(this.singleAnswerDataGrid, 11);
             this.singleAnswerDataGrid.RowTemplate.Height = 25;
-            this.singleAnswerDataGrid.Size = new System.Drawing.Size(1450, 400);
-            this.singleAnswerDataGrid.TabIndex = 10;
+            this.singleAnswerDataGrid.Size = new System.Drawing.Size(1281, 390);
+            this.singleAnswerDataGrid.TabIndex = 11;
             // 
             // questionsIndex
             // 
@@ -204,234 +324,312 @@
             this.questionText.MinimumWidth = 694;
             this.questionText.Name = "questionText";
             // 
+            // splitContainer1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.splitContainer1, 30);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(393, 579);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel2);
+            this.splitContainer1.Panel1.Margin = new System.Windows.Forms.Padding(5);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(5);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel3);
+            this.splitContainer1.Panel2.Margin = new System.Windows.Forms.Padding(5);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.tableLayoutPanel1.SetRowSpan(this.splitContainer1, 8);
+            this.splitContainer1.Size = new System.Drawing.Size(1164, 282);
+            this.splitContainer1.SplitterDistance = 192;
+            this.splitContainer1.TabIndex = 18;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.wrongAnswerThreeLabel, 0, 6);
+            this.tableLayoutPanel2.Controls.Add(this.chapterNameLabel, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.questionTypeLabel, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.questionTextLabel, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.correctAnswerLabel, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.wrongAnswerOneLabel, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.wrongAnswerTwoLabel, 0, 5);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(5, 5);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 7;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(182, 272);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // wrongAnswerThreeLabel
+            // 
+            this.wrongAnswerThreeLabel.AutoSize = true;
+            this.wrongAnswerThreeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wrongAnswerThreeLabel.Location = new System.Drawing.Point(5, 233);
+            this.wrongAnswerThreeLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.wrongAnswerThreeLabel.Name = "wrongAnswerThreeLabel";
+            this.wrongAnswerThreeLabel.Size = new System.Drawing.Size(172, 34);
+            this.wrongAnswerThreeLabel.TabIndex = 18;
+            this.wrongAnswerThreeLabel.Text = "Wrong Answer 3";
+            // 
             // chapterNameLabel
             // 
             this.chapterNameLabel.AutoSize = true;
-            this.chapterNameLabel.Location = new System.Drawing.Point(10, 10);
+            this.chapterNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chapterNameLabel.Location = new System.Drawing.Point(5, 5);
             this.chapterNameLabel.Margin = new System.Windows.Forms.Padding(5);
             this.chapterNameLabel.Name = "chapterNameLabel";
-            this.chapterNameLabel.Size = new System.Drawing.Size(194, 37);
-            this.chapterNameLabel.TabIndex = 11;
+            this.chapterNameLabel.Size = new System.Drawing.Size(172, 28);
+            this.chapterNameLabel.TabIndex = 12;
             this.chapterNameLabel.Text = "Chapter Name";
-            this.chapterNameLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // questionTypeLabel
             // 
             this.questionTypeLabel.AutoSize = true;
-            this.questionTypeLabel.Location = new System.Drawing.Point(10, 50);
+            this.questionTypeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questionTypeLabel.Location = new System.Drawing.Point(5, 43);
             this.questionTypeLabel.Margin = new System.Windows.Forms.Padding(5);
             this.questionTypeLabel.Name = "questionTypeLabel";
-            this.questionTypeLabel.Size = new System.Drawing.Size(193, 37);
-            this.questionTypeLabel.TabIndex = 12;
+            this.questionTypeLabel.Size = new System.Drawing.Size(172, 28);
+            this.questionTypeLabel.TabIndex = 13;
             this.questionTypeLabel.Text = "Question Type";
-            this.questionTypeLabel.Click += new System.EventHandler(this.questionTypeLabel_Click);
             // 
             // questionTextLabel
             // 
             this.questionTextLabel.AutoSize = true;
-            this.questionTextLabel.Location = new System.Drawing.Point(10, 90);
+            this.questionTextLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questionTextLabel.Location = new System.Drawing.Point(5, 81);
             this.questionTextLabel.Margin = new System.Windows.Forms.Padding(5);
             this.questionTextLabel.Name = "questionTextLabel";
-            this.questionTextLabel.Size = new System.Drawing.Size(185, 37);
-            this.questionTextLabel.TabIndex = 13;
+            this.questionTextLabel.Size = new System.Drawing.Size(172, 28);
+            this.questionTextLabel.TabIndex = 14;
             this.questionTextLabel.Text = "Question Text";
             // 
             // correctAnswerLabel
             // 
             this.correctAnswerLabel.AutoSize = true;
-            this.correctAnswerLabel.Location = new System.Drawing.Point(10, 130);
+            this.correctAnswerLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.correctAnswerLabel.Location = new System.Drawing.Point(5, 119);
             this.correctAnswerLabel.Margin = new System.Windows.Forms.Padding(5);
             this.correctAnswerLabel.Name = "correctAnswerLabel";
-            this.correctAnswerLabel.Size = new System.Drawing.Size(204, 37);
-            this.correctAnswerLabel.TabIndex = 14;
+            this.correctAnswerLabel.Size = new System.Drawing.Size(172, 28);
+            this.correctAnswerLabel.TabIndex = 15;
             this.correctAnswerLabel.Text = "Correct Answer";
             // 
             // wrongAnswerOneLabel
             // 
             this.wrongAnswerOneLabel.AutoSize = true;
-            this.wrongAnswerOneLabel.Location = new System.Drawing.Point(10, 170);
+            this.wrongAnswerOneLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wrongAnswerOneLabel.Location = new System.Drawing.Point(5, 157);
             this.wrongAnswerOneLabel.Margin = new System.Windows.Forms.Padding(5);
             this.wrongAnswerOneLabel.Name = "wrongAnswerOneLabel";
-            this.wrongAnswerOneLabel.Size = new System.Drawing.Size(216, 37);
-            this.wrongAnswerOneLabel.TabIndex = 15;
+            this.wrongAnswerOneLabel.Size = new System.Drawing.Size(172, 28);
+            this.wrongAnswerOneLabel.TabIndex = 16;
             this.wrongAnswerOneLabel.Text = "Wrong Answer 1";
             // 
             // wrongAnswerTwoLabel
             // 
             this.wrongAnswerTwoLabel.AutoSize = true;
-            this.wrongAnswerTwoLabel.Location = new System.Drawing.Point(10, 210);
+            this.wrongAnswerTwoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wrongAnswerTwoLabel.Location = new System.Drawing.Point(5, 195);
             this.wrongAnswerTwoLabel.Margin = new System.Windows.Forms.Padding(5);
             this.wrongAnswerTwoLabel.Name = "wrongAnswerTwoLabel";
-            this.wrongAnswerTwoLabel.Size = new System.Drawing.Size(220, 37);
-            this.wrongAnswerTwoLabel.TabIndex = 16;
+            this.wrongAnswerTwoLabel.Size = new System.Drawing.Size(172, 28);
+            this.wrongAnswerTwoLabel.TabIndex = 17;
             this.wrongAnswerTwoLabel.Text = "Wrong Answer 2";
             // 
-            // wrongAnswerThreeLabel
+            // tableLayoutPanel3
             // 
-            this.wrongAnswerThreeLabel.AutoSize = true;
-            this.wrongAnswerThreeLabel.Location = new System.Drawing.Point(10, 250);
-            this.wrongAnswerThreeLabel.Margin = new System.Windows.Forms.Padding(5);
-            this.wrongAnswerThreeLabel.Name = "wrongAnswerThreeLabel";
-            this.wrongAnswerThreeLabel.Size = new System.Drawing.Size(220, 37);
-            this.wrongAnswerThreeLabel.TabIndex = 17;
-            this.wrongAnswerThreeLabel.Text = "Wrong Answer 3";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Location = new System.Drawing.Point(375, 538);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.wrongAnswerTwoLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.chapterNameLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.wrongAnswerThreeLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.questionTypeLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.questionTextLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.wrongAnswerOneLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.correctAnswerLabel);
-            this.splitContainer1.Panel1.Margin = new System.Windows.Forms.Padding(20);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.wrongAnswerThreeTextBox);
-            this.splitContainer1.Panel2.Controls.Add(this.wonrgAnswerTwoTextBox);
-            this.splitContainer1.Panel2.Controls.Add(this.wrongAnswerOneTextBox);
-            this.splitContainer1.Panel2.Controls.Add(this.correctAnswerTextBox);
-            this.splitContainer1.Panel2.Controls.Add(this.questionTextTextBox);
-            this.splitContainer1.Panel2.Controls.Add(this.questionTypeComboBox);
-            this.splitContainer1.Panel2.Controls.Add(this.chapterNameCombobox);
-            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(1334, 292);
-            this.splitContainer1.SplitterDistance = 198;
-            this.splitContainer1.TabIndex = 18;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.wrongAnswerThreeTextBox, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.chapterNameCombobox, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.questionTypeComboBox, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.questionTextTextBox, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.correctAnswerTextBox, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.wrongAnswerOneTextBox, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.wonrgAnswerTwoTextBox, 0, 5);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(5, 5);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 7;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(958, 272);
+            this.tableLayoutPanel3.TabIndex = 0;
             // 
             // wrongAnswerThreeTextBox
             // 
+            this.tableLayoutPanel3.SetColumnSpan(this.wrongAnswerThreeTextBox, 2);
+            this.wrongAnswerThreeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wrongAnswerThreeTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.wrongAnswerThreeTextBox.Location = new System.Drawing.Point(12, 247);
+            this.wrongAnswerThreeTextBox.Location = new System.Drawing.Point(3, 231);
             this.wrongAnswerThreeTextBox.Name = "wrongAnswerThreeTextBox";
             this.wrongAnswerThreeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wrongAnswerThreeTextBox.Size = new System.Drawing.Size(1000, 39);
-            this.wrongAnswerThreeTextBox.TabIndex = 6;
-            // 
-            // wonrgAnswerTwoTextBox
-            // 
-            this.wonrgAnswerTwoTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.wonrgAnswerTwoTextBox.Location = new System.Drawing.Point(12, 207);
-            this.wonrgAnswerTwoTextBox.Name = "wonrgAnswerTwoTextBox";
-            this.wonrgAnswerTwoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wonrgAnswerTwoTextBox.Size = new System.Drawing.Size(1000, 39);
-            this.wonrgAnswerTwoTextBox.TabIndex = 5;
-            // 
-            // wrongAnswerOneTextBox
-            // 
-            this.wrongAnswerOneTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.wrongAnswerOneTextBox.Location = new System.Drawing.Point(12, 168);
-            this.wrongAnswerOneTextBox.Name = "wrongAnswerOneTextBox";
-            this.wrongAnswerOneTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.wrongAnswerOneTextBox.Size = new System.Drawing.Size(1000, 39);
-            this.wrongAnswerOneTextBox.TabIndex = 4;
-            // 
-            // correctAnswerTextBox
-            // 
-            this.correctAnswerTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.correctAnswerTextBox.Location = new System.Drawing.Point(12, 129);
-            this.correctAnswerTextBox.Name = "correctAnswerTextBox";
-            this.correctAnswerTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.correctAnswerTextBox.Size = new System.Drawing.Size(1000, 39);
-            this.correctAnswerTextBox.TabIndex = 3;
-            // 
-            // questionTextTextBox
-            // 
-            this.questionTextTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.questionTextTextBox.Location = new System.Drawing.Point(12, 90);
-            this.questionTextTextBox.Name = "questionTextTextBox";
-            this.questionTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.questionTextTextBox.Size = new System.Drawing.Size(1000, 39);
-            this.questionTextTextBox.TabIndex = 2;
-            // 
-            // questionTypeComboBox
-            // 
-            this.questionTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.questionTypeComboBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.questionTypeComboBox.ForeColor = System.Drawing.Color.Black;
-            this.questionTypeComboBox.FormattingEnabled = true;
-            this.questionTypeComboBox.Location = new System.Drawing.Point(12, 51);
-            this.questionTypeComboBox.MaxDropDownItems = 10;
-            this.questionTypeComboBox.Name = "questionTypeComboBox";
-            this.questionTypeComboBox.Size = new System.Drawing.Size(250, 40);
-            this.questionTypeComboBox.TabIndex = 1;
+            this.wrongAnswerThreeTextBox.Size = new System.Drawing.Size(952, 39);
+            this.wrongAnswerThreeTextBox.TabIndex = 7;
             // 
             // chapterNameCombobox
             // 
+            this.chapterNameCombobox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chapterNameCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chapterNameCombobox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chapterNameCombobox.ForeColor = System.Drawing.Color.Black;
             this.chapterNameCombobox.FormattingEnabled = true;
-            this.chapterNameCombobox.Location = new System.Drawing.Point(12, 11);
+            this.chapterNameCombobox.Location = new System.Drawing.Point(3, 3);
             this.chapterNameCombobox.MaxDropDownItems = 10;
             this.chapterNameCombobox.Name = "chapterNameCombobox";
-            this.chapterNameCombobox.Size = new System.Drawing.Size(250, 40);
-            this.chapterNameCombobox.TabIndex = 0;
+            this.chapterNameCombobox.Size = new System.Drawing.Size(473, 40);
+            this.chapterNameCombobox.TabIndex = 1;
             // 
-            // flowLayoutPanel1
+            // questionTypeComboBox
             // 
-            this.flowLayoutPanel1.Controls.Add(this.questionsEditButton);
-            this.flowLayoutPanel1.Controls.Add(this.questionsConfirmButton);
-            this.flowLayoutPanel1.Controls.Add(this.questionsCancelButton);
-            this.flowLayoutPanel1.Controls.Add(this.questionsDeleteButton);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1737, 538);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 11);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 303);
-            this.flowLayoutPanel1.TabIndex = 37;
+            this.questionTypeComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questionTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.questionTypeComboBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.questionTypeComboBox.ForeColor = System.Drawing.Color.Black;
+            this.questionTypeComboBox.FormattingEnabled = true;
+            this.questionTypeComboBox.Location = new System.Drawing.Point(3, 41);
+            this.questionTypeComboBox.MaxDropDownItems = 10;
+            this.questionTypeComboBox.Name = "questionTypeComboBox";
+            this.questionTypeComboBox.Size = new System.Drawing.Size(473, 40);
+            this.questionTypeComboBox.TabIndex = 2;
+            // 
+            // questionTextTextBox
+            // 
+            this.tableLayoutPanel3.SetColumnSpan(this.questionTextTextBox, 2);
+            this.questionTextTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questionTextTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.questionTextTextBox.Location = new System.Drawing.Point(3, 79);
+            this.questionTextTextBox.Name = "questionTextTextBox";
+            this.questionTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.questionTextTextBox.Size = new System.Drawing.Size(952, 39);
+            this.questionTextTextBox.TabIndex = 3;
+            // 
+            // correctAnswerTextBox
+            // 
+            this.tableLayoutPanel3.SetColumnSpan(this.correctAnswerTextBox, 2);
+            this.correctAnswerTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.correctAnswerTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.correctAnswerTextBox.Location = new System.Drawing.Point(3, 117);
+            this.correctAnswerTextBox.Name = "correctAnswerTextBox";
+            this.correctAnswerTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.correctAnswerTextBox.Size = new System.Drawing.Size(952, 39);
+            this.correctAnswerTextBox.TabIndex = 4;
+            // 
+            // wrongAnswerOneTextBox
+            // 
+            this.tableLayoutPanel3.SetColumnSpan(this.wrongAnswerOneTextBox, 2);
+            this.wrongAnswerOneTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wrongAnswerOneTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.wrongAnswerOneTextBox.Location = new System.Drawing.Point(3, 155);
+            this.wrongAnswerOneTextBox.Name = "wrongAnswerOneTextBox";
+            this.wrongAnswerOneTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.wrongAnswerOneTextBox.Size = new System.Drawing.Size(952, 39);
+            this.wrongAnswerOneTextBox.TabIndex = 5;
+            // 
+            // wonrgAnswerTwoTextBox
+            // 
+            this.tableLayoutPanel3.SetColumnSpan(this.wonrgAnswerTwoTextBox, 2);
+            this.wonrgAnswerTwoTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wonrgAnswerTwoTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.wonrgAnswerTwoTextBox.Location = new System.Drawing.Point(3, 193);
+            this.wonrgAnswerTwoTextBox.Name = "wonrgAnswerTwoTextBox";
+            this.wonrgAnswerTwoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.wonrgAnswerTwoTextBox.Size = new System.Drawing.Size(952, 39);
+            this.wonrgAnswerTwoTextBox.TabIndex = 6;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel4, 2);
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.questionsDeleteButton, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.questionsEditButton, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.questionsConfirmButton, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.questionsCancelButton, 0, 2);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(1602, 579);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 4;
+            this.tableLayoutPanel1.SetRowSpan(this.tableLayoutPanel4, 8);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(72, 282);
+            this.tableLayoutPanel4.TabIndex = 19;
+            // 
+            // questionsDeleteButton
+            // 
+            this.questionsDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionsDeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questionsDeleteButton.Image = global::ByteManager.Properties.Resources.TrashBinButton;
+            this.questionsDeleteButton.Location = new System.Drawing.Point(3, 213);
+            this.questionsDeleteButton.Name = "questionsDeleteButton";
+            this.questionsDeleteButton.Size = new System.Drawing.Size(66, 66);
+            this.questionsDeleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.questionsDeleteButton.TabIndex = 24;
+            this.questionsDeleteButton.TabStop = false;
             // 
             // questionsEditButton
             // 
             this.questionsEditButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionsEditButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.questionsEditButton.Image = ((System.Drawing.Image)(resources.GetObject("questionsEditButton.Image")));
-            this.questionsEditButton.Location = new System.Drawing.Point(13, 23);
+            this.questionsEditButton.Location = new System.Drawing.Point(3, 3);
             this.questionsEditButton.Name = "questionsEditButton";
-            this.questionsEditButton.Size = new System.Drawing.Size(59, 60);
+            this.questionsEditButton.Size = new System.Drawing.Size(66, 64);
             this.questionsEditButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.questionsEditButton.TabIndex = 20;
+            this.questionsEditButton.TabIndex = 21;
             this.questionsEditButton.TabStop = false;
             // 
             // questionsConfirmButton
             // 
             this.questionsConfirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionsConfirmButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.questionsConfirmButton.Image = global::ByteManager.Properties.Resources.AffirmativeButton;
-            this.questionsConfirmButton.Location = new System.Drawing.Point(13, 89);
+            this.questionsConfirmButton.Location = new System.Drawing.Point(3, 73);
             this.questionsConfirmButton.Name = "questionsConfirmButton";
-            this.questionsConfirmButton.Size = new System.Drawing.Size(59, 60);
+            this.questionsConfirmButton.Size = new System.Drawing.Size(66, 64);
             this.questionsConfirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.questionsConfirmButton.TabIndex = 21;
+            this.questionsConfirmButton.TabIndex = 22;
             this.questionsConfirmButton.TabStop = false;
             // 
             // questionsCancelButton
             // 
             this.questionsCancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.questionsCancelButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.questionsCancelButton.Image = global::ByteManager.Properties.Resources.NegativeButton;
-            this.questionsCancelButton.Location = new System.Drawing.Point(13, 155);
+            this.questionsCancelButton.Location = new System.Drawing.Point(3, 143);
             this.questionsCancelButton.Name = "questionsCancelButton";
-            this.questionsCancelButton.Size = new System.Drawing.Size(59, 60);
+            this.questionsCancelButton.Size = new System.Drawing.Size(66, 64);
             this.questionsCancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.questionsCancelButton.TabIndex = 22;
+            this.questionsCancelButton.TabIndex = 23;
             this.questionsCancelButton.TabStop = false;
-            // 
-            // questionsDeleteButton
-            // 
-            this.questionsDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.questionsDeleteButton.Image = global::ByteManager.Properties.Resources.TrashBinButton;
-            this.questionsDeleteButton.Location = new System.Drawing.Point(13, 221);
-            this.questionsDeleteButton.Name = "questionsDeleteButton";
-            this.questionsDeleteButton.Size = new System.Drawing.Size(59, 60);
-            this.questionsDeleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.questionsDeleteButton.TabIndex = 23;
-            this.questionsDeleteButton.TabStop = false;
             // 
             // Questions
             // 
@@ -439,15 +637,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.singleAnswerDataGrid);
-            this.Controls.Add(this.lineSeparator);
-            this.Controls.Add(this.webusersNavigationButton);
-            this.Controls.Add(this.questionsNavigationButton);
-            this.Controls.Add(this.chaptersNavigationButton);
-            this.Controls.Add(this.dashboardNavigationButton);
+            this.ClientSize = new System.Drawing.Size(1776, 980);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -457,50 +648,56 @@
             this.Name = "Questions";
             this.Text = "ByteManager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.singleAnswerDataGrid)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.questionsDeleteButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionsEditButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionsConfirmButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionsCancelButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.questionsDeleteButton)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Label lineSeparator;
-        private Button webusersNavigationButton;
-        private Button questionsNavigationButton;
-        private Button chaptersNavigationButton;
+        private TableLayoutPanel tableLayoutPanel1;
         private Button dashboardNavigationButton;
+        private Button chaptersNavigationButton;
+        private Button questionsNavigationButton;
+        private Button webusersNavigationButton;
+        private Label lineSeparator;
         private DataGridView singleAnswerDataGrid;
+        private DataGridViewTextBoxColumn questionsIndex;
+        private DataGridViewTextBoxColumn chapterName;
+        private DataGridViewTextBoxColumn questionText;
+        private SplitContainer splitContainer1;
+        private TableLayoutPanel tableLayoutPanel2;
+        private TableLayoutPanel tableLayoutPanel3;
+        private TableLayoutPanel tableLayoutPanel4;
         private Label chapterNameLabel;
         private Label questionTypeLabel;
         private Label questionTextLabel;
         private Label correctAnswerLabel;
         private Label wrongAnswerOneLabel;
         private Label wrongAnswerTwoLabel;
-        private DataGridViewTextBoxColumn questionsIndex;
-        private DataGridViewTextBoxColumn chapterName;
-        private DataGridViewTextBoxColumn questionText;
         private Label wrongAnswerThreeLabel;
-        private SplitContainer splitContainer1;
         private ComboBox chapterNameCombobox;
-        private TextBox wrongAnswerThreeTextBox;
-        private TextBox wonrgAnswerTwoTextBox;
-        private TextBox wrongAnswerOneTextBox;
-        private TextBox correctAnswerTextBox;
-        private TextBox questionTextTextBox;
         private ComboBox questionTypeComboBox;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private TextBox questionTextTextBox;
+        private TextBox correctAnswerTextBox;
+        private TextBox wrongAnswerOneTextBox;
+        private TextBox wonrgAnswerTwoTextBox;
+        private TextBox wrongAnswerThreeTextBox;
         private PictureBox questionsEditButton;
         private PictureBox questionsConfirmButton;
         private PictureBox questionsCancelButton;

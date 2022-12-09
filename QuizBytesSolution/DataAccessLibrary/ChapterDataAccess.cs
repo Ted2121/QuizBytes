@@ -146,8 +146,9 @@ namespace SQLAccessImplementationLibrary
                         Description = chapter.Description
                     };
 
-
-                    return chapter.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
+                    var chapterId = await connection.QuerySingleAsync<int>(commandText, parameters);
+                    //return chapter.Id = await connection.QuerySingleAsync<int>(commandText, parameters);
+                    return chapterId;
                 }
             }
             catch (Exception ex)

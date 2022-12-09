@@ -75,10 +75,9 @@
             this.webusersNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.webusersNavigationButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.webusersNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.webusersNavigationButton.Location = new System.Drawing.Point(35, 237);
-            this.webusersNavigationButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.webusersNavigationButton.Location = new System.Drawing.Point(40, 316);
             this.webusersNavigationButton.Name = "webusersNavigationButton";
-            this.webusersNavigationButton.Size = new System.Drawing.Size(206, 55);
+            this.webusersNavigationButton.Size = new System.Drawing.Size(235, 73);
             this.webusersNavigationButton.TabIndex = 7;
             this.webusersNavigationButton.Text = " > Web Users";
             this.webusersNavigationButton.UseVisualStyleBackColor = true;
@@ -93,13 +92,13 @@
             this.questionsNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.questionsNavigationButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.questionsNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.questionsNavigationButton.Location = new System.Drawing.Point(35, 178);
-            this.questionsNavigationButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.questionsNavigationButton.Location = new System.Drawing.Point(40, 237);
             this.questionsNavigationButton.Name = "questionsNavigationButton";
-            this.questionsNavigationButton.Size = new System.Drawing.Size(206, 55);
+            this.questionsNavigationButton.Size = new System.Drawing.Size(235, 73);
             this.questionsNavigationButton.TabIndex = 6;
             this.questionsNavigationButton.Text = "Questions";
             this.questionsNavigationButton.UseVisualStyleBackColor = true;
+            this.questionsNavigationButton.Click += new System.EventHandler(this.questionsNavigationButton_Click);
             // 
             // chaptersNavigationButton
             // 
@@ -110,13 +109,13 @@
             this.chaptersNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chaptersNavigationButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chaptersNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.chaptersNavigationButton.Location = new System.Drawing.Point(35, 118);
-            this.chaptersNavigationButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chaptersNavigationButton.Location = new System.Drawing.Point(40, 157);
             this.chaptersNavigationButton.Name = "chaptersNavigationButton";
-            this.chaptersNavigationButton.Size = new System.Drawing.Size(206, 55);
+            this.chaptersNavigationButton.Size = new System.Drawing.Size(235, 73);
             this.chaptersNavigationButton.TabIndex = 5;
             this.chaptersNavigationButton.Text = "Chapters";
             this.chaptersNavigationButton.UseVisualStyleBackColor = true;
+            this.chaptersNavigationButton.Click += new System.EventHandler(this.chaptersNavigationButton_Click);
             // 
             // dashboardNavigationButton
             // 
@@ -127,20 +126,20 @@
             this.dashboardNavigationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dashboardNavigationButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.dashboardNavigationButton.ForeColor = System.Drawing.Color.White;
-            this.dashboardNavigationButton.Location = new System.Drawing.Point(35, 59);
-            this.dashboardNavigationButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dashboardNavigationButton.Location = new System.Drawing.Point(40, 79);
             this.dashboardNavigationButton.Name = "dashboardNavigationButton";
-            this.dashboardNavigationButton.Size = new System.Drawing.Size(206, 55);
+            this.dashboardNavigationButton.Size = new System.Drawing.Size(235, 73);
             this.dashboardNavigationButton.TabIndex = 4;
             this.dashboardNavigationButton.Text = "Dashboard";
             this.dashboardNavigationButton.UseVisualStyleBackColor = true;
+            this.dashboardNavigationButton.Click += new System.EventHandler(this.dashboardNavigationButton_Click);
             // 
             // lineSeparator
             // 
             this.lineSeparator.BackColor = System.Drawing.Color.White;
-            this.lineSeparator.Location = new System.Drawing.Point(276, 30);
+            this.lineSeparator.Location = new System.Drawing.Point(315, 40);
             this.lineSeparator.Name = "lineSeparator";
-            this.lineSeparator.Size = new System.Drawing.Size(1, 735);
+            this.lineSeparator.Size = new System.Drawing.Size(1, 980);
             this.lineSeparator.TabIndex = 8;
             // 
             // topicChaptersDataGrid
@@ -171,8 +170,7 @@
             this.topicChaptersDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.topicChaptersDataGrid.EnableHeadersVisualStyles = false;
             this.topicChaptersDataGrid.GridColor = System.Drawing.Color.White;
-            this.topicChaptersDataGrid.Location = new System.Drawing.Point(328, 60);
-            this.topicChaptersDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.topicChaptersDataGrid.Location = new System.Drawing.Point(375, 80);
             this.topicChaptersDataGrid.Name = "topicChaptersDataGrid";
             this.topicChaptersDataGrid.RowHeadersVisible = false;
             this.topicChaptersDataGrid.RowHeadersWidth = 51;
@@ -183,8 +181,9 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.topicChaptersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.topicChaptersDataGrid.RowTemplate.Height = 25;
-            this.topicChaptersDataGrid.Size = new System.Drawing.Size(989, 300);
+            this.topicChaptersDataGrid.Size = new System.Drawing.Size(1130, 400);
             this.topicChaptersDataGrid.TabIndex = 12;
+            this.topicChaptersDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.topicChaptersDataGrid_CellContentClick);
             // 
             // Username
             // 
@@ -193,7 +192,7 @@
             this.Username.MaxInputLength = 16000;
             this.Username.MinimumWidth = 100;
             this.Username.Name = "Username";
-            this.Username.Width = 137;
+            this.Username.Width = 174;
             // 
             // PasswordHash
             // 
@@ -227,11 +226,10 @@
             // chapterNameTextBox
             // 
             this.chapterNameTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.chapterNameTextBox.Location = new System.Drawing.Point(595, 532);
-            this.chapterNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chapterNameTextBox.Location = new System.Drawing.Point(680, 709);
             this.chapterNameTextBox.Name = "chapterNameTextBox";
             this.chapterNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.chapterNameTextBox.Size = new System.Drawing.Size(491, 33);
+            this.chapterNameTextBox.Size = new System.Drawing.Size(561, 39);
             this.chapterNameTextBox.TabIndex = 26;
             // 
             // userNameLabel
@@ -239,10 +237,10 @@
             this.userNameLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.userNameLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.userNameLabel.ForeColor = System.Drawing.Color.White;
-            this.userNameLabel.Location = new System.Drawing.Point(403, 532);
-            this.userNameLabel.Margin = new System.Windows.Forms.Padding(4);
+            this.userNameLabel.Location = new System.Drawing.Point(461, 709);
+            this.userNameLabel.Margin = new System.Windows.Forms.Padding(5);
             this.userNameLabel.Name = "userNameLabel";
-            this.userNameLabel.Size = new System.Drawing.Size(132, 29);
+            this.userNameLabel.Size = new System.Drawing.Size(151, 39);
             this.userNameLabel.TabIndex = 27;
             this.userNameLabel.Text = "Username";
             // 
@@ -251,10 +249,10 @@
             this.passwordLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.passwordLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.passwordLabel.ForeColor = System.Drawing.Color.White;
-            this.passwordLabel.Location = new System.Drawing.Point(403, 578);
-            this.passwordLabel.Margin = new System.Windows.Forms.Padding(4);
+            this.passwordLabel.Location = new System.Drawing.Point(461, 771);
+            this.passwordLabel.Margin = new System.Windows.Forms.Padding(5);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(132, 29);
+            this.passwordLabel.Size = new System.Drawing.Size(151, 39);
             this.passwordLabel.TabIndex = 29;
             this.passwordLabel.Text = "Password";
             this.passwordLabel.Click += new System.EventHandler(this.label1_Click);
@@ -262,11 +260,10 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(595, 578);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox1.Location = new System.Drawing.Point(680, 771);
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(491, 33);
+            this.textBox1.Size = new System.Drawing.Size(561, 39);
             this.textBox1.TabIndex = 28;
             // 
             // label2
@@ -274,21 +271,20 @@
             this.label2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(403, 623);
-            this.label2.Margin = new System.Windows.Forms.Padding(4);
+            this.label2.Location = new System.Drawing.Point(461, 831);
+            this.label2.Margin = new System.Windows.Forms.Padding(5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 29);
+            this.label2.Size = new System.Drawing.Size(151, 39);
             this.label2.TabIndex = 31;
             this.label2.Text = "Total Points";
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(595, 623);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox2.Location = new System.Drawing.Point(680, 831);
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(127, 33);
+            this.textBox2.Size = new System.Drawing.Size(145, 39);
             this.textBox2.TabIndex = 30;
             // 
             // label1
@@ -296,21 +292,20 @@
             this.label1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(403, 669);
-            this.label1.Margin = new System.Windows.Forms.Padding(4);
+            this.label1.Location = new System.Drawing.Point(461, 892);
+            this.label1.Margin = new System.Windows.Forms.Padding(5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(185, 29);
+            this.label1.Size = new System.Drawing.Size(211, 39);
             this.label1.TabIndex = 33;
             this.label1.Text = "Available Points";
             // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.Location = new System.Drawing.Point(595, 669);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox3.Location = new System.Drawing.Point(680, 892);
             this.textBox3.Name = "textBox3";
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(127, 33);
+            this.textBox3.Size = new System.Drawing.Size(145, 39);
             this.textBox3.TabIndex = 32;
             // 
             // label3
@@ -318,31 +313,29 @@
             this.label3.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(403, 718);
-            this.label3.Margin = new System.Windows.Forms.Padding(4);
+            this.label3.Location = new System.Drawing.Point(461, 957);
+            this.label3.Margin = new System.Windows.Forms.Padding(5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 29);
+            this.label3.Size = new System.Drawing.Size(151, 39);
             this.label3.TabIndex = 35;
             this.label3.Text = "Email";
             // 
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBox4.Location = new System.Drawing.Point(595, 714);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox4.Location = new System.Drawing.Point(680, 952);
             this.textBox4.Name = "textBox4";
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(491, 33);
+            this.textBox4.Size = new System.Drawing.Size(561, 39);
             this.textBox4.TabIndex = 34;
             // 
             // webUsersEditButton
             // 
             this.webUsersEditButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.webUsersEditButton.Image = ((System.Drawing.Image)(resources.GetObject("webUsersEditButton.Image")));
-            this.webUsersEditButton.Location = new System.Drawing.Point(12, 17);
-            this.webUsersEditButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.webUsersEditButton.Location = new System.Drawing.Point(13, 23);
             this.webUsersEditButton.Name = "webUsersEditButton";
-            this.webUsersEditButton.Size = new System.Drawing.Size(52, 45);
+            this.webUsersEditButton.Size = new System.Drawing.Size(59, 60);
             this.webUsersEditButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.webUsersEditButton.TabIndex = 20;
             this.webUsersEditButton.TabStop = false;
@@ -351,10 +344,9 @@
             // 
             this.webUsersConfirmButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.webUsersConfirmButton.Image = global::ByteManager.Properties.Resources.AffirmativeButton;
-            this.webUsersConfirmButton.Location = new System.Drawing.Point(12, 66);
-            this.webUsersConfirmButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.webUsersConfirmButton.Location = new System.Drawing.Point(13, 89);
             this.webUsersConfirmButton.Name = "webUsersConfirmButton";
-            this.webUsersConfirmButton.Size = new System.Drawing.Size(52, 45);
+            this.webUsersConfirmButton.Size = new System.Drawing.Size(59, 60);
             this.webUsersConfirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.webUsersConfirmButton.TabIndex = 21;
             this.webUsersConfirmButton.TabStop = false;
@@ -363,10 +355,9 @@
             // 
             this.webUsersCancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.webUsersCancelButton.Image = global::ByteManager.Properties.Resources.NegativeButton;
-            this.webUsersCancelButton.Location = new System.Drawing.Point(12, 115);
-            this.webUsersCancelButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.webUsersCancelButton.Location = new System.Drawing.Point(13, 155);
             this.webUsersCancelButton.Name = "webUsersCancelButton";
-            this.webUsersCancelButton.Size = new System.Drawing.Size(52, 45);
+            this.webUsersCancelButton.Size = new System.Drawing.Size(59, 60);
             this.webUsersCancelButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.webUsersCancelButton.TabIndex = 22;
             this.webUsersCancelButton.TabStop = false;
@@ -375,10 +366,9 @@
             // 
             this.webUsersDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.webUsersDeleteButton.Image = global::ByteManager.Properties.Resources.TrashBinButton;
-            this.webUsersDeleteButton.Location = new System.Drawing.Point(12, 164);
-            this.webUsersDeleteButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.webUsersDeleteButton.Location = new System.Drawing.Point(13, 221);
             this.webUsersDeleteButton.Name = "webUsersDeleteButton";
-            this.webUsersDeleteButton.Size = new System.Drawing.Size(52, 45);
+            this.webUsersDeleteButton.Size = new System.Drawing.Size(59, 60);
             this.webUsersDeleteButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.webUsersDeleteButton.TabIndex = 23;
             this.webUsersDeleteButton.TabStop = false;
@@ -389,19 +379,18 @@
             this.flowLayoutPanel1.Controls.Add(this.webUsersConfirmButton);
             this.flowLayoutPanel1.Controls.Add(this.webUsersCancelButton);
             this.flowLayoutPanel1.Controls.Add(this.webUsersDeleteButton);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1113, 516);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(1272, 688);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(9, 15, 9, 8);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(77, 227);
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 11);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 303);
             this.flowLayoutPanel1.TabIndex = 36;
             // 
             // WebUsers
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(1666, 781);
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox4);
@@ -420,7 +409,6 @@
             this.Controls.Add(this.chaptersNavigationButton);
             this.Controls.Add(this.dashboardNavigationButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "WebUsers";
             this.Text = "WebUsers";
             ((System.ComponentModel.ISupportInitialize)(this.topicChaptersDataGrid)).EndInit();

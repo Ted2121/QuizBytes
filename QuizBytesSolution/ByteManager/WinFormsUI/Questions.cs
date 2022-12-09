@@ -7,49 +7,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsApiClient;
 
 namespace ByteManager.WinFormsUI
 {
     public partial class Questions : Form
     {
+        private IChapterFacadeApiClient ChapterFacadeApiClient;
+        private ISubjectFacadeApiClient SubjectFacadeApiClient;
+
         public Questions()
         {
             InitializeComponent();
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void chaptersNavigationButton_Click(object sender, EventArgs e)
         {
-
+            ShowChapters();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ShowChapters()
         {
-
+            this.Hide();
+            Chapters chapters = new Chapters();
+            chapters.Show();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void webusersNavigationButton_Click(object sender, EventArgs e)
         {
-
+            ShowWebUsers();
         }
 
-        private void questionTypeLabel_Click(object sender, EventArgs e)
+        private void ShowWebUsers()
         {
-
+            this.Hide();
+            WebUsers webUsers = new WebUsers();
+            webUsers.Show();
         }
 
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        private void dashboardNavigationButton_Click(object sender, EventArgs e)
         {
-
+            ShowDashboard();
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        private void ShowDashboard()
         {
-
-        }
-
-        private void questionDeleteButton_Click(object sender, EventArgs e)
-        {
-
-        }
+            this.Hide();
+            Dashboard dashboard = new Dashboard();
+            dashboard.Show();
+        }   
     }
 }

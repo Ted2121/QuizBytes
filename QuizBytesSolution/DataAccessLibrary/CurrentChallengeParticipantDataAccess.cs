@@ -32,7 +32,7 @@ public class CurrentChallengeParticipantDataAccess : BaseDataAccess, ICurrentCha
             };
             try
             {
-                var rowAmount = await GetRowAmountFromDatabaseAsync();
+                var rowAmount = await GetRowAmountFromDatabaseAsync(connection, transaction);
                 if (rowAmount < userLimitForChallenges)
                 {
                     currentChallengeRowId = await connection.QuerySingleAsync<int>(commandText, parameters, transaction: transaction);
@@ -132,7 +132,7 @@ public class CurrentChallengeParticipantDataAccess : BaseDataAccess, ICurrentCha
             {
                 await connection.ExecuteAsync(commandToReseedIdentity);
                 await connection.ExecuteAsync(commandText);
-                return await GetRowAmountFromDatabaseAsync() == 0;
+                return await GetRowAmountFromDatabaseAsync(connection) == 0;
             }
         }
         catch (Exception ex)
@@ -142,15 +142,32 @@ public class CurrentChallengeParticipantDataAccess : BaseDataAccess, ICurrentCha
         }
     }
 
-    public async Task<int> GetRowAmountFromDatabaseAsync()
+    public async Task<int> GetRowAmountFromDatabaseAsync(SqlConnection connection = null, SqlTransaction transaction = null)
     {
         string commandText = "SELECT COUNT(Id) FROM CurrentChallengeParticipant";
         try
         {
-            using (SqlConnection connection = CreateConnection())
+            if (connection != null)
             {
-                var rowAmount = await connection.ExecuteScalarAsync(commandText);
+                var initialConnectionState = connection.State;
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = commandText;
+                command.Transaction = transaction;
+                if (initialConnectionState == ConnectionState.Closed)
+                { connection.Open(); }
+                var rowAmount = await command.ExecuteScalarAsync();
+                if (initialConnectionState == ConnectionState.Closed)
+                { connection.Close(); }
                 return (int)rowAmount;
+
+            }
+            else
+            {
+                using (var newConnection = CreateConnection())
+                {
+                    var rowAmount = await newConnection.ExecuteScalarAsync(commandText);
+                    return (int)rowAmount;
+                }
             }
         }
         catch (Exception ex)

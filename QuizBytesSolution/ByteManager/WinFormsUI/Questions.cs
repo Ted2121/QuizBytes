@@ -23,12 +23,22 @@ namespace ByteManager.WinFormsUI
 
         private void chaptersNavigationButton_Click(object sender, EventArgs e)
         {
+            ShowChapters();
+        }
+
+        private void ShowChapters()
+        {
             this.Hide();
-            Chapters chapters = new Chapters(ChapterFacadeApiClient, SubjectFacadeApiClient);
+            Chapters chapters = new Chapters();
             chapters.Show();
         }
 
         private void webusersNavigationButton_Click(object sender, EventArgs e)
+        {
+            ShowWebUsers();
+        }
+
+        private void ShowWebUsers()
         {
             this.Hide();
             WebUsers webUsers = new WebUsers();
@@ -37,9 +47,14 @@ namespace ByteManager.WinFormsUI
 
         private void dashboardNavigationButton_Click(object sender, EventArgs e)
         {
+            ShowDashboard();
+        }
+
+        private void ShowDashboard()
+        {
             this.Hide();
             Dashboard dashboard = new Dashboard();
             dashboard.Show();
-        }
+        }   
     }
 }

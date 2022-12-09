@@ -20,12 +20,12 @@ namespace ByteManager.WinFormsUI
         private BindingSource subjectsBindingSource = new();
         private IChapterFacadeApiClient ChapterFacadeApi { get; set; }
         private ISubjectFacadeApiClient SubjectFacadeApi { get; set; }
+
+        private IEnumerable<SubjectDto> Subjects { get; set; }
         private int ChapterId { get; set; }
-        public Chapters(IChapterFacadeApiClient chapterFacadeApi, ISubjectFacadeApiClient subjectFacadeApi)
+        public Chapters()
         {
             InitializeComponent();
-            ChapterFacadeApi = chapterFacadeApi;
-            SubjectFacadeApi = subjectFacadeApi;
         }
 
         private void singleAnswerDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -45,8 +45,8 @@ namespace ByteManager.WinFormsUI
         private async Task GetSubjects()
         {
             SubjectFacadeApi = SubjectFacadeSingleton.Instance;
-            var subjectsEnum = await SubjectFacadeApi.GetAllSubjectsAsync();
-            var subjectsList = subjectsEnum.ToList();
+            Subjects = await SubjectFacadeApi.GetAllSubjectsAsync();
+            var subjectsList = Subjects.ToList();
             for(int i = 0; i < subjectsList.Count; i++)
             {
                 subjectsBindingSource.Insert(i, subjectsList[i].Name);
@@ -110,12 +110,21 @@ namespace ByteManager.WinFormsUI
             ChapterDto updatedChapter = new()
             {
                 Id = ChapterId,
-                FKSubjectId = 20,
+                FKSubjectId = GetSubjectIdFromCombobox(),
                 Description = descriptionTextBox.Text,
                 Name = chapterNameTextBox.Text
             };
             await UpdateChapter(updatedChapter);
             await GetChapters();
+        }
+
+        private int GetSubjectIdFromCombobox()
+        {
+            var subjectName = subjectComboBox.SelectedValue.ToString();
+
+            var subjectId = Subjects.Where(subject => subject.Name == subjectName).Select(subject => subject.Id).FirstOrDefault();
+
+            return subjectId;
         }
 
         private async Task UpdateChapter(ChapterDto chapter)
@@ -204,7 +213,7 @@ namespace ByteManager.WinFormsUI
                 Name = chapterNameTextBox.Text,
                 FKSubjectId = subjectId,
             };
-            await createChapter(chapter);
+            await CreateChapter(chapter);
             await GetChapters();
         }
 
@@ -221,7 +230,7 @@ namespace ByteManager.WinFormsUI
             }
             return -1;
         }
-        private async Task createChapter(ChapterDto chapter)
+        private async Task CreateChapter(ChapterDto chapter)
         {
             var id = await ChapterFacadeApi.InsertChapterAsync(chapter);
         }

@@ -37,12 +37,22 @@ namespace ByteManager.WinFormsUI
 
         private void chaptersNavigationButton_Click(object sender, EventArgs e)
         {
+            ShowChapters();
+        }
+
+        private void ShowChapters()
+        {
             this.Hide();
-            Chapters chapters = new Chapters(ChapterFacadeApiClient, SubjectFacadeApiClient);
+            Chapters chapters = new Chapters();
             chapters.Show();
         }
 
         private void questionsNavigationButton_Click(object sender, EventArgs e)
+        {
+            ShowQuestions();
+        }
+
+        private void ShowQuestions()
         {
             this.Hide();
             Questions questions = new Questions();
@@ -51,9 +61,19 @@ namespace ByteManager.WinFormsUI
 
         private void dashboardNavigationButton_Click(object sender, EventArgs e)
         {
+            ShowDashboard();
+        }
+
+        private void ShowDashboard()
+        {
             this.Hide();
             Dashboard dashboard = new Dashboard();
             dashboard.Show();
+        }
+
+        private void topicChaptersDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -16,7 +16,7 @@ namespace ByteManager.WinFormsUI
     {
             Configuration configuration = new();
             ApplicationConfiguration.Initialize();
-            Application.Run(new Chapters(ChapterFacadeSingleton.Instance, SubjectFacadeSingleton.Instance));
+            Application.Run(new Chapters());
 
             //    Application.SetHighDpiMode(HighDpiMode.SystemAware);
             //    Application.EnableVisualStyles();

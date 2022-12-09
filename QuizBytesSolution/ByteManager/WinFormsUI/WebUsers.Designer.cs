@@ -183,6 +183,7 @@
             this.topicChaptersDataGrid.RowTemplate.Height = 25;
             this.topicChaptersDataGrid.Size = new System.Drawing.Size(1130, 400);
             this.topicChaptersDataGrid.TabIndex = 12;
+            this.topicChaptersDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.topicChaptersDataGrid_CellContentClick);
             // 
             // Username
             // 

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -100,11 +101,21 @@ namespace ByteManager.WinFormsUI
 
         }
 
-        private async void chaptersEditButton_Click(object sender, EventArgs e)
+        private void chaptersEditButton_Click(object sender, EventArgs e)
         {
-            await EditChapters();
+            string message = "Are you sure you want to update this chapter?";
+            CreatePopUpForm(message, async () => {await EditChapters();});
         }
 
+        private async void CreatePopUpForm(string message, Func<Task> method)
+        {
+            string title = "Confirm";
+            DialogResult dialog = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
+            if(dialog == DialogResult.Yes)
+            {
+                await method.Invoke();
+            }
+        }
         private async Task EditChapters()
         {
             ChapterDto updatedChapter = new()
@@ -203,32 +214,21 @@ namespace ByteManager.WinFormsUI
             }
         }
 
-        private async void chaptersConfirmButton_Click(object sender, EventArgs e)
+        private async void ChaptersConfirmButton_Click(object sender, EventArgs e)
         {
-            var subjectName = subjectComboBox.Text;
-            int subjectId = await getSubjectIdFromName(subjectName);
+            await CreateChapter(NewChapterCreationAsync());
+            await GetChapters();
+        }
+        private ChapterDto NewChapterCreationAsync()
+        {
+            int subjectId = GetSubjectIdFromCombobox();
             ChapterDto chapter = new()
             {
                 Description = descriptionTextBox.Text,
                 Name = chapterNameTextBox.Text,
                 FKSubjectId = subjectId,
             };
-            await CreateChapter(chapter);
-            await GetChapters();
-        }
-
-        private async Task<int> getSubjectIdFromName(string subjectName)
-        {
-            var subjects = await SubjectFacadeApi.GetAllSubjectsAsync();
-            var subjectList = subjects.ToList();
-            for (var i = 0; i < subjectList.Count; i++)
-            {
-                if(subjectName == subjectList[i].Name)
-                {
-                    return subjectList[i].Id;
-                }
-            }
-            return -1;
+            return chapter;
         }
         private async Task CreateChapter(ChapterDto chapter)
         {

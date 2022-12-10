@@ -214,10 +214,10 @@ namespace ByteManager.WinFormsUI
             }
         }
 
-        private async void ChaptersConfirmButton_Click(object sender, EventArgs e)
+        private void ChaptersConfirmButton_Click(object sender, EventArgs e)
         {
-            await CreateChapter(NewChapterCreationAsync());
-            await GetChapters();
+            string message = "Are you sure you want to create this chapter?";
+            CreatePopUpForm(message, async () => { await CreateChapter(NewChapterCreationAsync()); });
         }
         private ChapterDto NewChapterCreationAsync()
         {
@@ -232,10 +232,17 @@ namespace ByteManager.WinFormsUI
         }
         private async Task CreateChapter(ChapterDto chapter)
         {
-            var id = await ChapterFacadeApi.InsertChapterAsync(chapter);
+            await ChapterFacadeApi.InsertChapterAsync(chapter);
+            await GetChapters();
         }
 
-        private async void chaptersDeleteButton_Click(object sender, EventArgs e)
+        private void chaptersDeleteButton_Click(object sender, EventArgs e)
+        {
+            string message = "Are you sure you want to delete this chapter?";
+            CreatePopUpForm(message, async () => { await DeleteChapter(); });
+        }
+
+        private async Task DeleteChapter()
         {
             await ChapterFacadeApi.DeleteChapterAsync(ChapterId);
             await GetChapters();

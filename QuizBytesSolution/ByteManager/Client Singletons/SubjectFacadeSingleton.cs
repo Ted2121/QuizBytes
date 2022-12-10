@@ -22,7 +22,7 @@ namespace ByteManager.Client_Singletons
                     {
                         if (instance == null)
                         {
-                            instance = new SubjectFacadeApiClient(Configuration.WinApiUri);
+                            instance = new SubjectFacadeApiClient(Configuration.WebApiUri);
                         }
                     }
                 }

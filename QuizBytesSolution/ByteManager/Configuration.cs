@@ -8,6 +8,6 @@ namespace ByteManager
 {
     public class Configuration
     {
-        public const string WinApiUri = "https://localhost:7215/api/v1/";
+        public const string WebApiUri = "https://localhost:7215/api/v1/";
     }
 }

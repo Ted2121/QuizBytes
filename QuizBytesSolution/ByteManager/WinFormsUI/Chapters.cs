@@ -116,6 +116,7 @@ namespace ByteManager.WinFormsUI
                 await method.Invoke();
             }
         }
+
         private async Task EditChapters()
         {
             ChapterDto updatedChapter = new()
@@ -217,9 +218,9 @@ namespace ByteManager.WinFormsUI
         private void ChaptersConfirmButton_Click(object sender, EventArgs e)
         {
             string message = "Are you sure you want to create this chapter?";
-            CreatePopUpForm(message, async () => { await CreateChapter(NewChapterCreationAsync()); });
+            CreatePopUpForm(message, async () => { await CreateChapter(NewChapter()); });
         }
-        private ChapterDto NewChapterCreationAsync()
+        private ChapterDto NewChapter()
         {
             int subjectId = GetSubjectIdFromCombobox();
             ChapterDto chapter = new()

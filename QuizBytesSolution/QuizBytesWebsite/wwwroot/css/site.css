@@ -57,7 +57,20 @@ body {
     white-space: nowrap;
     font-weight: 600
 }
+p{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:18px;
+}
 
+ul {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+li {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+}
 .logged-in{
     position:absolute;
     right:8vw;
@@ -68,26 +81,58 @@ body {
     right: 0vw;
     top: 1.3vh;
 }
-.image-container {
-    position: relative;
-    height: 200vh;
-    max-width: 100vw;
-    display:grid;
+.home-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
 }
-.image {
-    height: 200vh;
-    max-width: 100vw;  
-    margin-left:20%;
-    margin-top:30%;
+.home-image-header00{
+    position:absolute;
+    top:14vh;
+    left:11vw;
 }
-.image-text{
-    margin-block:0;
-    display:unset;
+.home-image-text00{
+    position:absolute;
+    top:23vh;
+    left:12vw;
+    max-width:20vw;
 }
-.image,.image-text{
-    grid-area:1 / 1;
+
+.home-image-header01 {
+    position: absolute;
+    top: 55vh;
+    right: 16vw;
 }
-.first-item{
-    background-color:darkorange;
-    top:0;
+
+.home-image-text01 {
+    position: absolute;
+    top: 64vh;
+    right: 12vw;
+    max-width: 20vw;
+}
+.home-image-header10 {
+    position: absolute;
+    top: 96vh;
+    left: 24vw;
+}
+
+.home-image-text10 {
+    position: absolute;
+    top: 105vh;
+    left: 12vw;
+    max-width: 20vw;
+}
+
+.home-image-header11 {
+    position: absolute;
+    top: 137vh;
+    right: 25vw;
+}
+
+.home-image-text11 {
+    position: absolute;
+    top: 146vh;
+    right: 14vw;
+    max-width: 20vw;
 }

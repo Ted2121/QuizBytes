@@ -10,10 +10,10 @@ public class LeaderboardBuilder : ILeaderboardBuilder
 
     public LeaderboardDto BuildLeaderboardFromParticipantList()
     {
-        //if (Participants == null)
-        //{
-        //    InitializeChallenge();
-        //}
+        if (Participants == null)
+        {
+            InitializeChallenge();
+        }
 
         var participantUsers = Participants.Select(participant => participant.WebUser);
 

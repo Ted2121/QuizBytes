@@ -57,20 +57,6 @@ body {
     white-space: nowrap;
     font-weight: 600
 }
-p{
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:18px;
-}
-
-ul {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-}
-li {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-}
-}
 .logged-in{
     position:absolute;
     right:8vw;
@@ -91,6 +77,10 @@ li {
     position:absolute;
     top:14vh;
     left:11vw;
+}
+.home-image-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px
 }
 .home-image-text00{
     position:absolute;

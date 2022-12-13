@@ -12,7 +12,6 @@
 
 <button class="btn-next" onclick="next()">Next</button>
 <script src ="~/lib/jquery/dist/jquery.js"></script>
-@*<script src="~/js/ChallengeQuizLogic.js"></script>*@
 
 <script>
     var seconds = 00;
@@ -75,14 +74,7 @@ window.onload = () => {
 
     }) 
 
-}// onload
-
-    //class UserScore{
-    //    constructor(elapsedTime, correctAnswers){
-    //    this.elapsedTime = elapsedTime;
-    //    this.correctAnswers = correctAnswers;
-    //}
-    //}
+}
 
     function next() {
         if (questionCount == unfoldedQuestions.length - 1) {
@@ -90,7 +82,6 @@ window.onload = () => {
              ajaxCallWithUserScore();
             ajaxCallToFinish();
             location.href = "../Leaderboard/Display";
-            //ajaxCallToLeaderboard
         }
         let userAnswer = $(".active").text();
         let finalAnswer;
@@ -144,7 +135,6 @@ window.onload = () => {
             var seconds2 = parseInt($('#seconds').text());
             var minutesInSeconds = parseInt($('#minutes').text()) * 60;
             elapsedTime = seconds2 + minutesInSeconds;
-            //var score = new UserScore(elapsedTime, correctAnswers);
             $.ajax({
                 url: "@Url.Action("UpdateUser")",
                 type: "POST",

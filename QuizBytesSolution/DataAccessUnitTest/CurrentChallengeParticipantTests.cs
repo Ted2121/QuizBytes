@@ -18,7 +18,7 @@ namespace DataAccessUnitTest
         public async Task SetUpAsync()
         {
             _random = new Random();
-            int randomId = _random.Next(101, 500);
+            // random range is a magic number -- value is not important
             int randomTotalPoints = _random.Next(1, 500);
             int randomAvailablePoints = _random.Next(1, 500);
 
@@ -36,7 +36,7 @@ namespace DataAccessUnitTest
         }
 
         [Test]
-        public async Task TestingThatAddingAUserOverTheLimitForTheChallengeThrowsException()
+        public async Task TestingThatAddingAUserOverTheLimitForTheChallengeReturnsIndexZero()
         {
 
             try
@@ -44,16 +44,17 @@ namespace DataAccessUnitTest
                 // Arrange
                 await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
-                WebUser[] webUsers = new WebUser[10];
+                WebUser[] webUsers = new WebUser[1];
                 for (int i = 0; i < webUsers.Length; i++)
                 {
                     webUsers[i] = new WebUser(i + 1);
                     await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(webUsers[i], _course);
                 }
 
-                // Act & Assert
+                // Act
+                var index = await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
-                Assert.That(async () => await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course), Throws.Exception);
+                Assert.That(index, Is.Zero);
             }
             finally
             {

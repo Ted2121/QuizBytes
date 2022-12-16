@@ -20,7 +20,7 @@ namespace QuizBytesWebsite.Helpers
         private TimeSpan day = new TimeSpan(24, 00, 00);    // 24 hours in a day.
         private System.Timers.Timer _timer = new System.Timers.Timer();
         // the time of day to fire the event
-        private TimeSpan activationTime = new TimeSpan(13, 45, 00);
+        private TimeSpan activationTime = new TimeSpan(14, 00, 00);
 
         #region TESTING ONLY keep commented
         // Adding 5 seconds to current time to be able to test cleaning up after the previous challenge and starting a new one

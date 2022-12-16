@@ -39,29 +39,35 @@ public class CurrentChallengeParticipantDataAccess : BaseDataAccess, ICurrentCha
 
                     transaction.Commit();
 
-                    return currentChallengeRowId;
+                    connection.Close();
                 }
                 else
                 {
                     try
                     {
                         transaction.Rollback();
-                        throw new Exception($"SqlException while trying to insert into CurrentChallengeParticipant table. Transaction successfully rolled back");
+                        return 0;
+
                     }
                     catch
                     {
                         throw new Exception($"Exception while trying to rollback transaction.");
                     }
+                    finally
+                    {
+                        connection.Close();
+                    }
                 }
 
 
+                return currentChallengeRowId;
             }
             catch (SqlException ex)
             {
                 try
                 {
                     transaction.Rollback();
-                    throw new Exception($"SqlException while trying to insert into CurrentChallengeParticipant table. Transaction successfully rolled back. The exception was: '{ex.Message}'", ex);
+                    return 0;
                 }
                 catch
                 {
@@ -70,7 +76,7 @@ public class CurrentChallengeParticipantDataAccess : BaseDataAccess, ICurrentCha
             }
             catch (Exception e)
             {
-                throw new Exception($"Exception while trying to insert into CurrentChallengeParticipant table.The exception was: '{e.Message}'", e);
+                throw new Exception($"Exception while trying to insert into TestCurrentChallengeParticipant table.The exception was: '{e.Message}'", e);
             }
 
         }

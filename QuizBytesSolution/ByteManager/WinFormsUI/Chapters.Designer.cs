@@ -224,7 +224,7 @@
             this.chaptersConfirmButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.chaptersConfirmButton.TabIndex = 21;
             this.chaptersConfirmButton.TabStop = false;
-            this.chaptersConfirmButton.Click += new System.EventHandler(this.chaptersConfirmButton_Click);
+            this.chaptersConfirmButton.Click += new System.EventHandler(this.ChaptersConfirmButton_Click);
             // 
             // chaptersDeleteButton
             // 

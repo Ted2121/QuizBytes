@@ -100,9 +100,6 @@ public class Tests
     [Test]
     public async Task TestingRewardDistribution()
     {
-        // Arrange
-        //await _challengeController.RegisterParticipantAsync(_firstCurrentChallengeParticipantDto);
-        //await _challengeController.RegisterParticipantAsync(_secondCurrentChallengeParticipantDto);
 
         List<WebUserDto> users = new List<WebUserDto>()
             {

@@ -1,9 +1,7 @@
 using DataAccessDefinitionLibrary.DAO_Interfaces;
 using DataAccessDefinitionLibrary.Data_Access_Models;
 using NUnit.Framework;
-using SQLAccessImplementationLibrary;
 using SQLAccessImplementationLibraryUnitTest;
-using System.Data.SqlClient;
 using Assert = NUnit.Framework.Assert;
 
 namespace DataAccessUnitTest
@@ -38,11 +36,36 @@ namespace DataAccessUnitTest
         }
 
         [Test]
-        public async Task TestUserLimitBlockOnInsertAsync()
+        public async Task TestingThatAddingAUserOverTheLimitForTheChallengeThrowsException()
         {
 
             try
             {
+                // Arrange
+                await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
+                WebUser[] webUsers = new WebUser[10];
+                for (int i = 0; i < webUsers.Length; i++)
+                {
+                    webUsers[i] = new WebUser(i + 1);
+                    await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(webUsers[i], _course);
+                }
+
+                // Act & Assert
+
+                Assert.That(async () => await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course), Throws.Exception);
+            }
+            finally
+            {
+                await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+
+            }
+
+        }
+
+        [Test]
+        public async Task TestingThatTransactionIsRolledBack()
+        {
             // Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
@@ -52,18 +75,16 @@ namespace DataAccessUnitTest
                 webUsers[i] = new WebUser(i + 1);
                 await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(webUsers[i], _course);
             }
-
-            // Act & Assert
-
-                Assert.That(async () => await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course), Throws.Exception);
-            }
-            finally
-            {
-            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
-
-            }
+            var userCountBeforeLastTransaction = await _currentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
 
 
+            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+
+            // Act
+            var userCountAfterLastTransaction = await _currentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
+
+            // Assert
+            Assert.That(userCountBeforeLastTransaction, Is.EqualTo(userCountAfterLastTransaction));
         }
 
         [Test]
@@ -71,22 +92,22 @@ namespace DataAccessUnitTest
         {
             try
             {
-            //Arrange
-            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
-            int randomTestId = 1;
-            _user.Id = randomTestId;
-            _course.Id = randomTestId;
-            var expected = _user.Id;
+                //Arrange
+                await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+                int randomTestId = 1;
+                _user.Id = randomTestId;
+                _course.Id = randomTestId;
+                var expected = _user.Id;
 
-            //Act
-            var actual = await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+                //Act
+                var actual = await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
-            //Assert
+                //Assert
                 Assert.That(actual, Is.EqualTo(expected));
             }
             finally
             {
-            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+                await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
             }
 
@@ -97,20 +118,20 @@ namespace DataAccessUnitTest
         {
             try
             {
-            //Arrange
-            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
-            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+                //Arrange
+                await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+                await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
-            //Act
-            bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.Id);
+                //Act
+                bool deleted = await _currentChallengeParticipantDataAccess.DeleteWebUserFromChallengeAsync(_user.Id);
 
-            //Assert
+                //Assert
                 Assert.That(deleted, Is.True);
             }
             finally
             {
 
-            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+                await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
             }
 
         }
@@ -125,9 +146,9 @@ namespace DataAccessUnitTest
             var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.Id);
 
             // Assert
-            
-                Assert.That(actual, Is.False);
-         
+
+            Assert.That(actual, Is.False);
+
 
         }
 
@@ -136,14 +157,14 @@ namespace DataAccessUnitTest
         {
             try
             {
-            //Arrange
-            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
-            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+                //Arrange
+                await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+                await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
-            //Act
-            var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.Id);
+                //Act
+                var actual = await _currentChallengeParticipantDataAccess.CheckIfWebUserIsInChallengeAsync(_user.Id);
 
-            // Assert
+                // Assert
                 Assert.That(actual, Is.True);
             }
             finally
@@ -159,20 +180,20 @@ namespace DataAccessUnitTest
         {
             try
             {
-            // Arrange
-            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
-            await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
+                // Arrange
+                await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+                await _currentChallengeParticipantDataAccess.AddWebUserToChallengeAsync(_user, _course);
 
-            // Act
-            var actual = await _currentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
+                // Act
+                var actual = await _currentChallengeParticipantDataAccess.GetRowAmountFromDatabaseAsync();
 
-            // Assert
+                // Assert
                 Assert.That(actual, Is.EqualTo(1));
             }
             finally
             {
 
-            await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
+                await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
             }
         }
 

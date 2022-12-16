@@ -57,8 +57,11 @@ public class ChallengeController : Controller
         // We use monday for the presentation because we only inserted data into the DB for the monday course
         var courseForChallenge = await CourseSelectionHelper.GetCourseForChallenge("monday");
 
-        await ChallengeFacadeApiClient.RegisterParticipantAsync(userToRegister, courseForChallenge);
-       
+        if(await ChallengeFacadeApiClient.RegisterParticipantAsync(userToRegister, courseForChallenge) == 0)
+        {
+            return RedirectToAction("Refuse");
+        }
+
 
         return RedirectToAction("Start");
     }

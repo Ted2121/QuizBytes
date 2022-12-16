@@ -24,7 +24,7 @@ namespace DataAccessUnitTest
             int randomTotalPoints = _random.Next(1, 500);
             int randomAvailablePoints = _random.Next(1, 500);
 
-            _user = new WebUser(randomId, "testusername", "testpassword", "testemail", randomTotalPoints, randomAvailablePoints);
+            _user = new WebUser("testusername", "testpassword", "testemail", randomTotalPoints, randomAvailablePoints);
             _course = new Course("testname", "testdescription");
 
             _currentChallengeParticipantDataAccess = new CurrentChallengeParticipantDataAccessMock();
@@ -46,7 +46,7 @@ namespace DataAccessUnitTest
             // Arrange
             await _currentChallengeParticipantDataAccess.ClearTempTableBeforeNextChallengeAsync();
 
-            WebUser[] webUsers = new WebUser[10];
+            WebUser[] webUsers = new WebUser[1];
             for (int i = 0; i < webUsers.Length; i++)
             {
                 webUsers[i] = new WebUser(i + 1);

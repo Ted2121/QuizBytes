@@ -12,7 +12,7 @@ namespace SQLAccessImplementationLibraryUnitTest
         public async Task<int> AddWebUserToChallengeAsync(WebUser webUser, Course course)
         {
             var currentChallengeRowId = 0;
-            int userLimitForChallenges = 10;
+            int userLimitForChallenges = 1;
 
             using (SqlConnection connection = new SqlConnection(Configuration.CONNECTION_STRING))
             {

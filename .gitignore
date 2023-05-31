@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/QuizBytesSolution/QuizBytesAPIServer/appsettings.Development.json
+/QuizBytesSolution/DataAccessUnitTest/appsettings.Test.json
